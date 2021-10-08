@@ -28,7 +28,7 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-//    @JoinColumn(name = "location_id")
+//   @JoinColumn(name = "location_id")
 //    private Location location;
 
 }

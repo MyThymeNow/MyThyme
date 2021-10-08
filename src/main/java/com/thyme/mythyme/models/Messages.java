@@ -7,14 +7,13 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Setter @Getter
+@Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 
 @Entity
-@Table(name = "ingredients")
-public class Ingredient {
-
+@Table(name = "Messages")
+public class Messages {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
@@ -24,5 +23,23 @@ public class Ingredient {
     @Column(nullable = false, length = 100)
     @Getter
     @Setter
-    private String name;
+    private long sender_id;
+
+    @Column(nullable = false, length = 100)
+    @Getter
+    @Setter
+
+    private long receiver_id;
+
+    @Column(nullable = false, length = 100)
+    @Getter
+    @Setter
+    private String content;
+
+
+
+
+
+
+
 }

@@ -17,12 +17,18 @@ public class GroceryList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
+    @Setter
     private long id;
 
     @Column(nullable = false, length = 75)
+    @Getter
+    @Setter
     private String name;
 
     @Column(nullable = false, length = 100)
+    @Getter
+    @Setter
     private String shareURL;
 
 }
