@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.List;
 
 @Setter @Getter
 @AllArgsConstructor
@@ -27,6 +29,7 @@ public class Category {
     @Setter
     private String name;
 
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    private List<Ingredient> ingredients;
 
 }

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "groceryList_categories")
@@ -21,6 +22,5 @@ public class GroceryListCategory {
     @Getter
     @Setter
     private long Category_id;
-
 
 }
