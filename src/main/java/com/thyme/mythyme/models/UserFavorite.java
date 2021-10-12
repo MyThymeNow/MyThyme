@@ -6,21 +6,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "groceryList_categories")
-public class GroceryListCategory {
-
+@Table(name = "user_groceryList")
+public class UserFavorite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
-    private long Ingredient_id;
+    private long user_id;
 
     @Column(nullable = false)
     @Getter
     @Setter
-    private long Category_id;
-
+    private long groceryList_id;
 }

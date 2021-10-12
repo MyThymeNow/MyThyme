@@ -19,15 +19,13 @@ public class GroceryListIngredients {
     @Setter
     private long id;
 
-    @Column(nullable = false)
-    @Getter
-    @Setter
-    private long ingredient_id;
+    @ManyToOne
+    @JoinColumn(name = "ingredient_id")
+    private Ingredient ingredient;
 
-    @Column(nullable = false)
-    @Getter
-    @Setter
-    private long groceryList_id;
+    @ManyToOne
+    @JoinColumn(name = "groceryList_id")
+    private GroceryList groceryList;
 
     @Column(nullable = false)
     @Getter
@@ -44,10 +42,9 @@ public class GroceryListIngredients {
     @Setter
     private boolean status;
 
-    @Column
-    @Getter
-    @Setter
-    private long user_id;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 
 

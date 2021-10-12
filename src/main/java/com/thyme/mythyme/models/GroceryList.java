@@ -33,12 +33,12 @@ public class GroceryList {
     private String shareURL;
 
     @ManyToMany (mappedBy = "groceryLists")
-    private List<User> users;
+    private List<User> user;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name="groceryList_category",
-            joinColumns={@JoinColumn(name="groceryList_id")},
+            name="groceryList_categories",
+            joinColumns={@JoinColumn(name="ingredient_id")},
             inverseJoinColumns={@JoinColumn(name="category_id")}
     )
     private List<Category> categories;
@@ -51,4 +51,15 @@ public class GroceryList {
             inverseJoinColumns={@JoinColumn(name="groceryList_id")}
     )
     private List<Ingredient> ingredients;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="userFavorite",
+            joinColumns={@JoinColumn(name="user_id")},
+            inverseJoinColumns={@JoinColumn(name="groceryList_id")}
+    )
+    private List<User> users;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "groceryList")
+    private List<GroceryListIngredients> GroceryListIngredient;
 }

@@ -29,7 +29,7 @@ public class Category {
     @Setter
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    @ManyToMany (mappedBy = "categories")
     private List<Ingredient> ingredients;
 
 }

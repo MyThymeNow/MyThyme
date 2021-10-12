@@ -50,18 +50,13 @@ public class User {
     @Column(nullable = false)
     @Getter
     @Setter
-    private boolean favorite;
-
-    @Column(nullable = false)
-    @Getter
-    @Setter
     private boolean isAdmin;
 
     @OneToOne
     private Location location;
 
-    @OneToOne
-    private Messages messages;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Messages> messages;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -70,6 +65,13 @@ public class User {
             inverseJoinColumns={@JoinColumn(name="groceryList_id")}
     )
     private List<GroceryList> groceryLists;
+
+    @ManyToMany (mappedBy = "users")
+    private List<GroceryList> groceryList;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<GroceryListIngredients> GroceryListIngredient;
+
 
 
 //   @JoinColumn(name = "location_id")

@@ -27,12 +27,18 @@ public class Ingredient {
     @Setter
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "categories_id")
-    private Category category;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="ingredient_category",
+            joinColumns={@JoinColumn(name="ingredient_id")},
+            inverseJoinColumns={@JoinColumn(name="category_id")}
+    )
+    private List<Category> categories;
 
     @ManyToMany (mappedBy = "ingredients")
     private List<GroceryList> groceryLists;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredient")
+    private List<GroceryListIngredients> GroceryListIngredient;
 
 }

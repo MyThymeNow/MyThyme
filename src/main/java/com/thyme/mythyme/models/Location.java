@@ -44,5 +44,5 @@ public class Location {
     @Column(nullable = false)
     @Getter
     @Setter
-    private long zipcode;
+    private String zipcode;
 }
