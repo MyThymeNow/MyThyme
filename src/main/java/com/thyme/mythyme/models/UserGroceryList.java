@@ -12,8 +12,12 @@ import javax.persistence.*;
 public class UserGroceryList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
+    @Setter
     private long user_id;
 
     @Column(nullable = false)
+    @Getter
+    @Setter
     private long groceryList_id;
 }

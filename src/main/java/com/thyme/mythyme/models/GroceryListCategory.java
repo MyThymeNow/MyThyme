@@ -13,9 +13,13 @@ public class GroceryListCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
+    @Setter
     private long groceryList_id;
 
     @Column(nullable = false)
+    @Getter
+    @Setter
     private long Category_id;
 
 
