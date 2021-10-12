@@ -15,9 +15,13 @@ public class IngredientCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
+    @Setter
     private long ingredient_id;
 
     @Column(nullable = false)
+    @Getter
+    @Setter
     private long category_id;
 
 }
