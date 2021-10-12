@@ -28,6 +28,21 @@ public class User {
     @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
+
+    @Column(nullable = false)
+    private boolean favorite;
+
+    @Column(nullable = false)
+    private boolean isAdmin;
+
+    @Column(nullable = false)
+    private long location_id;
+
 //   @JoinColumn(name = "location_id")
 //    private Location location;
 
