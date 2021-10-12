@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Setter @Getter
 @AllArgsConstructor
@@ -31,4 +32,23 @@ public class GroceryList {
     @Setter
     private String shareURL;
 
+    @ManyToMany (mappedBy = "groceryLists")
+    private List<User> users;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="groceryList_category",
+            joinColumns={@JoinColumn(name="groceryList_id")},
+            inverseJoinColumns={@JoinColumn(name="category_id")}
+    )
+    private List<Category> categories;
+
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="groceryList_Ingredients",
+            joinColumns={@JoinColumn(name="ingredient_id")},
+            inverseJoinColumns={@JoinColumn(name="groceryList_id")}
+    )
+    private List<Ingredient> ingredients;
 }

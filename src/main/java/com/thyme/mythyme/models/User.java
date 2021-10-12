@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Setter @Getter
 @AllArgsConstructor
@@ -40,8 +41,19 @@ public class User {
     @Column(nullable = false)
     private boolean isAdmin;
 
-    @Column(nullable = false)
-    private long location_id;
+    @OneToOne
+    private Location location;
+
+    @OneToOne
+    private Messages messages;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="user_groceryList",
+            joinColumns={@JoinColumn(name="user_id")},
+            inverseJoinColumns={@JoinColumn(name="groceryList_id")}
+    )
+    private List<GroceryList> groceryLists;
 
 //   @JoinColumn(name = "location_id")
 //    private Location location;
