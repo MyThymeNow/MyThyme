@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Getter @Setter
@@ -21,20 +22,27 @@ public class Messages {
     @Setter
     private long id;
 
-    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "sender_id")
     @Getter
     @Setter
-    private long sender_id;
+    private User sender;
 
-    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "receiver_id")
     @Getter
     @Setter
-    private long receiver_id;
+    private User receiver;
 
     @Column(nullable = false, columnDefinition = "text")
     @Getter
     @Setter
     private String content;
+
+    @Column(nullable = false)
+    @Getter
+    @Setter
+    private Timestamp timestamp;
 
 //    @ManyToOne
 //    @JoinColumn (name = "user_id")
