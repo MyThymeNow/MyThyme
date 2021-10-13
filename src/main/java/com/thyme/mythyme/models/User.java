@@ -91,7 +91,7 @@ public class User {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "favorited_grocerylist",
+            name = "user-favorite",
             joinColumns = {@JoinColumn(name="user_id")},
             inverseJoinColumns = {@JoinColumn(name="groceryList_id")}
     )

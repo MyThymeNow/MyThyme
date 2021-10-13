@@ -53,15 +53,15 @@ public class GroceryList {
     private List<Category> categories;
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name="groceryList_Ingredients",
-            joinColumns={@JoinColumn(name="ingredient_id")},
-            inverseJoinColumns={@JoinColumn(name="groceryList_id")}
-    )
-    @Getter
-    @Setter
-    private List<Ingredient> ingredients;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name="groceryList_Ingredients",
+//            joinColumns={@JoinColumn(name="ingredient_id")},
+//            inverseJoinColumns={@JoinColumn(name="groceryList_id")}
+//    )
+//    @Getter
+//    @Setter
+//    private List<Ingredient> ingredients;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(

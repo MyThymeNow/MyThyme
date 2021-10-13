@@ -36,11 +36,11 @@ public class Messages {
     @Setter
     private String content;
 
-    @ManyToOne
-    @JoinColumn (name = "user_id")
-    @Getter
-    @Setter
-    private User user;
+//    @ManyToOne
+//    @JoinColumn (name = "user_id")
+//    @Getter
+//    @Setter
+//    private User user;
 
 
 }
