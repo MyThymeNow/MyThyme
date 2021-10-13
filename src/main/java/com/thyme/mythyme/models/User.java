@@ -53,10 +53,31 @@ public class User {
     private boolean isAdmin;
 
     @OneToOne
+    @Getter
+    @Setter
     private Location location;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sender_id")
+    @Getter
+    @Setter
+    private List<Messages> sentMessages;
+
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "receiver_id")
+    @Getter
+    @Setter
+    private List<Messages> receivedMessages;
+
+
+    @ManyToMany (mappedBy = "users")
+    @Getter
+    @Setter
+    private List<GroceryList> groceryList;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Messages> messages;
+    @Getter
+    @Setter
+    private List<GroceryListIngredients> GroceryListIngredient;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -64,15 +85,19 @@ public class User {
             joinColumns={@JoinColumn(name="user_id")},
             inverseJoinColumns={@JoinColumn(name="groceryList_id")}
     )
+    @Getter
+    @Setter
     private List<GroceryList> groceryLists;
 
-    @ManyToMany (mappedBy = "users")
-    private List<GroceryList> groceryList;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<GroceryListIngredients> GroceryListIngredient;
-
-
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "favorited_grocerylist",
+            joinColumns = {@JoinColumn(name="user_id")},
+            inverseJoinColumns = {@JoinColumn(name="groceryList_id")}
+    )
+    @Getter
+    @Setter
+    private List<GroceryList> favorites;
 
 //   @JoinColumn(name = "location_id")
 //    private Location location;

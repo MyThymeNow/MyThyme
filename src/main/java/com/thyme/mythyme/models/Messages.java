@@ -21,15 +21,14 @@ public class Messages {
     @Setter
     private long id;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     @Getter
     @Setter
     private long sender_id;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     @Getter
     @Setter
-
     private long receiver_id;
 
     @Column(nullable = false, columnDefinition = "text")
@@ -39,6 +38,8 @@ public class Messages {
 
     @ManyToOne
     @JoinColumn (name = "user_id")
+    @Getter
+    @Setter
     private User user;
 
 

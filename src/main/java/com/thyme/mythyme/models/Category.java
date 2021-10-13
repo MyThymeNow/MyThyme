@@ -30,6 +30,8 @@ public class Category {
     private String name;
 
     @ManyToMany (mappedBy = "categories")
+    @Getter
+    @Setter
     private List<Ingredient> ingredients;
 
 }

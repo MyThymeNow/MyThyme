@@ -27,18 +27,23 @@ public class Ingredient {
     @Setter
     private String name;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredient")
+    @Getter
+    @Setter
+    private List<GroceryListIngredients> GroceryListIngredient;
+
+    @ManyToMany (mappedBy = "ingredients")
+    @Getter
+    @Setter
+    private List<GroceryList> groceryLists;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name="ingredient_category",
             joinColumns={@JoinColumn(name="ingredient_id")},
             inverseJoinColumns={@JoinColumn(name="category_id")}
     )
+    @Getter
+    @Setter
     private List<Category> categories;
-
-    @ManyToMany (mappedBy = "ingredients")
-    private List<GroceryList> groceryLists;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredient")
-    private List<GroceryListIngredients> GroceryListIngredient;
-
 }

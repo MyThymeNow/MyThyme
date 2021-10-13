@@ -21,10 +21,14 @@ public class GroceryListIngredients {
 
     @ManyToOne
     @JoinColumn(name = "ingredient_id")
+    @Getter
+    @Setter
     private Ingredient ingredient;
 
     @ManyToOne
     @JoinColumn(name = "groceryList_id")
+    @Getter
+    @Setter
     private GroceryList groceryList;
 
     @Column(nullable = false)
@@ -44,6 +48,8 @@ public class GroceryListIngredients {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @Getter
+    @Setter
     private User user;
 
 
