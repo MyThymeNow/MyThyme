@@ -1,7 +1,7 @@
 package com.thyme.mythyme.controllers;
 
 import com.thyme.mythyme.models.User;
-import com.thyme.mythyme.repository.Users;
+import com.thyme.mythyme.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
-    private final Users userDao;
+    private final UserRepository users;
     private final PasswordEncoder passwordEncoder;
 
-    public UserController(Users userDao, PasswordEncoder passwordEncoder) {
-        this.userDao = userDao;
+    public UserController(UserRepository users, PasswordEncoder passwordEncoder) {
+        this.users = users;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -30,7 +30,7 @@ public class UserController {
     public String saveUser(@ModelAttribute User user){
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
-        userDao.save(user);
+        users.save(user);
         return "redirect:/login";
     }
 }

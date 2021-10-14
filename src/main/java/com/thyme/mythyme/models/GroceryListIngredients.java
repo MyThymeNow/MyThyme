@@ -36,7 +36,7 @@ public class GroceryListIngredients {
     @Setter
     private long quantity;
 
-    @Column(nullable = false)
+    @Column
     @Getter
     @Setter
     private String notes;

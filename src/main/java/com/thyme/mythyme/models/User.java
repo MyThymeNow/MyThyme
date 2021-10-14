@@ -37,17 +37,17 @@ public class User {
     @Setter
     private String email;
 
-    @Column(nullable = false)
+    @Column
     @Getter
     @Setter
     private String firstName;
 
-    @Column(nullable = false)
+    @Column
     @Getter
     @Setter
     private String lastName;
 
-    @Column(nullable = false)
+    @Column
     @Getter
     @Setter
     private boolean isAdmin;

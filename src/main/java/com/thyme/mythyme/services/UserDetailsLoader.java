@@ -3,7 +3,7 @@ package com.thyme.mythyme.services;
 
 import com.thyme.mythyme.models.User;
 import com.thyme.mythyme.models.UserWithRoles;
-import com.thyme.mythyme.repository.Users;
+import com.thyme.mythyme.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserDetailsLoader implements UserDetailsService {
-    private final Users users;
+    private final UserRepository users;
 
-    public UserDetailsLoader(Users users) {
+    public UserDetailsLoader(UserRepository users) {
         this.users = users;
     }
 

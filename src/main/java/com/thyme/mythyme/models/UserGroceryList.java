@@ -17,7 +17,7 @@ public class UserGroceryList {
     @Setter
     private long id;
 
-    @Column(nullable = false)
+    @Column
     @Getter
     @Setter
     private boolean favorited;
