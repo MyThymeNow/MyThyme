@@ -8,7 +8,7 @@
     <div sec:authorize="isAuthenticated()">
 
       <ul>
-        <li><button class="btn btn-outline-primary"><a th:href="@{/posts/create}">Create Post</a></button></li>
+        <li><button class="btn btn-outline-primary"><a th:href="@{/posts/create}">Create List</a></button></li>
         <li><button class="btn btn-outline-success"><a th:href="@{/posts}">Profile</a></button></li>
         <li>
           <form th:action="@{/logout}" th:method="post">
@@ -24,7 +24,7 @@
     <div sec:authorize="!isAuthenticated()">
       <form th:action="@{/login}" th:method="post">
         <button class="btn-link btn" style="margin-top: 8px">Login</button>
-        <button class="btn-link btn" style="margin-top: 8px">Create Post</button>
+        <button class="btn-link btn" style="margin-top: 8px">Create List</button>
       </form>
       <form th:action="@{/sign-up}" th:method="post">
         <button class="btn-link btn" style="margin-top: 8px">Sign Up</button>
