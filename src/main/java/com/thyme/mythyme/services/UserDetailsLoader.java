@@ -1,25 +1,25 @@
 package com.thyme.mythyme.services;
 
-//import com.codeup.springblog.models.User;
-//import com.codeup.springblog.models.UserWithRoles;
-//import com.codeup.springblog.repos.UserRepository;
+
 import com.thyme.mythyme.models.User;
 import com.thyme.mythyme.models.UserWithRoles;
+import com.thyme.mythyme.repository.Users;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-public class UserDetailsLoader implements UserDetailsService{
-    private final UserRepository userDao;
+@Service
+public class UserDetailsLoader implements UserDetailsService {
+    private final Users users;
 
-    public UserDetailsLoader(UserRepository userDao) {
-        this.userDao = userDao;
+    public UserDetailsLoader(Users users) {
+        this.users = users;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDao.findByUsername(username);
+        User user = users.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("No user found for " + username);
         }
