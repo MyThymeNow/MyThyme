@@ -37,12 +37,12 @@ public class User {
     @Setter
     private String email;
 
-    @Column
+    @Column(nullable = false)
     @Getter
     @Setter
     private String firstName;
 
-    @Column
+    @Column(nullable = false)
     @Getter
     @Setter
     private String lastName;

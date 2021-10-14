@@ -23,12 +23,13 @@ public class Category {
     @Setter
     private long id;
 
-
     @Column(nullable = false, length = 100)
     @Getter
     @Setter
     private String name;
 
+
+    //RELATIONSHIPS
     @ManyToMany (mappedBy = "categories")
     @Getter
     @Setter

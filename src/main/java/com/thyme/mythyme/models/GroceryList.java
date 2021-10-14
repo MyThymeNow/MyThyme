@@ -32,6 +32,8 @@ public class GroceryList {
     @Setter
     private String shareURL;
 
+
+    //RELATIONSHIPS
     @OneToOne
     @Getter
     @Setter

@@ -27,6 +27,8 @@ public class Ingredient {
     @Setter
     private String name;
 
+
+    //RELATIONSHIPS
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredient")
     @Getter
     @Setter

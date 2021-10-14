@@ -22,6 +22,8 @@ public class UserGroceryList {
     @Setter
     private boolean favorited;
 
+
+    //RELATIONSHIPS
     @ManyToOne
     @Getter
     @Setter

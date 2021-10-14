@@ -22,6 +22,18 @@ public class Messages {
     @Setter
     private long id;
 
+    @Column(nullable = false, columnDefinition = "text")
+    @Getter
+    @Setter
+    private String content;
+
+    @Column(nullable = false)
+    @Getter
+    @Setter
+    private Timestamp timestamp;
+
+
+    //RELATIONSHIPS
     @ManyToOne
     @JoinColumn(name = "sender_id")
     @Getter
@@ -34,15 +46,9 @@ public class Messages {
     @Setter
     private User receiver;
 
-    @Column(nullable = false, columnDefinition = "text")
-    @Getter
-    @Setter
-    private String content;
 
-    @Column(nullable = false)
-    @Getter
-    @Setter
-    private Timestamp timestamp;
+
+
 
 //    @ManyToOne
 //    @JoinColumn (name = "user_id")
