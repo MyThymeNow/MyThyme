@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<nav th:fragment="navbar" style="background-color: cornflowerblue">
-  <!-- Image and text -->
-<!--  <nav class="navbar navbar-light bg-light">-->
-    <a class="navbar-brand" href="/home">
-      <img src="../../img/MyThyme_main_Logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"/>
-      MyThyme
-    </a>
-
+<nav th:fragment="navbar" class="navbar navbar-expand-lg" style="background-color: yellowgreen">
   <ul>
+<!--    <a class="navbar-brand" href="/home">-->
+<!--      <img src="../../img/MyThyme_main_Logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"/>-->
+<!--      MyThyme-->
+<!--    </a>-->
     <div sec:authorize="isAuthenticated()">
+      <a class="navbar-brand" href="/home">
+        <img src="../../img/MyThyme_main_Logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"/>
+        MyThyme
+      </a>
       <ul>
         <li><button class="btn btn-outline-primary"><a th:href="@{/posts/create}">Grocery List</a></button></li>
         <li><button class="btn btn-outline-success"><a th:href="@{/posts}">Recipes</a></button></li>
@@ -43,7 +44,12 @@
     <!-- IF NOT LOGGED IN BELOW -->
 
     <div sec:authorize="!isAuthenticated()">
+
       <form th:action="@{/login}" th:method="post">
+        <a class="navbar-brand" href="/home">
+          <img src="../../img/MyThyme_main_Logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"/>
+          MyThyme
+        </a>
         <button class="btn-link btn" style="margin-top: 8px">Login</button>
         <button class="btn-link btn" style="margin-top: 8px">Grocery List</button>
         <button class="btn-link btn" style="margin-top: 8px">Recipes</button>
