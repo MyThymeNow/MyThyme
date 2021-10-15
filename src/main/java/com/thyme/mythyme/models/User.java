@@ -84,6 +84,9 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserGroceryList> userGroceryLists;
 
+    public void setUser(User user) {
+    }
+
 
     //   @JoinColumn(name = "location_id")
 //    private Location location;
