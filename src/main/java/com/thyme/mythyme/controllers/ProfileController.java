@@ -31,7 +31,7 @@ public class ProfileController {
         user = new User();
         user.setUser(user);
 
-        model.addAttribute("user", user);
+        model.addAttribute("users", user);
 
         return "/create-profile";
     }
