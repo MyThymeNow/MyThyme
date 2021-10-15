@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -43,6 +44,39 @@ public class ProfileController {
 
         return "redirect:/profile/" + loggedInUser.getId();
     }
+
+   @GetMapping("/profile/{id}")
+
+    public String viewProfile(@PathVariable long id, Model model) {
+
+        User currentUser = userDao.getById(id);
+        model.addAttribute("user", currentUser);
+
+        return "users/profile";
+   }
+
+   @GetMapping("/profile/edit")
+    public String editProfile(Model model) {
+       User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+       User user = userDao.findByUsername(loggedInUser.getUsername());
+
+       model.addAttribute("user",user);
+
+       return "users/edit-profile";
+   }
+
+    @PostMapping("/profile/edit")
+    public String editedProfile(@ModelAttribute User user){
+
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userDao.findByUsername(loggedInUser.getUsername());
+
+        user.setId(user.getId());
+
+        userDao.save(user);
+        return "redirect:/profile";
+    }
+
 
 
 }
