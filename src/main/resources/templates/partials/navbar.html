@@ -4,22 +4,35 @@
 <nav th:fragment="navbar" style="background-color: cornflowerblue">
   <!-- Image and text -->
 <!--  <nav class="navbar navbar-light bg-light">-->
-    <a class="navbar-brand" href="#">
-      <img src="../../img/MyThyme_main_Logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+    <a class="navbar-brand" href="/home">
+      <img src="../../img/MyThyme_main_Logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"/>
       MyThyme
     </a>
 
-  <img src="../../img/MyThyme_main_Logo.png" alt="">
-  <!--    <h1>Spring Blog</h1>-->
   <ul>
-    <!-- More links here... -->
     <div sec:authorize="isAuthenticated()">
-
       <ul>
-        <li><button class="btn btn-outline-primary"><a th:href="@{/posts/create}">Create List</a></button></li>
-        <li><button class="btn btn-outline-success"><a th:href="@{/posts}">Profile</a></button></li>
+        <li><button class="btn btn-outline-primary"><a th:href="@{/posts/create}">Grocery List</a></button></li>
+        <li><button class="btn btn-outline-success"><a th:href="@{/posts}">Recipes</a></button></li>
+        <li><button class="btn btn-outline-success"><a th:href="@{/posts}">Favorites</a></button></li>
+        <li><button class="btn btn-outline-success"><a th:href="@{/posts}">Shared Lists</a></button></li>
+
         <li>
           <form th:action="@{/logout}" th:method="post">
+            <input class="form-control mr-sm-2" type="search" placeholder="Find recipes" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-outline-success"><a th:href="@{/profile}">Profile</a></button>
+            <div class="dropdown mr-1">
+              <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                Offset
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
             <button class="btn-link btn" style="margin-top: 8px">Logout</button>
           </form>
         </li>
@@ -32,14 +45,53 @@
     <div sec:authorize="!isAuthenticated()">
       <form th:action="@{/login}" th:method="post">
         <button class="btn-link btn" style="margin-top: 8px">Login</button>
-        <button class="btn-link btn" style="margin-top: 8px">Create List</button>
+        <button class="btn-link btn" style="margin-top: 8px">Grocery List</button>
+        <button class="btn-link btn" style="margin-top: 8px">Recipes</button>
       </form>
       <form th:action="@{/sign-up}" th:method="post">
+        <input class="form-control mr-sm-2" type="search" placeholder="Find recipes" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         <button class="btn-link btn" style="margin-top: 8px">Sign Up</button>
       </form>
     </div>
 
 
   </ul>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
 </nav>
 </html>
