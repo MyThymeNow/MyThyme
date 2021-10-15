@@ -60,10 +60,7 @@ public class User {
     }
 
     // RELATIONSHIPS
-    @OneToOne
-    @Getter
-    @Setter
-    private Location location;
+
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sender")
     @Getter
