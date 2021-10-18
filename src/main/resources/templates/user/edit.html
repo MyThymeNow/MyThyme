@@ -10,15 +10,25 @@
 <div class="justify-content-center">
     <form th:action="@{/profile/edit}" th:method="post" th:object="${user}">
         First Name:
-        <input th:field="*{first_name}"/>
+        <label>
+            <input th:field="*{firstName}"/>
+        </label>
         Last Name:
-        <input th:field="*{last_name}"/>
+        <label>
+            <input th:field="*{lastName}"/>
+        </label>
         Email:
-        <input th:field="*{email}"/>
+        <label>
+            <input th:field="*{email}"/>
+        </label>
         Username:
-        <input th:field="*{username}"/>
+        <label>
+            <input th:field="*{username}"/>
+        </label>
         Password:
-        <input th:field="*{password}"/>
+        <label>
+            <input th:field="*{password}"/>
+        </label>
     </form>
 
 </div>
