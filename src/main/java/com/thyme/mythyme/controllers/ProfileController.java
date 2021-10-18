@@ -15,45 +15,45 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class ProfileController {
 
-    private UserRepository userDao;
+    private final UserRepository userDao;
 
     public ProfileController(UserRepository userDao){
         this.userDao = userDao;
     }
 
-    @GetMapping("/profile/create")
-    public String createProfile(Model model){
+//    @GetMapping("/profile/create")
+//    public String createProfile(Model model){
+//
+//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User user = userDao.findByUsername(loggedInUser.getUsername());
+//        if (user.getUsername() != null) {
+//            return "redirect:/profile";
+//        }
+//        user = new User();
+//        user.setUser(user);
+//
+//        model.addAttribute("users", user);
+//
+//        return "/create-profile";
+//    }
 
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = userDao.findByUsername(loggedInUser.getUsername());
-        if (user.getUsername() != null) {
-            return "redirect:/profile";
-        }
-        user = new User();
-        user.setUser(user);
+//    @PostMapping("/profile/create")
+//    public String createdProfile(@ModelAttribute User user) {
+//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        user = userDao.findByUsername(loggedInUser.getUsername());
+//
+//        return "redirect:/profile/" + loggedInUser.getId();
+//    }
 
-        model.addAttribute("users", user);
-
-        return "/create-profile";
-    }
-
-    @PostMapping("/profile/create")
-    public String createdProfile(@ModelAttribute User user) {
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        user = userDao.findByUsername(loggedInUser.getUsername());
-
-        return "redirect:/profile/" + loggedInUser.getId();
-    }
-
-   @GetMapping("/profile/{id}")
-
-    public String viewProfile(@PathVariable long id, Model model) {
-
-        User currentUser = userDao.getById(id);
-        model.addAttribute("user", currentUser);
-
-        return "users/profile";
-   }
+//   @GetMapping("/profile/{id}")
+//
+//    public String viewProfile(@PathVariable long id, Model model) {
+//
+//        User currentUser = userDao.getById(id);
+//        model.addAttribute("user", currentUser);
+//
+//        return "users/profile";
+//   }
 
    @GetMapping("/profile/edit")
     public String editProfile(Model model) {
@@ -62,7 +62,7 @@ public class ProfileController {
 
        model.addAttribute("user",user);
 
-       return "users/edit-profile";
+       return "user/edit";
    }
 
     @PostMapping("/profile/edit")
