@@ -60,10 +60,7 @@ public class User {
     }
 
     // RELATIONSHIPS
-    @OneToOne
-    @Getter
-    @Setter
-    private Location location;
+
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sender")
     @Getter
@@ -83,6 +80,9 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserGroceryList> userGroceryLists;
+
+    public void setUser(User user) {
+    }
 
 
     //   @JoinColumn(name = "location_id")
