@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
+
 <nav th:fragment="navbar" class="navbar navbar-expand-lg" style="background-color: yellowgreen">
-  <ul>
-<!--    <a class="navbar-brand" href="/home">-->
-<!--      <img src="../../img/MyThyme_main_Logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"/>-->
-<!--      MyThyme-->
-<!--    </a>-->
+<!--  <ul>-->
+
     <div sec:authorize="isAuthenticated()">
       <a class="navbar-brand" href="/home">
         <img src="../../img/MyThyme_main_Logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"/>
@@ -41,7 +39,7 @@
 
     </div>
 
-    <!-- IF NOT LOGGED IN BELOW -->
+    <!--******** IF NOT LOGGED IN BELOW ********-->
 
     <div sec:authorize="!isAuthenticated()">
       <form th:action="@{/login}" th:method="post">
@@ -49,7 +47,7 @@
           <img src="/MyThyme_main_Logo.png" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy"/>
           MyThyme
         </a>
-        <button class="btn-link btn" style="margin-top: 8px">Login</button>
+        <a href="/login"><button class="btn-link btn" style="margin-top: 8px">Login</button></a>
         <button class="btn-link btn" style="margin-top: 8px">Grocery List</button>
         <button class="btn-link btn" style="margin-top: 8px">Recipes</button>
 
@@ -57,51 +55,10 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         <button class="btn-link btn" style="margin-top: 8px">Sign Up</button>
       </form>
-<!--      TODO MAY DELETE FORM BELOW LATER ON, FOR NOW LEAVE ALONE -->
-<!--      <form th:action="@{/sign-up}" th:method="post">-->
-<!--        <input class="form-control mr-sm-2" type="search" placeholder="Find recipes" aria-label="Search">-->
-<!--        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-<!--        <button class="btn-link btn" style="margin-top: 8px">Sign Up</button>-->
-<!--      </form>-->
+
     </div>
-
-
-  </ul>
+<!--  </ul>-->
 </nav>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
 </html>
