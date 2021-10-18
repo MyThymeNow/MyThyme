@@ -45,4 +45,9 @@ public class Location {
     @Getter
     @Setter
     private String zipcode;
+
+    @OneToOne
+    @Getter
+    @Setter
+    private User user;
 }
