@@ -5,6 +5,9 @@ import com.thyme.mythyme.repository.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -17,16 +20,15 @@ public class AdminController {
         this.userDao = userDao;
     }
 
-
     // Show list of users upon login
-    @GetMapping("/admin/users")
-    public String adminHome(Model model) {
+    @GetMapping("/admin/home")
+    public String adminDashboard(Model model) {
 
         List<User> usersToShow = userDao.findAll();
 
         model.addAttribute("users", usersToShow);
 
-        return "admin/home";
+        return "/admin/home";
     }
 
 }

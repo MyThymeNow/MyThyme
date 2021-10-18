@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Admin Page</title>
@@ -28,12 +28,12 @@
         <td th:text="${user.isAdmin}"></td>
         <td class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Action
+                Select Action
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" th:href="@{/users/{id}(id=${user.id})}">View More</a></li>
-                <li><a class="dropdown-item" href="#">Edit</a></li>
-                <li><a class="dropdown-item" href="#">Suspend</a></li>
+                <li><a class="dropdown-item" th:href="@{/users/{id}(id=${user.id})}">View User Details</a></li>
+                <li><a class="dropdown-item" href="#">Edit Account</a></li>
+                <li><a class="dropdown-item" href="#">Suspend Account</a></li>
             </ul>
         </td>
     </tr>
