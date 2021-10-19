@@ -32,7 +32,7 @@ public class GroceryListController {
         return "groceryList/index";
     }
 
-    @GetMapping("/posts")
+    @GetMapping("/groceryLists/{id}")
     public String showOneGroceryList(@PathVariable long id, Model model) {
         GroceryList groceryList = groceryDao.getById(id);
         model.addAttribute("groceryListId", id);
@@ -47,7 +47,7 @@ public class GroceryListController {
     }
 
     @PostMapping("/groceryLists/create")
-    public String createPost(@ModelAttribute GroceryList listToAdd) {
+    public String createGroceryList(@ModelAttribute GroceryList listToAdd) {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -56,6 +56,15 @@ public class GroceryListController {
         groceryDao.save(listToAdd);
         return"redirect:/groceryLists";
     }
+
+    @PostMapping("/posts/delete/{id}")
+    public String deletePost(@PathVariable long id) {
+        GroceryList listToDelete = groceryDao.getById(id);
+        groceryDao.delete(listToDelete);
+
+        return "redirect:/groceryLists";
+    }
+
 
 
 }
