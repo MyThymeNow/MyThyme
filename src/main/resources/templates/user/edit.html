@@ -7,6 +7,8 @@
 
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
 <div class="justify-content-center">
     <form th:action="@{/profile/edit}" th:method="post" th:object="${user}">
         First Name:
@@ -33,5 +35,6 @@
 
 </div>
 
+<div th:replace="partials/footer::footer"></div>
 </body>
 </html>

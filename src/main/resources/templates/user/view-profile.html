@@ -5,6 +5,8 @@
     <title>View Profile</title>
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
 <h1> View Your Profile Information Here</h1>
 <div class="justify-content-center" >
     <div th:each="user : ${user}">
@@ -14,5 +16,6 @@
     </div>
 </div>
 
+<div th:replace="partials/footer::footer"></div>
 </body>
 </html>

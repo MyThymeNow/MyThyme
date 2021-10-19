@@ -6,6 +6,8 @@
     <title>Location</title>
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
 <div sec:authorize="isAuthenticated()">
 <h1>Enter your location here:</h1>
 <form th:action="@{/location}" method="post" th:object="${location}">
@@ -28,5 +30,7 @@
     <input value="Enter location" type="submit" />
 </form>
 </div>
+
+<div th:replace="partials/footer::footer"></div>
 </body>
 </html>
