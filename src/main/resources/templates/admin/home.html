@@ -10,7 +10,9 @@
 </head>
 
 <body>
-<h2>Admin Page</h2>
+<h2>Admin Dashboard</h2>
+<div sec:authorize="isAuthenticated()">
+<h3>Welcome, <span th:text="${#authentication.principal.username}"/>!</h3>
 
 <table class="table">
     <thead>
