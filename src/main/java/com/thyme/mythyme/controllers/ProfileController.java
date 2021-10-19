@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -55,7 +56,7 @@ public class ProfileController {
    @GetMapping("/profile/edit")
     public String editProfile(Model model) {
       User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-      User user = userDao.findByUsername(loggedInUser.getUsername());
+      User user = userDao.getById(loggedInUser.getId());
 
        model.addAttribute("user",user);
 
@@ -63,12 +64,19 @@ public class ProfileController {
    }
 
     @PostMapping("/profile/edit")
-    public String editedProfile(){
+    public String editedProfile(@ModelAttribute User user){
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = userDao.findByUsername(loggedInUser.getUsername());
+//        user  = userDao.findByUsername(loggedInUser.getUsername());
 
-        user.setId(user.getId());
+        user.setId(loggedInUser.getId());
+        user.setAdmin(loggedInUser.isAdmin());
+        user.setPassword(loggedInUser.getPassword());
+
+
+
+
+
 
 
 
