@@ -52,6 +52,7 @@ public class User {
     @Setter
     private boolean isAdmin;
 
+
     public User(User copy) {
         id = copy.id;
         email = copy.email;
