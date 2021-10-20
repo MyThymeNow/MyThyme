@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>Viewing all Lists</h2>
+
+<div sec:authorize="isAuthenticated()" >
+
+    <h3>Welcome, <span th:text="${#authentication.principal.username}"/>!</h3>
+
+</div>
+
+<div th:each="groceryList:${groceryLists}">
+    <h2 th:text="${groceryList.name}"><a th:href="@{/groceryList/{id}(id=${groceryList.id})}"></a></h2>
+<!--    <h3 th:text="${groceryList.shareURL}"></h3> -->
+    <p>Owner: <span th:text="${groceryList.owner.username}"></span> </p>
+</div>
+
+</body>
+</html>
