@@ -42,21 +42,21 @@ public class UserController {
 
         model.addAttribute("user", currentUser);
 
-        return "user/view-profile"; //user/view-profile
+        return "user/view-profile"; // user/view-profile
 
     }
 
-    @GetMapping("/profile")
-    public String viewProfile(Model model) {
-//        User currentUser = users;
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-
-        model.addAttribute("user", currentUser);
-
-        return "user/view-profile"; //user/view-profile
-
-    }
+//    @GetMapping("/profile")
+//    public String viewProfile(Model model) {
+////        User currentUser = users;
+//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//
+//        model.addAttribute("user", currentUser);
+//
+//        return "user/view-profile"; //user/view-profile
+//
+//    }
 
 
 }

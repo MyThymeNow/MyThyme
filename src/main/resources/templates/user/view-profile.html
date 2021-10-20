@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>View Profile</title>
@@ -8,7 +8,7 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <h1> View Your Profile Information Here</h1>
-<div class="justify-content-center" >
+<div class="justify-content-center" sec:authorize="isAuthenticated()">
     <div th:each="user : ${user}">
         <div th:text="${user.getUsername()}"></div>
         <div th:text="${user.getFirstName()}"></div>
