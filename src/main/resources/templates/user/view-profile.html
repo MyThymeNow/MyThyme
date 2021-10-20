@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>View Profile</title>
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
 <h1> View Your Profile Information Here</h1>
 
 <div th:text="${user.getUsername()}"></div>
@@ -12,5 +14,6 @@
 <div th:text="${user.getLastName()}"></div>
 
 
+<div th:replace="partials/footer::footer"></div>
 </body>
 </html>
