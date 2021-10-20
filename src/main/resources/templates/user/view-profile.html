@@ -6,13 +6,11 @@
 </head>
 <body>
 <h1> View Your Profile Information Here</h1>
-<div class="justify-content-center" >
-    <div th:each="user : ${user}">
-        <div th:text="${user.getUsername()}"></div>
-        <div th:text="${user.getFirstName()}"></div>
-        <div th:text="${user.getLastName()}"></div>
-    </div>
-</div>
+
+<div th:text="${user.getUsername()}"></div>
+<div th:text="${user.getFirstName()}"></div>
+<div th:text="${user.getLastName()}"></div>
+
 
 </body>
 </html>
