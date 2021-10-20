@@ -63,9 +63,8 @@ public class GroceryListController {
         GroceryList listToDelete = groceryDao.getById(id);
         groceryDao.delete(listToDelete);
 
-        return "redirect:/grocery_lists";
+        return "redirect:/groceryLists";
     }
-
 
 
 }
