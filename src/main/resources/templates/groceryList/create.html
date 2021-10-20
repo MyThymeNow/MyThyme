@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Create a Grocery List</title>
@@ -8,11 +9,13 @@
 
 <h1>Create a grocery list</h1>
 
-<div class="container">
-    <form th:action="@{/groceryList/create}" th:method="post" th:object="${groceryList}">
+<div sec:authorize="isAuthenticated()">
+    <form th:action="@{/groceryLists/create}" method="post" th:object="${grocery_list}">
 
-        <input type="text" th:field="*{name}" placeholder="title">
-        <input type="text" th:field="*{shareURL}" placeholder="shareURL">
+        <label for="name">List Name</label>
+        <input id="name" th:field="*{name}" />
+
+        <input value="Create List" type="submit" />
 
     </form>
 </div>

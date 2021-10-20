@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class GroceryListController {
@@ -42,27 +43,27 @@ public class GroceryListController {
 
     @GetMapping("/groceryLists/create")
     public String showCreateListForm(Model model) {
-        model.addAttribute("groceryList", new GroceryList());
+        model.addAttribute("grocery_list", new GroceryList());
         return "groceryList/create";
     }
 
     @PostMapping("/groceryLists/create")
-    public String createGroceryList(@ModelAttribute GroceryList listToAdd) {
+    public String saveUserGroceryList(@ModelAttribute GroceryList listToAdd) {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+        UUID uuid = UUID.randomUUID();
         listToAdd.setOwner(loggedInUser);
-
+        listToAdd.setShareURL(uuid.toString());
         groceryDao.save(listToAdd);
         return"redirect:/groceryLists";
     }
 
-    @PostMapping("/posts/delete/{id}")
-    public String deletePost(@PathVariable long id) {
+    @PostMapping("/groceryLists/delete/{id}")
+    public String deleteGroceryList(@PathVariable long id) {
         GroceryList listToDelete = groceryDao.getById(id);
         groceryDao.delete(listToDelete);
 
-        return "redirect:/groceryLists";
+        return "redirect:/grocery_lists";
     }
 
 
