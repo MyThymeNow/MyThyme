@@ -36,6 +36,6 @@ public class LocationController {
         locationToAdd.setUser(loggedInUser);
 
         locationDao.save(locationToAdd);
-        return "redirect:/profile";
+        return "redirect:profile";
     }
 }
