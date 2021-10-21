@@ -1,64 +1,68 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+<body>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
 <nav th:fragment="navbar" class="navbar navbar-expand-lg" style="background-color: yellowgreen">
-<!--  <ul>-->
+  <!--  <ul>-->
+  <div sec:authorize="isAuthenticated()">
+    <a class="navbar-brand" href="/home">
+      <img src="/MyThyme_main_Logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"/>
+      MyThyme
+    </a>
+    <button class="btn btn-outline-primary"><a th:href="@{/posts/create}">Grocery List</a></button>
+    <button class="btn btn-outline-success"><a th:href="@{/posts}">Favorites</a></button>
+    <button class="btn btn-outline-success"><a th:href="@{/posts}">Recipes</a></button>
+    <button class="btn btn-outline-success"><a th:href="@{/posts}">Coupons</a></button>
 
-    <div sec:authorize="isAuthenticated()">
+    <!--        <form th:action="@{/logout}" th:method="post">-->
+    <button class="btn btn-outline-success"><a th:href="@{/profile}">Profile</a></button>
+    <!--          <div class="dropdown mr-1">-->
+    <input class="form-control mr-sm-2" type="search" placeholder="Find recipes" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+    <!--            todo DROP DOWN OPTION -->
+    <!--            <li class="nav-item dropdown">-->
+    <!--              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+    <!--                Dropdown-->
+    <!--              </a>-->
+    <!--              <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+    <!--                <button><a class="dropdown-item" href="#">Action</a></button>-->
+    <!--                <button><a class="dropdown-item" href="#">Another action</a></button>-->
+    <!--                <div class="dropdown-divider"></div>-->
+    <!--                <button><a class="dropdown-item" href="#">Something else here</a></button>-->
+    <!--              </div>-->
+    <!--            </li>-->
+    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+    <!--          </div>-->
+    <!--        </form>-->
+  </div>
+
+
+  <!--******** IF NOT LOGGED IN BELOW ********-->
+  <div sec:authorize="!isAuthenticated()">
+    <form th:action="@{/login}" th:method="post">
       <a class="navbar-brand" href="/home">
-        <img src="../../img/MyThyme_main_Logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"/>
+        <img src="/MyThyme_main_Logo.png" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy"/>
         MyThyme
       </a>
-      <ul>
-        <li><button class="btn btn-outline-primary"><a th:href="@{/posts/create}">Grocery List</a></button></li>
-        <li><button class="btn btn-outline-success"><a th:href="@{/posts}">Recipes</a></button></li>
-        <li><button class="btn btn-outline-success"><a th:href="@{/posts}">Favorites</a></button></li>
-        <li><button class="btn btn-outline-success"><a th:href="@{/posts}">Shared Lists</a></button></li>
+      <a href="/login"><button class="btn-link btn" style="margin-top: 8px">Login</button></a>
+      <button class="btn-link btn" style="margin-top: 8px">Grocery List</button>
+      <button class="btn-link btn" style="margin-top: 8px">Recipes</button>
 
-        <li>
-          <form th:action="@{/logout}" th:method="post">
-            <input class="form-control mr-sm-2" type="search" placeholder="Find recipes" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            <button class="btn btn-outline-success"><a th:href="@{/profile}">Profile</a></button>
-            <div class="dropdown mr-1">
-              <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset"
-                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                Offset
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </div>
-            <button class="btn-link btn" style="margin-top: 8px">Logout</button>
-          </form>
-        </li>
-      </ul>
-
-    </div>
-
-    <!--******** IF NOT LOGGED IN BELOW ********-->
-
-    <div sec:authorize="!isAuthenticated()">
-      <form th:action="@{/login}" th:method="post">
-        <a class="navbar-brand" href="/home">
-          <img src="/MyThyme_main_Logo.png" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy"/>
-          MyThyme
-        </a>
-        <a href="/login"><button class="btn-link btn" style="margin-top: 8px">Login</button></a>
-        <button class="btn-link btn" style="margin-top: 8px">Grocery List</button>
-        <button class="btn-link btn" style="margin-top: 8px">Recipes</button>
-
-        <input class="form-control mr-sm-2" type="search" placeholder="Find recipes" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        <button class="btn-link btn" style="margin-top: 8px">Sign Up</button>
-      </form>
-
-    </div>
-<!--  </ul>-->
+      <input class="form-control mr-sm-2" type="search" placeholder="Find recipes" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn-link btn" style="margin-top: 8px">Sign Up</button>
+    </form>
+  </div>
+  <!--  </ul>-->
 </nav>
+</body>
 
 
 </html>

@@ -2,6 +2,7 @@ package com.thyme.mythyme.controllers;
 
 import com.thyme.mythyme.models.User;
 import com.thyme.mythyme.repository.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +42,20 @@ public class UserController {
 
         model.addAttribute("user", currentUser);
 
-        return "user/view-profile";
+        return "user/view-profile"; // user/view-profile
+        //redirects do not target profile
+
+    }
+
+    @GetMapping("/profile")
+    public String viewProfile(Model model) {
+//        User currentUser = users;
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        User UserNDB = users.getById(currentUser.getId());
+        model.addAttribute("user", UserNDB);
+
+        return "user/view-profile"; //user/view-profile
 
     }
 
