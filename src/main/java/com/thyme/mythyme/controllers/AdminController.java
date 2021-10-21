@@ -6,6 +6,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -38,6 +41,23 @@ public class AdminController {
         } else {
             return originalPath;
         }
+    }
+
+    @GetMapping("/admin/profile/edit/{id}")
+    public String updateUserForm(@PathVariable Long id, Model model) {
+        User updatedUser = userDao.getById(id);
+
+        model.addAttribute("user", updatedUser);
+        return "admin/edit";
+    }
+
+    @PostMapping("/admin/profile/edit/{id}")
+    public String updateUser(@ModelAttribute User user) {
+
+//        if (user.isLocked()) {
+            userDao.save(user);
+
+        return "redirect:/admin/home";
     }
 
 
