@@ -30,7 +30,7 @@ public class AuthenticationController {
         if (userInDB.isAdmin()) {
             return "redirect:/admin/home";
         } else {
-            return "redirect:/";
+            return "redirect:/view-profile";
         }
     }
 }
