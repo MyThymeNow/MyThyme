@@ -31,8 +31,8 @@ public class AuthenticationController {
             return "redirect:/admin/home";
         } else {
 
-            return "redirect:user/view-profile";
-
+            return "redirect:/profile"; // /user/location not working
         }
+//             return "redirect:user/view-profile";
+        
     }
-}
