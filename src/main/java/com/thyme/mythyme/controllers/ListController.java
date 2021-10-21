@@ -3,6 +3,7 @@ package com.thyme.mythyme.controllers;
 import com.thyme.mythyme.models.User;
 import com.thyme.mythyme.repository.UserRepository;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,14 +16,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ListController {
     private final UserRepository userList;
 
+
     public ListController(UserRepository userList){
         this.userList = userList;
     }
+
+    public UserRepository getUserList() {
+        return userList;
+    }
+
 
     @GetMapping("/coupons")
     public String groceryCoupons(){
         return "user/coupons";
     }
+
 }
 
 
