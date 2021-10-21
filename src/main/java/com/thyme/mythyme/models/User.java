@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Setter @Getter
@@ -52,6 +53,11 @@ public class User {
     @Setter
     private boolean isAdmin;
 
+    @Column
+    @Getter
+    @Setter
+    private boolean isLocked;
+
 
     public User(User copy) {
         id = copy.id;
@@ -82,8 +88,6 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserGroceryList> userGroceryLists;
 
-    public void setUser(User user) {
-    }
 
 
     //   @JoinColumn(name = "location_id")

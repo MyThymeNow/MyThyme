@@ -2,7 +2,6 @@ package com.thyme.mythyme.controllers;
 
 import com.thyme.mythyme.models.User;
 import com.thyme.mythyme.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,5 +31,9 @@ public class AuthenticationController {
         } else {
             return "redirect:/user/view-profile"; // /user/location not working
         }
+
     }
+
+
+
 }
