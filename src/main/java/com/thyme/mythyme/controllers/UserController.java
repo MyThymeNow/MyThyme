@@ -59,16 +59,5 @@ public class UserController {
 
     }
 
-    @GetMapping("/profile")
-    public String viewProfile(Model model) {
-//        User currentUser = users;
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        User UserNDB = users.getById(currentUser.getId());
-        model.addAttribute("user", UserNDB);
-
-        return "user/view-profile"; //user/view-profile
-    }
-
 
 }
