@@ -34,9 +34,7 @@ public class AuthenticationController {
             return "redirect:/profile"; // /user/location not working
 
 
-            return "redirect:/user/view-profile"; // /user/location not working
 
-            return "redirect:user/view-profile";
 
 
         }
