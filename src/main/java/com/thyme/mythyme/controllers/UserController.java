@@ -55,7 +55,6 @@ public class UserController {
         model.addAttribute("user", UserNDB);
 
         return "user/view-profile"; //user/view-profile
-
     }
 
 
