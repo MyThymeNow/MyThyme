@@ -2,6 +2,7 @@ package com.thyme.mythyme.controllers;
 
 import com.thyme.mythyme.models.User;
 import com.thyme.mythyme.repository.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +29,19 @@ public class AdminController {
 
         model.addAttribute("users", usersToShow);
 
-        return "/admin/home";
+        return redirectUser("admin/home");
     }
+
+    public String redirectUser(String originalPath) {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userInDB = userDao.getById(loggedInUser.getId());
+
+        if (!userInDB.isAdmin()) {
+            return "redirect:/";
+        } else {
+            return originalPath;
+        }
+    }
+
 
 }

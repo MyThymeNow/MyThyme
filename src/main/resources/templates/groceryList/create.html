@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Create a Grocery List</title>
+</head>
+<body>
+
+<h1>Create a grocery list</h1>
+
+<div sec:authorize="isAuthenticated()">
+    <form th:action="@{/groceryLists/create}" method="post" th:object="${grocery_list}">
+
+        <label for="name">List Name</label>
+        <input id="name" th:field="*{name}" />
+
+        <input value="Create List" type="submit" />
+
+    </form>
+</div>
+
+</body>
+</html>
