@@ -6,6 +6,7 @@
     <title>Title</title>
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 
 <h2>Viewing all Lists</h2>
 
@@ -21,5 +22,9 @@
     <p>Owner: <span th:text="${groceryList.owner.username}"></span> </p>
 </div>
 
+<script src="../../js/jquery.js"></script>
+<script src="../../js/jquery_functions.js"></script>
+
+<div th:replace="partials/footer::footer"></div>
 </body>
 </html>

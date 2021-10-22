@@ -31,7 +31,17 @@ public class AuthenticationController {
         } else {
 
             return "redirect:/profile";
+<<<<<<< HEAD
         }
     }
 
 }
+=======
+
+
+        }
+    }
+}
+
+
+>>>>>>> 4cdf8fcb3785ea310f813957e81306f1c338bcd8
