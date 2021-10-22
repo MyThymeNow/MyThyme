@@ -33,6 +33,7 @@ public class AuthenticationController {
             return "redirect:/profile"; // /user/location not working
         }
 
+
     }
 
 
