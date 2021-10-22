@@ -56,8 +56,18 @@ public class UserController {
         model.addAttribute("user", UserNDB);
 
         return "user/view-profile"; //user/view-profile
-
     }
 
+    //TODO working to link other buttons in navbar... remove at later time
+    @GetMapping("/favorites")
+    public String viewFavorites(Model model) {
+//        User currentUser = users;
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        User UserNDB = users.getById(currentUser.getId());
+        model.addAttribute("user", UserNDB);
+
+        return "user/favorites"; //user/view-profile
+    }
 
 }

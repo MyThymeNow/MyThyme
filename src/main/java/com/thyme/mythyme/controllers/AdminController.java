@@ -43,5 +43,21 @@ public class AdminController {
         }
     }
 
+    @GetMapping("/admin/profile/edit/{id}")
+    public String updateUserForm(@PathVariable Long id, Model model) {
+        User updatedUser = userDao.getById(id);
+
+        model.addAttribute("user", updatedUser);
+        return "admin/edit";
+    }
+
+    @PostMapping("/admin/profile/edit/{id}")
+    public String updateUser(@ModelAttribute User user) {
+
+            userDao.save(user);
+
+        return "redirect:/admin/home";
+    }
+
 
 }

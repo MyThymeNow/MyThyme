@@ -16,9 +16,9 @@
       MyThyme
     </a>
     <button class="btn btn-outline-primary"><a th:href="@{/posts/create}">Grocery List</a></button>
-    <button class="btn btn-outline-success"><a th:href="@{/posts}">Favorites</a></button>
+    <button class="btn btn-outline-success"><a th:href="@{/favorites}">Favorites</a></button>
     <button class="btn btn-outline-success"><a th:href="@{/posts}">Recipes</a></button>
-    <button class="btn btn-outline-success"><a th:href="@{/posts}">Coupons</a></button>
+    <button class="btn btn-outline-success"><a th:href="@{/coupons}">Coupons</a></button>
 
     <!--        <form th:action="@{/logout}" th:method="post">-->
     <button class="btn btn-outline-success"><a th:href="@{/profile}">Profile</a></button>
@@ -38,7 +38,7 @@
     <!--                <button><a class="dropdown-item" href="#">Something else here</a></button>-->
     <!--              </div>-->
     <!--            </li>-->
-    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+    <a th:href="@{/login}"><button class="btn-link btn" style="margin-top: 8px">Logout</button></a>
     <!--          </div>-->
     <!--        </form>-->
   </div>
@@ -51,13 +51,14 @@
         <img src="/MyThyme_main_Logo.png" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy"/>
         MyThyme
       </a>
-      <a href="/login"><button class="btn-link btn" style="margin-top: 8px">Login</button></a>
-      <button class="btn-link btn" style="margin-top: 8px">Grocery List</button>
-      <button class="btn-link btn" style="margin-top: 8px">Recipes</button>
+      <a th:href="@{/login}"><button class="btn-link btn" style="margin-top: 8px">Login</button></a>
+      <a th:href="@{/login}"><button class="btn-link btn" style="margin-top: 8px">Grocery List</button></a>
+      <a th:href="@{/}"><button class="btn-link btn" style="margin-top: 8px">Recipes</button></a>
 
       <input class="form-control mr-sm-2" type="search" placeholder="Find recipes" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      <button class="btn-link btn" style="margin-top: 8px">Sign Up</button>
+      <a th:href="@{/sign-up}"><button class="btn-link btn" style="margin-top: 8px">Sign Up</button></a>
+
     </form>
   </div>
   <!--  </ul>-->
