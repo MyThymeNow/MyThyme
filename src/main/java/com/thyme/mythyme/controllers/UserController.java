@@ -1,6 +1,8 @@
 package com.thyme.mythyme.controllers;
 
+import com.thyme.mythyme.models.Location;
 import com.thyme.mythyme.models.User;
+import com.thyme.mythyme.repository.LocationRepository;
 import com.thyme.mythyme.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,10 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
     private final UserRepository users;
     private final PasswordEncoder passwordEncoder;
+    private final LocationRepository locationDao;
 
-    public UserController(UserRepository users, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository users, PasswordEncoder passwordEncoder, LocationRepository locationDao) {
         this.users = users;
         this.passwordEncoder = passwordEncoder;
+        this.locationDao = locationDao;
     }
 
 
@@ -34,6 +38,23 @@ public class UserController {
         user.setPassword(hash);
         users.save(user);
         return "redirect:/login";
+    }
+
+    @GetMapping("/location")
+    public String showLocationForm(Model model) {
+        model.addAttribute("location", new Location());
+        return "user/location";
+    }
+
+    @PostMapping("/location")
+    public String saveUserLocation(@ModelAttribute Location locationToAdd){
+
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        locationToAdd.setUser(loggedInUser);
+
+        locationDao.save(locationToAdd);
+        return "redirect:profile";
     }
 
     @GetMapping("/profile/{id}")

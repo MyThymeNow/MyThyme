@@ -22,20 +22,20 @@ public class LocationController {
         this.userDao = userDao;
     }
 
-    @GetMapping("/location")
-    public String showLocationForm(Model model) {
-        model.addAttribute("location", new Location());
-        return "user/location";
-    }
-
-    @PostMapping("/location")
-    public String saveUserLocation(@ModelAttribute Location locationToAdd){
-
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        locationToAdd.setUser(loggedInUser);
-
-        locationDao.save(locationToAdd);
-        return "redirect:profile";
-    }
+//    @GetMapping("/location")
+//    public String showLocationForm(Model model) {
+//        model.addAttribute("location", new Location());
+//        return "user/location";
+//    }
+//
+//    @PostMapping("/location")
+//    public String saveUserLocation(@ModelAttribute Location locationToAdd){
+//
+//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//        locationToAdd.setUser(loggedInUser);
+//
+//        locationDao.save(locationToAdd);
+//        return "redirect:profile";
+//    }
 }

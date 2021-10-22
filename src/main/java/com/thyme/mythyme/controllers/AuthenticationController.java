@@ -1,6 +1,8 @@
 package com.thyme.mythyme.controllers;
 
+import com.thyme.mythyme.models.Location;
 import com.thyme.mythyme.models.User;
+import com.thyme.mythyme.repository.LocationRepository;
 import com.thyme.mythyme.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -10,9 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AuthenticationController {
 
     private final UserRepository userDao;
+    private final LocationRepository locationDao;
 
-    public AuthenticationController(UserRepository userDao) {
+    public AuthenticationController(UserRepository userDao, LocationRepository locationDao) {
         this.userDao = userDao;
+        this.locationDao = locationDao;
     }
 
     @GetMapping("/login")
@@ -29,12 +33,17 @@ public class AuthenticationController {
         if (userInDB.isAdmin()) {
             return "redirect:/admin/home";
         } else {
-
             return "redirect:/profile";
-
-
         }
     }
+
+//    @GetMapping("/route-user")
+//    public String routeUserBasedOnLocation() {
+//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        Location locationInDB = locationDao.getById(currentUser.getId());
+//
+//        if(locationInDB.user_id )
+//    }
 }
 
 
