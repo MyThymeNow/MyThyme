@@ -58,6 +58,27 @@ public class GroceryListController {
         return"redirect:/groceryLists";
     }
 
+    @GetMapping("/groceryLists/edit/{id}")
+    public String showEditPostForm(@PathVariable long id, Model model) {
+        GroceryList listToEdit = groceryDao.getById(id);
+        model.addAttribute("listToEdit",listToEdit);
+        return "groceryList/edit";
+    }
+
+    @PostMapping("/groceryLists/edit/{id}")
+    public String editPost(
+            @PathVariable long id,
+            @ModelAttribute GroceryList updatedList
+    ) {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        updatedList.setId(id);
+        updatedList.setOwner(loggedInUser);
+        groceryDao.save(updatedList);
+
+        return "redirect:/groceryLists";
+
+    }
+
     @PostMapping("/groceryLists/delete/{id}")
     public String deleteGroceryList(@PathVariable long id) {
         GroceryList listToDelete = groceryDao.getById(id);
