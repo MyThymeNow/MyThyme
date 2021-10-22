@@ -2,12 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Your Profile</title>
-    <div th:replace="Partials::header"></div>
+    <title>Edit Profile</title>
+    <!--    <div th:replace="partials/header::"></div>-->
 
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
+<h1>Edit Your Profile Information Here</h1>
 
 <div class="justify-content-center">
     <form th:action="@{/profile/edit}" th:method="post" th:object="${user}">
@@ -27,13 +28,11 @@
         <label>
             <input th:field="*{username}"/>
         </label>
-        Password:
-        <label>
-            <input th:field="*{password}"/>
-        </label>
+        <input onclick=""  type="submit">
     </form>
 
 </div>
+
 
 <div th:replace="partials/footer::footer"></div>
 </body>

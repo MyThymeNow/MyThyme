@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
+<head th:replace="partials/header :: head">
     <meta charset="UTF-8">
     <title>Location</title>
+
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
@@ -31,6 +32,7 @@
 </form>
 </div>
 
-<div th:replace="partials/footer::footer"></div>
+<div th:fragment="footer"></div>
+<!--th:fragment= "partials/footer::footer"-->
 </body>
 </html>

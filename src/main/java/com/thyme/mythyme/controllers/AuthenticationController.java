@@ -2,7 +2,6 @@ package com.thyme.mythyme.controllers;
 
 import com.thyme.mythyme.models.User;
 import com.thyme.mythyme.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +29,16 @@ public class AuthenticationController {
         if (userInDB.isAdmin()) {
             return "redirect:/admin/home";
         } else {
+<<<<<<< HEAD
             return "redirect:/profile";
+=======
+
+            return "redirect:/profile"; // /user/location not working
+>>>>>>> 954a75dd951687c24c90f4b84609789ab9628488
         }
+
     }
+
+
+
 }

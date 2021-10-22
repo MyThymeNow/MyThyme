@@ -3,7 +3,6 @@ package com.thyme.mythyme.controllers;
 
 import com.thyme.mythyme.models.User;
 import com.thyme.mythyme.repository.UserRepository;
-import lombok.Getter;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,8 +56,8 @@ public class ProfileController {
 
    @GetMapping("/profile/edit")
     public String editProfile(Model model) {
-       User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-       User user = userDao.findByUsername(loggedInUser.getUsername());
+      User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+      User user = userDao.getById(loggedInUser.getId());
 
        model.addAttribute("user",user);
 
@@ -69,9 +68,12 @@ public class ProfileController {
     public String editedProfile(@ModelAttribute User user){
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        user = userDao.findByUsername(loggedInUser.getUsername());
+//        user  = userDao.findByUsername(loggedInUser.getUsername());
 
-        user.setId(user.getId());
+        user.setId(loggedInUser.getId());
+        user.setAdmin(loggedInUser.isAdmin());
+        user.setPassword(loggedInUser.getPassword());
+
 
         userDao.save(user);
         return "redirect:/profile";
