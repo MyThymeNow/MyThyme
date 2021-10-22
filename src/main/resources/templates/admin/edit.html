@@ -30,31 +30,25 @@
     <input type="text" th:field="*{lastName}" placeholder="Last Name">
     <input type="text" th:field="*{email}" placeholder="Email">
     <input type="text" th:field="*{username}" placeholder="Username">
-    <input type="text" th:field="*{password}" placeholder="Password">
+    <input type="password" th:field="*{password}" placeholder="Password">
 
-<!--    <div>-->
-<!--        <label>Select one color:</label>-->
-<!--        <select th:field="*{isLocked()}">-->
-<!--            <option th:each="user : ${user.isLocked()}"-->
-<!--                    th:checked="*{isLocked()}"-->
-<!--                    th:text="*{isLocked()}">User is locked-->
-<!--            </option>-->
-<!--            <option th:each="user : ${user.isLocked()}"-->
-<!--                    th:checked="*{!isLocked()}"-->
-<!--                    th:text="*{!isLocked()}">User is not locked-->
-<!--            </option>-->
+<!--    <div class="form-check">-->
+<!--        <select id="heroOrVillian" name="heroOrVillian" class="form-control" th:checked="*{isLocked}">-->
+<!--            <option value="0">False</option>-->
+<!--            <option value="1">True</option>-->
 <!--        </select>-->
 <!--    </div>-->
-    <div class="form-check">
-        <input class="form-check-input" type="radio" th:checked="*{isLocked == true}" name="flexRadioDefault" id="flexRadioDefault1">
+
+
+        <input class="form-check-input" type="radio" th:selected="*{isLocked == false}" name="flexRadioDefault" id="flexRadioDefault1">
         <label class="form-check-label" for="flexRadioDefault1">
-            Disable Account
+            Enable Account
         </label>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="radio" th:checked="*{isLocked == false}" name="flexRadioDefault" id="flexRadioDefault2">
+        <input class="form-check-input" type="radio" th:selected="*{isLocked == true}" name="flexRadioDefault" id="flexRadioDefault2">
         <label class="form-check-label" for="flexRadioDefault2">
-            Enable Account
+            Disable Account
         </label>
     </div>
     <input type="submit" value="Submit">

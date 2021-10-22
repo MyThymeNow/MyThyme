@@ -54,7 +54,6 @@ public class AdminController {
     @PostMapping("/admin/profile/edit/{id}")
     public String updateUser(@ModelAttribute User user) {
 
-//        if (user.isLocked()) {
             userDao.save(user);
 
         return "redirect:/admin/home";
