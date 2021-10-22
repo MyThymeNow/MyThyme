@@ -31,7 +31,7 @@ public class AuthenticationController {
             return "redirect:/admin/home";
         } else {
 
-            return "redirect:user/view-profile";
+            return "redirect:/profile";
 
         }
     }
