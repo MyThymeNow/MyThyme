@@ -3,6 +3,7 @@ package com.thyme.mythyme.controllers;
 import com.thyme.mythyme.models.User;
 import com.thyme.mythyme.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +17,12 @@ import java.util.List;
 public class AdminController {
 
     private final UserRepository userDao;
+    private final PasswordEncoder passwordEncoder;
 
-    public AdminController(UserRepository userDao) {
+
+    public AdminController(UserRepository userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // Show list of users upon login
@@ -47,13 +51,15 @@ public class AdminController {
     public String updateUserForm(@PathVariable Long id, Model model) {
         User updatedUser = userDao.getById(id);
 
+
         model.addAttribute("user", updatedUser);
         return "admin/edit";
     }
 
     @PostMapping("/admin/profile/edit/{id}")
     public String updateUser(@ModelAttribute User user) {
-
+        String hash = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hash);
             userDao.save(user);
 
         return "redirect:/admin/home";
