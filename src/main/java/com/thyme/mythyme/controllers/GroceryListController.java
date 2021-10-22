@@ -2,7 +2,9 @@ package com.thyme.mythyme.controllers;
 
 import com.thyme.mythyme.models.GroceryList;
 import com.thyme.mythyme.models.User;
+import com.thyme.mythyme.models.UserGroceryList;
 import com.thyme.mythyme.repository.GroceryListRepository;
+import com.thyme.mythyme.repository.UserGroceryListRepository;
 import com.thyme.mythyme.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,10 +22,12 @@ public class GroceryListController {
 
     private final GroceryListRepository groceryDao;
     private final UserRepository userDao;
+    private final UserGroceryListRepository listDao;
 
-    public GroceryListController(GroceryListRepository groceryDao, UserRepository userDao) {
+    public GroceryListController(GroceryListRepository groceryDao, UserGroceryListRepository listDao, UserRepository userDao) {
         this.groceryDao = groceryDao;
         this.userDao = userDao;
+        this.listDao = listDao;
     }
 
     @GetMapping("/groceryLists")
@@ -39,6 +43,14 @@ public class GroceryListController {
         model.addAttribute("groceryListId", id);
         model.addAttribute("groceryList", groceryList);
         return "groceryList/show";
+    }
+
+    @PostMapping("/groceryLists/favorite/{id}")
+    public String saveFavoriteList(Model model) {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        model.addAttribute("user_grocery_list", new UserGroceryList());
+        return "groceryList/index";
     }
 
     @GetMapping("/groceryLists/create")
@@ -78,6 +90,7 @@ public class GroceryListController {
         return "redirect:/groceryLists";
 
     }
+
 
     @PostMapping("/groceryLists/delete/{id}")
     public String deleteGroceryList(@PathVariable long id) {
