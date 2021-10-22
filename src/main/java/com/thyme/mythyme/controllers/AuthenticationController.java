@@ -29,16 +29,9 @@ public class AuthenticationController {
         if (userInDB.isAdmin()) {
             return "redirect:/admin/home";
         } else {
-<<<<<<< HEAD
+
             return "redirect:/profile";
-=======
-
-            return "redirect:/profile"; // /user/location not working
->>>>>>> 954a75dd951687c24c90f4b84609789ab9628488
         }
-
     }
-
-
 
 }
