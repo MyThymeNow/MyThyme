@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.thymeleaf.util.StringUtils;
 
 import java.util.List;
 
@@ -51,16 +52,14 @@ public class AdminController {
     public String updateUserForm(@PathVariable Long id, Model model) {
         User updatedUser = userDao.getById(id);
 
-
         model.addAttribute("user", updatedUser);
         return "admin/edit";
     }
 
     @PostMapping("/admin/profile/edit/{id}")
     public String updateUser(@ModelAttribute User user) {
-        String hash = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hash);
-            userDao.save(user);
+
+        userDao.save(user);
 
         return "redirect:/admin/home";
     }
