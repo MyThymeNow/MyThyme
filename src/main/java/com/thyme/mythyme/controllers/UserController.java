@@ -70,15 +70,5 @@ public class UserController {
         return "user/favorites"; //user/view-profile
     }
 
-//    @GetMapping("/groceryLists")
-//    public String viewGroceryLists(Model model) {
-////        User currentUser = users;
-//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//
-//        User UserNDB = users.getById(currentUser.getId());
-//        model.addAttribute("user", UserNDB);
-//
-//        return "groceryList/index"; //user/view-profile
-//    }
 
 }
