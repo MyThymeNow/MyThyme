@@ -11,7 +11,7 @@
 
 <div sec:authorize="isAuthenticated()" >
 
-    <h3>Welcome, <span th:text="${#authentication.principal.username}"/>!</h3>
+    <a th:href="@{/groceryLists/create}">Add to List</a>
 
 </div>
 

@@ -45,13 +45,14 @@ public class GroceryListController {
         return "groceryList/show";
     }
 
-    @PostMapping("/groceryLists/favorite/{id}")
-    public String saveFavoriteList(Model model) {
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        model.addAttribute("user_grocery_list", new UserGroceryList());
-        return "groceryList/index";
-    }
+//    @PostMapping("/groceryLists/favorite/{id}")
+//    public String saveFavoriteList(Model model) {
+//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//
+//        model.addAttribute("user_grocery_list", new UserGroceryList());
+//        return "groceryList/index";
+//    }
 
     @GetMapping("/groceryLists/create")
     public String showCreateListForm(Model model) {
