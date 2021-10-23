@@ -6,10 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 
 import java.util.List;
@@ -18,12 +15,10 @@ import java.util.List;
 public class AdminController {
 
     private final UserRepository userDao;
-    private final PasswordEncoder passwordEncoder;
 
 
-    public AdminController(UserRepository userDao, PasswordEncoder passwordEncoder) {
+    public AdminController(UserRepository userDao) {
         this.userDao = userDao;
-        this.passwordEncoder = passwordEncoder;
     }
 
     // Show list of users upon login
@@ -48,18 +43,13 @@ public class AdminController {
         }
     }
 
-    @GetMapping("/admin/profile/edit/{id}")
-    public String updateUserForm(@PathVariable Long id, Model model) {
-        User updatedUser = userDao.getById(id);
 
-        model.addAttribute("user", updatedUser);
-        return "admin/edit";
-    }
+    @PostMapping("/admin/enable/{id}")
+    public String enableUser(
+            @PathVariable Long id,
+            boolean isLocked){
 
-    @PostMapping("/admin/profile/edit/{id}")
-    public String updateUser(@ModelAttribute User user) {
-
-        userDao.save(user);
+            userDao.unlockUser(id, isLocked);
 
         return "redirect:/admin/home";
     }

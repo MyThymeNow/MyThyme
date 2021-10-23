@@ -30,11 +30,11 @@ public class AuthenticationController {
             return "redirect:/admin/home";
         } else {
 
-            return "redirect:/profile"; // /user/location not working
+            return "redirect:/profile";
+
+
         }
-
     }
-
-
-
 }
+
+
