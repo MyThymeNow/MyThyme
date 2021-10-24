@@ -1,5 +1,6 @@
 package com.thyme.mythyme.controllers;
 
+
 import com.thyme.mythyme.models.Location;
 import com.thyme.mythyme.models.User;
 import com.thyme.mythyme.repository.LocationRepository;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -80,6 +83,7 @@ public class UserController {
     }
 
     //TODO working to link other buttons in navbar... remove at later time
+
     @GetMapping("/favorites")
     public String viewFavorites(Model model) {
 //        User currentUser = users;
@@ -91,15 +95,26 @@ public class UserController {
         return "user/favorites"; //user/view-profile
     }
 
-//    @GetMapping("/groceryLists")
-//    public String viewGroceryList(Model model) {
-////        User currentUser = users;
-//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//
-//        User UserNDB = users.getById(currentUser.getId());
-//        model.addAttribute("user", UserNDB);
-//
-//        return "groceryList/index"; //user/view-profile
-//    }
+    @GetMapping("/recipes")
+    public String viewRecipes(Model model) {
+    //        User currentUser = users;
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        User UserNDB = users.getById(currentUser.getId());
+        model.addAttribute("user", UserNDB);
+
+        return "user/recipes"; //user/view-profile
+    }
+
+    @GetMapping("/coupons")
+    public String viewCoupon(Model model) {
+        //        User currentUser = users;
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        User UserNDB = users.getById(currentUser.getId());
+        model.addAttribute("user", UserNDB);
+
+        return "user/coupons"; //user/view-profile
+    }
 
 }
