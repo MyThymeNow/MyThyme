@@ -7,14 +7,19 @@
 <body>
 <div>
     <h1>Send A Message</h1>
-    <form action="#" th:action="@{/messages}" method="post" th:object="${user}">
+    <form action="#" th:action="@{/messages}" method="post" th:object="${messages}">
         <label>Message</label>
-        <input type="text" th:field="*{content}" />
+        <div th:each="messages : ${messages}">
+            <label>
+                <input type="text" th:field="*{messages.content}"/>
+            </label>
 
-        <input type="hidden" th:field="*{timestamp}" />
+            <input type="hidden" th:field="*{messages.timestamp}"/>
 
-        <button type="submit">Send</button>
+            <button type="submit">Send</button>
+        </div>
     </form>
+
 </div>
 
 </body>
