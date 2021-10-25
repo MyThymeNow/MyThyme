@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Coupons</title>
@@ -7,7 +7,9 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
+<div sec:authorize="isAuthenticated()">
 <h1>My Coupons</h1>
+</div>
 
 <div th:replace="partials/footer::footer"></div>
 </body>
