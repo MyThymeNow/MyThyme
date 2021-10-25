@@ -101,5 +101,34 @@ public class GroceryListController {
         return "redirect:/groceryLists";
     }
 
+//    //show form for adding partyItems
+//    @GetMapping("/parties/items/{urlKey}")
+//    public String showItemForm(Model model, @PathVariable String urlKey){
+//        Party party = partyDao.getByUrlKey(urlKey); //gets party
+//        model.addAttribute("party", party); //sets party
+//        return "/party/createItems";
+//    }
+//
+//    //saves party information
+//    @PostMapping("/parties/items/{urlKey}")
+//    public String addItems(@PathVariable String urlKey, @RequestParam(name="name[]") String[] names,@RequestParam(name="quantity[]") String[] quantities ) {
+//        Party party = partyDao.getByUrlKey(urlKey);
+//
+//        for(int i = 0; i< names.length; i++){
+//
+//            Item item = new Item(); //create new item instance
+//            item.setName(names[i]); //set item name from name[]
+//            itemDao.save(item); //save item instance
+//
+//            //creates & Saves party item
+//            PartyItem partyItem = new PartyItem();
+//            partyItem.setItem(item);
+//            partyItem.setQuantityRequired(Long.valueOf(quantities[i]));
+//            partyItem.setParty(party);
+//            partyItemDao.save(partyItem);
+//        }
+//        return "redirect:/parties/success/" + urlKey;
+//    }
+
 
 }
