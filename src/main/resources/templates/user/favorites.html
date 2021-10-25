@@ -8,7 +8,9 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
+<div sec:authorize="isAuthenticated()">
 <h1>My Favorites</h1>
+</div>
 
 <footer th:replace="partials/footer::footer"></footer>
 
