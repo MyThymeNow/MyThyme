@@ -25,7 +25,7 @@ public class GroceryListController {
         this.groceryDao = groceryDao;
         this.userDao = userDao;
     }
-
+//////// Index
     @GetMapping("/groceryLists")
     public String showGroceryLists(Model model) {
         List<GroceryList> allLists = groceryDao.findAll();
@@ -34,13 +34,32 @@ public class GroceryListController {
     }
 
     @GetMapping("/groceryLists/{id}")
-    public String showOneGroceryList(@PathVariable long id, Model model) {
+    public String showGroceryList(@PathVariable long id, Model model) {
         GroceryList groceryList = groceryDao.getById(id);
         model.addAttribute("groceryListId", id);
         model.addAttribute("groceryList", groceryList);
         return "groceryList/show";
     }
 
+
+///////// Sharing
+    @GetMapping("/groceryLists/share/{shareURL}")
+    public String viewShareGroceryList(@PathVariable String shareURL, Model model) {
+        GroceryList listToShare = groceryDao.getByShareURL(shareURL);
+        model.addAttribute("groceryListShareURL", shareURL);
+        model.addAttribute("listToShare", listToShare);
+        return "groceryList/share";
+    }
+
+    @PostMapping("/groceryLists/share/{shareURL}")
+    public String shareGroceryList(@PathVariable String shareURL, @ModelAttribute GroceryList SharedList) {
+
+
+        return "redirect:/groceryLists";
+    }
+
+
+//////// Creating
     @GetMapping("/groceryLists/create")
     public String showCreateListForm(Model model) {
         model.addAttribute("grocery_list", new GroceryList());
@@ -58,6 +77,8 @@ public class GroceryListController {
         return"redirect:/groceryLists";
     }
 
+
+//////// Editing
     @GetMapping("/groceryLists/edit/{id}")
     public String showEditPostForm(@PathVariable long id, Model model) {
         GroceryList listToEdit = groceryDao.getById(id);
@@ -79,6 +100,8 @@ public class GroceryListController {
 
     }
 
+
+//////// Deleting
     @PostMapping("/groceryLists/delete/{id}")
     public String deleteGroceryList(@PathVariable long id) {
         GroceryList listToDelete = groceryDao.getById(id);
@@ -86,6 +109,8 @@ public class GroceryListController {
 
         return "redirect:/groceryLists";
     }
+
+
 
 
 }
