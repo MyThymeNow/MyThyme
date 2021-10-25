@@ -33,21 +33,40 @@ public class MessageController {
 
         model.addAttribute("message", new Message());
 
-        List<Message> messageList = user.getReceivedMessages();
-        List<Message> sentMessages = user.getSentMessages();
+        List<Messages> messageList = user.getReceivedMessages();
+        List<Messages> sentMessages = user.getSentMessages();
 
-        for (Message message : listOfMessagesSent) {
-            listOfMessages.add(message);
+        for (Messages message : messageList) {
+            sentMessages.add(message);
         }
 
-        Collections.sort(listOfMessages);
+        Collections.sort(messageList);
 
-        User receivingUser = userDao.getById(id);
+        User otherUser = userDao.getById(id);
 
-        model.addAttribute("otheruser", receivingUserUser);
+        model.addAttribute("otheruser", otherUser);
         model.addAttribute("messages", listOfMessages);
 
-        return "/messages/message";
+        return "user/message";
 
     }
+
+    @PostMapping("/message/{id}")
+    public String sendMessage(Model model, @PathVariable long id, @ModelAttribute com.thyme.mythyme.models.Messages message) {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.findByUsername(loggedInUser.getUsername());
+        User receivingUser = userDao.getById(id);
+
+        com.thyme.mythyme.models.Messages newMessage = new com.thyme.mythyme.models.Messages();
+        newMessage.setSender(loggedInUser);
+        newMessage.setReceiver(receivingUser);
+        newMessage.setContent(message.getContent());
+        messageDao.save(newMessage);
+
+
+
+
+        return "redirect:/message" + id;
+    }
+
 }

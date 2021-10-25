@@ -9,12 +9,14 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
-@Getter @Setter
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 
 @Entity
 @Table(name = "messages")
+
 public class Messages {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,16 +47,6 @@ public class Messages {
     @Getter
     @Setter
     private User receiver;
-
-
-
-
-
-//    @ManyToOne
-//    @JoinColumn (name = "user_id")
-//    @Getter
-//    @Setter
-//    private User user;
 
 
 }
