@@ -40,9 +40,14 @@ public class AuthenticationController {
 //    @GetMapping("/route-user")
 //    public String routeUserBasedOnLocation() {
 //        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        Location locationInDB = locationDao.getById(currentUser.getId());
+//        User userInDB = userDao.getById((currentUser.getId()));
 //
-//        if(locationInDB.user_id )
+//        Location locationOwner = locationDao.equals(User userInDB);
+//        if() {
+//            return "redirect:/profile";
+//        } else {
+//            return "redirect:/user/location";
+//        }
 //    }
 }
 

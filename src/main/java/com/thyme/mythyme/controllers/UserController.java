@@ -51,7 +51,7 @@ public class UserController {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        locationToAdd.setUser(loggedInUser);
+        locationToAdd.setOwner(loggedInUser);
 
         locationDao.save(locationToAdd);
         return "redirect:profile";

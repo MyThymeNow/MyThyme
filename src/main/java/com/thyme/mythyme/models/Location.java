@@ -49,5 +49,5 @@ public class Location {
     @OneToOne
     @Getter
     @Setter
-    private User user;
+    private User owner;
 }
