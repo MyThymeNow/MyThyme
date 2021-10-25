@@ -28,13 +28,15 @@ public class GroceryListController {
 //////// Index
     @GetMapping("/groceryLists")
     public String showGroceryLists(Model model) {
-        List<GroceryList> allLists = groceryDao.findAll();
-        model.addAttribute("groceryLists", allLists);
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        List<GroceryList> userLists = groceryDao.findByOwner_Id(loggedInUser.getId());
+        model.addAttribute("groceryLists", userLists);
         return "groceryList/index";
     }
 
     @GetMapping("/groceryLists/{id}")
-    public String showGroceryList(@PathVariable long id, Model model) {
+    public String viewSingleGroceryList(@PathVariable long id, Model model) {
         GroceryList groceryList = groceryDao.getById(id);
         model.addAttribute("groceryListId", id);
         model.addAttribute("groceryList", groceryList);

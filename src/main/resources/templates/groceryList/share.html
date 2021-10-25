@@ -12,23 +12,26 @@
 <form th:action="@{/groceryLists/share/{shareURL}}" method="post" th:object="${listToShare}">
 
     <label for="name">List Name</label>
-    <input id="name" th:text="*{name}" readonly/>
+    <input id="name" th:field="*{name}" readonly/>
     <br>
     <label for="shareURL">Share URL</label>
-    <input id="shareURL" th:text="*{shareURL}" readonly/>
+    <input id="shareURL" th:field="*{shareURL}" readonly/>
     <br>
+</form>
     <div>
+    <form   >
     <label>Enter the username of shared user:</label>
     <input type="text">
 
     <input type="submit" value="Share List">
+    </form>
     </div>
 
 
 
 
 
-</form>
+
 
 
 
