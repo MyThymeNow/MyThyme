@@ -27,7 +27,7 @@ public class GroceryListController {
         this.listIngredientsDao = listIngredientsDao;
         this.ingredientDao = ingredientDao;
     }
-
+////////
     @GetMapping("/groceryLists")
     public String showGroceryLists(Model model) {
         List<GroceryList> allLists = groceryDao.findAll();
@@ -35,6 +35,8 @@ public class GroceryListController {
         return "groceryList/index";
     }
 
+
+////////
 //    @GetMapping("/groceryLists/{shareURL}")
 //    public String showOneGroceryList(@PathVariable String shareURL, Model model) {
 //        GroceryList groceryList = groceryDao.getByShareURL(shareURL);
@@ -52,6 +54,8 @@ public class GroceryListController {
 //        return "groceryList/index";
 //    }
 
+
+//////// Creation
     @GetMapping("/groceryLists/create")
     public String showCreateListForm(Model model) {
         model.addAttribute("grocery_list", new GroceryList());
@@ -90,15 +94,27 @@ public class GroceryListController {
 
     }
 
-    @GetMapping("/groceryLists/edit/{shareURL}")
-    public String showEditPostForm(@PathVariable String shareURL, Model model) {
-        GroceryList listToEdit = groceryDao.getByShareURL(shareURL);
-        model.addAttribute("listToEdit",listToEdit);
+
+
+//////// Editing
+    @GetMapping("/groceryLists/edit/{id}")
+    public String showEditGroceryListForm(@PathVariable long id, String shareURL,Model model) {
+        GroceryList listToEdit = groceryDao.getById(id); // Call specific list
+        List <Ingredient> ingredientsToEdit = ingredientDao.findAllById(id); // call all that have same grocerylist id
+        GroceryListIngredients groceryListIngredients = listIngredientsDao.getById(id); // call by ingredient id
+
+        model.addAttribute("id",listToEdit.getId());
+        model.addAttribute("shareURL", listToEdit.getShareURL());
+        model.addAttribute("name", listToEdit.getName());
+
+//        model.addAttribute("name[]", ingredientsToEdit.get())
+
+
         return "groceryList/edit";
     }
 
     @PostMapping("/groceryLists/edit/{shareURL}")
-    public String editPost(
+    public String editGroceryList(
             @PathVariable String shareURL,
             @ModelAttribute GroceryList updatedList
     ) {
@@ -111,6 +127,9 @@ public class GroceryListController {
 
     }
 
+
+
+//////// Deletion
     @PostMapping("/groceryLists/delete/{shareURL}")
     public String deleteGroceryList(@PathVariable String shareURL) {
         GroceryList listToDelete = groceryDao.getByShareURL(shareURL);
@@ -118,35 +137,5 @@ public class GroceryListController {
 
         return "redirect:/groceryLists";
     }
-
-//    //show form for adding partyItems
-//    @GetMapping("/parties/items/{urlKey}")
-//    public String showItemForm(Model model, @PathVariable String urlKey){
-//        Party party = partyDao.getByUrlKey(urlKey); //gets party
-//        model.addAttribute("party", party); //sets party
-//        return "/party/createItems";
-//    }
-//
-//    //saves party information
-//    @PostMapping("/parties/items/{urlKey}")
-//    public String addItems(@PathVariable String urlKey, @RequestParam(name="name[]") String[] names,@RequestParam(name="quantity[]") String[] quantities ) {
-//        Party party = partyDao.getByUrlKey(urlKey);
-//
-//        for(int i = 0; i< names.length; i++){
-//
-//            Item item = new Item(); //create new item instance
-//            item.setName(names[i]); //set item name from name[]
-//            itemDao.save(item); //save item instance
-//
-//            //creates & Saves party item
-//            PartyItem partyItem = new PartyItem();
-//            partyItem.setItem(item);
-//            partyItem.setQuantityRequired(Long.valueOf(quantities[i]));
-//            partyItem.setParty(party);
-//            partyItemDao.save(partyItem);
-//        }
-//        return "redirect:/parties/success/" + urlKey;
-//    }
-
 
 }
