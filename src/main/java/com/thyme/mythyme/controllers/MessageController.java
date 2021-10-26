@@ -7,10 +7,7 @@ import com.thyme.mythyme.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,7 +30,7 @@ public class MessageController {
         User user = userDao.getById(loggedInUser.getId());
         model.addAttribute("loggedinuser", user);
 
-        model.addAttribute("message", new Messages());
+        model.addAttribute("userMessage", new Messages());
 
         List<Messages> messageList = user.getReceivedMessages();
         List<Messages> sentMessages = user.getSentMessages();
@@ -43,14 +40,14 @@ public class MessageController {
         User otherUser = userDao.getById(id);
 
         model.addAttribute("otheruser", otherUser);
-        model.addAttribute("messages", messageList);
+        model.addAttribute("messages", sentMessages);
 
         return "user/message";
 
     }
 
-    @PostMapping("/message/{id}")
-    public String sendMessage(Model model, @PathVariable long id, @ModelAttribute Messages message) {
+    @PostMapping("/messages/{id}")
+    public String sendMessage(Model model, @PathVariable long id, @ModelAttribute Messages userMessage) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.findByUsername(loggedInUser.getUsername());
         User receivingUser = userDao.getById(id);
@@ -58,11 +55,11 @@ public class MessageController {
         Messages newMessage = new Messages();
         newMessage.setSender(user);
         newMessage.setReceiver(receivingUser);
-        newMessage.setContent(message.getContent());
+        newMessage.setContent(userMessage.getContent());
         messageDao.save(newMessage);
 
 
-        return "redirect:/message" + id;
+        return "redirect:/messages/" + id;
     }
 
 }

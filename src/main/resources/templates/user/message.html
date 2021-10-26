@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Messages</title>
-    <div th:replace="Partials :: header"></div>
+    <div th:replace="partials/header.html :: header"></div>
 </head>
 <body>
-<div th:replace="Partials :: navbar"></div>
+<div th:replace="partials/navbar.html :: navbar"></div>
 
 <div class="container">
 
@@ -18,17 +18,29 @@
 
         <h3 class="center" th:text="${otheruser.getUsername()}"></h3>
 
-        <div class="mb-4" th:each="message : ${messages}">
+        <div class="mb-4" th:each="text : ${messages}">
 
             <div class="sent-message"
-                 th:if="${message.getSender() == loggedinuser && message.receiver ==  otheruser}">
-                <p th:text="${message.getContent()}"></p>
+                 th:if="${text.getSender() == loggedinuser && text.getReceiver() ==  otheruser}">
+                <p th:text="${text.getContent()}"></p>
             </div>
+            <div class="received-message"
+                 th:if="${text.sender == otheruser && text.receiver == loggedinuser}">
+                <p th:text="${text.getContent()}"></p>
+            </div>
+        </div>
 
-
+        <div>
+            <form th:method="POST" th:action="@{'/messages/' +  ${otheruser.getId()}}" th:object="${userMessage}">
+                <label>
+                    <textarea required cols="100" rows="5" th:field="*{content}"></textarea>
+                </label>
+                <button type="submit" class="btn btn-info">Send</button>
+            </form>
         </div>
 
     </div>
+
 
 
 </div>
