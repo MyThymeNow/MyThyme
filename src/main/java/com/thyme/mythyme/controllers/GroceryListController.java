@@ -1,18 +1,12 @@
 package com.thyme.mythyme.controllers;
 
-import com.thyme.mythyme.models.GroceryList;
-import com.thyme.mythyme.models.User;
-import com.thyme.mythyme.models.UserGroceryList;
-import com.thyme.mythyme.repository.GroceryListRepository;
-import com.thyme.mythyme.repository.UserGroceryListRepository;
-import com.thyme.mythyme.repository.UserRepository;
+import com.thyme.mythyme.models.*;
+import com.thyme.mythyme.repository.*;
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -22,12 +16,16 @@ public class GroceryListController {
 
     private final GroceryListRepository groceryDao;
     private final UserRepository userDao;
-    private final UserGroceryListRepository listDao;
+    private final UserGroceryListRepository userListDao;
+    private final GroceryListIngredientsRepository listIngredientsDao;
+    private final IngredientRepository ingredientDao;
 
-    public GroceryListController(GroceryListRepository groceryDao, UserGroceryListRepository listDao, UserRepository userDao) {
+    public GroceryListController(GroceryListRepository groceryDao, UserGroceryListRepository listDao, UserRepository userDao, GroceryListIngredientsRepository listIngredientsDao ,IngredientRepository ingredientDao) {
         this.groceryDao = groceryDao;
         this.userDao = userDao;
-        this.listDao = listDao;
+        this.userListDao = listDao;
+        this.listIngredientsDao = listIngredientsDao;
+        this.ingredientDao = ingredientDao;
     }
 
     @GetMapping("/groceryLists")
@@ -37,13 +35,13 @@ public class GroceryListController {
         return "groceryList/index";
     }
 
-    @GetMapping("/groceryLists/{shareURL}")
-    public String showOneGroceryList(@PathVariable String shareURL, Model model) {
-        GroceryList groceryList = groceryDao.getByShareURL(shareURL);
-        model.addAttribute("groceryListShareURL", shareURL);
-        model.addAttribute("groceryList", groceryList);
-        return "groceryList/show";
-    }
+//    @GetMapping("/groceryLists/{shareURL}")
+//    public String showOneGroceryList(@PathVariable String shareURL, Model model) {
+//        GroceryList groceryList = groceryDao.getByShareURL(shareURL);
+//        model.addAttribute("groceryListShareURL", shareURL);
+//        model.addAttribute("groceryList", groceryList);
+//        return "groceryList/show";
+//    }
 
 //    @PostMapping("/groceryLists/favorite/{id}")
 //    public String saveFavoriteList(Model model) {
@@ -61,14 +59,35 @@ public class GroceryListController {
     }
 
     @PostMapping("/groceryLists/create")
-    public String saveUserGroceryList(@ModelAttribute GroceryList listToAdd) {
+    public String saveUserGroceryList(
+            @ModelAttribute GroceryList listToCreate,
+            @RequestParam String name,
+            @RequestParam(name="name[]") String[] names,
+            @RequestParam(name="quantity[]") String[] quantities,
+            @RequestParam String notes
+            //@RequestParam boolean status //todo might be API dependent
+    ) {
+//        GroceryList groceryList = groceryDao.getByShareURL(listToCreate.toString());
+
+        for(int i = 0; i < names.length; i++) {
+            Ingredient ingredient = new Ingredient();
+            ingredient.setName(names[i]);
+            ingredientDao.save(ingredient);
+
+            GroceryListIngredients groceryListIngredients = new GroceryListIngredients();
+            groceryListIngredients.setQuantity(Long.valueOf(quantities[i]));
+            groceryListIngredients.setNotes(notes);
+//            groceryListIngredients.setStatus(status); //todo may be API dependent
+            listIngredientsDao.save(groceryListIngredients);
+        }
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UUID uuid = UUID.randomUUID();
-        listToAdd.setOwner(loggedInUser);
-        listToAdd.setShareURL(uuid.toString());
-        groceryDao.save(listToAdd);
+        listToCreate.setOwner(loggedInUser);
+        listToCreate.setShareURL(uuid.toString());
+        groceryDao.save(listToCreate);
         return"redirect:/groceryLists";
+
     }
 
     @GetMapping("/groceryLists/edit/{shareURL}")

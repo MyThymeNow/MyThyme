@@ -12,16 +12,15 @@
 
 <div sec:authorize="isAuthenticated()" >
 
-    <a th:href="@{/groceryLists/create}">Create New List</a>
+    <button type="submit"><a th:href="@{/groceryLists/create}">Create New List</a>
 
 </div>
 
 <div th:each="groceryList:${groceryLists}">
-    <h2 th:text="${groceryList.name}"></h2><a th:href="@{/groceryLists/{shareURL}(shareURL=${groceryList.shareURL})}">Add to List</a>
+    <h2 th:text="${groceryList.name}"></h2>
+    <button type="submit"><a th:href="@{/groceryLists/edit/{shareURL}(shareURL=${groceryList.shareURL})}">Edit List</a></button>
+    <button type="submit">This will be the share button</button>
 
-
-
-<!--    <p>Owner: <span th:text="${groceryList.owner.username}"></span> </p>-->
 </div>
 
 <script src="../../js/jquery.js"></script>
