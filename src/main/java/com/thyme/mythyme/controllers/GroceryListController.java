@@ -37,10 +37,10 @@ public class GroceryListController {
         return "groceryList/index";
     }
 
-    @GetMapping("/groceryLists/{id}")
-    public String showOneGroceryList(@PathVariable long id, Model model) {
-        GroceryList groceryList = groceryDao.getById(id);
-        model.addAttribute("groceryListId", id);
+    @GetMapping("/groceryLists/{shareURL}")
+    public String showOneGroceryList(@PathVariable String shareURL, Model model) {
+        GroceryList groceryList = groceryDao.getByShareURL(shareURL);
+        model.addAttribute("groceryListShareURL", shareURL);
         model.addAttribute("groceryList", groceryList);
         return "groceryList/show";
     }
@@ -71,20 +71,20 @@ public class GroceryListController {
         return"redirect:/groceryLists";
     }
 
-    @GetMapping("/groceryLists/edit/{id}")
-    public String showEditPostForm(@PathVariable long id, Model model) {
-        GroceryList listToEdit = groceryDao.getById(id);
+    @GetMapping("/groceryLists/edit/{shareURL}")
+    public String showEditPostForm(@PathVariable String shareURL, Model model) {
+        GroceryList listToEdit = groceryDao.getByShareURL(shareURL);
         model.addAttribute("listToEdit",listToEdit);
         return "groceryList/edit";
     }
 
-    @PostMapping("/groceryLists/edit/{id}")
+    @PostMapping("/groceryLists/edit/{shareURL}")
     public String editPost(
-            @PathVariable long id,
+            @PathVariable String shareURL,
             @ModelAttribute GroceryList updatedList
     ) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        updatedList.setId(id);
+        updatedList.setShareURL(shareURL);
         updatedList.setOwner(loggedInUser);
         groceryDao.save(updatedList);
 
@@ -92,10 +92,9 @@ public class GroceryListController {
 
     }
 
-
-    @PostMapping("/groceryLists/delete/{id}")
-    public String deleteGroceryList(@PathVariable long id) {
-        GroceryList listToDelete = groceryDao.getById(id);
+    @PostMapping("/groceryLists/delete/{shareURL}")
+    public String deleteGroceryList(@PathVariable String shareURL) {
+        GroceryList listToDelete = groceryDao.getByShareURL(shareURL);
         groceryDao.delete(listToDelete);
 
         return "redirect:/groceryLists";

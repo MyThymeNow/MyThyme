@@ -17,7 +17,7 @@
 </div>
 
 <div th:each="groceryList:${groceryLists}">
-    <h2 th:text="${groceryList.name}"></h2><a th:href="@{/groceryLists/{id}(id=${groceryList.id})}">Add to List</a>
+    <h2 th:text="${groceryList.name}"></h2><a th:href="@{/groceryLists/{shareURL}(shareURL=${groceryList.shareURL})}">Add to List</a>
 
 
 
