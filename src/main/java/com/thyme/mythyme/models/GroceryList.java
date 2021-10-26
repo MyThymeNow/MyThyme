@@ -27,7 +27,7 @@ public class GroceryList {
     @Setter
     private String name;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 250)
     @Getter
     @Setter
     private String shareURL;
