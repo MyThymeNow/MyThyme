@@ -3,24 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Messages</title>
+    <div th:replace="Partials :: header"></div>
 </head>
 <body>
-<div>
-    <h1>Send A Message</h1>
-    <form action="#" th:action="@{/messages}" method="post" th:object="${messages}">
-        <label>Message</label>
-        <div th:each="messages : ${messages}">
-            <label>
-                <input type="text" th:field="*{messages.content}"/>
-            </label>
+<div th:replace="Partials :: navbar"></div>
 
-            <input type="hidden" th:field="*{messages.timestamp}"/>
+<div class="container">
 
-            <button type="submit">Send</button>
+    <div class="col-12">
+
+        <div class="center">
+            <h1>Chat Log</h1>
         </div>
-    </form>
+
+        <h3 class="center" th:text="${otheruser.getUsername()}"></h3>
+
+        <div class="mb-4" th:each="message : ${messages}">
+
+            <div class="sent-message"
+                 th:if="${message.getSender() == loggedinuser && message.receiver ==  otheruser}">
+                <p th:text="${message.getContent()}"></p>
+            </div>
+
+
+        </div>
+
+    </div>
+
 
 </div>
+
 
 </body>
 </html>
