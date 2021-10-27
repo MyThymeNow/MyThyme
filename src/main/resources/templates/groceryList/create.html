@@ -1,87 +1,115 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="head">
-    <meta charset="UTF-8">
-    <title>Create a Grocery List</title>
-    <script src="../../static/js/createList.js"></script>
-</head>
-<body>
-<nav th:replace="partials/navbar :: navbar"></nav>
-
-
-<h1>Create your grocery list</h1>
-<!--optional portion to give a list view or grid view depending-->
-<div class="links">
-    <ul>
-        <li data-view="list-view" class="li-list active">
-            <i class="fas fa-th-list"></i>
-            List View</li>
-        <li data-view="grid-view" class="li-grid">
-            <i class="fas fa-th-large"></i>
-            Grid View</li>
-    </ul>
-</div>
-
-<div sec:authorize="isAuthenticated()">
-    <form th:action="@{/groceryLists/create}" method="post" th:object="${grocery_list}">
-        <label for="name"><strong>Grocery List Name</strong></label><br>
-        <input id="name" th:field="*{name}" /><br>
-
-        <p id="newItemLabel"><strong>Add a New Item:</strong></p>
-        <input type="text" name="itemName" th:field="*{itemName}" id="itemName" value="Item Name"/><br>
-        <input type="text" name="itemAmount" th:field="*{itemAmount}" id="itemAmount" value="Item Amount"/><br>
-        <select>
-            <option value="Other">Other</option>
-            <option value="Vegetables">Vegetables</option>
-            <option value="Fruits">Fruits</option>
-            <option value="Grains">Grains</option>
-            <option value="Canned Goods">Canned Goods</option>
-            <option value="Snacks">Snacks</option>
-            <option value="Beverages">Beverages</option>
-            <option value="Meat">Meat</option>
-            <option value="Dairy">Dairy</option>
-            <option value="Frozen">Frozen</option>
-            <option value="Household">Household</option>
-        </select><br>
-        <input type="button" value="Add" id="addButton" onClick="" name="Add"/><br>
-
-        <br><input value="Create List" type="submit" /> <!-- -->
-    </form>
-</div>
-
-<!--todo second option for list making -->
-<div class="all-tasks">
-    <h2 class="task-list-title">My lists</h2>
-    <ul class="task-list" data-lists></ul>
-
-    <form action="" data-new-list-form>
-        <input
-                type="text"
-                class="new list"
-                data-new-list-input
-                placeholder="new list name"
-                aria-label="new list name"
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Create a Grocery List</title>
+        <link
+                href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700,900&display=swap"
+                rel="stylesheet"
         />
-        <button class="btn create" aria-label="create new list">+</button>
-        <div class="delete-stuff">
-            <button class="btn delete" data-clear-complete-tasks-button>Clear completed tasks</button>
-            <button class="btn delete" data-delete-list-button>Delete list</button>
+        <link rel="stylesheet" href="css"/>
+        <script defer src="../../static/js/createList.js"></script>
+    </head>
+    <body>
+        <nav th:replace="partials/navbar :: navbar"></nav>
+
+        <h1>Create your grocery list</h1>
+        <!--optional portion to give a list view or grid view depending-->
+        <!--<div class="links">-->
+        <!--    <ul>-->
+        <!--        <li data-view="list-view" class="li-list active">-->
+        <!--            <i class="fas fa-th-list"></i>-->
+        <!--            List View</li>-->
+        <!--        <li data-view="grid-view" class="li-grid">-->
+        <!--            <i class="fas fa-th-large"></i>-->
+        <!--            Grid View</li>-->
+        <!--    </ul>-->
+        <!--</div>-->
+
+        <div sec:authorize="isAuthenticated()">
+        <!--    <form th:action="@{/groceryLists/create}" method="post" th:object="${grocery_list}">-->
+        <!--        <label for="name"><strong>Grocery List Name</strong></label><br>-->
+        <!--        <input id="name" th:field="*{name}" /><br>-->
+
+        <!--        <p id="newItemLabel"><strong>Add a New Item:</strong></p>-->
+        <!--        <input type="text" name="itemName" th:field="*{itemName}" id="itemName" value="Item Name"/><br>-->
+        <!--        <input type="text" name="itemAmount" th:field="*{itemAmount}" id="itemAmount" value="Item Amount"/><br>-->
+        <!--        <select>-->
+        <!--            <option value="Other">Other</option>-->
+        <!--            <option value="Vegetables">Vegetables</option>-->
+        <!--            <option value="Fruits">Fruits</option>-->
+        <!--            <option value="Grains">Grains</option>-->
+        <!--            <option value="Canned Goods">Canned Goods</option>-->
+        <!--            <option value="Snacks">Snacks</option>-->
+        <!--            <option value="Beverages">Beverages</option>-->
+        <!--            <option value="Meat">Meat</option>-->
+        <!--            <option value="Dairy">Dairy</option>-->
+        <!--            <option value="Frozen">Frozen</option>-->
+        <!--            <option value="Household">Household</option>-->
+        <!--        </select><br>-->
+        <!--        <input type="button" value="Add" id="addButton" onClick="" name="Add"/><br>-->
+
+        <!--        <br><input value="Create List" type="submit" /> &lt;!&ndash; &ndash;&gt;-->
+        <!--    </form>-->
+
+        <!--todo second option for list making -->
+            <div class="all-tasks">
+                <h2 class="task-list-title">Grocery lists</h2>
+                <ul class="task-list" data-lists></ul>
+
+                <form th:action="" data-new-list-form>
+                    <input
+                            type="text"
+                            class="new list"
+                            data-new-list-input
+                            placeholder="new list name"
+                            aria-label="new list name"
+                    />
+                    <button class="btn create" aria-label="create new list">+</button>
+                </form>
+            </div>
+
+            <div class="todo-list" data-list-display-container>
+<!--                <div class="todo-header">-->
+<!--                    <h2 class="list-title" data-list-title>YouTube</h2>-->
+<!--                    <p class="task-count" data-list-count>3 tasks remaining</p>-->
+<!--                </div>-->
+
+                <div class="todo-body">
+                    <div class="tasks" data-tasks></div>
+
+                    <div class="new-task-creator">
+                        <form action="" data-new-task-form>
+                            <input
+                                    type="text"
+                                    data-new-task-input
+                                    class="new task"
+                                    placeholder="new task name"
+                                    aria-label="new task name"
+                            />
+                            <button class="btn create" aria-label="create new task">+</button>
+                        </form>
+                    </div>
+        <!--            Delete buttons-->
+                    <div class="delete-stuff">
+                        <button class="btn delete" data-clear-complete-tasks-button>Clear Checked Items</button>
+                        <button class="btn delete" data-delete-list-button>Delete my list</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </form>
-</div>
 
-
-<template id="task-template">
-    <div class="task">
-        <input type="checkbox" />
-        <label>
-            <span class="custom-checkbox"></span>
-        </label>
-    </div>
-</template>
-
-
-<div th:replace="partials/footer::footer"></div>
-</body>
+        <template id="task-template">
+            <div class="task">
+                <input type="checkbox" />
+                <label>
+                    <span class="custom-checkbox"></span>
+                </label>
+            </div>
+        </template>
+        <div th:replace="partials/footer::footer"></div>
+    </body>
 </html>
