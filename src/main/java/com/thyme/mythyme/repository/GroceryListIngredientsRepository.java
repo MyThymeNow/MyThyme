@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface GroceryListIngredientsRepository extends JpaRepository<GroceryListIngredients, Long> {
 
-        GroceryListIngredients findByIngredient_Id(Long id);
+        List <GroceryListIngredients> getByGroceryList(GroceryList groceryList );
 
 }

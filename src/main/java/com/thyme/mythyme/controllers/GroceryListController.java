@@ -98,17 +98,14 @@ public class GroceryListController {
 
 //////// Editing
     @GetMapping("/groceryLists/edit/{id}")
-    public String showEditGroceryListForm(@PathVariable long id, String shareURL,Model model) {
-        GroceryList listToEdit = groceryDao.getById(id); // Call specific list
-        List <Ingredient> ingredientsToEdit = ingredientDao.findAllById(id); // call all that have same grocerylist id
-        GroceryListIngredients groceryListIngredients = listIngredientsDao.getById(id); // call by ingredient id
+    public String showEditGroceryListForm(@PathVariable long id,Model model) {
+        GroceryList groceryList = groceryDao.getById(id);
+        List<GroceryListIngredients> groceryListIngredients = listIngredientsDao.getByGroceryList(groceryList);
 
-        model.addAttribute("id",listToEdit.getId());
-        model.addAttribute("shareURL", listToEdit.getShareURL());
-        model.addAttribute("name", listToEdit.getName());
 
-//        model.addAttribute("name[]", ingredientsToEdit.get())
-
+//        for(int i=0; i < groceryListIngredients.size(); i++) {
+//            groceryListIngredients.get(i).setQuantity(quantities.get(i));
+//        }
 
         return "groceryList/edit";
     }

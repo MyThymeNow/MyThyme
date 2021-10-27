@@ -9,6 +9,8 @@ public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
 
     List <Ingredient> findAllById(Long id);
 
+    List <Ingredient> getIngredientsByGroceryListIngredientsId(Long id);
+
 
 
 
