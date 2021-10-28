@@ -10,26 +10,26 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <div sec:authorize="isAuthenticated()">
-<h1>Enter your location here:</h1>
-<form th:action="@{/location}" method="post" th:object="${location}">
+    <h1>Enter your location here:</h1>
+    <form th:action="@{/location}" method="post" th:object="${location}">
 
-    <label for="address_one">Address One</label>
-    <input id="address_one" th:field="*{address_one}" />
+        <label for="address_one">Address One</label>
+        <input id="address_one" th:field="*{address_one}" />
 
-    <label for="address_two">Address Two</label>
-    <input id="address_two" th:field="*{address_two}" />
+        <label for="address_two">Address Two</label>
+        <input id="address_two" th:field="*{address_two}" />
 
-    <label for="city">City</label>
-    <input id="city" th:field="*{city}" />
+        <label for="city">City</label>
+        <input id="city" th:field="*{city}" />
 
-    <label for="state">State</label>
-    <input id="state" th:field="*{state}" />
+        <label for="state">State</label>
+        <input id="state" th:field="*{state}" />
 
-    <label for="zipcode">Zipcode</label>
-    <input id="zipcode" th:field="*{zipcode}" />
+        <label for="zipcode">Zipcode</label>
+        <input id="zipcode" th:field="*{zipcode}" />
 
-    <input value="Enter location" type="submit" />
-</form>
+        <input value="Enter location" type="submit" />
+    </form>
 </div>
 
 <div th:fragment="footer"></div>
