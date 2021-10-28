@@ -73,7 +73,7 @@ public class GroceryListController {
             @RequestParam String name,
             @RequestParam(name="name[]") String[] names,
             @RequestParam(name="quantity[]") String[] quantities,
-            @RequestParam String notes
+            @RequestParam (name="notes[]") String[] notes
             //@RequestParam boolean status //todo might be API dependent
     ) {
 //        GroceryList groceryList = groceryDao.getByShareURL(listToCreate.toString());
@@ -85,7 +85,7 @@ public class GroceryListController {
 
             GroceryListIngredients groceryListIngredients = new GroceryListIngredients();
             groceryListIngredients.setQuantity(Long.valueOf(quantities[i]));
-            groceryListIngredients.setNotes(notes);
+            groceryListIngredients.setNotes(notes[i]);
 //            groceryListIngredients.setStatus(status); //todo may be API dependent
             listIngredientsDao.save(groceryListIngredients);
         }
