@@ -1,33 +1,3 @@
-// const li_links = document.querySelectorAll(".links ul li");
-// const view_wraps = document.querySelectorAll(".view_wrap");
-// const list_view = document.querySelector(".list-view");
-// const grid_view = document.querySelector(".grid-view");
-//
-// li_links.forEach(function(link){
-//     link.addEventListener("click", function(){
-//         li_links.forEach(function(link){
-//             link.classList.remove("active");
-//         })
-//
-//         link.classList.add("active");
-//
-//         var li_view = link.getAttribute("data-view");
-//
-//         view_wraps.forEach(function(view){
-//             view.style.display = "none";
-//         })
-//
-//         if(li_view == "list-view"){
-//             list_view.style.display = "block";
-//         }
-//         else{
-//             grid_view.style.display = "block";
-//         }
-//     })
-// })
-
-// todo above was created first attempt
-
 const listsContainer = document.querySelector('[data-lists]')
 const newListForm = document.querySelector('[data-new-list-form]')
 const newListInput = document.querySelector('[data-new-list-input]')
@@ -169,3 +139,41 @@ function clearElement(element) {
 }
 
 render()
+
+
+// *****************************************************************
+
+const gulp = require("gulp");
+const sass = require("gulp-sass");
+const sourcemaps = require("gulp-sourcemaps");
+const autoprefixer = require("gulp-autoprefixer");
+const browserSync = require("browser-sync").create();
+
+const sassOptions = {
+    outputStyle: "expanded"
+};
+
+// compile scss into css
+
+function style() {
+    return gulp
+        .src("./scss/**/*.scss")
+        .pipe(sourcemaps.init())
+        .pipe(sass(sassOptions).on("error", sass.logError))
+        .pipe(sourcemaps.write())
+        .pipe(autoprefixer())
+        .pipe(gulp.dest("./css"))
+        .pipe(browserSync.stream());
+}
+
+function watch() {
+    browserSync.init({
+        server: "."
+    });
+    gulp.watch("./scss/**/*.scss", style);
+    gulp.watch("./*.html").on("change", browserSync.reload);
+    gulp.watch("./js/**/*.js", browserSync.reload);
+}
+
+exports.style = style;
+exports.watch = watch;

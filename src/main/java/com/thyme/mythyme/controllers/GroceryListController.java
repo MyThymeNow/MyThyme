@@ -52,13 +52,14 @@ public class GroceryListController {
 //        return "groceryList/index";
 //    }
 
-    @GetMapping("/groceryLists/create")
+    // previously had groceryList/create in parenthesis
+    @GetMapping("/create")
     public String showCreateListForm(Model model) {
         model.addAttribute("grocery_list", new GroceryList());
         return "groceryList/create";
     }
 
-    @PostMapping("/groceryLists/create")
+    @PostMapping("/create") // previously had groceryList/create in parenthesis
     public String saveUserGroceryList(
             @ModelAttribute GroceryList listToCreate,
             @RequestParam String name,
