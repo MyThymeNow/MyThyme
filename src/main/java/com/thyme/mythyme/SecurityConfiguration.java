@@ -38,7 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
           
-                .defaultSuccessUrl("/route-user") // user's home page, it can be any URL
+                .defaultSuccessUrl("/route-user")// user's home page, it can be any URL
 
                 .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
@@ -55,7 +55,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         "/groceryLists/create", // only authenticated users can create grocery lists
-                        "/ads/{id}/edit" // only authenticated users can edit ads
+                        "/ads/{id}/edit",
+                        "/user/location"// only authenticated users can edit ads
                 )
                 .authenticated()
         ;
