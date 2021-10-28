@@ -23,7 +23,7 @@
             <h1>Create Grocery List</h1>
         </div>
 
-        <form th:action="@{/groceryList/create}" th:method="post" th:object="${grocery_list}">
+        <form th:action="@{/create}" th:method="post" th:object="${grocery_list}">
             <div class="form-group">
                 <label for="title">Name:</label>
                 <input id="title" th:field="*{name}"/>
@@ -40,6 +40,8 @@
                     <input type="text" name="name[]" id="name[]">
                     <label for="quantity[]">Quantity:</label>
                     <input type="text" name="quantity[]" id="quantity[]">
+                    <label for="notes[]">Notes:</label>
+                    <input type="text" name="notes[]" id="notes[]">
                 </div>
             </div>
             <br>
@@ -61,6 +63,8 @@
                   <input type="text" name="name[]" id="name[]">
                   <label for="quantity[]">Quantity:</label>
                   <input type="text" name="quantity[]" id="quantity[]">
+                  <label for="notes[]">Notes:</label>
+                  <input type="text" name="notes[]" id="notes[]">
                 </div>`
 
             additionalItem.addEventListener('click', function(event) {
@@ -76,7 +80,7 @@
     </script>
 </section>
 
-        <div th:replace="partials/footer::footer"></div>
+<!--        <div th:replace="partials/footer::footer"></div>-->
 <!--    <footer><p th:layout:fragment="footer"></p></footer>-->
     </body>
 </html>

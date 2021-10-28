@@ -12,13 +12,17 @@
 
 <div sec:authorize="isAuthenticated()" >
 
+<<<<<<< HEAD
     <button class="btn btn-outline-primary"><a th:href="@{/create}">Create New List</a></button>
+=======
+    <button type="submit"><a th:href="@{/create}">Create New List</a></button>
+>>>>>>> d24ac37b8aa7ae8df00796bbdda505a3a5c59835
 
 </div>
 
 <div th:each="groceryList:${groceryLists}">
     <h2 th:text="${groceryList.name}"></h2>
-    <button type="submit"><a th:href="@{/groceryLists/edit/{shareURL}(shareURL=${groceryList.shareURL})}">Edit List</a></button>
+    <button type="submit"><a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}">Edit List</a></button>
     <button type="submit">This will be the share button</button>
 
 </div>

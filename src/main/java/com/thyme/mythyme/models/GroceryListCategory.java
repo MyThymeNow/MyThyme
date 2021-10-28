@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "groceryList_categories")
+@Table(name = "grocery_list_categories")
 public class GroceryListCategory {
 
     @Id
