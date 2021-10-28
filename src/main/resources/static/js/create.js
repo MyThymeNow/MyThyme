@@ -49,7 +49,7 @@ newListForm.addEventListener('submit', e => {
     e.preventDefault()
     const listName = newListInput.value
     if (listName == null || listName === '') return
-    const list = createList(listName)
+    const list = create(listName)
     newListInput.value = null
     lists.push(list)
     saveAndRender()
@@ -66,7 +66,7 @@ newTaskForm.addEventListener('submit', e => {
     saveAndRender()
 })
 
-function createList(name) {
+function create(name) {
     return { id: Date.now().toString(), name: name, tasks: [] }
 }
 
