@@ -69,7 +69,7 @@ public class GroceryListController {
     @PostMapping("/create") // previously had groceryList/create in parenthesis
     public String saveUserGroceryList(
             @ModelAttribute GroceryList listToCreate,
-            @ModelAttribute UserGroceryList newList,
+//            @ModelAttribute UserGroceryList newList,
             @RequestParam String name,
             @RequestParam(name="name[]") String[] names,
             @RequestParam(name="quantity[]") String[] quantities,
@@ -93,9 +93,9 @@ public class GroceryListController {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UUID uuid = UUID.randomUUID();
 
-        newList.setUser(loggedInUser);
-        newList.setGroceryList(listToCreate);
-        userListDao.save(newList);
+//        newList.setUser(loggedInUser);
+//        newList.setGroceryList(listToCreate);
+//        userListDao.save(newList);
         listToCreate.setOwner(loggedInUser);
         listToCreate.setShareURL(uuid.toString());
         groceryDao.save(listToCreate);
