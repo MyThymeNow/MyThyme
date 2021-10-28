@@ -107,13 +107,14 @@ public class GroceryListController {
     public String showEditGroceryListForm(@PathVariable long id,Model model) {
         GroceryList groceryList = groceryDao.getById(id);
         List<GroceryListIngredients> groceryListIngredients = listIngredientsDao.getByGroceryList(groceryList);
-//        List<Ingredient> ingredients = ingredientDao.getIngredientsByGroceryListIngredientsId(groceryList.getId());
+        Ingredient ingredients = ingredientDao.findAllByGroceryLists(groceryList);
 
 //        for(int i=0; i < ingredients.size(); i++) {
 //            ingredients.get(i).
 //        }
         System.out.println(groceryList.getName());
         System.out.println(groceryListIngredients);
+        System.out.println(ingredients);
 
         model.addAttribute("groceryList", groceryList);
 //        model.addAttribute("groceryListIngredients", groceryListIngredients);
