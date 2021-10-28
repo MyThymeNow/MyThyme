@@ -90,6 +90,11 @@ public class User {
     @Setter
     private List<UserGroceryList> userGroceryLists;
 
+    @OneToOne
+    @Getter
+    @Setter
+    private Location location;
+
 
     //   @JoinColumn(name = "location_id")
 //    private Location location;

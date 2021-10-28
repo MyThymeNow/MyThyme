@@ -55,8 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         "/groceryLists/create", // only authenticated users can create grocery lists
-                        "/ads/{id}/edit",
-                        "/user/location"// only authenticated users can edit ads
+                        "/ads/{id}/edit"// only authenticated users can edit ads
                 )
                 .authenticated()
         ;

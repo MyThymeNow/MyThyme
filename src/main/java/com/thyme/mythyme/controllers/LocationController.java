@@ -25,16 +25,8 @@ public class LocationController {
     @GetMapping("/location")
     public String showLocationForm(Model model) {
 
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Location locationOfUser = locationDao.getById(loggedInUser.getId());
-
         model.addAttribute("location", new Location());
-
-        if (locationOfUser.getUser() == null) {
-            return "user/location";
-        } else {
-            return "redirect:/profile";
-        }
+        return "user/location";
     }
 
     @PostMapping("/location")
@@ -42,11 +34,12 @@ public class LocationController {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        locationToAdd.setUser(loggedInUser);
+//        Location userLocation = locationToAdd.getLocation();
+
+        locationToAdd.setId(loggedInUser.getId());
 
         locationDao.save(locationToAdd);
         return "redirect:profile";
     }
-
 
 }
