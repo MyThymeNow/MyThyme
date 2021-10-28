@@ -21,11 +21,15 @@
         <div class="mb-4" th:each="text : ${messages}">
 
             <div class="sent-message"
-                 th:if="${text.getSender() == loggedinuser && text.getReceiver() ==  otheruser}">
+                 th:if="${text.getSender() == loggedinuser && text.getReceiver() ==  otheruser}"
+                 style="justify-content: right"><small><br>Sent At <span
+                    th:text="${text.getReadableDate()}"></span> </small>
                 <p th:text="${text.getContent()}"></p>
             </div>
             <div class="received-message"
-                 th:if="${text.sender == otheruser && text.receiver == loggedinuser}">
+                 th:if="${text.sender == otheruser && text.receiver == loggedinuser}" style="justify-content: right">
+                <small><br>Sent by <span th:text="${otheruser.getUsername()}"></span> on <span
+                        th:text="${text.getReadableDate()}"></span> </small>
                 <p th:text="${text.getContent()}"></p>
             </div>
         </div>
@@ -40,7 +44,6 @@
         </div>
 
     </div>
-
 
 
 </div>
