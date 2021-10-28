@@ -2,23 +2,160 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
-    <title>Create a Grocery List</title>
+    <meta charset="UTF-8" />
+
+    <title>Create grocery list</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/css/create.css">
+<!--    <script defer src="/create.js"></script>-->
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 
-<h1>Create a grocery list</h1>
+<section th:fragment="content">
 
-<div sec:authorize="isAuthenticated()">
-    <form th:action="@{/groceryLists/create}" method="post" th:object="${grocery_list}">
+    <div class="container">
+        <a th:href="@{/profile}">< Back to Profile</a>
+        <div class="hero-unit">
+            <h1>Create Grocery List</h1>
+        </div>
 
-        <label for="name">List Name</label>
-        <input id="name" th:field="*{name}" />
+        <form th:action="@{/groceryList/create}" th:method="post" th:object="${grocery_list}">
+            <div class="form-group">
+                <label for="title">Name:</label>
+                <input id="title" th:field="*{name}"/>
+            </div>
 
-        <input value="Create List" type="submit" />
+<!--            <div class="form-group">-->
+<!--                <label for="description">Description:</label>-->
+<!--                <input id="description" th:field="*{description}"/>-->
+<!--            </div>-->
+            <div id="additionalItems">
+                <h1> Add Items</h1>
+                <div class="form-group">
+                    <label for="name[]">Item:</label>
+                    <input type="text" name="name[]" id="name[]">
+                    <label for="quantity[]">Quantity:</label>
+                    <input type="text" name="quantity[]" id="quantity[]">
+                </div>
+            </div>
+            <br>
+            <button id="addItemButton">+</button>
+            <button class="btn delete" data-delete-list-button>Delete list</button>
+<!--            <button onclick="addelement();" id="thelist">Share</button>-->
+            <input value="Share" type="submit">
+<!--            <input value="Save List" type="submit"/>-->
+        </form>
+    </div>
+    <script>
+        window.onload = (function() {
+            const additionalItem = document.getElementById('addItemButton');
 
-    </form>
-</div>
+            const itemForm = `<div class="form-group">
+                  <label for="name[]">Item:</label>
+                  <input type="text" name="name[]" id="name[]">
+                  <label for="quantity[]">Quantity:</label>
+                  <input type="text" name="quantity[]" id="quantity[]">
+                </div>`
 
-</body>
+            additionalItem.addEventListener('click', function(event) {
+                event.preventDefault();
+
+
+                const addedItem = document.getElementById('additionalItems');
+                let newItem = document.createElement("div");
+                newItem.innerHTML = itemForm;
+                addedItem.appendChild(newItem);
+            });
+        })
+    </script>
+</section>
+
+        <div th:replace="partials/footer::footer"></div>
+<!--    <footer><p th:layout:fragment="footer"></p></footer>-->
+    </body>
 </html>
+
+
+<!-- todo LIST OPTION 1 -->
+
+<!--    <form th:action="@{/groceryLists/create}" method="post" th:object="${grocery_list}">-->
+<!--        <label for="name"><strong>Grocery List Name</strong></label><br>-->
+<!--        <input id="name" th:field="*{name}" /><br>-->
+
+<!--        <p id="newItemLabel"><strong>Add a New Item:</strong></p>-->
+<!--        <input type="text" name="itemName" th:field="*{itemName}" id="itemName" value="Item Name"/><br>-->
+<!--        <input type="text" name="itemAmount" th:field="*{itemAmount}" id="itemAmount" value="Item Amount"/><br>-->
+<!--        <select>-->
+<!--            <option value="Other">Other</option>-->
+<!--            <option value="Vegetables">Vegetables</option>-->
+<!--            <option value="Fruits">Fruits</option>-->
+<!--            <option value="Grains">Grains</option>-->
+<!--            <option value="Canned Goods">Canned Goods</option>-->
+<!--            <option value="Snacks">Snacks</option>-->
+<!--            <option value="Beverages">Beverages</option>-->
+<!--            <option value="Meat">Meat</option>-->
+<!--            <option value="Dairy">Dairy</option>-->
+<!--            <option value="Frozen">Frozen</option>-->
+<!--            <option value="Household">Household</option>-->
+<!--        </select><br>-->
+<!--        <input type="button" value="Add" id="addButton" onClick="" name="Add"/><br>-->
+
+<!--        <br><input value="Create List" type="submit" /> &lt;!&ndash; &ndash;&gt;-->
+<!--    </form>-->
+
+
+<!-- todo LIST OPTION 2-->
+
+<!--<head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    &lt;!&ndash;    <meta name="viewport" content="width=device-width, initial-scale=1.0" />&ndash;&gt;-->
+<!--    &lt;!&ndash;    <meta http-equiv="X-UA-Compatible" content="ie=edge" />&ndash;&gt;-->
+<!--    <title>Create grocery list</title>-->
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">-->
+
+<!--    <link rel="stylesheet" th:type="text/css" th:href="/css/create.css">-->
+<!--    &lt;!&ndash;    <script defer src="/create.js"></script>&ndash;&gt;-->
+<!--</head>-->
+<!--<div sec:authorize="isAuthenticated()">-->
+
+<!--    <div class="all-tasks">-->
+<!--        <h2 class="task-list-title">Grocery lists</h2>-->
+<!--        <ul class="task-list" data-lists></ul>-->
+
+<!--        <div class="new-task-creator">-->
+<!--            <form th:action="@{/groceryLists/create}" method="post" th:object="${grocery_list}" data-new-list-form>-->
+<!--                <input-->
+<!--                        type="text"-->
+<!--                        class="new list"-->
+<!--                        data-new-list-input-->
+<!--                        placeholder="new item name"-->
+<!--                        aria-label="new list name"-->
+<!--                />-->
+<!--                <button class="btn create" aria-label="create new list">+</button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;            Delete buttons&ndash;&gt;-->
+<!--    <div class="delete-stuff">-->
+<!--        <button class="btn delete" data-clear-complete-tasks-button>Clear Checked Items</button>-->
+<!--        <button class="btn delete" data-delete-list-button>Delete my list</button>-->
+<!--    </div>-->
+
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<template id="task-template">-->
+<!--    <div class="task">-->
+<!--        <input type="checkbox" />-->
+<!--        <label>-->
+<!--            <span class="custom-checkbox"></span>-->
+<!--        </label>-->
+<!--    </div>-->
+<!--</template>-->
