@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -65,6 +66,7 @@ public class GroceryListController {
     @PostMapping("/groceryLists/create")
     public String saveUserGroceryList(
             @ModelAttribute GroceryList listToCreate,
+            @ModelAttribute UserGroceryList newList,
             @RequestParam String name,
             @RequestParam(name="name[]") String[] names,
             @RequestParam(name="quantity[]") String[] quantities,
@@ -87,6 +89,10 @@ public class GroceryListController {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UUID uuid = UUID.randomUUID();
+
+        newList.setUser(loggedInUser);
+        newList.setGroceryList(listToCreate);
+        userListDao.save(newList);
         listToCreate.setOwner(loggedInUser);
         listToCreate.setShareURL(uuid.toString());
         groceryDao.save(listToCreate);
@@ -95,17 +101,23 @@ public class GroceryListController {
     }
 
 
-
 //////// Editing
+
     @GetMapping("/groceryLists/edit/{id}")
     public String showEditGroceryListForm(@PathVariable long id,Model model) {
         GroceryList groceryList = groceryDao.getById(id);
         List<GroceryListIngredients> groceryListIngredients = listIngredientsDao.getByGroceryList(groceryList);
+//        List<Ingredient> ingredients = ingredientDao.getIngredientsByGroceryListIngredientsId(groceryList.getId());
 
-
-//        for(int i=0; i < groceryListIngredients.size(); i++) {
-//            groceryListIngredients.get(i).setQuantity(quantities.get(i));
+//        for(int i=0; i < ingredients.size(); i++) {
+//            ingredients.get(i).
 //        }
+        System.out.println(groceryList.getName());
+        System.out.println(groceryListIngredients);
+
+        model.addAttribute("groceryList", groceryList);
+//        model.addAttribute("groceryListIngredients", groceryListIngredients);
+//        model.addAttribute("ingredients", ingredients);
 
         return "groceryList/edit";
     }

@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface GroceryListIngredientsRepository extends JpaRepository<GroceryListIngredients, Long> {
 
-        List <GroceryListIngredients> getByGroceryList(GroceryList groceryList );
+        List <GroceryListIngredients> getByGroceryList(GroceryList groceryList);
+
+
 
 }
