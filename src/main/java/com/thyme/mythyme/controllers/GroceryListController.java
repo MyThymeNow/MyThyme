@@ -74,31 +74,38 @@ public class GroceryListController {
             @RequestParam(name="name[]") String[] names,
             @RequestParam(name="quantity[]") String[] quantities,
             @RequestParam (name="notes[]") String[] notes
-            //@RequestParam boolean status //todo might be API dependent
+            //@RequestParam (name="status[]") String[] status //todo might be API dependent
     ) {
 //        GroceryList groceryList = groceryDao.getByShareURL(listToCreate.toString());
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UUID uuid = UUID.randomUUID();
+        listToCreate.setOwner(loggedInUser);
+        listToCreate.setShareURL(uuid.toString());
+        GroceryList groceryListInDB = groceryDao.save(listToCreate);
 
         for(int i = 0; i < names.length; i++) {
+            Ingredient ingredientInDB = ingredientDao.getByName(names[i]);
+            if (ingredientInDB == null) {
+
             Ingredient ingredient = new Ingredient();
             ingredient.setName(names[i]);
-            ingredientDao.save(ingredient);
+            ingredientInDB = ingredientDao.save(ingredient);
+            }
 
             GroceryListIngredients groceryListIngredients = new GroceryListIngredients();
             groceryListIngredients.setQuantity(Long.valueOf(quantities[i]));
             groceryListIngredients.setNotes(notes[i]);
-//            groceryListIngredients.setStatus(status); //todo may be API dependent
+//            groceryListIngredients.setStatus(status[i]); //todo may be API dependent
+            groceryListIngredients.setGroceryList(groceryListInDB);
+            groceryListIngredients.setIngredient(ingredientInDB);
+            groceryListIngredients.setUser(loggedInUser);
             listIngredientsDao.save(groceryListIngredients);
-        }
 
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UUID uuid = UUID.randomUUID();
+        }
 
 //        newList.setUser(loggedInUser);
 //        newList.setGroceryList(listToCreate);
 //        userListDao.save(newList);
-        listToCreate.setOwner(loggedInUser);
-        listToCreate.setShareURL(uuid.toString());
-        groceryDao.save(listToCreate);
         return"redirect:/groceryLists";
 
     }
