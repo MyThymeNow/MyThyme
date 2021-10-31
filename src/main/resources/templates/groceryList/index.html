@@ -21,12 +21,16 @@
 <div th:each="groceryList:${groceryLists}">
     <h2 th:text="${groceryList.name}"></h2>
     <button type="submit"><a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}">Edit List</a></button>
-    <div class="delete-stuff">
-    <button type="button" class="btn delete " data-clear-complete-tasks-button>Delete list</button>
-    </div>
+<!--    <div class="delete-stuff">-->
+<!--    <button type="button" class="btn delete " data-clear-complete-tasks-button>Delete list</button>-->
+<!--    </div>-->
     <button type="submit">Share</button>
-
 </div>
+<div class="delete-stuff">
+    <button type="button" class="btn delete " data-clear-complete-tasks-button>Delete list</button>
+</div>
+
+
 <script>
     window.onload = (function() {
         const additionalItem = document.getElementById('addItemButton');
