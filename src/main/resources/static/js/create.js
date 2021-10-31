@@ -176,28 +176,28 @@ function watch() {
 }
 
 // ON LOADING SECTION
-window.onload = (function() {
-    const additionalItem = document.getElementById('addItemButton');
-
-    const itemForm = `<div class="form-group">
-                  <label for="name[]">Item:</label>
-                  <input type="text" name="name[]" id="name[]">
-                  <label for="quantity[]">Quantity:</label>
-                  <input type="text" name="quantity[]" id="quantity[]">
-                  <label for="notes[]">Notes:</label>
-                  <input type="text" name="notes[]" id="notes[]">
-                </div>`
-
-    additionalItem.addEventListener('click', function(event) {
-        event.preventDefault();
-
-
-        const addedItem = document.getElementById('additionalItems');
-        let newItem = document.createElement("div");
-        newItem.innerHTML = itemForm;
-        addedItem.appendChild(newItem);
-    });
-})
+// window.onload = (function() {
+//     const additionalItem = document.getElementById('addItemButton');
+//
+//     const itemForm = `<div class="form-group">
+//                   <label for="name[]">Item:</label>
+//                   <input type="text" name="name[]" id="name[]">
+//                   <label for="quantity[]">Quantity:</label>
+//                   <input type="text" name="quantity[]" id="quantity[]">
+//                   <label for="notes[]">Notes:</label>
+//                   <input type="text" name="notes[]" id="notes[]">
+//                 </div>`
+//
+//     additionalItem.addEventListener('click', function(event) {
+//         event.preventDefault();
+//
+//
+//         const addedItem = document.getElementById('additionalItems');
+//         let newItem = document.createElement("div");
+//         newItem.innerHTML = itemForm;
+//         addedItem.appendChild(newItem);
+//     });
+// })
 
 
 exports.style = style;
