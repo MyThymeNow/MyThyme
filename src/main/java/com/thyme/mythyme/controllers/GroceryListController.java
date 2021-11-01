@@ -3,6 +3,7 @@ package com.thyme.mythyme.controllers;
 import com.thyme.mythyme.models.*;
 import com.thyme.mythyme.repository.*;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
+import org.hibernate.sql.Select;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -92,6 +93,7 @@ public class GroceryListController {
             ingredientInDB = ingredientDao.save(ingredient);
             }
 
+
             GroceryListIngredients groceryListIngredients = new GroceryListIngredients();
             groceryListIngredients.setQuantity(Long.valueOf(quantities[i]));
             groceryListIngredients.setNotes(notes[i]);
@@ -117,14 +119,18 @@ public class GroceryListController {
     public String showEditGroceryListForm(@PathVariable long id,Model model) {
         GroceryList groceryList = groceryDao.getById(id);
         List<GroceryListIngredients> groceryListIngredients = listIngredientsDao.getByGroceryList(groceryList);
-        Ingredient ingredients = ingredientDao.findAllByGroceryLists(groceryList);
+//        List<Ingredient> ingredients = ingredientDao.findIngredientsByGroceryListIngredient(groceryListIngredients);
+//        Ingredient[] ingredients = groceryList.getGroceryListIngredient().get(0).getIngredient();
 
-//        for(int i=0; i < ingredients.size(); i++) {
-//            ingredients.get(i).
-//        }
+        for(GroceryListIngredients item: groceryListIngredients) {
+
+
+        }
+
         System.out.println(groceryList.getName());
         System.out.println(groceryListIngredients);
-        System.out.println(ingredients);
+        System.out.println(groceryList.getGroceryListIngredient().get(0).getIngredient());
+//        System.out.println(ingredients);
 
         model.addAttribute("groceryList", groceryList);
 //        model.addAttribute("groceryListIngredients", groceryListIngredients);

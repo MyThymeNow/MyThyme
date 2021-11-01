@@ -11,6 +11,6 @@ public interface GroceryListIngredientsRepository extends JpaRepository<GroceryL
 
         List <GroceryListIngredients> getByGroceryList(GroceryList groceryList);
 
-
+//        List <Ingredient> getByIdAndGroceryList (Long id, GroceryList groceryList);
 
 }
