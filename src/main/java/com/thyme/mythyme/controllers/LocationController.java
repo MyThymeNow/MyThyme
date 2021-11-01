@@ -38,7 +38,11 @@ public class LocationController {
 
         locationToAdd.setId(loggedInUser.getId());
 
-        locationDao.save(locationToAdd);
+        Location newLocation = locationDao.save(locationToAdd);
+        User user = userDao.getById(loggedInUser.getId());
+        user.setLocation(newLocation);
+        userDao.save(user);
+
         return "redirect:profile";
     }
 
