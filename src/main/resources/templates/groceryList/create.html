@@ -51,12 +51,13 @@
             </div>
             <br>
             <button id="addItemButton" type="button" class="btn create btn-secondary">+</button>
-            <button class="btn delete" data-delete-list-button>Delete list</button>
+            <button onclick="removeItem()" class="btn delete buttonClass deleteMe" data-delete-list-button>Delete list</button>
 <!--            <button onclick="addelement();" id="thelist">Share</button>-->
 <!--            <input value="Save" type="submit"><a th:href="@{/groceryList/groceryLists}"></a>-->
             <button value="Save" type="submit"><a th:href="@{/groceryLists}" th:placeholder="Save"></a></button>
         </form>
     <script>
+        "use strict";
         window.onload = (function() {
             const additionalItem = document.getElementById('addItemButton');
 
@@ -77,6 +78,21 @@
                 let newItem = document.createElement("div");
                 newItem.innerHTML = itemForm;
                 addedItem.appendChild(newItem);
+            });
+
+            //extra, can delete if no function
+            // Creating a function to remove item from list
+            function removeItem() {
+
+                // Declaring a variable to get select element
+                var a = document.getElementById("list");
+                var candidate = document.getElementById("candidate");
+                var item = document.getElementById(candidate.value);
+                a.removeChild(item);
+            }
+            //extra, can delete if no function
+            $(".deleteMe").on("click", function(){
+                $(this).closest("li").remove();
             });
         })
     </script>
