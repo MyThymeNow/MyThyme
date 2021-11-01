@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -36,12 +37,19 @@ public class MessageController {
         List<Messages> messageList = user.getReceivedMessages();
         List<Messages> sentMessages = user.getSentMessages();
 
-        sentMessages.addAll(messageList);
+
+//        sentMessages.addAll(messageList);
+
+        Collections.sort(messageList);
 
         User otherUser = userDao.getById(id);
 
+        List<Messages> allMessages = messageDao.getAllBySenderAndReceiver(loggedInUser,otherUser);
+
+
+
         model.addAttribute("otheruser", otherUser);
-        model.addAttribute("messages", sentMessages);
+        model.addAttribute("messages", allMessages);
 
         return "user/message";
 

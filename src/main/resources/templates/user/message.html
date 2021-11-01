@@ -16,22 +16,23 @@
             <h1>Chat Log</h1>
         </div>
 
-        <h3 class="center" th:text="${otheruser.getUsername()}"></h3>
+
 
         <div class="mb-4" th:each="text : ${messages}">
 
-            <div class="sent-message"
-                 th:if="${text.getSender() == loggedinuser && text.getReceiver() ==  otheruser}"
-                 style="justify-content: right"><small><br>Sent At <span
-                    th:text="${text.getReadableDate()}"></span> </small>
+            <div class="message-sent"
+                 th:if="${text.getSender().getId()== loggedinuser.getId() && text.receiver.getId() == otheruser.getId()}">
                 <p th:text="${text.getContent()}"></p>
             </div>
-            <div class="received-message"
-                 th:if="${text.sender == otheruser && text.receiver == loggedinuser}" style="justify-content: right">
-                <small><br>Sent by <span th:text="${otheruser.getUsername()}"></span> on <span
-                        th:text="${text.getReadableDate()}"></span> </small>
-                <p th:text="${text.getContent()}"></p>
+            <p class="no-m-top" style="justify-content: right"
+               th:if="${text.getSender().getId() == loggedinuser.getId() && text.receiver.getId() == otheruser.getId()}"><small><br>Sent by You on <span th:text="${text.getReadableDate()}"></span> </small></p>
+            <div class="message-received"
+                 th:if="${text.getSender().getId() == otheruser.getId() && text.receiver.getId() == loggedinuser.getId()}">
+                <p th:text="${text.getContent()}"></p><br>
             </div>
+            <p class="no-m-top" th:if="${text.getSender().getId() == otheruser.getId() && text.receiver.getId() == loggedinuser.getId()}" style="justify-content: right"><small><br>Sent by <span th:text="${otheruser.getUsername()}"></span> on <span th:text="${text.getReadableDate()}"></span> </small></p>
+
+
         </div>
 
         <div>
