@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Controller
@@ -56,6 +57,7 @@ public class MessageController {
         newMessage.setSender(user);
         newMessage.setReceiver(receivingUser);
         newMessage.setContent(userMessage.getContent());
+        newMessage.setTimestamp(new Timestamp(System.currentTimeMillis()));
         messageDao.save(newMessage);
 
 

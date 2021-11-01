@@ -10,13 +10,14 @@
 <div sec:authorize="isAuthenticated()">
 
     <div th:text="${groceryList.name}">List Name</div>
-<!--    <div th:text="${groceryList.shareURL}">shareURL</div>  -->
+
+    <a th:href="@{/groceryLists/edit/{shareURL}(shareURL=${groceryList.shareURL})}">Edit List</a>
 
     <div>Created By: <span th:text="${groceryList.owner.username}"></span></div>
 
-    <form th:action="@{|/groceryLists/delete/${groceryList.id}|}" th:method="post">
-        <button type="submit">Delete List</button>
-    </form>
+<!--    <form th:action="@{|/groceryLists/delete/${groceryList.id}|}" th:method="post">-->
+<!--        <button type="submit">Delete List</button>-->
+<!--    </form>-->
 </div>
 
 </body>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+
+
+
+
+<form th:action="@{|/groceryLists/edit/${id}|}" th:method="post" th:object="${listToEdit}">
+
+    <input type="text" th:field="*{name}" th:placeholder="name">
+    <input type="hidden" th:field="*{shareURL}" th:placeholder="shareURL">
+    <button class="btn btn-success">Submit</button>
+
+</form>
+
+
+<form th:action="@{|/groceryLists/delete/${id}|}" th:method="post">
+    <button type="submit">Delete List</button>
+</form>
+
+
+
+</body>
+</html>
