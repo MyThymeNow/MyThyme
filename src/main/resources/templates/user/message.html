@@ -12,26 +12,30 @@
 
     <div class="col-12">
 
+        <!--        <a href="send" ><h2>Send New Message</h2></a>-->
+
         <div class="center">
             <h1>Chat Log</h1>
         </div>
 
 
+        <div class="mb-4" th:each="text : ${sentmessages}">
 
-        <div class="mb-4" th:each="text : ${messages}">
-
-            <div class="message-sent"
-                 th:if="${text.getSender().getId()== loggedinuser.getId() && text.receiver.getId() == otheruser.getId()}">
+            <div class="message-sent">
                 <p th:text="${text.getContent()}"></p>
             </div>
-            <p class="no-m-top" style="justify-content: right"
-               th:if="${text.getSender().getId() == loggedinuser.getId() && text.receiver.getId() == otheruser.getId()}"><small><br>Sent by You on <span th:text="${text.getReadableDate()}"></span> </small></p>
-            <div class="message-received"
-                 th:if="${text.getSender().getId() == otheruser.getId() && text.receiver.getId() == loggedinuser.getId()}">
+            <p class="no-m-top" style="justify-content: right">
+                <small><br>Sent by You on <span th:text="${text.getReadableDate()}"></span> </small></p>
+        </div>
+
+        <div class="mb-4" th:each="text : ${receivedmessages}">
+            <div class="message-received">
+
                 <p th:text="${text.getContent()}"></p><br>
             </div>
-            <p class="no-m-top" th:if="${text.getSender().getId() == otheruser.getId() && text.receiver.getId() == loggedinuser.getId()}" style="justify-content: right"><small><br>Sent by <span th:text="${otheruser.getUsername()}"></span> on <span th:text="${text.getReadableDate()}"></span> </small></p>
-
+            <p class="no-m-top" style="justify-content: right">
+                <small><br>Sent by <span th:text="${otheruser.getUsername()}"></span> on
+                    <span th:text="${text.getReadableDate()}"></span> </small></p>
 
         </div>
 
@@ -43,6 +47,7 @@
                 <button type="submit" class="btn btn-info">Send</button>
             </form>
         </div>
+
 
     </div>
 
