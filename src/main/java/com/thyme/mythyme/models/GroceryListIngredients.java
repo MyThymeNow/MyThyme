@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "groceryList_Ingredients")
+@Table(name = "grocery_list_ingredients")
 public class GroceryListIngredients {
 
     @Id

@@ -2,10 +2,10 @@
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<<<<<<< HEAD
-=======
+
+
 <!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
->>>>>>> 631725579d29db8de7181d5b4b55d1d0152b65c0
+
   
 <head>
     <meta charset="UTF-8">
@@ -22,13 +22,23 @@
         <div th:text="${user.getUsername()}"></div>
         <div th:text="${user.getFirstName()}"></div>
         <div th:text="${user.getLastName()}"></div>
+
+<!--Add show/hide based on role-->
+        <form th:action="@{/admin/enable/{id}(id=${user.id})}" th:method="post">
+            <input type="checkbox" th:checked="${user.isLocked()}" name="lockedCheckbox" id="lockedCheckbox">
+            <label class="form-check-label" for="lockedCheckbox">
+                Locked
+            </label>
+            <input type="submit" value="Update">
+        </form>
+
     </div>
 </div>
 
 
-<!--<div th:text="${user.getUsername()}"></div>-->
-<!--<div th:text="${user.getFirstName()}"></div>-->
-<!--<div th:text="${user.getLastName()}"></div>-->
+
+
+
 
 
 <div th:replace="partials/footer::footer"></div>

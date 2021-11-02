@@ -1,24 +1,152 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
-    <title>Create a Grocery List</title>
+    <meta charset="UTF-8" />
+    <title>Create grocery list</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/css/create.css">
+    <script defer src="/create.js"></script>
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 
-<h1>Create a grocery list</h1>
+<section th:fragment="content">
+<!--    <div class="container">-->
 
-<div sec:authorize="isAuthenticated()">
-    <form th:action="@{/groceryLists/create}" method="post" th:object="${grocery_list}">
+        <div class="hero-unit">
+            <h1>Create Grocery List</h1>
+        </div>
+    <!--    todo 1st form -->
+<!--        <form th:action="@{/create}" th:method="post" th:object="${grocery_list}">-->
 
-        <label for="name">List Name</label>
-        <input id="name" th:field="*{name}" />
+<!--            <div class="form-group">-->
+<!--                <label for="title">List Name:</label>-->
+<!--                <input id="title" th:field="*{name}"/>-->
+<!--            </div>-->
+<!--            <br>-->
+<!--            <div id="additionalItems">-->
+<!--                <h1> Add Items</h1>-->
+<!--                <div class="form-group">-->
+<!--                    <label for="name[]">Item:</label>-->
+<!--                    <input type="text" name="name[]" id="name[]">-->
+<!--                    <label for="quantity[]">Quantity:</label>-->
+<!--                    <input type="text" name="quantity[]" id="quantity[]">-->
+<!--                    <label for="notes[]">Notes:</label>-->
+<!--                    <input type="text" name="notes[]" id="notes[]">-->
+<!--                    <button class="delete">-</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <br>-->
+<!--            <button id="addItemButton" type="button" class="btn btn-secondary">+</button>-->
+<!--            <button class="btn delete" data-delete-list-button>Delete list</button>-->
+<!--&lt;!&ndash;            <button onclick="addelement();" id="thelist">Share</button>&ndash;&gt;-->
+<!--            <input value="Save" type="submit">-->
+<!--&lt;!&ndash;            <input value="Save List" type="submit"/>&ndash;&gt;-->
+<!--        </form>-->
+    <!--    todo 1st form -->
+    <!--    </div>-->
 
-        <input value="Create List" type="submit" />
 
-    </form>
-</div>
+<!--    todo 2nd form-->
+    <!-- LEFT side LIST-->
+    <div class="all-tasks">
+        <h2 class="task-list-title">My lists</h2>
+        <ul class="task-list" data-lists></ul>
 
-</body>
+        <form action="" data-new-list-form>
+            <input
+                    type="text"
+                    class="new list"
+                    data-new-list-input
+                    placeholder="new list name"
+                    aria-label="new list name"
+            />
+            <button class="btn create" aria-label="create new list">+</button>
+        </form>
+    </div>
+
+    <!-- RIGHT side LIST-->
+    <div class="todo-list" data-list-display-container>
+        <div class="todo-header">
+            <h2 class="list-title" data-list-title></h2>
+            <p class="task-count" data-list-count></p>
+        </div>
+        <div class="todo-body">
+            <div class="tasks" data-tasks></div>
+
+            <div class="new-task-creator" >
+                <form th:action="@{/create}" th:method="post" th:object="${grocery_list}" data-new-task-form>
+                    <input
+                            type="text"
+                            data-new-task-input
+                            class="new task"
+                            placeholder="new task name"
+                            aria-label="new task name"
+                    />
+                    <button class="btn create" aria-label="create new task">+</button>
+                </form>
+            </div>
+
+            <div class="delete-stuff">
+                <button class="btn delete" data-clear-complete-tasks-button>Clear List</button>
+                <button class="btn delete" data-delete-list-button>Delete Item</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <template id="task-template">
+        <div class="task">
+            <input type="checkbox" />
+            <label>
+                <span class="custom-checkbox"></span>
+            </label>
+        </div>
+    </template>
+
+
+    <!-- TESTER LIST -->
+    <div class="new-task-creator">
+        <form action="" data-new-list-form>
+            <input type="text" data-new-list-input class="new task" placeholder="new task name" aria-label="new task name">
+<!--                ::after-->
+            <button class="btn create" aria-label="create new task">+</button>
+        </form>
+    </div>
+
+    <script>
+        window.onload = (function() {
+            const additionalItem = document.getElementById('addItemButton');
+
+            const itemForm = `<div class="form-group">
+                  <label for="name[]">Item:</label>
+                  <input type="text" name="name[]" id="name[]">
+                  <label for="quantity[]">Quantity:</label>
+                  <input type="text" name="quantity[]" id="quantity[]">
+                  <label for="notes[]">Notes:</label>
+                  <input type="text" name="notes[]" id="notes[]">
+                </div>`
+
+            additionalItem.addEventListener('click', function(event) {
+                event.preventDefault();
+
+
+                const addedItem = document.getElementById('additionalItems');
+                let newItem = document.createElement("div");
+                newItem.innerHTML = itemForm;
+                addedItem.appendChild(newItem);
+            });
+        })
+    </script>
+</section>
+
+<!--        <div th:replace="partials/footer::footer"></div>-->
+<!--    <footer><p th:layout:fragment="footer"></p></footer>-->
+    </body>
 </html>
