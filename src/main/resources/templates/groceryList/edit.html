@@ -7,28 +7,31 @@
 </head>
 <body>
 
+<section th:fragment="content">
+
+    <div class="container">
+        <form th:action="@{|/groceryLists/edit/${id}|}" th:method="post" th:object="${grocery_list}">
+            <div class="form-group">
+                <input type="text" th:field="*{name}" th:placeholder="name">
+                <input type="hidden" th:field="*{shareURL}" th:placeholder="shareURL"> <!-- Hidden so users can't edit -->
+            </div>
+
+            <div id="editIngredients">
+                <h1>Edit Ingredients</h1>
+                <div class="form-group">
+
+                </div>
+            </div>
+        </form>
+    </div>
 
 
-
-<form th:action="@{|/groceryLists/edit/${id}|}" th:method="post" th:object="${groceryList}">
-
-    <input type="text" th:field="*{name}" th:placeholder="name">
-    <input type="hidden" th:field="*{shareURL}" th:placeholder="shareURL">
-    <button class="btn btn-success">Submit</button>
-
-</form>
-
-<!--<form th:action="@{|/groceryLists/edit/${id}|}" th:method="post" th:object="${ingredients}">-->
-
-
+<!-- NEED TO UPDATE DELETE FUNCTIONALITY -->
+<!--<form th:action="@{|/groceryLists/delete/${id}|}" th:method="post">-->
+<!--    <button type="submit">Delete List</button>-->
 <!--</form>-->
 
-
-<form th:action="@{|/groceryLists/delete/${id}|}" th:method="post">
-    <button type="submit">Delete List</button>
-</form>
-
-
+</section>
 
 </body>
 </html>

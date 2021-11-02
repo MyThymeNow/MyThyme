@@ -13,7 +13,5 @@ public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
 
     Ingredient getByName (String name);
 
-    Ingredient findAllById(Long id);
-
-
+    Ingredient findById (long id);
 }

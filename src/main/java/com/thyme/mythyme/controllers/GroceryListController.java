@@ -4,13 +4,19 @@ import com.thyme.mythyme.models.*;
 import com.thyme.mythyme.repository.*;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.hibernate.sql.Select;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -122,20 +128,43 @@ public class GroceryListController {
 //        List<Ingredient> ingredients = ingredientDao.findIngredientsByGroceryListIngredient(groceryListIngredients);
 //        Ingredient[] ingredients = groceryList.getGroceryListIngredient().get(0).getIngredient();
 
-        for(GroceryListIngredients item: groceryListIngredients) {
+//        DriverManager.registerDriver(new Driver());
+//        Connection connection = DriverManager.getConnection(
+//                "jdbc:mysql://localhost:3306/mythyme_db?allowPublicKeyRetrieval=true&useSSL=false",
+//                "root",
+//                "codeup"
+//        );
+        for(GroceryListIngredients item : groceryListIngredients) {
+
+            Long groceryListIngredients_id = item.getId();
+
+            Long groceryListsIngredients_quantity = item.getQuantity();
+
+            String groceryListIngredients_notes = item.getNotes();
+
+//            boolean groceryListIngredients_status = item.isStatus();
+
+            Optional<Ingredient> currentIngredient = ingredientDao.findById(groceryListIngredients_id);
+
+            GroceryListIngredients currentQuantity = listIngredientsDao.findByQuantity(groceryListsIngredients_quantity);
+
+            GroceryListIngredients currentNotes = listIngredientsDao.findByNotes(groceryListIngredients_notes);
+
+//            System.out.println(currentIngredient);
+//            System.out.println(currentQuantity);
+//            System.out.println(currentNotes);
 
 
+//        System.out.println(groceryList.getName());
+//        System.out.println(groceryListIngredients);
+
+
+        model.addAttribute("grocery_list", groceryList);
+        model.addAttribute("groceryListIngredients", groceryListIngredients);
+        model.addAttribute("currentIngredient", currentIngredient);
+        model.addAttribute("currentQuantity", currentQuantity);
+        model.addAttribute("currentNotes", currentNotes);
         }
-
-        System.out.println(groceryList.getName());
-        System.out.println(groceryListIngredients);
-        System.out.println(groceryList.getGroceryListIngredient().get(0).getIngredient());
-//        System.out.println(ingredients);
-
-        model.addAttribute("groceryList", groceryList);
-//        model.addAttribute("groceryListIngredients", groceryListIngredients);
-//        model.addAttribute("ingredients", ingredients);
-
         return "groceryList/edit";
     }
 
@@ -156,9 +185,9 @@ public class GroceryListController {
 
 
 //////// Deletion
-    @PostMapping("/groceryLists/delete/{shareURL}")
-    public String deleteGroceryList(@PathVariable String shareURL) {
-        GroceryList listToDelete = groceryDao.getByShareURL(shareURL);
+    @PostMapping("/groceryLists/delete/{id}")
+    public String deleteGroceryList(@PathVariable Long id) {
+        GroceryList listToDelete = groceryDao.getById(id);
         groceryDao.delete(listToDelete);
 
         return "redirect:/groceryLists";
