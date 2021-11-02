@@ -48,19 +48,20 @@
                     <input type="text" name="quantity[]" id="quantity[]">
                     <label for="notes[]">Notes:</label>
                     <input type="text" name="notes[]" id="notes[]">
+                    <input type="" class="btn btn-danger delete btn-secondary">X</input>
                 </div>
 <!--                <button type="button" class="btn delete btn-secondary">Remove</button>-->
 <!--                <button id="addItemButton" type="button" class="btn create btn-secondary">+</button>-->
             </div>
             <br>
-                <p>
-                    <button type="button" class="btn btn-danger delete btn-secondary">X</button>
-                    <button id="addItemButton" type="button" class="btn create btn-secondary">+</button>
-                    <button onclick="removeItem()" class="btn delete buttonClass deleteMe" data-delete-list-button>Delete list</button>
+<!--                <button type="button" class="btn btn-danger delete btn-secondary">X</button>-->
+                <button id="addItemButton add" type="button" class="btn create btn-secondary" >+</button>
     <!--            <button onclick="addelement();" id="thelist">Share</button>-->
     <!--            <input value="Save" type="submit"><a th:href="@{/groceryList/groceryLists}"></a>-->
+            <div>
+                <button  type="submit" class="btn delete buttonClass deleteMe" data-delete-list-button><a href=""></a>Delete List</button> <!--onclick="removeItem()"-->
                 <button value="Save" type="submit"><a th:href="@{/groceryLists}" th:placeholder="Save"></a>Save</button><!--working-->
-                </p>
+            </div>
         </form>
     <script>
         "use strict";
