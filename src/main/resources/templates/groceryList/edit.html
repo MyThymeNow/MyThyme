@@ -10,13 +10,18 @@
 
 
 
-<form th:action="@{|/groceryLists/edit/${id}|}" th:method="post" th:object="${listToEdit}">
+<form th:action="@{|/groceryLists/edit/${id}|}" th:method="post" th:object="${groceryList}">
 
     <input type="text" th:field="*{name}" th:placeholder="name">
     <input type="hidden" th:field="*{shareURL}" th:placeholder="shareURL">
     <button class="btn btn-success">Submit</button>
 
 </form>
+
+<!--<form th:action="@{|/groceryLists/edit/${id}|}" th:method="post" th:object="${ingredients}">-->
+
+
+<!--</form>-->
 
 
 <form th:action="@{|/groceryLists/delete/${id}|}" th:method="post">
