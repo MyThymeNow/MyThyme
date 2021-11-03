@@ -155,7 +155,6 @@ public class GroceryListController {
     @PostMapping("/groceryLists/edit/{id}")
     public String editGroceryList(
             @PathVariable Long id,
-            @ModelAttribute GroceryList updatedList,
             @RequestParam String name,
             @RequestParam(name="name[]") String[] names,
             @RequestParam(name="quantity[]") String[] quantities,
@@ -163,27 +162,28 @@ public class GroceryListController {
             //@RequestParam (name="status[]") String[] status //todo might be API dependent
     ) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        updatedList.setId(id);
-        updatedList.setOwner(loggedInUser);
-        GroceryList updatedListInDB = groceryDao.save(updatedList);
+        GroceryList listToUpdate = groceryDao.getById(id);
+        listToUpdate.setOwner(loggedInUser);
+        listToUpdate.setName(name);
+        groceryDao.save(listToUpdate);
 
-        for (int i = 0; i < names.length; i++) {
-            Ingredient ingredientInDB = ingredientDao.findAllByGroceryLists(updatedListInDB);
-            if (ingredientInDB == null) {
-                Ingredient newIngredient = new Ingredient();
-                newIngredient.setName(names[i]);
-                ingredientInDB = ingredientDao.save(newIngredient);
-            }
-
-            GroceryListIngredients groceryListIngredientsToUpdate = listIngredientsDao.getById(id);
-            groceryListIngredientsToUpdate.setQuantity(Long.valueOf(quantities[i]));
-            groceryListIngredientsToUpdate.setNotes(notes[i]);
-//            groceryListIngredients.setStatus(status[i]); //todo may be API dependent
-            groceryListIngredientsToUpdate.setGroceryList(updatedListInDB);
-            groceryListIngredientsToUpdate.setIngredient(ingredientInDB);
-            groceryListIngredientsToUpdate.setUser(loggedInUser);
-            listIngredientsDao.save(groceryListIngredientsToUpdate);
-        }
+//        for (int i = 0; i < names.length; i++) {
+////            Ingredient ingredientInDB = ingredientDao.findAllByGroceryLists(updatedListInDB);
+////            if (ingredientInDB == null) {
+////                Ingredient newIngredient = new Ingredient();
+////                newIngredient.setName(names[i]);
+////                ingredientInDB = ingredientDao.save(newIngredient);
+////            }
+//
+////            GroceryListIngredients groceryListIngredientsToUpdate = listIngredientsDao.getById(id);
+////            groceryListIngredientsToUpdate.setQuantity(Long.valueOf(quantities[i]));
+////            groceryListIngredientsToUpdate.setNotes(notes[i]);
+//////            groceryListIngredients.setStatus(status[i]); //todo may be API dependent
+////            groceryListIngredientsToUpdate.setGroceryList(updatedListInDB);
+////            groceryListIngredientsToUpdate.setIngredient(ingredientInDB);
+////            groceryListIngredientsToUpdate.setUser(loggedInUser);
+////            listIngredientsDao.save(groceryListIngredientsToUpdate);
+//        }
         return "redirect:/groceryLists";
     }
 
