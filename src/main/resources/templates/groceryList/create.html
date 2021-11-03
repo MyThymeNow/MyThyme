@@ -52,20 +52,27 @@
                     <input type="text" name="quantity[]" id="quantity[]">
                     <label for="notes[]">Notes:</label>
                     <input type="text" name="notes[]" id="notes[]">
-                    <button id="addItemButton" class="btn create btn-secondary btn-sm btn-success btn_row_below_new" >+</button>
+                    <button id="addItemButton" class="btn btn-secondary btn-sm btn-success btn_row_below_new" >+</button>
+                    <button id="removeItemButton" class="btn btn-secondary btn-sm btn-danger btn_row_delete">-</button>
                 </div>
 <!--                <button type="button" class="btn delete btn-secondary">Remove</button>-->
 <!--                <button id="addItemButton" type="button" class="btn create btn-secondary">+</button>-->
             </div>
             <br>
-                <input type="button" class="btn btn-sm btn-danger btn_row_delete btn-secondary">X</input>
+<!--                <input type="button" class="btn btn-sm btn-danger btn_row_delete btn-secondary">-</input>-->
             <!--       ****** deleting *****  <button type="button" class="btn btn-danger delete btn-secondary">X</button>-->
+
 
     <!--            <button onclick="addelement();" id="thelist">Share</button>-->
     <!--            <input value="Save" type="submit"><a th:href="@{/groceryList/groceryLists}"></a>-->
             <div>
-                <button  type="submit" class="btn delete buttonClass deleteMe" data-delete-list-button><a href=""></a>Clear List</button> <!--onclick="removeItem()"-->
-                <button value="Save" type="submit"><a th:href="@{/groceryLists}" th:placeholder="Save"></a>Save</button><!--working-->
+<!--                <button class="btn delete buttonClass deleteMe" data-delete-list-button>Clear List</button> &lt;!&ndash;onclick="removeItem()"&ndash;&gt;-->
+                <a href="" class="btn delete buttonClass deleteMe" data-delete-list-button>Clear List</a>
+
+
+<!--                <button value="Save" type="submit"><a th:href="@{/groceryLists}">Save</a></button>&lt;!&ndash;working&ndash;&gt;-->
+                <button value="Save" type="submit" th:href="@{/groceryLists}">Save</button>
+<!--                <button value="Save" type="submit"><a th:href="@{/groceryLists}" th:placeholder="Save"></a>Save</button> OLD BUTTON SET UP FOR SAVING LIST-->
             </div>
         </form>
 
@@ -80,6 +87,7 @@
             const itemForm = `<div class="form-group">
                   <label for="name[]">Item:</label>
                   <input type="text" name="name[]" id="name[]">
+
                   <label for="quantity[]">Quantity:</label>
                   <input type="text" name="quantity[]" id="quantity[]">
                   <label for="notes[]">Notes:</label>
@@ -119,15 +127,7 @@
 
         })
     </script>
-    <!--Task/ Checkbox template -->
-    <template id="task-template">
-        <div class="task">
-            <input type="checkbox" />
-            <label>
-                <span class="custom-checkbox"></span>
-            </label>
-        </div>
-    </template>
+
 
     <!-- todo Table Template -->
 <!--    <table class="table table-dark table-striped table-hover tbl_code_with_mark">-->
@@ -190,80 +190,8 @@
 
 <!--        <div th:replace="partials/footer::footer"></div>-->
 <!--    <footer><p th:layout:fragment="footer"></p></footer>-->
-
-<!-- TESTING A POTENTIAL MODAL LAYOUT FOR DELETING WHOLE LIST TO CONFIRM-->
-<!--<div th:fragment="modal">-->
-<!--    &lt;!&ndash; Button trigger modal &ndash;&gt;-->
-<!--    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">-->
-<!--        Delete My Profile-->
-<!--    </button>-->
-
-<!--    &lt;!&ndash; Modal &ndash;&gt;-->
-<!--    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
-<!--        <div class="modal-dialog">-->
-<!--            <div class="modal-content">-->
-<!--                <div class="modal-header">-->
-<!--                    <h5 class="modal-title" id="staticBackdropLabel" th:text=""></h5>-->
-<!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                        <span aria-hidden="true">&times;</span>-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--                <div class="modal-body">-->
-<!--                    Are you sure you want to delete?-->
-<!--                </div>-->
-<!--                <div class="modal-footer">-->
-<!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--                    <a th:href="" class="btn btn-danger">Delete My Party Profile</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
     </body>
 </html>
-
-<!--todo TEST FOR LATER IF ABOVE NOT WORKING PROPERLY-->
-<!--<h1 class="title">Stuff I need to do</h1>-->
-
-<!--&lt;!&ndash; LEFT side LIST&ndash;&gt;-->
-<!--<div class="all-tasks">-->
-<!--    <h2 class="task-list-title">My lists</h2>-->
-<!--    <ul class="task-list" data-lists></ul>-->
-
-<!--    <form action="" data-new-list-form>-->
-<!--        <input-->
-<!--                type="text"-->
-<!--                class="new list"-->
-<!--                data-new-list-input-->
-<!--                placeholder="new list name"-->
-<!--                aria-label="new list name"-->
-<!--        />-->
-<!--        <button class="btn create" aria-label="create new list">+</button>-->
-<!--    </form>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; RIGHT side LIST&ndash;&gt;-->
-<!--<div class="todo-list" data-list-display-container>-->
-<!--    <div class="todo-header">-->
-<!--        <h2 class="list-title" data-list-title>YouTube</h2>-->
-<!--        <p class="task-count" data-list-count>3 tasks remaining</p>-->
-<!--    </div>-->
-
-<!--    <div class="todo-body">-->
-<!--        <div class="tasks" data-tasks></div>-->
-
-<!--        <div class="new-task-creator">-->
-<!--            <form action="" data-new-task-form>-->
-<!--                <input-->
-<!--                        type="text"-->
-<!--                        data-new-task-input-->
-<!--                        class="new task"-->
-<!--                        placeholder="new task name"-->
-<!--                        aria-label="new task name"-->
-<!--                />-->
-<!--                <button class="btn create" aria-label="create new task">+</button>-->
-<!--            </form>-->
-<!--        </div>-->
 
 <!--        <div class="delete-stuff">-->
 <!--            <button class="btn delete" data-clear-complete-tasks-button>Clear completed tasks</button>-->
@@ -272,22 +200,3 @@
 <!--    </div>-->
 <!--</div>-->
 
-
-<!--</div>-->
-<!--<template id="task-template">-->
-<!--    <div class="task">-->
-<!--        <input type="checkbox" />-->
-<!--        <label>-->
-<!--            <span class="custom-checkbox"></span>-->
-<!--        </label>-->
-<!--    </div>-->
-<!--</template>-->
-
-<!--todo OLD LIST-->
-<!--    <ul class="list-group">-->
-<!--        <li class="list-group-item disabled" aria-disabled="true">Cras justo odio</li>-->
-<!--        <li class="list-group-item">Dapibus ac facilisis in</li>-->
-<!--        <li class="list-group-item">Morbi leo risus</li>-->
-<!--        <li class="list-group-item">Porta ac consectetur ac</li>-->
-<!--        <li class="list-group-item">Vestibulum at eros</li>-->
-<!--    </ul>-->
