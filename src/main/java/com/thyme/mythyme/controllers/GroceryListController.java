@@ -127,14 +127,8 @@ public class GroceryListController {
 
         for(GroceryListIngredients item : groceryListIngredients) {
             Long groceryListIngredients_id = item.getId();
-            Long groceryListsIngredients_quantity = item.getQuantity();
-            String groceryListIngredients_notes = item.getNotes();
-
-//            boolean groceryListIngredients_status = item.isStatus();
 
             Optional<Ingredient> currentIngredient = ingredientDao.findById(groceryListIngredients_id);
-            GroceryListIngredients currentQuantity = listIngredientsDao.findByQuantity(groceryListsIngredients_quantity);
-            GroceryListIngredients currentNotes = listIngredientsDao.findByNotes(groceryListIngredients_notes);
 
 //            System.out.println(currentIngredient);
 //            System.out.println(currentQuantity);
@@ -145,8 +139,7 @@ public class GroceryListController {
         model.addAttribute("grocery_list", groceryList);
         model.addAttribute("groceryListIngredients", groceryListIngredients);
         model.addAttribute("currentIngredient", currentIngredient);
-        model.addAttribute("currentQuantity", currentQuantity);
-        model.addAttribute("currentNotes", currentNotes);
+
         }
         return "groceryList/edit";
     }
