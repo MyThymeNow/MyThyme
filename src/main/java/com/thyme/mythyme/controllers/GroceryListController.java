@@ -167,23 +167,23 @@ public class GroceryListController {
         listToUpdate.setName(name);
         groceryDao.save(listToUpdate);
 
-//        for (int i = 0; i < names.length; i++) {
-////            Ingredient ingredientInDB = ingredientDao.findAllByGroceryLists(updatedListInDB);
-////            if (ingredientInDB == null) {
-////                Ingredient newIngredient = new Ingredient();
-////                newIngredient.setName(names[i]);
-////                ingredientInDB = ingredientDao.save(newIngredient);
-////            }
-//
-////            GroceryListIngredients groceryListIngredientsToUpdate = listIngredientsDao.getById(id);
-////            groceryListIngredientsToUpdate.setQuantity(Long.valueOf(quantities[i]));
-////            groceryListIngredientsToUpdate.setNotes(notes[i]);
-//////            groceryListIngredients.setStatus(status[i]); //todo may be API dependent
-////            groceryListIngredientsToUpdate.setGroceryList(updatedListInDB);
-////            groceryListIngredientsToUpdate.setIngredient(ingredientInDB);
-////            groceryListIngredientsToUpdate.setUser(loggedInUser);
-////            listIngredientsDao.save(groceryListIngredientsToUpdate);
-//        }
+        for (int i = 0; i < names.length; i++) {
+            Ingredient ingredientInDB = ingredientDao.getByName(names[i]);
+            if (ingredientInDB != null) {
+                ingredientInDB.setId(ingredientInDB.getId());
+                ingredientInDB.setName(ingredientInDB.getName());
+                Ingredient updatedIngredient = ingredientDao.save(ingredientInDB);
+            }
+
+            GroceryListIngredients groceryListIngredientsToUpdate = listIngredientsDao.getById(id);
+            groceryListIngredientsToUpdate.setQuantity(Long.valueOf(quantities[i]));
+            groceryListIngredientsToUpdate.setNotes(notes[i]);
+//            groceryListIngredients.setStatus(status[i]); //todo may be API dependent
+            groceryListIngredientsToUpdate.setGroceryList(listToUpdate);
+//            groceryListIngredientsToUpdate.setIngredient(updatedIngredient);
+            groceryListIngredientsToUpdate.setUser(loggedInUser);
+            listIngredientsDao.save(groceryListIngredientsToUpdate);
+        }
         return "redirect:/groceryLists";
     }
 
