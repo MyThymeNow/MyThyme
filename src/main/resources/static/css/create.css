@@ -1,3 +1,7 @@
+
+.box1{
+    border: solid black 2px;
+}
 :root {
     --clr-primary: rgb(54, 112, 199);
     --clr-light: #f4f4f4;

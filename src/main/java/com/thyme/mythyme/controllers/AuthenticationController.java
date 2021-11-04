@@ -31,10 +31,12 @@ public class AuthenticationController {
         if (userInDB.isAdmin()) {
             return "redirect:/admin/home";
         } else {
+
             if (userInDB.getLocation() == null) {
                 return "redirect:/location";
             }
         }
             return "redirect:/profile";
+
         }
     }

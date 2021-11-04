@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script defer src="/create.js"></script>
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
@@ -20,11 +21,40 @@
 <div th:each="groceryList:${groceryLists}">
     <h2 th:text="${groceryList.name}"></h2>
     <button type="submit"><a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}">Edit List</a></button>
-    <button class="btn delete" data-delete-list-button>Delete list</button>
+<!--    <div class="delete-stuff">-->
+<!--    <button type="button" class="btn delete " data-clear-complete-tasks-button>Delete list</button>-->
+<!--    </div>-->
     <button type="submit">Share</button>
-
+</div>
+<div class="delete-stuff">
+    <button type="button" class="btn delete " data-clear-complete-tasks-button>Delete list</button>
 </div>
 
+
+<script>
+    window.onload = (function() {
+        const additionalItem = document.getElementById('addItemButton');
+
+        const itemForm = `<div class="form-group">
+                  <label for="name[]">Item:</label>
+                  <input type="text" name="name[]" id="name[]">
+                  <label for="quantity[]">Quantity:</label>
+                  <input type="text" name="quantity[]" id="quantity[]">
+                  <label for="notes[]">Notes:</label>
+                  <input type="text" name="notes[]" id="notes[]">
+                </div>`
+
+        additionalItem.addEventListener('click', function(event) {
+            event.preventDefault();
+
+
+            const addedItem = document.getElementById('additionalItems');
+            let newItem = document.createElement("div");
+            newItem.innerHTML = itemForm;
+            addedItem.appendChild(newItem);
+        });
+    })
+</script>
 <script src="../../js/jquery.js"></script>
 <script src="../../js/jquery_functions.js"></script>
 
