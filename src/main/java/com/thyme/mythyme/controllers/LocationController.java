@@ -24,18 +24,24 @@ public class LocationController {
 
     @GetMapping("/location")
     public String showLocationForm(Model model) {
+
         model.addAttribute("location", new Location());
         return "user/location";
-    }
+        }
+
 
     @PostMapping("/location")
-    public String saveUserLocation(@ModelAttribute Location locationToAdd){
+    public String saveUserLocation(@ModelAttribute Location locationToAdd) {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        locationToAdd.setUser(loggedInUser);
+        locationToAdd.setId(loggedInUser.getId());
 
-        locationDao.save(locationToAdd);
+        Location newLocation = locationDao.save(locationToAdd); // Save location
+        User user = userDao.getById(loggedInUser.getId()); // Get logged in user ID
+        user.setLocation(newLocation); // Set location to the newLocation that the user entered
+        userDao.save(user); // Save
+
         return "redirect:profile";
+        }
     }
-}

@@ -77,7 +77,6 @@ public class GroceryListController {
     public String saveUserGroceryList(
             @ModelAttribute GroceryList listToCreate,
 //            @ModelAttribute UserGroceryList newList,
-            @RequestParam String name,
             @RequestParam(name="name[]") String[] names,
             @RequestParam(name="quantity[]") String[] quantities,
             @RequestParam (name="notes[]") String[] notes
@@ -155,7 +154,6 @@ public class GroceryListController {
     @PostMapping("/groceryLists/edit/{id}")
     public String editGroceryList(
             @PathVariable Long id,
-            @ModelAttribute GroceryList updatedList,
             @RequestParam String name,
             @RequestParam(name="name[]") String[] names,
             @RequestParam(name="quantity[]") String[] quantities,
@@ -163,24 +161,42 @@ public class GroceryListController {
             //@RequestParam (name="status[]") String[] status //todo might be API dependent
     ) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        updatedList.setId(id);
-        updatedList.setOwner(loggedInUser);
-        GroceryList updatedListInDB = groceryDao.save(updatedList);
+        GroceryList listToUpdate = groceryDao.getById(id);
+        listToUpdate.setOwner(loggedInUser);
+        listToUpdate.setName(name);
+        GroceryList updatedList = groceryDao.save(listToUpdate);
+        List<GroceryListIngredients> groceryListIngredients = listToUpdate.getGroceryListIngredient();
+//        System.out.println(groceryListIngredients); does sout correct number of ingredients
 
-        for (int i = 0; i < names.length; i++) {
-            Ingredient ingredientInDB = ingredientDao.findAllByGroceryLists(updatedListInDB);
-            if (ingredientInDB == null) {
-                Ingredient newIngredient = new Ingredient();
-                newIngredient.setName(names[i]);
-                ingredientInDB = ingredientDao.save(newIngredient);
-            }
+        for (int i = 0; i < groceryListIngredients.size(); i++) {
+//            Ingredient ingredientInDB = ingredientDao.getByName(names[i]);
 
-            GroceryListIngredients groceryListIngredientsToUpdate = listIngredientsDao.getById(id);
-            groceryListIngredientsToUpdate.setQuantity(Long.valueOf(quantities[i]));
+//            Ingredient ingredientToUpdate = ingredientDao.getById(id);
+//
+//            if (ingredientInDB == null) {
+//                ingredientToUpdate.setId(id);
+//                ingredientToUpdate.setName(names[i]);
+//                ingredientDao.save(ingredientToUpdate);
+//            }
+
+            GroceryListIngredients groceryListIngredientsToUpdate = groceryListIngredients.get(i);
+
+            groceryListIngredientsToUpdate.setId(groceryListIngredientsToUpdate.getId());
+
+            groceryListIngredientsToUpdate.setQuantity(Long.parseLong(quantities[i]));
+
             groceryListIngredientsToUpdate.setNotes(notes[i]);
-//            groceryListIngredients.setStatus(status[i]); //todo may be API dependent
-            groceryListIngredientsToUpdate.setGroceryList(updatedListInDB);
-            groceryListIngredientsToUpdate.setIngredient(ingredientInDB);
+
+            Ingredient ingredient = groceryListIngredientsToUpdate.getIngredient();
+
+            ingredient.setName(names[i]);
+
+            ingredientDao.save(ingredient);
+
+
+////            groceryListIngredients.setStatus(status[i]); //todo may be API dependent
+            groceryListIngredientsToUpdate.setGroceryList(updatedList);
+//            groceryListIngredientsToUpdate.setIngredient(ingredientToUpdate);
             groceryListIngredientsToUpdate.setUser(loggedInUser);
             listIngredientsDao.save(groceryListIngredientsToUpdate);
         }
@@ -197,4 +213,38 @@ public class GroceryListController {
         return "redirect:/groceryLists";
     }
 
+
+//    //show form for adding partyItems
+//    @GetMapping("/parties/items/{urlKey}")
+//    public String showItemForm(Model model, @PathVariable String urlKey){
+//        Party party = partyDao.getByUrlKey(urlKey); //gets party
+//        model.addAttribute("party", party); //sets party
+//        return "/party/createItems";
+//    }
+//
+//    //saves party information
+//    @PostMapping("/parties/items/{urlKey}")
+//    public String addItems(@PathVariable String urlKey, @RequestParam(name="name[]") String[] names,@RequestParam(name="quantity[]") String[] quantities ) {
+//        Party party = partyDao.getByUrlKey(urlKey);
+//
+//        for(int i = 0; i< names.length; i++){
+//
+//            Item item = new Item(); //create new item instance
+//            item.setName(names[i]); //set item name from name[]
+//            itemDao.save(item); //save item instance
+//
+//            //creates & Saves party item
+//            PartyItem partyItem = new PartyItem();
+//            partyItem.setItem(item);
+//            partyItem.setQuantityRequired(Long.valueOf(quantities[i]));
+//            partyItem.setParty(party);
+//            partyItemDao.save(partyItem);
+//        }
+//        return "redirect:/parties/success/" + urlKey;
+//    }
+
+
 }
+
+}
+

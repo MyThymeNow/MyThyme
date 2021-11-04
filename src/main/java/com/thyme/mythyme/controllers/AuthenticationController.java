@@ -1,6 +1,8 @@
 package com.thyme.mythyme.controllers;
 
+import com.thyme.mythyme.models.Location;
 import com.thyme.mythyme.models.User;
+import com.thyme.mythyme.repository.LocationRepository;
 import com.thyme.mythyme.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -30,13 +32,11 @@ public class AuthenticationController {
             return "redirect:/admin/home";
         } else {
 
-
-            return "redirect:/profile"; // /user/location not working
-
-
-
+            if (userInDB.getLocation() == null) {
+                return "redirect:/location";
+            }
+        }
+            return "redirect:/profile";
 
         }
     }
-
-}
