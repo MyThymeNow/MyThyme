@@ -77,7 +77,6 @@ public class GroceryListController {
     public String saveUserGroceryList(
             @ModelAttribute GroceryList listToCreate,
 //            @ModelAttribute UserGroceryList newList,
-            @RequestParam String name,
             @RequestParam(name="name[]") String[] names,
             @RequestParam(name="quantity[]") String[] quantities,
             @RequestParam (name="notes[]") String[] notes
@@ -165,22 +164,39 @@ public class GroceryListController {
         GroceryList listToUpdate = groceryDao.getById(id);
         listToUpdate.setOwner(loggedInUser);
         listToUpdate.setName(name);
-        groceryDao.save(listToUpdate);
+        GroceryList updatedList = groceryDao.save(listToUpdate);
+        List<GroceryListIngredients> groceryListIngredients = listToUpdate.getGroceryListIngredient();
+//        System.out.println(groceryListIngredients); does sout correct number of ingredients
 
-        for (int i = 0; i < names.length; i++) {
-            Ingredient ingredientInDB = ingredientDao.getByName(names[i]);
-            if (ingredientInDB != null) {
-                ingredientInDB.setId(ingredientInDB.getId());
-                ingredientInDB.setName(ingredientInDB.getName());
-                Ingredient updatedIngredient = ingredientDao.save(ingredientInDB);
-            }
+        for (int i = 0; i < groceryListIngredients.size(); i++) {
+//            Ingredient ingredientInDB = ingredientDao.getByName(names[i]);
 
-            GroceryListIngredients groceryListIngredientsToUpdate = listIngredientsDao.getById(id);
-            groceryListIngredientsToUpdate.setQuantity(Long.valueOf(quantities[i]));
+//            Ingredient ingredientToUpdate = ingredientDao.getById(id);
+//
+//            if (ingredientInDB == null) {
+//                ingredientToUpdate.setId(id);
+//                ingredientToUpdate.setName(names[i]);
+//                ingredientDao.save(ingredientToUpdate);
+//            }
+
+            GroceryListIngredients groceryListIngredientsToUpdate = groceryListIngredients.get(i);
+
+            groceryListIngredientsToUpdate.setId(groceryListIngredientsToUpdate.getId());
+
+            groceryListIngredientsToUpdate.setQuantity(Long.parseLong(quantities[i]));
+
             groceryListIngredientsToUpdate.setNotes(notes[i]);
-//            groceryListIngredients.setStatus(status[i]); //todo may be API dependent
-            groceryListIngredientsToUpdate.setGroceryList(listToUpdate);
-//            groceryListIngredientsToUpdate.setIngredient(updatedIngredient);
+
+            Ingredient ingredient = groceryListIngredientsToUpdate.getIngredient();
+
+            ingredient.setName(names[i]);
+
+            ingredientDao.save(ingredient);
+
+
+////            groceryListIngredients.setStatus(status[i]); //todo may be API dependent
+            groceryListIngredientsToUpdate.setGroceryList(updatedList);
+//            groceryListIngredientsToUpdate.setIngredient(ingredientToUpdate);
             groceryListIngredientsToUpdate.setUser(loggedInUser);
             listIngredientsDao.save(groceryListIngredientsToUpdate);
         }
