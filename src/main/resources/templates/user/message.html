@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Messages</title>
+    <div th:replace="partials/header.html :: header"></div>
+</head>
+<body>
+<div th:replace="partials/navbar.html :: navbar"></div>
+
+<div class="container">
+
+    <div class="col-12">
+
+        <!--        <a href="send" ><h2>Send New Message</h2></a>-->
+
+        <div class="center">
+            <h1>Chat Log</h1>
+        </div>
+
+
+        <div class="mb-4" th:each="text : ${sentmessages}">
+
+            <div class="message-sent">
+                <p th:text="${text.getContent()}"></p>
+            </div>
+            <p class="no-m-top" style="justify-content: right">
+                <small><br>Sent by You on <span th:text="${text.getReadableDate()}"></span> </small></p>
+        </div>
+
+        <div class="mb-4" th:each="text : ${receivedmessages}">
+            <div class="message-received">
+
+                <p th:text="${text.getContent()}"></p><br>
+            </div>
+            <p class="no-m-top" style="justify-content: right">
+                <small><br>Sent by <span th:text="${otheruser.getUsername()}"></span> on
+                    <span th:text="${text.getReadableDate()}"></span> </small></p>
+
+        </div>
+
+        <div>
+            <form th:method="POST" th:action="@{'/messages/' +  ${otheruser.getId()}}" th:object="${userMessage}">
+                <label>
+                    <textarea required cols="100" rows="5" th:field="*{content}"></textarea>
+                </label>
+                <button type="submit" class="btn btn-info">Send</button>
+            </form>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+</html>
