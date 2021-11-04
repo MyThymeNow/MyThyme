@@ -7,28 +7,39 @@
 </head>
 <body>
 
+<section th:fragment="content">
+
+    <div class="container">
+        <form th:action="@{|/groceryLists/edit/${id}|}" th:method="post" th:object="${grocery_list}">
+            <div class="form-group">
+                <input type="text" th:field="*{name}" th:placeholder="name">
+                <input type="hidden" th:field="*{shareURL}" th:placeholder="shareURL"> <!-- Hidden so users can't edit -->
+            </div>
+
+            <div id="editIngredients">
+                <h1>Edit Ingredients</h1>
+                <div th:each="ingredient : ${groceryListIngredients}">
+                    <div class="form-group">
+                        <label for="name[]">Item:</label>
+                        <input type="text" name="name[]" id="name[]" th:value="${ingredient.ingredient.name}">
+                        <label for="quantity[]">Quantity:</label>
+                        <input type="text" name="quantity[]" id="quantity[]" th:value="${ingredient.getQuantity()}">
+                        <label for="notes[]">Notes:</label>
+                        <input type="text" name="notes[]" id="notes[]" th:value="${ingredient.getNotes()}">
+                    </div>
+                </div>
+            </div>
+            <input value="Save List" type="submit"/>
+        </form>
+    </div>
 
 
-
-<form th:action="@{|/groceryLists/edit/${id}|}" th:method="post" th:object="${groceryList}">
-
-    <input type="text" th:field="*{name}" th:placeholder="name">
-    <input type="hidden" th:field="*{shareURL}" th:placeholder="shareURL">
-    <button class="btn btn-success">Submit</button>
-
-</form>
-
-<!--<form th:action="@{|/groceryLists/edit/${id}|}" th:method="post" th:object="${ingredients}">-->
-
-
+<!-- NEED TO UPDATE DELETE FUNCTIONALITY -->
+<!--<form th:action="@{|/groceryLists/delete/${id}|}" th:method="post">-->
+<!--    <button type="submit">Delete List</button>-->
 <!--</form>-->
 
-
-<form th:action="@{|/groceryLists/delete/${id}|}" th:method="post">
-    <button type="submit">Delete List</button>
-</form>
-
-
+</section>
 
 </body>
 </html>
