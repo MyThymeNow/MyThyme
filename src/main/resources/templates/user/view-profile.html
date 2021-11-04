@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+
 <head>
     <meta charset="UTF-8">
     <title>View Profile</title>
@@ -14,16 +14,28 @@
 
 <div class="justify-content-center" sec:authorize="isAuthenticated()">
     <div th:each="user : ${user}">
+
         <p><strong>Username: </strong><div th:text="${user.getUsername()}"></div></p>
         <p>First Name: <div th:text="${user.getFirstName()}"></div></p>
         <p>Last Name: <div th:text="${user.getLastName()}"></div></p>
+
+
+
+<!--Add show/hide based on role-->
+        <form th:action="@{/admin/enable/{id}(id=${user.id})}" th:method="post">
+            <input type="checkbox" th:checked="${user.isLocked()}" name="lockedCheckbox" id="lockedCheckbox">
+            <label class="form-check-label" for="lockedCheckbox">
+                Locked
+            </label>
+            <input type="submit" value="Update">
+        </form>
+
+
     </div>
 </div>
 
 
-<!--<div th:text="${user.getUsername()}"></div>-->
-<!--<div th:text="${user.getFirstName()}"></div>-->
-<!--<div th:text="${user.getLastName()}"></div>-->
+
 
 <div th:replace="partials/footer::footer"></div>
 </body>

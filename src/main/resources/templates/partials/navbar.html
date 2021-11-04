@@ -12,8 +12,8 @@
 <nav th:fragment="navbar" class="navbar navbar-expand-lg" style="background-color: yellowgreen">
   <!--  <ul>-->
   <div sec:authorize="isAuthenticated()">
-    <a class="navbar-brand" th:href="@{/index}">
-      <img src="/MyThyme_main_Logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"/>
+    <a class="navbar-brand" th:href="@{/}">
+      <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy"/>
       MyThyme
     </a>
 
@@ -50,8 +50,8 @@
 
   <!--******** IF NOT LOGGED IN BELOW ********-->
   <div sec:authorize="!isAuthenticated()">
-    <a class="navbar-brand" href="/home">
-      <img src="/MyThyme_main_Logo.png" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy"/>
+    <a class="navbar-brand" th:href="@{/}">
+      <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy"/>
       MyThyme
     </a>
     <a th:href="@{/login}"><button class="btn-link btn" style="margin-top: 8px">Login</button></a>
