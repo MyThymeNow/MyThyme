@@ -35,7 +35,6 @@
         </div>
     <!--    todo 1st form -->
         <form th:action="@{/create}" th:method="post" th:object="${grocery_list}">
-
             <!--ENTER NAME OF LIST-->
             <div class="form-group">
                 <label for="title"></label>
@@ -52,8 +51,26 @@
                     <input type="text" name="quantity[]" id="quantity[]">
                     <label for="notes[]">Notes:</label>
                     <input type="text" name="notes[]" id="notes[]">
-                    <button id="addItemButton" class="btn btn-secondary btn-sm btn-success btn_row_below_new" >+</button>
-                    <button id="removeItemButton" class="btn btn-secondary btn-sm btn-danger btn_row_delete">-</button>
+<!--                    <button id="addItemButton" class="btn btn-sm btn-success btn_row_below_new" >+</button>-->
+                    <span  class="btn btn-sm btn-danger btn_row_delete">-</span>
+
+                    <table class="table table-dark table-striped table-hover tbl_code_with_mark">
+                        <tr> <!-- Horizontal Row Titles-->
+                            <th>Item Name</th>
+                            <th>Number of Items</th>
+                            <th>Estimated Price</th>
+                            <th>Options</th>
+                        </tr>
+                        <tr> <!-- 1st Row should also create per addition and reduce per subtraction-->
+                            <td><!-- Item Entered/ suggested from api option-->Item 1</td>
+                            <td><!-- Quantity Entered --> quantity: 2</td>
+                            <td><!-- Estimated price pull from API--> $2.00</td>
+                            <td>
+                                <span id="addItemButton" class="btn btn-sm btn-success btn_row_below_new">+</span>
+                                <span class="btn btn-sm btn-danger btn_row_delete">x</span>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
 <!--                <button type="button" class="btn delete btn-secondary">Remove</button>-->
 <!--                <button id="addItemButton" type="button" class="btn create btn-secondary">+</button>-->
@@ -71,11 +88,11 @@
 
 
 <!--                <button value="Save" type="submit"><a th:href="@{/groceryLists}">Save</a></button>&lt;!&ndash;working&ndash;&gt;-->
-                <button value="Save" type="submit" th:href="@{/groceryLists}">Save</button>
+<!--                <button value="Save" type="submit" th:href="@{/groceryLists}">Save</button>todo last used-->
 <!--                <button value="Save" type="submit"><a th:href="@{/groceryLists}" th:placeholder="Save"></a>Save</button> OLD BUTTON SET UP FOR SAVING LIST-->
             </div>
         </form>
-
+    <button value="Save" type="submit"><a th:href="@{/groceryLists}">Save</a></button>
     <!-- Form Script -->
     <script>
         "use strict";
@@ -87,7 +104,6 @@
             const itemForm = `<div class="form-group">
                   <label for="name[]">Item:</label>
                   <input type="text" name="name[]" id="name[]">
-
                   <label for="quantity[]">Quantity:</label>
                   <input type="text" name="quantity[]" id="quantity[]">
                   <label for="notes[]">Notes:</label>
@@ -181,7 +197,7 @@
 
             // ---> current row > ***** DELETE ***** > start
             $(document).on('click',".btn_row_delete", function(e){
-                var r = $(this).closest('tr').remove();
+                var r = $(this).closest('div').remove(); //chng frm closest('tr') to closest('div')
             });
             // ---> current row > ***** DELETE ***** > end
         });
@@ -200,3 +216,13 @@
 <!--    </div>-->
 <!--</div>-->
 
+<!--todo Thursday 11/4/2021 looking at adding this to form as option for deleting information from form-->
+
+<!--// Find and remove selected table rows-->
+<!--$(".delete-row").click(function(){-->
+<!--$("table tbody").find('input[name="record"]').each(function(){-->
+<!--if($(this).is(":checked")){-->
+<!--$(this).parents("tr").remove();-->
+<!--}-->
+<!--});-->
+<!--});-->
