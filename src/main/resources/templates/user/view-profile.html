@@ -21,6 +21,7 @@
 
 
 
+<!-- 
 <!--Add show/hide based on role-->
         <form th:action="@{/admin/enable/{id}(id=${user.id})}" th:method="post">
             <input type="checkbox" th:checked="${user.isLocked()}" name="lockedCheckbox" id="lockedCheckbox">
@@ -29,7 +30,7 @@
             </label>
             <input type="submit" value="Update">
         </form>
-
+ -->
 
     </div>
 </div>
