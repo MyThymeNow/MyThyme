@@ -44,7 +44,7 @@
             <!--ADD ITEMS TO LIST w/ ITEM, AMNT, NOTES-->
             <div id="additionalItems">
                 <h1> Add Items</h1>
-                <div class="form-group" id="addedItemList">
+                <div class="form-group tbl_code_with_mark" id="addedItemList">
                     <label for="name[]">Item:</label>
                     <input type="text" name="name[]" id="name[]">
                     <label for="quantity[]">Quantity:</label>
@@ -52,39 +52,42 @@
                     <label for="notes[]">Notes:</label>
                     <input type="text" name="notes[]" id="notes[]">
 <!--                    <button id="addItemButton" class="btn btn-sm btn-success btn_row_below_new" >+</button>-->
-                    <span  class="btn btn-sm btn-danger btn_row_delete">-</span>
-
-                    <table class="table table-dark table-striped table-hover tbl_code_with_mark">
-                        <tr> <!-- Horizontal Row Titles-->
-                            <th>Item Name</th>
-                            <th>Number of Items</th>
-                            <th>Estimated Price</th>
-                            <th>Options</th>
-                        </tr>
-                        <tr> <!-- 1st Row should also create per addition and reduce per subtraction-->
-                            <td><!-- Item Entered/ suggested from api option-->Item 1</td>
-                            <td><!-- Quantity Entered --> quantity: 2</td>
-                            <td><!-- Estimated price pull from API--> $2.00</td>
-                            <td>
-                                <span id="addItemButton" class="btn btn-sm btn-success btn_row_below_new">+</span>
-                                <span class="btn btn-sm btn-danger btn_row_delete">x</span>
-                            </td>
-                        </tr>
-                    </table>
+                    <span id="addItemButton" class="btn btn-sm btn-success btn_row_below_new">+</span>
+                    <span id="removeItemButton" class="btn btn-sm btn-danger btn_row_delete">-</span>
                 </div>
 <!--                <button type="button" class="btn delete btn-secondary">Remove</button>-->
 <!--                <button id="addItemButton" type="button" class="btn create btn-secondary">+</button>-->
             </div>
             <br>
+<!--            <table class="table table-dark table-striped table-hover tbl_code_with_mark">-->
+<!--                <tr> &lt;!&ndash; Horizontal Row Titles&ndash;&gt;-->
+<!--                    <th>Item Name</th>-->
+<!--                    <th>Number of Items</th>-->
+<!--                    <th>Estimated Price</th>-->
+<!--                    <th>Options</th>-->
+<!--                </tr>-->
+<!--                <tr> &lt;!&ndash; 1st Row should also create per addition and reduce per subtraction&ndash;&gt;-->
+<!--                    <td>&lt;!&ndash; Item Entered/ suggested from api option&ndash;&gt;Item 1</td>-->
+<!--                    <td>&lt;!&ndash; Quantity Entered &ndash;&gt; quantity: 2</td>-->
+<!--                    <td>&lt;!&ndash; Estimated price pull from API&ndash;&gt; $2.00</td>-->
+<!--                    <td>-->
+<!--                        <span id="addItemButton" class="btn btn-sm btn-success btn_row_below_new">+</span>-->
+<!--                        <span class="btn btn-sm btn-danger btn_row_delete">x</span>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--            </table>-->
+<!--            todo end of table-->
+
+
 <!--                <input type="button" class="btn btn-sm btn-danger btn_row_delete btn-secondary">-</input>-->
             <!--       ****** deleting *****  <button type="button" class="btn btn-danger delete btn-secondary">X</button>-->
-
 
     <!--            <button onclick="addelement();" id="thelist">Share</button>-->
     <!--            <input value="Save" type="submit"><a th:href="@{/groceryList/groceryLists}"></a>-->
             <div>
 <!--                <button class="btn delete buttonClass deleteMe" data-delete-list-button>Clear List</button> &lt;!&ndash;onclick="removeItem()"&ndash;&gt;-->
                 <a href="" class="btn delete buttonClass deleteMe" data-delete-list-button>Clear List</a>
+                <button value="Save" type="submit"><a th:href="@{/groceryLists}">Save</a></button>
 
 
 <!--                <button value="Save" type="submit"><a th:href="@{/groceryLists}">Save</a></button>&lt;!&ndash;working&ndash;&gt;-->
@@ -92,7 +95,8 @@
 <!--                <button value="Save" type="submit"><a th:href="@{/groceryLists}" th:placeholder="Save"></a>Save</button> OLD BUTTON SET UP FOR SAVING LIST-->
             </div>
         </form>
-    <button value="Save" type="submit"><a th:href="@{/groceryLists}">Save</a></button>
+
+<!--    <button value="Save" type="submit"><a th:href="@{/groceryLists}">Save</a></button>-->
     <!-- Form Script -->
     <script>
         "use strict";
@@ -101,13 +105,15 @@
             const removeItem = document.getElementById('removeItemButton');
 
             // Section grabs form information
-            const itemForm = `<div class="form-group">
+            const itemForm =
+                `<div class="form-group">
                   <label for="name[]">Item:</label>
                   <input type="text" name="name[]" id="name[]">
                   <label for="quantity[]">Quantity:</label>
                   <input type="text" name="quantity[]" id="quantity[]">
                   <label for="notes[]">Notes:</label>
                   <input type="text" name="notes[]" id="notes[]">
+                  <span id="removeItemButton" class="btn btn-sm btn-danger btn_row_delete">-</span>
                 </div>`
 
             // Add button feature
@@ -124,11 +130,13 @@
             removeItem.removeEventListener('click', function(event) {
                 event.preventDefault();
 
-                const removeItem = document.getElementById('removingItems');
-                let newRemovedItem = document.removeChild(additionalItem);// *** CHECK THIS SECTION ****
+                const removeItem = document.getElementById('removingItem');
+                let newRemovedItem = document.removeChild("additionalItem");// *** CHECK THIS SECTION? ****
                 newRemovedItem.innerHtml = itemForm;
-                removeItem.removeChild(newRemovedItem);//appendChild(newRemovedItem) old Entry
+                // removeItem.remove(newRemovedItem);//appendChild(newRemovedItem) old Entry
+                $("newRemovedItem").remove();
             });
+
 
 
             // Creating a function to remove item from list
@@ -140,31 +148,10 @@
             //     var item = document.getElementById(candidate.value);
             //     a.removeChild(item);
             // }
-
         })
     </script>
 
-
-    <!-- todo Table Template -->
-<!--    <table class="table table-dark table-striped table-hover tbl_code_with_mark">-->
-<!--        <tr> &lt;!&ndash; Horizontal Row Titles&ndash;&gt;-->
-<!--            <th>Item Name</th>-->
-<!--            <th>Number of Items</th>-->
-<!--            <th>Estimated Price</th>-->
-<!--            <th>Options</th>-->
-<!--        </tr>-->
-<!--        <tr> &lt;!&ndash; 1st Row should also create per addition and reduce per subtraction&ndash;&gt;-->
-<!--            <td>&lt;!&ndash; Item Entered/ suggested from api option&ndash;&gt;Item 1</td>-->
-<!--            <td>&lt;!&ndash; Quantity Entered &ndash;&gt; quantity: 2</td>-->
-<!--            <td>&lt;!&ndash; Estimated price pull from API&ndash;&gt; $2.00</td>-->
-<!--            <td>-->
-<!--                <span class="btn btn-sm btn-success btn_row_below_new">+</span>-->
-<!--                <span class="btn btn-sm btn-danger btn_row_delete">x</span>-->
-<!--            </td>-->
-<!--        </tr>-->
-<!--    </table>-->
-
-    <!-- todo Script with delete functionality below -->
+    <!-- todo Script with DELETE functionality below -->
     <script>
         $(document).ready(function($){
             //executes function on click with class 'btn_row_add_below_end'
@@ -175,6 +162,7 @@
                 trLast.after(trNew);
             });
             // ---> add row at end > btn_row_add_below_end
+
             // ---> current row > new > start
             $(document).on('click', ".btn_row_below_new", function(e){
                 var r = $(this).closet('tr').clone(); //might NEED to cap Clone
@@ -195,6 +183,7 @@
             });
             // ---> current row > clone > end
 
+            // todo DELETE FEATURE BELOW
             // ---> current row > ***** DELETE ***** > start
             $(document).on('click',".btn_row_delete", function(e){
                 var r = $(this).closest('div').remove(); //chng frm closest('tr') to closest('div')
