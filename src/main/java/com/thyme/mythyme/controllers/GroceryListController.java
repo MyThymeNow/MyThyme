@@ -113,7 +113,7 @@ public class GroceryListController {
 //        newList.setUser(loggedInUser);
 //        newList.setGroceryList(listToCreate);
 //        userListDao.save(newList);
-        return"redirect:/groceryLists/index";
+        return"redirect:/groceryLists";
 
     }
 
