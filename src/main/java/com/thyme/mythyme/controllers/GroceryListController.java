@@ -24,14 +24,14 @@ public class GroceryListController {
 
     private final GroceryListRepository groceryDao;
     private final UserRepository userDao;
-    private final UserGroceryListRepository userListDao;
+    private final UserGroceryListRepository listDao;
     private final GroceryListIngredientsRepository listIngredientsDao;
     private final IngredientRepository ingredientDao;
 
     public GroceryListController(GroceryListRepository groceryDao, UserGroceryListRepository listDao, UserRepository userDao, GroceryListIngredientsRepository listIngredientsDao ,IngredientRepository ingredientDao) {
         this.groceryDao = groceryDao;
         this.userDao = userDao;
-        this.userListDao = listDao;
+        this.listDao = listDao;
         this.listIngredientsDao = listIngredientsDao;
         this.ingredientDao = ingredientDao;
     }
@@ -76,7 +76,6 @@ public class GroceryListController {
     @PostMapping("/create") // previously had groceryList/create in parenthesis
     public String saveUserGroceryList(
             @ModelAttribute GroceryList listToCreate,
-//            @ModelAttribute UserGroceryList newList,
             @RequestParam(name="name[]") String[] names,
             @RequestParam(name="quantity[]") String[] quantities,
             @RequestParam (name="notes[]") String[] notes
@@ -88,6 +87,11 @@ public class GroceryListController {
         listToCreate.setOwner(loggedInUser);
         listToCreate.setShareURL(uuid.toString());
         GroceryList groceryListInDB = groceryDao.save(listToCreate);
+        UserGroceryList newList = new UserGroceryList();
+        newList.setUser(loggedInUser);
+        newList.setGroceryList(listToCreate);
+        listDao.save(newList);
+
 
         for(int i = 0; i < names.length; i++) {
             Ingredient ingredientInDB = ingredientDao.getByName(names[i]);
@@ -110,9 +114,7 @@ public class GroceryListController {
 
         }
 
-//        newList.setUser(loggedInUser);
-//        newList.setGroceryList(listToCreate);
-//        userListDao.save(newList);
+
         return"redirect:/groceryLists";
 
     }
@@ -162,15 +164,6 @@ public class GroceryListController {
 //        System.out.println(groceryListIngredients); does sout correct number of ingredients
 
         for (int i = 0; i < groceryListIngredients.size(); i++) {
-//            Ingredient ingredientInDB = ingredientDao.getByName(names[i]);
-
-//            Ingredient ingredientToUpdate = ingredientDao.getById(id);
-//
-//            if (ingredientInDB == null) {
-//                ingredientToUpdate.setId(id);
-//                ingredientToUpdate.setName(names[i]);
-//                ingredientDao.save(ingredientToUpdate);
-//            }
 
             GroceryListIngredients groceryListIngredientsToUpdate = groceryListIngredients.get(i);
 
@@ -201,6 +194,7 @@ public class GroceryListController {
     @PostMapping("/groceryLists/delete/{id}")
     public String deleteGroceryList(@PathVariable Long id) {
         GroceryList listToDelete = groceryDao.getById(id);
+
         groceryDao.delete(listToDelete);
 
         return "redirect:/groceryLists";
