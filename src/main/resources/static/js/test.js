@@ -1,9 +1,8 @@
-// console.log(spoonacularKey);
 
 // let requestString = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + spoonacularKey + "&ingredients=apples,+flour,+sugar&number=2";
 
+//Spoonacular
 let requestString = "https://api.spoonacular.com/food/ingredients/search?apiKey=" + spoonacularKey + "&query=bread&number=30";
-
 
 $.ajax({
     url: requestString,
@@ -29,17 +28,19 @@ $.ajax({
             $("#test-col").append(breadTest);
         }
     })
-
 });
 
-
-
+// Cocktail DB
 $.ajax({
     url: "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita",
     type: "GET"
 }).done(function(data) {
     console.log(data);
 });
+
+// Mapbox
+
+
 
 
 
