@@ -54,11 +54,10 @@ public class GroceryListController {
 //    }
 
 //    @PostMapping("/groceryLists/favorite/{id}")
-//    public String saveFavoriteList(Model model) {
-//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    public String favoriteCheckbox(Model model) {
 //
 //
-//        model.addAttribute("user_grocery_list", new UserGroceryList());
+//
 //        return "groceryList/index";
 //    }
 
