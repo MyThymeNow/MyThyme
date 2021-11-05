@@ -8,13 +8,21 @@
 //@Controller
 //public class ResourcesController {
 //
+<<<<<<< HEAD
 //    @Value("${MAPBOXAPIKEY}")
+=======
+//    @Value("")
+>>>>>>> a89deec7667d6b57511f11d6fcbd78fbef2e86af
 //    private String mapboxKey;
 //
 //    @Value("${COCKTAILDBAPIKEY}")
 //    private String cocktailDBKey;
 //
+<<<<<<< HEAD
 //    @Value("${SPOONACULARAPIKEY}")
+=======
+//    @Value("")
+>>>>>>> a89deec7667d6b57511f11d6fcbd78fbef2e86af
 //    private String spoonacularKey;
 //
 //    @GetMapping(path = "/keys.js", produces = "application/javascript")

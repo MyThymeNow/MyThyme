@@ -15,4 +15,6 @@ public interface GroceryListIngredientsRepository extends JpaRepository<GroceryL
 
         GroceryListIngredients findByNotes(String notes);
 
+        GroceryListIngredients getAllByGroceryList_Id(Long id);
+
 }
