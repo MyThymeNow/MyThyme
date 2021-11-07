@@ -245,8 +245,4 @@ public class GroceryListController {
 
 
 }
-<<<<<<< HEAD
-=======
 
-
->>>>>>> a89deec7667d6b57511f11d6fcbd78fbef2e86af
