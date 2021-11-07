@@ -11,7 +11,7 @@
 
     <div th:text="${groceryList.name}">List Name</div>
 
-    <a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}">Edit List</a>
+    <a th:href="@{/groceryLists/edit/{shareURL}(shareURL=${groceryList.shareURL})}">Edit List</a>
 
     <div>Created By: <span th:text="${groceryList.owner.username}"></span></div>
 
