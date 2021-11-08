@@ -41,107 +41,116 @@
 
 <body>
 <!-- ****** New adjusted navbar template ****** -->
-<!--<nav th:fragment="navbar" class="navbar navbar-dark" style="background-color: #4d774e;">-->
-<!--  &lt;!&ndash;Authenticated User&ndash;&gt;-->
-<!--  <div sec:authorize = "isAuthenticated()">-->
-<!--    &lt;!&ndash; Logo Img &ndash;&gt;-->
-<!--    <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy"/>-->
-<!--    <a class="navbar-brand" th:href="@{/}">MyThyme</a>-->
-<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--      <span class="navbar-toggler-icon"></span>-->
-<!--    </button>-->
+<nav th:fragment="navbar" class="navbar navbar-dark" style="background-color: #4d774e;">
+  <!--Authenticated User-->
+  <div sec:authorize = "isAuthenticated()">
+    <!-- Logo Img -->
+    <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy"/>
+    <a class="navbar-brand" th:href="@{/}">MyThyme</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-<!--    <div class="collapse navbar-collapse"> &lt;!&ndash;id="navbarsExample01"&ndash;&gt;-->
-<!--      <ul class="navbar-nav mr-auto">-->
-<!--        <li class="nav-item active">-->
-<!--          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
-<!--        </li>-->
-<!--        <li class="nav-item active">-->
-<!--          &lt;!&ndash; <a class="nav-link" href="#">Logout</a> &ndash;&gt;-->
-<!--          &lt;!&ndash;href is the only real diff will see chng in intelij&ndash;&gt;-->
-<!--          <form class="nav-link" th:action="@{/logout}" th:method="post">-->
-<!--            <a class="nav-link" style="margin-top: 8px" th:action="@{/logout}" th:method="post">Logout</a>-->
-<!--          </form>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">FAQ</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item dropdown">-->
-<!--          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>-->
-<!--          <div class="dropdown-menu" style="background-color:#4d774e" aria-labelledby="dropdown01">-->
-<!--            <a class="dropdown-item" th:href="@{/groceryLists}">Grocery List</a>-->
-<!--            <a class="dropdown-item" th:href="@{/favorites}">Favorites</a>-->
-<!--            <a class="dropdown-item" th:href="@{/recipes}">Recipes</a>-->
-<!--            <a class="dropdown-item" th:href="@{/coupons}">Coupon</a>-->
-<!--            <a class="dropdown-item" th:href="@{/profile}">My Profile</a>-->
-<!--            &lt;!&ndash;Alternative option for dropdown&ndash;&gt;-->
-<!--            &lt;!&ndash; <button type="button" name="button"><a class="dropdown-item" th:href="@{/profile}">My Profile</a></button> &ndash;&gt;-->
-<!--          </div>-->
-<!--        </li>-->
-<!--      </ul>-->
-<!--      <form class="form-inline my-2 my-md-0">-->
-<!--        <input class="form-control" type="text" placeholder="Explore 1000's of recipes" aria-label="Search">-->
-<!--        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color: #f1b24a">Search</button>-->
-<!--      </form>-->
-<!--    </div>-->
-<!--  </div>-->
-
-
-<!--  &lt;!&ndash;Non Authenticated User&ndash;&gt;-->
-<!--  <div sec:authorize = "!isAuthenticated()">-->
-<!--    &lt;!&ndash; Logo Img &ndash;&gt;-->
-<!--    <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy"/>-->
-<!--    <a class="navbar-brand" th:href="@{/}">MyThyme</a>-->
-<!--    <form class="form-inline my-2 my-md-0">-->
-<!--      <input class="form-control" type="text" placeholder="Explore 1000's of recipes" aria-label="Search">-->
-<!--      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color: #f1b24a">Search</button>-->
-<!--    </form>-->
-
-<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--      <span class="navbar-toggler-icon"></span>-->
-<!--    </button>-->
-<!--    <div class="collapse navbar-collapse" id="navbarsExample01">-->
-<!--      <ul class="navbar-nav mr-auto">-->
-<!--        <li class="nav-item active">-->
-<!--          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
-<!--        </li>-->
-<!--        <li class="nav-item active">-->
-<!--          &lt;!&ndash; <a class="nav-link" href="#">Logout</a> &ndash;&gt;-->
-<!--          &lt;!&ndash;href is the only real diff will see chng in intelij&ndash;&gt;-->
-<!--          <form class="nav-link" th:action="@{/logout}" th:method="post">-->
-<!--            <a class="nav-link" style="margin-top: 8px" th:action="@{/login}" th:method="post">Login</a>-->
-<!--          </form>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">FAQ</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item dropdown">-->
-<!--          <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>-->
-<!--          <div class="dropdown-menu" style="background-color:#4d774e" aria-labelledby="dropdown01">-->
-<!--            <a class="dropdown-item" th:href="@{/groceryLists}">Grocery List</a>-->
-<!--            <a class="dropdown-item" th:href="@{/recipes}">Recipes</a>-->
-<!--            <a class="dropdown-item" th:href="@{/sign-up}">Sign up</a>-->
-<!--            &lt;!&ndash;Alternative option for dropdown&ndash;&gt;-->
-<!--            &lt;!&ndash; <button type="button" name="button"><a class="dropdown-item" th:href="@{/profile}">My Profile</a></button> &ndash;&gt;-->
-<!--          </div>-->
-<!--        </li>-->
-<!--      </ul>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  &lt;!&ndash;  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">&ndash;&gt;-->
-<!--  &lt;!&ndash;    <span class="navbar-toggler-icon"></span>&ndash;&gt;-->
-<!--  &lt;!&ndash;  </button>&ndash;&gt;-->
-
-<!--</nav>-->
+    <div class="collapse navbar-collapse"> <!--id="navbarsExample01"-->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <!-- <a class="nav-link" href="#">Logout</a> -->
+          <!--href is the only real diff will see chng in intelij-->
+          <form class="nav-link" th:action="@{/logout}" th:method="post">
+            <a class="nav-link" style="margin-top: 8px" th:action="@{/logout}" th:method="post">Logout</a>
+          </form>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">FAQ</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+          <div class="dropdown-menu" style="background-color:#4d774e" aria-labelledby="dropdown01">
+            <a class="dropdown-item" th:href="@{/groceryLists}">Grocery List</a>
+            <a class="dropdown-item" th:href="@{/favorites}">Favorites</a>
+            <a class="dropdown-item" th:href="@{/recipes}">Recipes</a>
+            <a class="dropdown-item" th:href="@{/coupons}">Coupon</a>
+            <a class="dropdown-item" th:href="@{/profile}">My Profile</a>
+            <!--Alternative option for dropdown-->
+            <!-- <button type="button" name="button"><a class="dropdown-item" th:href="@{/profile}">My Profile</a></button> -->
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-md-0">
+        <input class="form-control" type="text" placeholder="Explore 1000's of recipes" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color: #f1b24a">Search</button>
+      </form>
+    </div>
+  </div>
 
 
+  <!--Non Authenticated User-->
+  <div sec:authorize = "!isAuthenticated()">
+    <!-- Logo Img -->
+    <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy"/>
+    <a class="navbar-brand" th:href="@{/}">MyThyme</a>
+    <form class="form-inline my-2 my-md-0">
+      <input class="form-control" type="text" placeholder="Explore 1000's of recipes" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color: #f1b24a">Search</button>
+    </form>
 
-<!--todo NEW NAV BAR CHALLENGE-->
-<!--standard layout for navbar-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExample01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <!-- <a class="nav-link" href="#">Logout</a> -->
+          <!--href is the only real diff will see chng in intelij-->
+          <form class="nav-link" th:action="@{/login}" th:method="post">
+            <a class="nav-link" style="margin-top: 8px" th:href="@{/login}">Login</a>
+          </form>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">FAQ</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+          <div class="dropdown-menu" style="background-color:#4d774e" aria-labelledby="dropdown01">
+            <a class="dropdown-item" th:href="@{/groceryLists}">Grocery List</a>
+            <a class="dropdown-item" th:href="@{/recipes}">Recipes</a>
+            <a class="dropdown-item" th:href="@{/sign-up}">Sign up</a>
+            <!--Alternative option for dropdown-->
+            <!-- <button type="button" name="button"><a class="dropdown-item" th:href="@{/profile}">My Profile</a></button> -->
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">-->
+  <!--    <span class="navbar-toggler-icon"></span>-->
+  <!--  </button>-->
+
+</nav>
+
+<!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
+
+
+<!--todo 3rd Edition to get hamburger working-->
 <!--<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">-->
-<!--  <div>-->
 
-<!--    <a class="navbar-brand" href="#">Navbar</a>-->
+<!--    <a class="navbar-brand" th:href="@{/}">Navbar</a>-->
 <!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
 <!--      <span class="navbar-toggler-icon"></span>-->
 <!--    </button>-->
@@ -174,84 +183,13 @@
 <!--        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
 <!--      </form>-->
 <!--    </div>-->
-
-<!--  </div>-->
 <!--</nav>-->
 
-<!--todo hamburger CHALLENGE-->
-<!--<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">-->
-<!--&lt;!&ndash;hamburger drop down section&ndash;&gt;-->
-<!--  <div class="fixed-top">-->
-<!--    <div class="collapse" id="navbarToggleExternalContent">-->
-<!--      <div class="bg-dark p-4">-->
-<!--        <h5 class="text-white h4">Collapsed content</h5>-->
-<!--        <span class="text-muted">Toggleable via the navbar brand.</span>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <nav class="navbar navbar-dark bg-dark">-->
-<!--      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--        <span class="navbar-toggler-icon"></span>-->
-<!--      </button>-->
-<!--    </nav>-->
-<!--  </div>-->
-<!--</nav>-->
-<!--hamburger drop down section-->
-
-
-<!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-->
-
-<!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
-<!--<script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>-->
-<!--<script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>-->
-
-<!-- scripts below -->
-<!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>-->
-<!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-->
 
 
 
 
-<!--todo 3rd Edition to get hamburger working-->
-<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
-<!--<h1>Hello, World</h1>-->
-<!--  <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
-    <a class="navbar-brand" th:href="@{/}">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-<!--  </nav>-->
-</nav>
 <!-- Optional JavaScript; choose one of the two! -->
 
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper)
