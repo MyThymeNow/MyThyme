@@ -46,6 +46,41 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
+
+<nav th:fragment="navbar" class="navbar navbar-expand-lg" style="background-color: yellowgreen">
+  <!--  <ul>-->
+  <div sec:authorize="isAuthenticated()">
+    <a class="navbar-brand" th:href="@{/}">
+      <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy"/>
+      MyThyme
+    </a>
+
+    <button class="btn btn-outline-primary"><a th:href="@{/groceryLists}">Grocery List</a></button>
+    <button class="btn btn-outline-success"><a th:href="@{/favorites}">Favorites</a></button>
+    <button class="btn btn-outline-success"><a th:href="@{/recipes}">Recipes</a></button>
+    <button class="btn btn-outline-success"><a th:href="@{/coupons}">Coupons</a></button>
+    <button class="btn btn-outline-success"><a th:href="@{/message}">Messages</a></button>
+
+    <!--        <form th:action="@{/logout}" th:method="post">-->
+    <button class="btn btn-outline-success"><a th:href="@{/profile}">Profile</a></button>
+
+    <input class="form-control mr-sm-2" type="search" placeholder="Find recipes" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+
+
+    <!--            todo DROP DOWN OPTION -->
+<!--    <div class="dropdown">-->
+<!--      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--        Dropdown button-->
+<!--      </button>-->
+<!--      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+<!--        <a class="dropdown-item" href="#">Action</a>-->
+<!--        <a class="dropdown-item" href="#">Another action</a>-->
+<!--        <a class="dropdown-item" href="#">Something else here</a>-->
+<!--      </div>-->
+<!--    </div>-->
+
     <div class="collapse navbar-collapse" id="myThymeAuth"> <!--id="navbarsExample01"-->
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">

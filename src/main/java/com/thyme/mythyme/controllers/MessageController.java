@@ -77,4 +77,11 @@ public class MessageController {
 
     }
 
+//    @GetMapping("messages")
+//    public String messageLog(Model model){
+//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//
+//    }
+
 }
