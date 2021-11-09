@@ -3,6 +3,8 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>Title</title>
     <script defer src="/create.js"></script>
 </head>
@@ -18,8 +20,29 @@
 
 </div>
 
-<div th:each="groceryList:${groceryLists}">
+<div class="container" th:each="groceryList:${groceryLists}">
     <h2 th:text="${groceryList.name}"></h2>
+
+<!--    <div th:if="${!isFavorited}" class="container">-->
+
+<!--        <form th:action="@{|/groceryLists/${id}/favorite|}" class="favoriteBtn" th:method="post">-->
+<!--            <button  type="submit" >Favorite</button>-->
+<!--        </form>-->
+<!--    </div>-->
+
+<!--    <div th:if="${isFavorited}" class="container">-->
+<!--        <form th:action="@{|/profile/${id}/unfavorite|}" class="unFavoriteBtn" th:method="post">-->
+<!--            <button  type="submit" >Unfavorite</button>-->
+<!--        </form>-->
+<!--    </div>-->
+
+
+
+
+
+<!--    <label>-->
+<!--        <input type="checkbox" name="checkbox" value="favorite">-->
+<!--    </label>-->
     <button type="submit"><a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}">Edit List</a></button>
 <!--    <div class="delete-stuff">-->
 <!--    <button type="button" class="btn delete " data-clear-complete-tasks-button>Delete list</button>-->
@@ -32,28 +55,37 @@
 
 
 <script>
-    window.onload = (function() {
-        const additionalItem = document.getElementById('addItemButton');
-
-        const itemForm = `<div class="form-group">
-                  <label for="name[]">Item:</label>
-                  <input type="text" name="name[]" id="name[]">
-                  <label for="quantity[]">Quantity:</label>
-                  <input type="text" name="quantity[]" id="quantity[]">
-                  <label for="notes[]">Notes:</label>
-                  <input type="text" name="notes[]" id="notes[]">
-                </div>`
-
-        additionalItem.addEventListener('click', function(event) {
-            event.preventDefault();
+    $.ajax({
+        url:"",
+        type: "GET"
+    }).done(function (data) {
+        console.log(data);
+    });
 
 
-            const addedItem = document.getElementById('additionalItems');
-            let newItem = document.createElement("div");
-            newItem.innerHTML = itemForm;
-            addedItem.appendChild(newItem);
-        });
-    })
+    //todo: remove later if not needed
+    // window.onload = (function() {
+    //     const additionalItem = document.getElementById('addItemButton');
+    //
+    //     const itemForm = `<div class="form-group">
+    //               <label for="name[]">Item:</label>
+    //               <input type="text" name="name[]" id="name[]">
+    //               <label for="quantity[]">Quantity:</label>
+    //               <input type="text" name="quantity[]" id="quantity[]">
+    //               <label for="notes[]">Notes:</label>
+    //               <input type="text" name="notes[]" id="notes[]">
+    //             </div>`
+    //
+    //     additionalItem.addEventListener('click', function(event) {
+    //         event.preventDefault();
+    //
+    //
+    //         const addedItem = document.getElementById('additionalItems');
+    //         let newItem = document.createElement("div");
+    //         newItem.innerHTML = itemForm;
+    //         addedItem.appendChild(newItem);
+    //     });
+    // })
 </script>
 <script src="../../js/jquery.js"></script>
 <script src="../../js/jquery_functions.js"></script>
