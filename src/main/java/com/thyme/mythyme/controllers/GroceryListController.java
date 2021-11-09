@@ -35,13 +35,16 @@ public class GroceryListController {
         this.listIngredientsDao = listIngredientsDao;
         this.ingredientDao = ingredientDao;
     }
-////////
+//////// VIEWING
     @GetMapping("/groceryLists")
     public String showGroceryLists(Model model) {
-        List<GroceryList> allLists = groceryDao.findAll();
-        model.addAttribute("groceryLists", allLists);
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<GroceryList> userLists = groceryDao.findByOwner_Id(loggedInUser.getId());
+        model.addAttribute("groceryLists", userLists);
         return "groceryList/index";
     }
+
+
 
 
 ////////
@@ -52,16 +55,6 @@ public class GroceryListController {
 //        model.addAttribute("groceryList", groceryList);
 //        return "groceryList/show";
 //    }
-
-//    @PostMapping("/groceryLists/favorite/{id}")
-//    public String favoriteCheckbox(Model model) {
-//
-//
-//
-//        return "groceryList/index";
-//    }
-
-
 
 //////// Creation
 
@@ -125,6 +118,7 @@ public class GroceryListController {
     public String showEditGroceryListForm(@PathVariable long id,Model model) {
         GroceryList groceryList = groceryDao.getById(id);
         List<GroceryListIngredients> groceryListIngredients = listIngredientsDao.getByGroceryList(groceryList);
+        UserGroceryList listToFavorite = listDao.getByGroceryList_Id(id);
 
         for(GroceryListIngredients item : groceryListIngredients) {
             Long groceryListIngredients_id = item.getId();
@@ -140,7 +134,7 @@ public class GroceryListController {
         model.addAttribute("grocery_list", groceryList);
         model.addAttribute("groceryListIngredients", groceryListIngredients);
         model.addAttribute("currentIngredient", currentIngredient);
-
+        model.addAttribute("isFavorited", listToFavorite.isFavorited());
         }
         return "groceryList/edit";
     }
@@ -186,6 +180,31 @@ public class GroceryListController {
             listIngredientsDao.save(groceryListIngredientsToUpdate);
         }
         return "redirect:/groceryLists";
+    }
+
+
+    @PostMapping("/groceryLists/edit/{id}/favorite")
+    public String favoriteList(@PathVariable Long id, Model model){
+        GroceryList currentGroceryList = groceryDao.getById(id);
+        UserGroceryList listToFavorite = listDao.getByGroceryList(currentGroceryList);
+        listToFavorite.setFavorited(true);
+        listDao.save(listToFavorite);
+
+        model.addAttribute("isFavorited", !listToFavorite.isFavorited());
+
+        return "redirect:/groceryLists/edit/" + id;
+    }
+
+    @PostMapping("/groceryLists/edit/{id}/unfavorite")
+    public String unFavoriteList(@PathVariable Long id, Model model){
+        GroceryList currentGroceryList = groceryDao.getById(id);
+        UserGroceryList listToUnfavorite = listDao.getByGroceryList(currentGroceryList);
+        listToUnfavorite.setFavorited(false);
+        listDao.save(listToUnfavorite);
+
+//        model.addAttribute("!isFavorited", !listToUnfavorite.isFavorited());
+
+        return "redirect:/groceryLists/edit/" + id;
     }
 
 
