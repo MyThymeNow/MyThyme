@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
+<head th:include="partials/header :: head">
     <meta charset="UTF-8">
     <title>Edit</title>
 </head>
@@ -9,12 +9,27 @@
 
 <section th:fragment="content">
 
+    <div th:if="${!isFavorited}" class="container">
+
+        <form th:action="@{|/groceryLists/edit/${id}/favorite|}" class="favoriteBtn" th:method="post">
+            <button  type="submit" >Favorite</button>
+        </form>
+    </div>
+
+    <div th:if="${isFavorited}" class="container">
+        <form th:action="@{|/groceryLists/edit/${id}/unfavorite|}" class="unFavoriteBtn" th:method="post">
+            <button  type="submit" >Unfavorite</button>
+        </form>
+    </div>
+
     <div class="container">
         <form th:action="@{|/groceryLists/edit/${id}|}" th:method="post" th:object="${grocery_list}">
             <div class="form-group">
                 <input type="text" th:field="*{name}" th:placeholder="name">
                 <input type="hidden" th:field="*{shareURL}" th:placeholder="shareURL"> <!-- Hidden so users can't edit -->
             </div>
+
+
 
             <div id="editIngredients">
                 <h1>Edit Ingredients</h1>
@@ -26,6 +41,7 @@
                         <input type="text" name="quantity[]" id="quantity[]" th:value="${ingredient.getQuantity()}">
                         <label for="notes[]">Notes:</label>
                         <input type="text" name="notes[]" id="notes[]" th:value="${ingredient.getNotes()}">
+
                     </div>
                 </div>
             </div>
@@ -34,10 +50,10 @@
     </div>
 
 
-<!-- NEED TO UPDATE DELETE FUNCTIONALITY -->
-<!--<form th:action="@{|/groceryLists/delete/${id}|}" th:method="post">-->
-<!--    <button type="submit">Delete List</button>-->
-<!--</form>-->
+ NEED TO UPDATE DELETE FUNCTIONALITY
+<form th:action="@{|/groceryLists/delete/${id}|}" th:method="post">
+    <button type="submit">Delete List</button>
+</form>
 
 </section>
 

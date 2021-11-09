@@ -24,44 +24,30 @@ public class GroceryListController {
 
     private final GroceryListRepository groceryDao;
     private final UserRepository userDao;
-    private final UserGroceryListRepository userListDao;
+    private final UserGroceryListRepository listDao;
     private final GroceryListIngredientsRepository listIngredientsDao;
     private final IngredientRepository ingredientDao;
 
     public GroceryListController(GroceryListRepository groceryDao, UserGroceryListRepository listDao, UserRepository userDao, GroceryListIngredientsRepository listIngredientsDao ,IngredientRepository ingredientDao) {
         this.groceryDao = groceryDao;
         this.userDao = userDao;
-        this.userListDao = listDao;
+        this.listDao = listDao;
         this.listIngredientsDao = listIngredientsDao;
         this.ingredientDao = ingredientDao;
     }
-////////
+//////// VIEWING
     @GetMapping("/groceryLists")
     public String showGroceryLists(Model model) {
-        List<GroceryList> allLists = groceryDao.findAll();
-        model.addAttribute("groceryLists", allLists);
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<GroceryList> userLists = groceryDao.findByOwner_Id(loggedInUser.getId());
+        model.addAttribute("groceryLists", userLists);
         return "groceryList/index";
     }
 
 
+
+
 ////////
-//    @GetMapping("/groceryLists/{shareURL}")
-//    public String showOneGroceryList(@PathVariable String shareURL, Model model) {
-//        GroceryList groceryList = groceryDao.getByShareURL(shareURL);
-//        model.addAttribute("groceryListShareURL", shareURL);
-//        model.addAttribute("groceryList", groceryList);
-//        return "groceryList/show";
-//    }
-
-//    @PostMapping("/groceryLists/favorite/{id}")
-//    public String saveFavoriteList(Model model) {
-//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//
-//
-//        model.addAttribute("user_grocery_list", new UserGroceryList());
-//        return "groceryList/index";
-//    }
-
 
 
 //////// Creation
@@ -76,7 +62,6 @@ public class GroceryListController {
     @PostMapping("/create") // previously had groceryList/create in parenthesis
     public String saveUserGroceryList(
             @ModelAttribute GroceryList listToCreate,
-//            @ModelAttribute UserGroceryList newList,
             @RequestParam(name="name[]") String[] names,
             @RequestParam(name="quantity[]") String[] quantities,
             @RequestParam (name="notes[]") String[] notes
@@ -88,6 +73,11 @@ public class GroceryListController {
         listToCreate.setOwner(loggedInUser);
         listToCreate.setShareURL(uuid.toString());
         GroceryList groceryListInDB = groceryDao.save(listToCreate);
+        UserGroceryList newList = new UserGroceryList();
+        newList.setUser(loggedInUser);
+        newList.setGroceryList(listToCreate);
+        listDao.save(newList);
+
 
         for(int i = 0; i < names.length; i++) {
             Ingredient ingredientInDB = ingredientDao.getByName(names[i]);
@@ -110,10 +100,8 @@ public class GroceryListController {
 
         }
 
-//        newList.setUser(loggedInUser);
-//        newList.setGroceryList(listToCreate);
-//        userListDao.save(newList);
-        return"redirect:/groceryLists/index";
+
+        return"redirect:/groceryLists";
 
     }
 
@@ -124,17 +112,12 @@ public class GroceryListController {
     public String showEditGroceryListForm(@PathVariable long id,Model model) {
         GroceryList groceryList = groceryDao.getById(id);
         List<GroceryListIngredients> groceryListIngredients = listIngredientsDao.getByGroceryList(groceryList);
+        UserGroceryList listToFavorite = listDao.getByGroceryList_Id(id);
 
         for(GroceryListIngredients item : groceryListIngredients) {
             Long groceryListIngredients_id = item.getId();
-            Long groceryListsIngredients_quantity = item.getQuantity();
-            String groceryListIngredients_notes = item.getNotes();
-
-//            boolean groceryListIngredients_status = item.isStatus();
 
             Optional<Ingredient> currentIngredient = ingredientDao.findById(groceryListIngredients_id);
-            GroceryListIngredients currentQuantity = listIngredientsDao.findByQuantity(groceryListsIngredients_quantity);
-            GroceryListIngredients currentNotes = listIngredientsDao.findByNotes(groceryListIngredients_notes);
 
 //            System.out.println(currentIngredient);
 //            System.out.println(currentQuantity);
@@ -145,8 +128,7 @@ public class GroceryListController {
         model.addAttribute("grocery_list", groceryList);
         model.addAttribute("groceryListIngredients", groceryListIngredients);
         model.addAttribute("currentIngredient", currentIngredient);
-        model.addAttribute("currentQuantity", currentQuantity);
-        model.addAttribute("currentNotes", currentNotes);
+        model.addAttribute("isFavorited", listToFavorite.isFavorited());
         }
         return "groceryList/edit";
     }
@@ -169,15 +151,6 @@ public class GroceryListController {
 //        System.out.println(groceryListIngredients); does sout correct number of ingredients
 
         for (int i = 0; i < groceryListIngredients.size(); i++) {
-//            Ingredient ingredientInDB = ingredientDao.getByName(names[i]);
-
-//            Ingredient ingredientToUpdate = ingredientDao.getById(id);
-//
-//            if (ingredientInDB == null) {
-//                ingredientToUpdate.setId(id);
-//                ingredientToUpdate.setName(names[i]);
-//                ingredientDao.save(ingredientToUpdate);
-//            }
 
             GroceryListIngredients groceryListIngredientsToUpdate = groceryListIngredients.get(i);
 
@@ -204,46 +177,47 @@ public class GroceryListController {
     }
 
 
+    @PostMapping("/groceryLists/edit/{id}/favorite")
+    public String favoriteList(@PathVariable Long id, Model model){
+        GroceryList currentGroceryList = groceryDao.getById(id);
+        UserGroceryList listToFavorite = listDao.getByGroceryList(currentGroceryList);
+        listToFavorite.setFavorited(true);
+        listDao.save(listToFavorite);
+
+        model.addAttribute("isFavorited", !listToFavorite.isFavorited());
+
+        return "redirect:/groceryLists/edit/" + id;
+    }
+
+    @PostMapping("/groceryLists/edit/{id}/unfavorite")
+    public String unFavoriteList(@PathVariable Long id, Model model){
+        GroceryList currentGroceryList = groceryDao.getById(id);
+        UserGroceryList listToUnfavorite = listDao.getByGroceryList(currentGroceryList);
+        listToUnfavorite.setFavorited(false);
+        listDao.save(listToUnfavorite);
+
+//        model.addAttribute("!isFavorited", !listToUnfavorite.isFavorited());
+
+        return "redirect:/groceryLists/edit/" + id;
+    }
+
+
 //////// Deletion
     @PostMapping("/groceryLists/delete/{id}")
     public String deleteGroceryList(@PathVariable Long id) {
-        GroceryList listToDelete = groceryDao.getById(id);
-        groceryDao.delete(listToDelete);
+        GroceryList groceryList = groceryDao.getById(id);
+        GroceryList listToDelete = groceryDao.getById(groceryList.getId());
+        UserGroceryList userListDelete = listDao.getByGroceryList(groceryList);
+        GroceryListIngredients listIngredientsToDelete = listIngredientsDao.getAllByGroceryList_Id(listToDelete.getId());
 
+
+        listDao.delete(userListDelete);
+        listIngredientsDao.delete(listIngredientsToDelete);
+        groceryDao.delete(listToDelete);
         return "redirect:/groceryLists";
     }
 
 
-//    //show form for adding partyItems
-//    @GetMapping("/parties/items/{urlKey}")
-//    public String showItemForm(Model model, @PathVariable String urlKey){
-//        Party party = partyDao.getByUrlKey(urlKey); //gets party
-//        model.addAttribute("party", party); //sets party
-//        return "/party/createItems";
-//    }
-//
-//    //saves party information
-//    @PostMapping("/parties/items/{urlKey}")
-//    public String addItems(@PathVariable String urlKey, @RequestParam(name="name[]") String[] names,@RequestParam(name="quantity[]") String[] quantities ) {
-//        Party party = partyDao.getByUrlKey(urlKey);
-//
-//        for(int i = 0; i< names.length; i++){
-//
-//            Item item = new Item(); //create new item instance
-//            item.setName(names[i]); //set item name from name[]
-//            itemDao.save(item); //save item instance
-//
-//            //creates & Saves party item
-//            PartyItem partyItem = new PartyItem();
-//            partyItem.setItem(item);
-//            partyItem.setQuantityRequired(Long.valueOf(quantities[i]));
-//            partyItem.setParty(party);
-//            partyItemDao.save(partyItem);
-//        }
-//        return "redirect:/parties/success/" + urlKey;
-//    }
-
 
 }
-
 
