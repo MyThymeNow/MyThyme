@@ -10,4 +10,6 @@ public interface GroceryListRepository extends JpaRepository<GroceryList, Long> 
     GroceryList getByShareURL(String shareURL);
 
     List<GroceryList> findByOwner_Id(long id);
+
+
 }
