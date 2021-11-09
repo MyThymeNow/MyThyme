@@ -1,0 +1,22 @@
+.container{
+    background-color: #4D774E;
+
+}
+
+.message-sent{
+    justify-content: right;
+    background-color: #9DC88D;
+    position:relative;
+    padding:5px;
+    margin:1em 0 3em;
+    border-radius:5px;
+}
+
+.message-received{
+    justify-content: left;
+    background-color: #F1B24A;
+    position:relative;
+    padding:5px;
+    margin:1em 0 3em;
+    border-radius:5px;
+}

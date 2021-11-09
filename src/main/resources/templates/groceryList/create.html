@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
-<head>
+<head th:include="partials/header :: head">
     <meta charset="UTF-8" />
     <title>Create grocery list</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,8 +12,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
     <!--    New Template -->
     <script defer src="/create.js"></script>
-<!--    New Template -->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--&lt;!&ndash;    New Template &ndash;&gt;-->
+<!--    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+
+<!--    &lt;!&ndash; bootstrap js &ndash;&gt;-->
+<!--    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>-->
+
 </head>
 
 <body>
@@ -50,26 +55,6 @@
 <!--                <button id="addItemButton" type="button" class="btn create btn-secondary">+</button>-->
             </div>
             <br>
-<!--            <table class="table table-dark table-striped table-hover tbl_code_with_mark">-->
-<!--                <tr> &lt;!&ndash; Horizontal Row Titles&ndash;&gt;-->
-<!--                    <th>Item Name</th>-->
-<!--                    <th>Number of Items</th>-->
-<!--                    <th>Estimated Price</th>-->
-<!--                    <th>Options</th>-->
-<!--                </tr>-->
-<!--                <tr> &lt;!&ndash; 1st Row should also create per addition and reduce per subtraction&ndash;&gt;-->
-<!--                    <td>&lt;!&ndash; Item Entered/ suggested from api option&ndash;&gt;Item 1</td>-->
-<!--                    <td>&lt;!&ndash; Quantity Entered &ndash;&gt; quantity: 2</td>-->
-<!--                    <td>&lt;!&ndash; Estimated price pull from API&ndash;&gt; $2.00</td>-->
-<!--                    <td>-->
-<!--                        <span id="addItemButton" class="btn btn-sm btn-success btn_row_below_new">+</span>-->
-<!--                        <span class="btn btn-sm btn-danger btn_row_delete">x</span>-->
-<!--                    </td>-->
-<!--                </tr>-->
-<!--            </table>-->
-<!--            todo end of table-->
-
-
 <!--                <input type="button" class="btn btn-sm btn-danger btn_row_delete btn-secondary">-</input>-->
             <!--       ****** deleting *****  <button type="button" class="btn btn-danger delete btn-secondary">X</button>-->
 
@@ -77,7 +62,15 @@
     <!--            <input value="Save" type="submit"><a th:href="@{/groceryList/groceryLists}"></a>-->
             <div>
 <!--                <button class="btn delete buttonClass deleteMe" data-delete-list-button>Clear List</button> &lt;!&ndash;onclick="removeItem()"&ndash;&gt;-->
-                <a href="" class="btn delete buttonClass deleteMe" data-delete-list-button>Clear List</a>
+
+<!--                todo former button right below-->
+<!--                <button><a href="" class="btn delete buttonClass deleteMe" data-delete-list-button>Clear</a></button>-->
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#clearListBackdrop">
+                    Clear List
+                </button>
+                <div th:replace="partials/clearListConfirmModal :: clearModal"></div>
+
+<!--                <button value="reset" class="btn delete buttonClass deleteMe" data-delete-list-button>Clear List</button>-->
                 <button value="Save" type="submit">save</button>
 <!--                <a th:href="@{/groceryLists}">Save</a>-->
 
@@ -87,8 +80,7 @@
             </div>
         </form>
 
-<!--    <button value="Save" type="submit"><a th:href="@{/groceryLists}">Save</a></button>-->
-    <!-- Form Script -->
+
     <script>
         "use strict";
         window.onload = (function() {
@@ -141,7 +133,6 @@
             // }
         })
     </script>
-
     <!-- todo Script with DELETE functionality below -->
     <script>
         $(document).ready(function($){
@@ -184,8 +175,9 @@
     </script>
 </section>
 
-<!--        <div th:replace="partials/footer::footer"></div>-->
-<!--    <footer><p th:layout:fragment="footer"></p></footer>-->
+    <div th:replace="partials/footer::footer"></div>
+    <footer><p th:layout:fragment="footer"></p></footer>
+
     </body>
 </html>
 
