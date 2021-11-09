@@ -16,7 +16,7 @@ $.ajax({
     for (let i = 0; i < 3; i++) {
 
         html += `
-                  <div class="card border-0" style="width: 18rem">
+                  <div class="card bg-transparent" style="width: 18rem">
                     <div class="card-body">
                       <h5 class="card-title">${data.recipes[i].title}</h5>
                       <img src="${data.recipes[i].image}">
