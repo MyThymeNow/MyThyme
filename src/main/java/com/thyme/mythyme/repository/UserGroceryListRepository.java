@@ -1,6 +1,7 @@
 package com.thyme.mythyme.repository;
 
 import com.thyme.mythyme.models.GroceryList;
+import com.thyme.mythyme.models.User;
 import com.thyme.mythyme.models.UserGroceryList;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -13,4 +14,6 @@ public interface UserGroceryListRepository extends JpaRepository<UserGroceryList
     UserGroceryList getByGroceryList_Id(Long id);
 
     UserGroceryList getByGroceryList(GroceryList groceryList);
+
+    List <UserGroceryList> getByFavorited(boolean favorited);
 }

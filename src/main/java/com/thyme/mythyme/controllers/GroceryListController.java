@@ -48,13 +48,7 @@ public class GroceryListController {
 
 
 ////////
-//    @GetMapping("/groceryLists/{shareURL}")
-//    public String showOneGroceryList(@PathVariable String shareURL, Model model) {
-//        GroceryList groceryList = groceryDao.getByShareURL(shareURL);
-//        model.addAttribute("groceryListShareURL", shareURL);
-//        model.addAttribute("groceryList", groceryList);
-//        return "groceryList/show";
-//    }
+
 
 //////// Creation
 
