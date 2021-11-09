@@ -7,3 +7,11 @@
 /*    color: white;*/
 /*    text-align: center;*/
 /*}*/
+
+body {
+    padding-bottom: 20px;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
