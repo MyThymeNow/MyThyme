@@ -205,22 +205,15 @@ public class GroceryListController {
 //////// Deletion
     @PostMapping("/groceryLists/delete/{id}")
     public String deleteGroceryList(@PathVariable Long id) {
-        GroceryList listToDelete = groceryDao.getById(id);
-        UserGroceryList userListDelete = listDao.getByGroceryList(listToDelete);
-        List <GroceryListIngredients> groceryListIngredients = listToDelete.getGroceryListIngredient();
-
-            for(int i = 0; i < groceryListIngredients.size(); i++) {
-                GroceryListIngredients listIngredientsToDelete = groceryListIngredients.get(i);
-
-                Ingredient ingredient = listIngredientsToDelete.getIngredient();
-
-                listIngredientsDao.deleteAll();
-//                ingredientDao.delete(ingredient);
-                listDao.delete(userListDelete);
-                groceryDao.delete(listToDelete);
-            }
+        GroceryList groceryList = groceryDao.getById(id);
+        GroceryList listToDelete = groceryDao.getById(groceryList.getId());
+        UserGroceryList userListDelete = listDao.getByGroceryList(groceryList);
+        GroceryListIngredients listIngredientsToDelete = listIngredientsDao.getAllByGroceryList_Id(listToDelete.getId());
 
 
+        listDao.delete(userListDelete);
+        listIngredientsDao.delete(listIngredientsToDelete);
+        groceryDao.delete(listToDelete);
         return "redirect:/groceryLists";
     }
 
