@@ -45,39 +45,6 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-<nav th:fragment="navbar" class="navbar navbar-expand-lg" style="background-color: yellowgreen">
-  <!--  <ul>-->
-  <div sec:authorize="isAuthenticated()">
-    <a class="navbar-brand" th:href="@{/}">
-      <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy"/>
-      MyThyme
-    </a>
-
-    <button class="btn btn-outline-primary"><a th:href="@{/groceryLists}">Grocery List</a></button>
-    <button class="btn btn-outline-success"><a th:href="@{/favorites}">Favorites</a></button>
-    <button class="btn btn-outline-success"><a th:href="@{/recipes}">Recipes</a></button>
-    <button class="btn btn-outline-success"><a th:href="@{/coupons}">Coupons</a></button>
-    <button class="btn btn-outline-success"><a th:href="@{/message}">Messages</a></button>
-
-    <!--        <form th:action="@{/logout}" th:method="post">-->
-    <button class="btn btn-outline-success"><a th:href="@{/profile}">Profile</a></button>
-
-    <input class="form-control mr-sm-2" type="search" placeholder="Find recipes" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-
-
-    <!--            todo DROP DOWN OPTION -->
-<!--    <div class="dropdown">-->
-<!--      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--        Dropdown button-->
-<!--      </button>-->
-<!--      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
-<!--        <a class="dropdown-item" href="#">Action</a>-->
-<!--        <a class="dropdown-item" href="#">Another action</a>-->
-<!--        <a class="dropdown-item" href="#">Something else here</a>-->
-<!--      </div>-->
-<!--    </div>-->
-
     <div class="collapse navbar-collapse" id="myThymeAuth"> <!--id="navbarsExample01"-->
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
@@ -105,57 +72,56 @@
           </div>
         </li>
       </ul>
-<!--      <form class="form-inline my-2 my-md-0">-->
-<!--        <input class="form-control" type="text" placeholder="Explore 1000's of recipes" aria-label="Search">-->
-<!--        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color: #f1b24a">Search</button>-->
-<!--      </form>-->
+      <!--      <form class="form-inline my-2 my-md-0">-->
+      <!--        <input class="form-control" type="text" placeholder="Explore 1000's of recipes" aria-label="Search">-->
+      <!--        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color: #f1b24a">Search</button>-->
+      <!--      </form>-->
     </div>
-
 
 
   </div>
 
   <!--Non Authenticated User-->
   <div sec:authorize = "!isAuthenticated()">
-          <!-- Logo Img -->
-          <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy"/>
-          <a class="navbar-brand" th:href="@{/}">MyThyme</a>
+    <!-- Logo Img -->
+    <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy"/>
+    <a class="navbar-brand" th:href="@{/}">MyThyme</a>
 
-          <form class="form-inline my-2 my-md-0">
-            <input class="form-control" type="text" placeholder="Explore 1000's of recipes" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color: #f1b24a">Search</button>
+    <form class="form-inline my-2 my-md-0">
+      <input class="form-control" type="text" placeholder="Explore 1000's of recipes" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color: #f1b24a">Search</button>
+    </form>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myThymeNotAuth" aria-controls="myThymeNotAuth" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="myThymeNotAuth">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" th:href="@{/}">Home</a> <!-- <span class="sr-only">(current)</span> -->
+        </li>
+        <li class="nav-item active">
+          <!-- <a class="nav-link" href="#">Logout</a> -->
+          <!--href is the only real diff will see chng in intelij-->
+          <form class="nav-link" th:action="@{/login}" th:method="post">
+            <a class="nav-link" style="margin-top: 8px" th:href="@{/login}">Login</a>
           </form>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myThymeNotAuth" aria-controls="myThymeNotAuth" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="myThymeNotAuth">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" th:href="@{/}">Home</a> <!-- <span class="sr-only">(current)</span> -->
-              </li>
-              <li class="nav-item active">
-                <!-- <a class="nav-link" href="#">Logout</a> -->
-                <!--href is the only real diff will see chng in intelij-->
-                <form class="nav-link" th:action="@{/login}" th:method="post">
-                  <a class="nav-link" style="margin-top: 8px" th:href="@{/login}">Login</a>
-                </form>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">FAQ</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
-                <div class="dropdown-menu" style="background-color:#4d774e" aria-labelledby="dropdown01">
-                  <a class="dropdown-item" th:href="@{/login}">Grocery List</a>
-                  <a class="dropdown-item" th:href="@{/recipes}">Recipes</a>
-                  <a class="dropdown-item" th:href="@{/sign-up}">Sign up</a>
-                  <!--Alternative option for dropdown-->
-                  <!-- <button type="button" name="button"><a class="dropdown-item" th:href="@{/profile}">My Profile</a></button> -->
-                </div>
-              </li>
-            </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">FAQ</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+          <div class="dropdown-menu" style="background-color:#4d774e" aria-labelledby="dropdown01">
+            <a class="dropdown-item" th:href="@{/login}">Grocery List</a>
+            <a class="dropdown-item" th:href="@{/recipes}">Recipes</a>
+            <a class="dropdown-item" th:href="@{/sign-up}">Sign up</a>
+            <!--Alternative option for dropdown-->
+            <!-- <button type="button" name="button"><a class="dropdown-item" th:href="@{/profile}">My Profile</a></button> -->
           </div>
+        </li>
+      </ul>
+    </div>
   </div>
 
 </nav>
