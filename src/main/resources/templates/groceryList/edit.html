@@ -14,6 +14,7 @@
     <script defer src="/create.js"></script>
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 
 <button type="submit"><a th:href="@{/groceryLists}">Back</a></button>
 
@@ -154,6 +155,8 @@
 </form>
 
 </section>
+
+<div th:replace="partials/footer::footer"></div>
 
 </body>
 </html>
