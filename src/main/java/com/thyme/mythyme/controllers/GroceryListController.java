@@ -96,6 +96,10 @@ public class GroceryListController {
             groceryListIngredients.setUser(loggedInUser);
             listIngredientsDao.save(groceryListIngredients);
 
+            ingredientInDB.setName(names[i]);
+            ingredientInDB.setId(ingredientInDB.getId());
+            ingredientDao.save(ingredientInDB);
+
         }
         return"redirect:/groceryLists";
     }
@@ -145,68 +149,84 @@ public class GroceryListController {
         List<GroceryListIngredients> groceryListIngredients = listToUpdate.getGroceryListIngredient();
 //        System.out.println(groceryListIngredients); does sout correct number of ingredients
 
+        //Loop for editing current items
         for (int i = 0; i < groceryListIngredients.size(); i++) {
-
-            GroceryListIngredients groceryListIngredientsToUpdate = groceryListIngredients.get(i);
-
-            groceryListIngredientsToUpdate.setId(groceryListIngredientsToUpdate.getId());
-
-            groceryListIngredientsToUpdate.setQuantity(Long.parseLong(quantities[i]));
-
-            groceryListIngredientsToUpdate.setNotes(notes[i]);
-
-            Ingredient ingredient = groceryListIngredientsToUpdate.getIngredient();
-
+            GroceryListIngredients ListItemsToUpdate = groceryListIngredients.get(i);
+            ListItemsToUpdate.setId(ListItemsToUpdate.getId());
+            ListItemsToUpdate.setQuantity(Long.parseLong(quantities[i]));
+            ListItemsToUpdate.setNotes(notes[i]);
+            Ingredient ingredient = ListItemsToUpdate.getIngredient();
             ingredient.setName(names[i]);
-
             ingredientDao.save(ingredient);
 
-            groceryListIngredientsToUpdate.setGroceryList(updatedList);
-            groceryListIngredientsToUpdate.setUser(loggedInUser);
-            listIngredientsDao.save(groceryListIngredientsToUpdate);
+            ListItemsToUpdate.setGroceryList(updatedList);
+            ListItemsToUpdate.setUser(loggedInUser);
+            listIngredientsDao.save(ListItemsToUpdate);
+        }
+
+        //Loop for creating new ingredients
+        for(int i = 0; i < names.length; i++) {
+            Ingredient ingredientInDB = ingredientDao.getByName(names[i]);
+
+            if (ingredientInDB == null) {
+                Ingredient ingredient = new Ingredient();
+                ingredient.setName(names[i]);
+                ingredientInDB = ingredientDao.save(ingredient);
+            }
+            GroceryListIngredients newGroceryListIngredients = new GroceryListIngredients();
+            newGroceryListIngredients.setQuantity(Long.parseLong(quantities[i]));
+            newGroceryListIngredients.setNotes(notes[i]);
+//            groceryListIngredients.setStatus(status[i]); //todo may be API dependent
+            newGroceryListIngredients.setGroceryList(listToUpdate);
+            newGroceryListIngredients.setIngredient(ingredientInDB);
+            newGroceryListIngredients.setUser(loggedInUser);
+            listIngredientsDao.save(newGroceryListIngredients);
+
+            ingredientInDB.setName(names[i]);
+            ingredientInDB.setId(ingredientInDB.getId());
+            ingredientDao.save(ingredientInDB);
         }
         return "redirect:/groceryLists";
     }
 
 
 
-    @PostMapping("/groceryLists/edit/{id}/add") // previously had groceryList/create in parenthesis
-    public String saveAddedIngredients(
-            @PathVariable Long id,
-            @ModelAttribute GroceryList currentList,
-            @RequestParam(name="name[]") String[] names,
-            @RequestParam(name="quantity[]") String[] quantities,
-            @RequestParam (name="notes[]") String[] notes
-            //@RequestParam (name="status[]") String[] status //todo might be API dependent
-    ) {
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        GroceryList groceryListInDB = groceryDao.save(currentList);
-
-        for(int i = 0; i < names.length; i++) {
-            Ingredient ingredientInDB = ingredientDao.getByName(names[i]);
-            if (ingredientInDB == null) {
-
-                Ingredient ingredient = new Ingredient();
-                ingredient.setName(names[i]);
-                ingredientInDB = ingredientDao.save(ingredient);
-            }
-
-            GroceryListIngredients groceryListIngredients = new GroceryListIngredients();
-            groceryListIngredients.setQuantity(Long.valueOf(quantities[i]));
-            groceryListIngredients.setNotes(notes[i]);
-//            groceryListIngredients.setStatus(status[i]); //todo may be API dependent
-            groceryListIngredients.setGroceryList(groceryListInDB);
-            groceryListIngredients.setIngredient(ingredientInDB);
-            groceryListIngredients.setUser(loggedInUser);
-            listIngredientsDao.save(groceryListIngredients);
-
-            ingredientInDB.setName(names[i]);
-            ingredientDao.save(ingredientInDB);
-
-
-        }
-        return "redirect:/groceryLists/edit/" + id;
-    }
+//    @PostMapping("/groceryLists/edit/add/{id}")
+//    public String saveAddedIngredients(
+//            @PathVariable Long id,
+//            @RequestParam(name="name[]") String[] names,
+//            @RequestParam(name="quantity[]") String[] quantities,
+//            @RequestParam (name="notes[]") String[] notes
+//            //@RequestParam (name="status[]") String[] status //todo might be API dependent
+//    ) {
+//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        GroceryList currentGroceryList = groceryDao.getById(id);
+//
+//        for(int i = 0; i < names.length; i++) {
+//            Ingredient ingredientInDB = ingredientDao.getByName(names[i]);
+//            if (ingredientInDB == null) {
+//
+//                Ingredient ingredient = new Ingredient();
+//                ingredient.setName(names[i]);
+//                ingredientInDB = ingredientDao.save(ingredient);
+//            }
+//
+//            GroceryListIngredients groceryListIngredients = new GroceryListIngredients();
+//            groceryListIngredients.setQuantity(Long.valueOf(quantities[i]));
+//            groceryListIngredients.setNotes(notes[i]);
+////            groceryListIngredients.setStatus(status[i]); //todo may be API dependent
+//            groceryListIngredients.setGroceryList(currentGroceryList);
+//            groceryListIngredients.setIngredient(ingredientInDB);
+//            groceryListIngredients.setUser(loggedInUser);
+//            listIngredientsDao.save(groceryListIngredients);
+//
+//            ingredientInDB.setName(names[i]);
+//            ingredientInDB.setId(ingredientInDB.getId());
+//            ingredientDao.save(ingredientInDB);
+//
+//        }
+//        return "redirect:/groceryLists/edit/" + id;
+//    }
 
 
 
@@ -224,14 +244,11 @@ public class GroceryListController {
     }
 
     @PostMapping("/groceryLists/edit/{id}/unfavorite")
-    public String unFavoriteList(@PathVariable Long id, Model model){
+    public String unFavoriteList(@PathVariable Long id){
         GroceryList currentGroceryList = groceryDao.getById(id);
         UserGroceryList listToUnfavorite = listDao.getByGroceryList(currentGroceryList);
         listToUnfavorite.setFavorited(false);
         listDao.save(listToUnfavorite);
-
-//        model.addAttribute("!isFavorited", !listToUnfavorite.isFavorited());
-
         return "redirect:/groceryLists/edit/" + id;
     }
 

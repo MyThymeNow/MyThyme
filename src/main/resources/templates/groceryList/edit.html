@@ -39,9 +39,9 @@
 
 
             <div id="editIngredients">
-                <h1>Edit or Add Items</h1>
+                <h1>Edit Items</h1>
                 <div>
-                    <div class="form-group" th:each="ingredient : ${groceryListIngredients}" id="addedItemList">
+                    <div class="form-group" th:each="ingredient : ${groceryListIngredients}">
                         <label for="name[]">Item:</label>
                         <input type="text" name="name[]" id="name[]" th:value="${ingredient.ingredient.name}">
                         <label for="quantity[]">Quantity:</label>
@@ -53,9 +53,29 @@
 
                 </div>
             </div>
-            <input value="Save List" type="submit"/>
+            <input value="Save Edits" type="submit"/>
         </form>
+    <br>
 
+<!--        <form th:action="@{|/groceryLists/edit/add/{id}|}" method="post" th:object="${grocery_list}">-->
+<!--            <div id="additionalItems">-->
+<!--                <h1> Add Items</h1>-->
+<!--                <div class="form-group tbl_code_with_mark" id="addedItemList">-->
+<!--                    <label for="name[]">Item:</label>-->
+<!--                    <input type="text" name="name[]">-->
+<!--                    <label for="quantity[]">Quantity:</label>-->
+<!--                    <input type="text" name="quantity[]">-->
+<!--                    <label for="notes[]">Notes:</label>-->
+<!--                    <input type="text" name="notes[]">-->
+<!--                    &lt;!&ndash;                    <button id="addItemButton" class="btn btn-sm btn-success btn_row_below_new" >+</button>&ndash;&gt;-->
+<!--                    <span id="addItemButton" class="btn btn-sm btn-success btn_row_below_new">+</span>-->
+<!--                    <span id="removeItemButton" class="btn btn-sm btn-danger btn_row_delete">-</span>-->
+<!--                </div>-->
+<!--                &lt;!&ndash;                <button type="button" class="btn delete btn-secondary">Remove</button>&ndash;&gt;-->
+<!--                &lt;!&ndash;                <button id="addItemButton" type="button" class="btn create btn-secondary">+</button>&ndash;&gt;-->
+<!--            </div>-->
+<!--            <input value="Add Items" type="submit"/>-->
+<!--        </form>-->
 
 
     <script>
