@@ -15,21 +15,24 @@
 </head>
 <body>
 
+<button type="submit"><a th:href="@{/groceryLists}">Back</a></button>
+
 <section th:fragment="content">
 
-    <div th:if="${!isFavorited}" class="container">
+    <div class="container">
+        <div th:if="${!isFavorited}" class="container">
 
-        <form th:action="@{|/groceryLists/edit/${id}/favorite|}" class="favoriteBtn" th:method="post">
-            <button  type="submit" >Favorite</button>
-        </form>
+            <form th:action="@{|/groceryLists/edit/${id}/favorite|}" class="favoriteBtn" th:method="post">
+                <button  type="submit" >Favorite</button>
+            </form>
+        </div>
+
+        <div th:if="${isFavorited}" class="container">
+            <form th:action="@{|/groceryLists/edit/${id}/unfavorite|}" class="unFavoriteBtn" th:method="post">
+                <button  type="submit" >Unfavorite</button>
+            </form>
+        </div>
     </div>
-
-    <div th:if="${isFavorited}" class="container">
-        <form th:action="@{|/groceryLists/edit/${id}/unfavorite|}" class="unFavoriteBtn" th:method="post">
-            <button  type="submit" >Unfavorite</button>
-        </form>
-    </div>
-
 
         <form th:action="@{|/groceryLists/edit/${id}|}" th:method="post" th:object="${grocery_list}">
             <div class="form-group">
@@ -42,6 +45,7 @@
                 <h1>Edit Items</h1>
                 <div>
                     <div class="form-group" th:each="ingredient : ${groceryListIngredients}">
+                        <input type="hidden" name="id[]" id="id[]" th:value="${ingredient.id}">
                         <label for="name[]">Item:</label>
                         <input type="text" name="name[]" id="name[]" th:value="${ingredient.ingredient.name}">
                         <label for="quantity[]">Quantity:</label>
@@ -57,25 +61,6 @@
         </form>
     <br>
 
-<!--        <form th:action="@{|/groceryLists/edit/add/{id}|}" method="post" th:object="${grocery_list}">-->
-<!--            <div id="additionalItems">-->
-<!--                <h1> Add Items</h1>-->
-<!--                <div class="form-group tbl_code_with_mark" id="addedItemList">-->
-<!--                    <label for="name[]">Item:</label>-->
-<!--                    <input type="text" name="name[]">-->
-<!--                    <label for="quantity[]">Quantity:</label>-->
-<!--                    <input type="text" name="quantity[]">-->
-<!--                    <label for="notes[]">Notes:</label>-->
-<!--                    <input type="text" name="notes[]">-->
-<!--                    &lt;!&ndash;                    <button id="addItemButton" class="btn btn-sm btn-success btn_row_below_new" >+</button>&ndash;&gt;-->
-<!--                    <span id="addItemButton" class="btn btn-sm btn-success btn_row_below_new">+</span>-->
-<!--                    <span id="removeItemButton" class="btn btn-sm btn-danger btn_row_delete">-</span>-->
-<!--                </div>-->
-<!--                &lt;!&ndash;                <button type="button" class="btn delete btn-secondary">Remove</button>&ndash;&gt;-->
-<!--                &lt;!&ndash;                <button id="addItemButton" type="button" class="btn create btn-secondary">+</button>&ndash;&gt;-->
-<!--            </div>-->
-<!--            <input value="Add Items" type="submit"/>-->
-<!--        </form>-->
 
 
     <script>
@@ -87,6 +72,7 @@
             // Section grabs form information
             const itemForm =
                 `<div class="form-group">
+                  <input type="hidden" name="id[]" id="id[]">
                   <label for="name[]">Item:</label>
                   <input type="text" name="name[]" id="name[]">
                   <label for="quantity[]">Quantity:</label>

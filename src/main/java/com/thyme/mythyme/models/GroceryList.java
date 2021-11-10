@@ -1,9 +1,6 @@
 package com.thyme.mythyme.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "grocery_lists")
+@ToString
 public class GroceryList {
 
     @Id
@@ -42,7 +40,7 @@ public class GroceryList {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "groceryList")
     @Getter
     @Setter
-    private List<GroceryListIngredients> GroceryListIngredient;
+    private List<GroceryListIngredients> GroceryListIngredients;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "groceryList")
     @Getter
