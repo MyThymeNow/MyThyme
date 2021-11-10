@@ -9,9 +9,19 @@
 
 <div sec:authorize="isAuthenticated()">
 
-    <div th:text="${groceryList.name}">List Name</div>
+    <div th:text="${groceryList.name}"></div>
 
-    <a th:href="@{/groceryLists/edit/{shareURL}(shareURL=${groceryList.shareURL})}">Edit List</a>
+    <div th:each="ingredient : ${groceryListIngredients}">
+        <div class="form-group">
+            <label th:value="${ingredient.ingredient.name}">Item:</label>
+            <br>
+            <label th:value="${ingredient.getQuantity()}">Quantity:</label>
+            <br>
+            <label th:value="${ingredient.getNotes()}">Notes:</label>
+            <br>
+        </div>
+    </div>
+
 
     <div>Created By: <span th:text="${groceryList.owner.username}"></span></div>
 
