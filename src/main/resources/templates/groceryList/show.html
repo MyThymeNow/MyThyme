@@ -7,6 +7,8 @@
 </head>
 <body>
 
+<nav th:replace="partials/navbar :: navbar"></nav>
+
 <div sec:authorize="isAuthenticated()">
 
     <div th:text="${groceryList.name}"></div>
@@ -29,6 +31,8 @@
 <!--        <button type="submit">Delete List</button>-->
 <!--    </form>-->
 </div>
+
+<div th:replace="partials/footer::footer"></div>
 
 </body>
 </html>
