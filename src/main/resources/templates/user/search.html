@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+
+
+</head>
+<body>
+<!--Search works, fix searching for what-->
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<input id="search" ><button onclick="getrecepe(document.getElementById('search').value)">Search</button>
+<div id="output"></div>
+<a href="" id="sourceLink"></a>
+<script>
+
+    function getsource(id){
+        $.ajax({
+            url:"https://api.spoonacular.com/recipes/"+id+"/information?apiKey=f7ab0076cacf465ba3fd763d2739d858",
+            success: function(res) {
+
+                document.getElementById("sourceLink").innerHTML=res.sourceUrl
+                document.getElementById("sourceLink").href=res.sourceUrl
+            }
+        });
+    }
+    function getrecepe(q){
+        $.ajax({
+            url:"https://api.spoonacular.com/recipes/search?apiKey=f7ab0076cacf465ba3fd763d2739d858&number=1&query="+q,
+            success: function(res) {
+
+                document.getElementById("output").innerHTML="<h1>"+res.results[0].title+"</h1><br><img src='"+res.baseUri+res.results[0].image+"' width='400' /><br>Ready in "+res.results[0].readyInMinutes+" minutes"
+                getsource(res.results[0].id)
+            }
+        });
+    }
+
+</script>
+
+<!--&lt;!&ndash;<form th:action="@{/search}" th:method="post" th:object="${post}">&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <input type="text" th:field="*{title}" placeholder="Item">&ndash;&gt;-->
+<!--<input id="search">-->
+<!--<button onclick="getItem(document.getElementById('search').value)">Search</button>-->
+<!--<div id="output"></div>-->
+<!--<a href="" id="sourceLink"></a>-->
+
+
+
+<!--<script>-->
+
+<!--    function getsource(id){-->
+<!--        $.ajax({-->
+<!--            url: "https://api.spoonacular.com/recipes/"+id+"/information?apiKey=f7ab0076cacf465ba3fd763d2739d858",-->
+<!--            success: function(res) {-->
+<!--                document.getElementById("sourceLink").innerHTML=res.sourceUrl-->
+<!--                document.getElementById("sourceLink").href=res.sourceUrl-->
+<!--            }-->
+
+<!--        });-->
+<!--    }-->
+
+<!--    function getItem(q){-->
+<!--        $.ajax({-->
+<!--            url: "https://api.spoonacular.com/recipes/search?apiKey=f7ab0076cacf465ba3fd763d2739d858&number=1&query="+q,-->
+<!--            success: function(res) {-->
+<!--                document.getElementById("output").innerHTML="<h1>"+res.results[0].title+"</h1>"-->
+<!--                getsource(res.results[0].id)-->
+<!--            }-->
+<!--        })-->
+<!--    }-->
+
+<!--</script>-->
+
+
+</body>
+</html>
