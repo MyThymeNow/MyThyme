@@ -30,15 +30,32 @@
         <td th:text="${user.email}"></td>
         <td th:if="${!user.isAdmin}">User</td>
         <td th:if="${user.isAdmin}">Admin</td>
-        <td th:if="${user.isLocked}">Disabled</td>
+        <td th:if="${user.isLocked}">Disabled
+            <form th:action="@{/admin/enable/{id}(id=${user.id})}" th:method="post">
+<!--                <input type="checkbox" th:checked="${user.isLocked()}" name="lockedCheckbox" id="lockedCheckbox">-->
+<!--                <label class="form-check-label" for="lockedCheckbox">-->
+<!--                    Unlock-->
+<!--                </label>-->
+                <input type="submit" value="Unlock">
+            </form></td>
         <td th:if="${!user.isLocked}">Enabled</td>
+
+<!--        &lt;!&ndash;Add show/hide based on role&ndash;&gt;-->
+<!--        <form th:action="@{/admin/enable/{id}(id=${user.id})}" th:method="post">-->
+<!--            <input type="checkbox" th:checked="${user.isLocked()}" name="lockedCheckbox" id="lockedCheckbox">-->
+<!--            <label class="form-check-label" for="lockedCheckbox">-->
+<!--                Locked-->
+<!--            </label>-->
+<!--            <input type="submit" value="Update">-->
+<!--        </form>-->
+
         <td class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Select Action
             </button>
+
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" th:href="@{/profile/{id}(id=${user.id})}">View All Account Details</a></li>
-                <li><a class="dropdown-item" th:href="@{/admin/profile/edit/{id}(id=${user.id})}">Edit Account</a></li>
             </ul>
         </td>
     </tr>

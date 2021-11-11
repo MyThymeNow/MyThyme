@@ -1,0 +1,36 @@
+/*.column {*/
+/*    display: flex;*/
+/*    float: left;*/
+/*    justify-content: center;*/
+/*    width: 20%;*/
+/*    padding: 10px;*/
+/*}*/
+
+.jumbotron {
+    background-color: rgba(255, 255, 255, .15);
+    backdrop-filter: blur(10px);
+    position: relative;
+    left: 25%;
+    /*transform: translate(-50%, -50%);*/
+    width: 50%;
+    /*height: 300px;*/
+    /*/*opacity: 60%;*/
+    /*bottom: 0px;*/
+    text-align: center;
+    /*color: black;*/
+}
+
+main {
+    background-image: linear-gradient(#9DC88D, navajowhite);
+    /*color: #F1B24A;*/
+}
+
+#saveButton {
+    background-color: #F1B24A;
+    color: white;
+}
+
+#test-col {
+    background-color: rgba(255, 255, 255, .15);
+    backdrop-filter: blur(10px);
+}

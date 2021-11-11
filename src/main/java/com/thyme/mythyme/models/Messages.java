@@ -7,15 +7,18 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 
-@Getter @Setter
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 
 @Entity
 @Table(name = "messages")
-public class Messages {
+
+public class Messages implements  Comparable <Messages>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
@@ -47,14 +50,15 @@ public class Messages {
     private User receiver;
 
 
+    public int compareTo(Messages o){
+        return this.timestamp.compareTo(o.getTimestamp());
+    }
 
+    public String getReadableDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 
-
-//    @ManyToOne
-//    @JoinColumn (name = "user_id")
-//    @Getter
-//    @Setter
-//    private User user;
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
+        return this.timestamp.toLocalDateTime().format(formatter);
+    }
 
 }

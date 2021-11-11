@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Setter @Getter
@@ -86,8 +85,14 @@ public class User {
     private List<GroceryListIngredients> GroceryListIngredient;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @Getter
+    @Setter
     private List<UserGroceryList> userGroceryLists;
 
+    @OneToOne
+    @Getter
+    @Setter
+    private Location location;
 
 
     //   @JoinColumn(name = "location_id")

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
-<head>
+<head th:include="partials/header :: head">
   <meta charset="UTF-8" />
   <title>Log In</title>
 </head>
@@ -31,6 +31,9 @@
   <input type="submit" value="Log In" />
 </form>
 
-<div th:replace="partials/footer::footer"></div>
+<br>
+<br>
+
+<footer><p th:replace="partials/footer :: footer"></p></footer>
 </body>
 </html>

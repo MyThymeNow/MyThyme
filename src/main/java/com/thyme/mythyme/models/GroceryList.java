@@ -27,7 +27,7 @@ public class GroceryList {
     @Setter
     private String name;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 250)
     @Getter
     @Setter
     private String shareURL;
@@ -51,7 +51,7 @@ public class GroceryList {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name="groceryList_categories",
+            name="grocery_list_categories",
             joinColumns={@JoinColumn(name="ingredient_id")},
             inverseJoinColumns={@JoinColumn(name="category_id")}
     )
@@ -62,7 +62,7 @@ public class GroceryList {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name="groceryList_Ingredients",
+            name="grocery_list_ingredients",
             joinColumns={@JoinColumn(name="ingredient_id")},
             inverseJoinColumns={@JoinColumn(name="groceryList_id")}
     )
