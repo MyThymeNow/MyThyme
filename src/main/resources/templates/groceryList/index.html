@@ -40,18 +40,16 @@
 
 
 
-<!--    <label>-->
-<!--        <input type="checkbox" name="checkbox" value="favorite">-->
-<!--    </label>-->
-    <button type="submit"><a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}">Edit List</a></button>
-<!--    <div class="delete-stuff">-->
-<!--    <button type="button" class="btn delete " data-clear-complete-tasks-button>Delete list</button>-->
-<!--    </div>-->
-    <button type="submit">Share</button>
+<div th:if="${currentUser.getId() == groceryList.getOwner().getId()}">
+    <button type="submit" ><a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}">Edit</a></button>
 </div>
-<div class="delete-stuff">
-    <button type="button" class="btn delete " data-clear-complete-tasks-button>Delete list</button>
+<div th:if="${currentUser.getId() != groceryList.getOwner().getId()}">
+    <p>Created By: <a th:text="${groceryList.owner.username}" th:href="@{|/profile/${groceryList.getOwner().getId()}|}"></a></p>
 </div>
+
+<!--    <button type="submit"><a th:href="@{/groceryLists/share/{shareURL}(shareURL=${groceryList.shareURL})}"></a>Share</button>-->
+</div>
+
 
 
 <script>

@@ -30,16 +30,13 @@ public class GroceryListController {
     //////// VIEWING
     @GetMapping("/groceryLists")
     public String showGroceryLists(Model model) {
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<GroceryList> userLists = groceryDao.findByOwner_Id(loggedInUser.getId());
-        model.addAttribute("groceryLists", userLists);
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<GroceryList> allLists = groceryDao.findAll();
+        model.addAttribute("groceryLists", allLists);
+        model.addAttribute("currentUser", currentUser);
         return "groceryList/index";
     }
 
-
-
-
-////////
 
 
 //////// Creation

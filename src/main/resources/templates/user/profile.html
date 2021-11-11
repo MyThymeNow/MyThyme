@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:include="partials/header :: head">
+    <meta charset="UTF-8">
+    <title>View Profile</title>
+</head>
+
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<h1> View Your Profile Information Here</h1>
+
+<div class="justify-content-center" sec:authorize="isAuthenticated()">
+    <div th:each="user : ${user}">
+
+        <p><strong>Username: </strong><div th:text="${user.getUsername()}"></div></p>
+        <p>First Name: <div th:text="${user.getFirstName()}"></div></p>
+        <p>Last Name: <div th:text="${user.getLastName()}"></div></p>
+
+    </div>
+
+</div>
+
+
+
+
+<div th:replace="partials/footer::footer"></div>
+</body>
+</html>

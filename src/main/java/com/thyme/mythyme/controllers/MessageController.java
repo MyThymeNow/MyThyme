@@ -1,7 +1,9 @@
 package com.thyme.mythyme.controllers;
 
+import com.thyme.mythyme.models.GroceryList;
 import com.thyme.mythyme.models.Messages;
 import com.thyme.mythyme.models.User;
+import com.thyme.mythyme.repository.GroceryListRepository;
 import com.thyme.mythyme.repository.MessagesRepository;
 import com.thyme.mythyme.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -19,18 +20,20 @@ public class MessageController {
 
 
     private final MessagesRepository messageDao;
-
-
+    private final GroceryListRepository groceryDao;
     private final UserRepository userDao;
 
-    public MessageController(MessagesRepository messageDao, UserRepository userDao) {
+    public MessageController(MessagesRepository messageDao, GroceryListRepository groceryDao, UserRepository userDao) {
         this.messageDao = messageDao;
-
+        this.groceryDao = groceryDao;
         this.userDao = userDao;
     }
 
+//    @GetMapping("/messages/create")
+//    public String createNewMessageThread(Model model)
+
     @GetMapping("/messages/{otherUserId}")
-    public String newMessage(Model model,  @PathVariable long otherUserId) {
+    public String newMessageInThread(Model model, @PathVariable long otherUserId) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getById(loggedInUser.getId());
         model.addAttribute("loggedinuser", user);
@@ -78,15 +81,8 @@ public class MessageController {
 
     }
 
-//    @GetMapping("messages")
-//    public String messageLog(Model model){
-//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//
-//
-//    }
-
     @GetMapping("messages")
-    public String messageLog(Model model){
+    public String messageLog(Model model) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.findByUsername(loggedInUser.getUsername());
 
@@ -107,7 +103,28 @@ public class MessageController {
 
         model.addAttribute("users", listOfUsers);
 
-        return "user/messageIndex";
+        return "user/message-index";
+    }
+
+    //
+    ///////// Sharing
+    @GetMapping("/groceryLists/share/{shareURL}")
+    public String viewShareListMessage(@PathVariable String shareURL, Model model) {
+        GroceryList listToShare = groceryDao.getByShareURL(shareURL);
+        model.addAttribute("groceryListShareURL", shareURL);
+        model.addAttribute("listToShare", listToShare);
+        return "groceryList/share";
+    }
+
+    @PostMapping("/groceryLists/share/{shareURL}")
+    public String shareGroceryList(@PathVariable String shareURL, @ModelAttribute GroceryList SharedList) {
+
+
+        return "redirect:/groceryLists";
     }
 }
-
+//
+//
+//
+//
+//}

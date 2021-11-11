@@ -25,7 +25,7 @@
     </div>
 
 
-    <div>Created By: <span th:text="${groceryList.owner.username}"></span></div>
+    <div>Created By: <a th:href="@{/profile}" th:text="${groceryList.owner.username}"></a></div>
 
 <!--    <form th:action="@{|/groceryLists/delete/${groceryList.id}|}" th:method="post">-->
 <!--        <button type="submit">Delete List</button>-->

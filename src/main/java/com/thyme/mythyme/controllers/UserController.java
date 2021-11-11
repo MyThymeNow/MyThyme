@@ -2,6 +2,7 @@ package com.thyme.mythyme.controllers;
 
 import com.thyme.mythyme.models.GroceryList;
 import com.thyme.mythyme.models.User;
+import com.thyme.mythyme.repository.GroceryListRepository;
 import com.thyme.mythyme.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,10 +19,12 @@ import java.util.List;
 public class UserController {
     private final UserRepository users;
     private final PasswordEncoder passwordEncoder;
+    private final GroceryListRepository groceryDao;
 
-    public UserController(UserRepository users, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository users, PasswordEncoder passwordEncoder, GroceryListRepository groceryDao) {
         this.users = users;
         this.passwordEncoder = passwordEncoder;
+        this.groceryDao = groceryDao;
     }
 
 
@@ -40,10 +43,12 @@ public class UserController {
     }
 
     @GetMapping("/profile/{id}")
-    public String viewProfile(@PathVariable long id, Model model) {
-        User currentUser = users.getById(id);
+    public String viewUserProfile(@PathVariable long id, Model model) {
+        User otherUser = users.getById(id);
+        List<GroceryList> otherUserLists = groceryDao.findByOwner_Id(otherUser.getId());
 
-        model.addAttribute("user", currentUser);
+        model.addAttribute("user", otherUser);
+        model.addAttribute("groceryLists", otherUserLists);
 
         return "user/view-profile"; // user/view-profile
         //redirects do not target profile
@@ -51,14 +56,14 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String viewProfile(Model model) {
+    public String viewMyProfile(Model model) {
 //        User currentUser = users;
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         User UserNDB = users.getById(currentUser.getId());
         model.addAttribute("user", UserNDB);
 
-        return "user/view-profile"; //user/view-profile
+        return "user/profile"; //user/view-profile
     }
 
     //TODO working to link other buttons in navbar... remove at later time
