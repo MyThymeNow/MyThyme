@@ -84,4 +84,23 @@ public class MessageController {
 //
 //    }
 
+//    ///////// Sharing
+//    @GetMapping("/groceryLists/share/{shareURL}")
+//    public String viewShareGroceryList (@PathVariable String shareURL, Model model){
+//        GroceryList listToShare = groceryDao.getByShareURL(shareURL);
+//        model.addAttribute("groceryListShareURL", shareURL);
+//        model.addAttribute("listToShare", listToShare);
+//        return "groceryList/share";
+//    }
+//
+//    @PostMapping("/groceryLists/share/{shareURL}")
+//    public String shareGroceryList (@PathVariable String shareURL, @ModelAttribute GroceryList SharedList){
+//
+//
+//        return "redirect:/groceryLists";
+//    }
+
+
+
+
 }
