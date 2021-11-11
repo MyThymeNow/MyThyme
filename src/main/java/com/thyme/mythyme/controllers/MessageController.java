@@ -2,7 +2,6 @@ package com.thyme.mythyme.controllers;
 
 import com.thyme.mythyme.models.Messages;
 import com.thyme.mythyme.models.User;
-import com.thyme.mythyme.repository.GroceryListRepository;
 import com.thyme.mythyme.repository.MessagesRepository;
 import com.thyme.mythyme.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,42 +19,48 @@ public class MessageController {
 
 
     private final MessagesRepository messageDao;
-    private final GroceryListRepository groceryDao;
+
+
     private final UserRepository userDao;
 
-    public MessageController(MessagesRepository messageDao, GroceryListRepository groceryDao, UserRepository userDao) {
+    public MessageController(MessagesRepository messageDao, UserRepository userDao) {
         this.messageDao = messageDao;
-        this.groceryDao = groceryDao;
+
         this.userDao = userDao;
     }
 
     @GetMapping("/messages/{otherUserId}")
     public String newMessage(Model model,  @PathVariable long otherUserId) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = userDao.findByUsername(loggedInUser.getUsername());
+        User user = userDao.getById(loggedInUser.getId());
         model.addAttribute("loggedinuser", user);
 
         model.addAttribute("userMessage", new Messages());
 
-        List<Messages> messageList = user.getReceivedMessages();
-        List<Messages> sentMessages = user.getSentMessages();
+//        List<Messages> messageList = user.getReceivedMessages();
+//        List<Messages> sentMessages = user.getSentMessages();
 
-        for (Messages message : sentMessages) {
-            messageList.add(message);
-        }
+//        sentMessages.addAll(messageList);
 
-        Collections.sort(messageList);
+//        Collections.sort(messageList);
 
-       User otherUser = userDao.getById(otherUserId);
+        User otherUser = userDao.getById(otherUserId);
+
+        List<Messages> sentMessages = messageDao.getAllBySenderAndReceiver(loggedInUser, otherUser);
+        List<Messages> receivedMessages = messageDao.getAllBySenderAndReceiver(otherUser, loggedInUser);
+
 
         model.addAttribute("otheruser", otherUser);
-        model.addAttribute("messages", messageList);
+        model.addAttribute("sentmessages", sentMessages);
+        model.addAttribute("receivedmessages", receivedMessages);
 
-        return "messages/message";
+        return "user/message";
+
+
     }
 
     @PostMapping("/messages/{id}")
-    public String sendMessage(Model model, @PathVariable long id, @ModelAttribute Messages message) {
+    public String sendMessage(Model model, @PathVariable long id, @ModelAttribute Messages userMessage) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.findByUsername(loggedInUser.getUsername());
         User receivingUser = userDao.getById(id);
@@ -63,7 +68,7 @@ public class MessageController {
         Messages newMessage = new Messages();
         newMessage.setSender(loggedInUser);
         newMessage.setReceiver(receivingUser);
-        newMessage.setContent(message.getContent());
+        newMessage.setContent(userMessage.getContent());
         newMessage.setTimestamp(new Timestamp(System.currentTimeMillis()));
         messageDao.save(newMessage);
 
@@ -72,6 +77,13 @@ public class MessageController {
 
 
     }
+
+//    @GetMapping("messages")
+//    public String messageLog(Model model){
+//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//
+//    }
 
     @GetMapping("messages")
     public String messageLog(Model model){
@@ -85,36 +97,17 @@ public class MessageController {
         messageHistory.addAll(user.getSentMessages());
 
 
-        for(int i = 0; i < messageHistory.size(); i++) {
-            if(!listOfUsers.contains(messageHistory.get(i).receiver) && user.getId() != messageHistory.get(i).receiver.getId()) {
-                listOfUsers.add(messageHistory.get(i).receiver);
-            } else if (!listOfUsers.contains(messageHistory.get(i).sender) && user.getId() != messageHistory.get(i).sender.getId()) {
-                listOfUsers.add(messageHistory.get(i).sender);
+        for (Messages messages : messageHistory) {
+            if (!listOfUsers.contains(messages.receiver) && user.getId() != messages.receiver.getId()) {
+                listOfUsers.add(messages.receiver);
+            } else if (!listOfUsers.contains(messages.sender) && user.getId() != messages.sender.getId()) {
+                listOfUsers.add(messages.sender);
             }
         }
 
         model.addAttribute("users", listOfUsers);
 
-        return "messages/index";
+        return "user/messageIndex";
     }
-
-//    ///////// Sharing
-//    @GetMapping("/groceryLists/share/{shareURL}")
-//    public String viewShareGroceryList (@PathVariable String shareURL, Model model){
-//        GroceryList listToShare = groceryDao.getByShareURL(shareURL);
-//        model.addAttribute("groceryListShareURL", shareURL);
-//        model.addAttribute("listToShare", listToShare);
-//        return "groceryList/share";
-//    }
-
-//    @PostMapping("/groceryLists/share/{shareURL}")
-//    public String shareGroceryList (@PathVariable String shareURL, @ModelAttribute GroceryList SharedList){
-//
-//
-//        return "redirect:/groceryLists";
-//    }
-
-
-
-
 }
+
