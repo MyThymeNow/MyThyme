@@ -6,6 +6,7 @@
     <title>Edit</title>
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 
 <section th:fragment="content">
 
@@ -56,6 +57,8 @@
 </form>
 
 </section>
+
+<div th:replace="partials/footer::footer"></div>
 
 </body>
 </html>
