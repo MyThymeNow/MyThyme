@@ -16,16 +16,43 @@ $.ajax({
     for (let i = 0; i < 3; i++) {
 
         html += `
-                  <div class="card bg-transparent" style="width: 18rem">
-                    <div class="card-body">
-                      <h5 class="card-title">${data.recipes[i].title}</h5>
-                      <img src="${data.recipes[i].image}">
-                      <p class="card-text">${data.recipes[i].summary}</p>
-                      <a href="#" class="btn btn-primary">View recipe</a>
+                  <div class="card" style="width: 18rem"><!-- class="bg-transparent" -->
+                    <div class="card-body" style="border: #333333 2px solid; background-image: linear-gradient(180deg, #f1b24a, #9DC88D)">
+                      <h5 class="card-title" style="border: #164A41; text-align: center">${data.recipes[i].title}</h5>
+                      <img className="centerImg" src="${data.recipes[i].image}" style="width: 8rem; length: 8rem; border: #9DC88D 2px solid">
+                      <p class="card-text scroll">${data.recipes[i].summary}</p>
+                      <a href="#" class="btn" style="color: white; background-color: #f1b24a">View recipe</a>
                    
                     </div>
                   </div>`;
     }
+    // <div className="card" style="width: 18rem;"><!-- class="bg-transparent" -->
+    //     <div className="card-body"
+    //          style="border: #333333 2px solid; background-image: linear-gradient(180deg, #f1b24a, #9DC88D)">
+    //         <h5 className="card-title" style="border: #164A41; text-align: center">Grandma's Secret Chocolate Chip
+    //             Cookies</h5> <!-- ${data.recipes[i].title} -->
+    //         <img className="centerImg"
+    //              src="https://www.errenskitchen.com/wp-content/uploads/2019/02/chocolate-chip-cookies-3-500x375.jpg"
+    //              style="width: 8rem; length: 8rem; border: #9DC88D 2px solid"> <!-- ${data.recipes[i].image} -->
+    //             <p className="card-text scroll">
+    //                 MyThyme is an app designed to make cost effective shopping seamless for everyone.
+    //                 Users can select items they wish to buy, and will be given costs of those items at various
+    //                 locations,
+    //                 making deciding where to buy from simple. Users can also save and share their created grocery lists,
+    //                 while also being provided recommended recipes based on items on their list. MyThyme was created by a
+    //                 group of 4 developers, utilizing Java, JavaScript, MySQL, Spring Boot, HTML, CSS and several APIs.
+    //
+    //                 MyThyme is an app designed to make cost effective shopping seamless for everyone.
+    //                 Users can select items they wish to buy, and will be given costs of those items at various
+    //                 locations,
+    //                 making deciding where to buy from simple. Users can also save and share their created grocery lists,
+    //                 while also being provided recommended recipes based on items on their list. MyThyme was created by a
+    //                 group of 4 developers, utilizing Java, JavaScript, MySQL, Spring Boot, HTML, CSS and several APIs.
+    //             </p> <!-- ${data.recipes[i].summary} -->
+    //             <a href="#" className="btn" style="color: white; background-color: #f1b24a">View
+    //                 recipe</a> <!-- background-color: #f1b24a-->
+    //     </div>
+    // </div>
     $("#test-col").html(html);
 
 
