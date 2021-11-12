@@ -15,6 +15,12 @@
 
 <div sec:authorize="isAuthenticated()">
 <h1>My Favorites</h1>
+
+<div class="container" th:each="groceryList:${favorites}">
+    <h2 th:text="${groceryList.groceryList.name}"></h2>
+    <a th:href="@{/groceryLists/{shareURL}(shareURL=${groceryList.groceryList.shareURL})}">View List</a>
+</div>
+
 </div>
 
 <footer th:replace="partials/footer::footer"></footer>

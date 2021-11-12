@@ -6,6 +6,7 @@
     <title>Edit</title>
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 
 <section th:fragment="content">
 
@@ -50,12 +51,14 @@
     </div>
 
 
-<!-- NEED TO UPDATE DELETE FUNCTIONALITY -->
-<!--<form th:action="@{|/groceryLists/delete/${id}|}" th:method="post">-->
-<!--    <button type="submit">Delete List</button>-->
-<!--</form>-->
+ NEED TO UPDATE DELETE FUNCTIONALITY
+<form th:action="@{|/groceryLists/delete/${id}|}" th:method="post">
+    <button type="submit">Delete List</button>
+</form>
 
 </section>
+
+<div th:replace="partials/footer::footer"></div>
 
 </body>
 </html>

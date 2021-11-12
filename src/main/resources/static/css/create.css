@@ -3,11 +3,18 @@
     border: solid black 2px;
 }
 :root {
-    --clr-primary: rgb(54, 112, 199);
-    --clr-light: #f4f4f4;
+    --clr-primary: #F1B24A;
+    --clr-light: #4D774E;
     --clr-dark: #333;
-    --clr-warning: rgb(99, 36, 36);
+    --clr-warning: #9DC88D;
 }
+
+section{
+    background-color: #9DC88D;
+}
+
+
+
 
 *,
 *::before,

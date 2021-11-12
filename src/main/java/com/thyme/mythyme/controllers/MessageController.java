@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class MessageController {
 
 //        Collections.sort(messageList);
 
-       User otherUser = userDao.getById(otherUserId);
+        User otherUser = userDao.getById(otherUserId);
 
         List<Messages> sentMessages = messageDao.getAllBySenderAndReceiver(loggedInUser, otherUser);
         List<Messages> receivedMessages = messageDao.getAllBySenderAndReceiver(otherUser, loggedInUser);
@@ -77,4 +78,36 @@ public class MessageController {
 
     }
 
+//    @GetMapping("messages")
+//    public String messageLog(Model model){
+//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//
+//    }
+
+    @GetMapping("messages")
+    public String messageLog(Model model){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.findByUsername(loggedInUser.getUsername());
+
+        List<Messages> messageHistory = new ArrayList<>();
+        List<User> listOfUsers = new ArrayList<>();
+
+        messageHistory.addAll(user.getReceivedMessages());
+        messageHistory.addAll(user.getSentMessages());
+
+
+        for (Messages messages : messageHistory) {
+            if (!listOfUsers.contains(messages.receiver) && user.getId() != messages.receiver.getId()) {
+                listOfUsers.add(messages.receiver);
+            } else if (!listOfUsers.contains(messages.sender) && user.getId() != messages.sender.getId()) {
+                listOfUsers.add(messages.sender);
+            }
+        }
+
+        model.addAttribute("users", listOfUsers);
+
+        return "user/messageIndex";
+    }
 }
+
