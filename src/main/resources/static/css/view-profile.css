@@ -9,6 +9,7 @@ h1{
     background: linear-gradient(#f1b24a,#9DC88D);
     margin-bottom: 0;
     text-align: center;
+    font-family: 'Lobster', cursive;
 }
 
 h2{
@@ -33,6 +34,14 @@ form{
     background: #f1b24a;
 }
 
+.user{
+    background-image: linear-gradient(#9DC88D,#f1b24a);
+    margin-bottom: 0;
+}
+
+.user-lists{
+    background: #f1b24a;
+}
 
 
 
