@@ -37,6 +37,14 @@ public class GroceryListController {
         return "groceryList/index";
     }
 
+    @PostMapping("/groceryLists/{shareURL}")
+    public String viewGroceryList(@PathVariable String shareURL, Model model) {
+
+
+        return "groceryList/show";
+    }
+
+
 
 
 //////// Creation

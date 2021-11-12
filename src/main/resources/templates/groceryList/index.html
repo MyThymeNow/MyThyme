@@ -23,36 +23,29 @@
 <div class="container" th:each="groceryList:${groceryLists}">
     <h2 th:text="${groceryList.name}"></h2>
 
-<!--    <div th:if="${!isFavorited}" class="container">-->
-
-<!--        <form th:action="@{|/groceryLists/${id}/favorite|}" class="favoriteBtn" th:method="post">-->
-<!--            <button  type="submit" >Favorite</button>-->
-<!--        </form>-->
-<!--    </div>-->
-
-<!--    <div th:if="${isFavorited}" class="container">-->
-<!--        <form th:action="@{|/profile/${id}/unfavorite|}" class="unFavoriteBtn" th:method="post">-->
-<!--            <button  type="submit" >Unfavorite</button>-->
-<!--        </form>-->
-<!--    </div>-->
-
-
-
-
 
 <div th:if="${currentUser.getId() == groceryList.getOwner().getId()}">
     <button type="submit" ><a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}">Edit</a></button>
 </div>
 <div th:if="${currentUser.getId() != groceryList.getOwner().getId()}">
+    <button type="submit"><a th:href="@{/groceryLists/{shareURL}(shareURL=${groceryList.shareURL})}">View</a></button>
     <p>Created By: <a th:text="${groceryList.owner.username}" th:href="@{|/profile/${groceryList.getOwner().getId()}|}"></a></p>
 </div>
 
-<!--    <button type="submit"><a th:href="@{/groceryLists/share/{shareURL}(shareURL=${groceryList.shareURL})}"></a>Share</button>-->
+
 </div>
 
 
+<script type="text/javascript">
 
-<script>
+
+
+    // const copyURL = new URL(window.location.href);
+    // console.log(copyURL.toString());
+    // navigator.clipboard.writeText(copyURL)
+
+
+
 
 
     //todo: remove later if not needed

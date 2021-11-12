@@ -2,10 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
+    <head th:include="partials/header :: head">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+
 <h2>Share your list with other users!</h2>
 
 
@@ -19,9 +23,9 @@
     <br>
 </form>
     <div>
-    <form   >
+    <form>
     <label>Enter the username of shared user:</label>
-    <input type="text">
+
 
     <input type="submit" value="Share List">
     </form>
@@ -34,6 +38,7 @@
 
 
 
+<div th:replace="partials/footer::footer"></div>
 
 </body>
 </html>

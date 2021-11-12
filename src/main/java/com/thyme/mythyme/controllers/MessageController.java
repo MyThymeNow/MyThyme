@@ -18,7 +18,6 @@ import java.util.List;
 @Controller
 public class MessageController {
 
-
     private final MessagesRepository messageDao;
     private final GroceryListRepository groceryDao;
     private final UserRepository userDao;
@@ -52,14 +51,11 @@ public class MessageController {
         List<Messages> sentMessages = messageDao.getAllBySenderAndReceiver(loggedInUser, otherUser);
         List<Messages> receivedMessages = messageDao.getAllBySenderAndReceiver(otherUser, loggedInUser);
 
-
         model.addAttribute("otheruser", otherUser);
         model.addAttribute("sentmessages", sentMessages);
         model.addAttribute("receivedmessages", receivedMessages);
 
         return "user/message";
-
-
     }
 
     @PostMapping("/messages/{id}")
@@ -75,10 +71,7 @@ public class MessageController {
         newMessage.setTimestamp(new Timestamp(System.currentTimeMillis()));
         messageDao.save(newMessage);
 
-
         return "redirect:/messages/" + id;
-
-
     }
 
     @GetMapping("messages")
@@ -106,25 +99,13 @@ public class MessageController {
         return "user/message-index";
     }
 
-    //
-    ///////// Sharing
-    @GetMapping("/groceryLists/share/{shareURL}")
-    public String viewShareListMessage(@PathVariable String shareURL, Model model) {
-        GroceryList listToShare = groceryDao.getByShareURL(shareURL);
-        model.addAttribute("groceryListShareURL", shareURL);
-        model.addAttribute("listToShare", listToShare);
-        return "groceryList/share";
-    }
 
-    @PostMapping("/groceryLists/share/{shareURL}")
-    public String shareGroceryList(@PathVariable String shareURL, @ModelAttribute GroceryList SharedList) {
-
-
-        return "redirect:/groceryLists";
-    }
+//    ///////// Sharing
+//    @PostMapping("/groceryLists/{shareURL}")
+//    public String shareGroceryList(@PathVariable String shareURL, @ModelAttribute GroceryList SharedList) {
+//
+//
+//        return "redirect:/groceryLists";
+//    }
 }
-//
-//
-//
-//
-//}
+

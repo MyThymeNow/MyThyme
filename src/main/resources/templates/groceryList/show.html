@@ -9,7 +9,7 @@
 
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<div sec:authorize="isAuthenticated()">
+
 
     <div th:text="${groceryList.name}"></div>
 
@@ -24,15 +24,21 @@
         </div>
     </div>
 
+    <button type="submit" id="copyURL" onclick="copyUrl()">Copy URL</button>
 
-    <div>Created By: <a th:href="@{/profile}" th:text="${groceryList.owner.username}"></a></div>
+
+    <div>Created By: <a th:href="@{|/profile/${groceryList.getOwner().getId()}|}" th:text="${groceryList.owner.username}"></a></div>
 
 <!--    <form th:action="@{|/groceryLists/delete/${groceryList.id}|}" th:method="post">-->
 <!--        <button type="submit">Delete List</button>-->
 <!--    </form>-->
-</div>
 
 <div th:replace="partials/footer::footer"></div>
+<script type="text/javascript">
+    function copyUrl() {
+        navigator.clipboard.writeText(location.href);
 
+    }
+</script>
 </body>
 </html>
