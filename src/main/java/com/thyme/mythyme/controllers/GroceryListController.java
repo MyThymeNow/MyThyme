@@ -30,17 +30,28 @@ public class GroceryListController {
     //////// VIEWING
     @GetMapping("/groceryLists")
     public String showGroceryLists(Model model) {
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<GroceryList> userLists = groceryDao.findByOwner_Id(loggedInUser.getId());
-        model.addAttribute("groceryLists", userLists);
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<GroceryList> allLists = groceryDao.findAll();
+        model.addAttribute("groceryLists", allLists);
+        model.addAttribute("currentUser", currentUser);
         return "groceryList/index";
     }
 
+    @GetMapping("/groceryLists/{shareURL}")
+    public String showOneGroceryList(@PathVariable String shareURL, Model model) {
+        GroceryList groceryList = groceryDao.getByShareURL(shareURL);
+        List<GroceryListIngredients> groceryListIngredients = listIngredientsDao.getByGroceryListId(groceryList.getId());
+        for(GroceryListIngredients item : groceryListIngredients) {
+            Long groceryListIngredients_id = item.getId();
 
+            Optional<Ingredient> currentIngredient = ingredientDao.findById(groceryListIngredients_id);
 
-
-////////
-
+            model.addAttribute("groceryList", groceryList);
+            model.addAttribute("groceryListIngredients", groceryListIngredients);
+            model.addAttribute("currentIngredient", currentIngredient);
+        }
+        return "groceryList/show";
+    }
 
 //////// Creation
 
@@ -110,10 +121,12 @@ public class GroceryListController {
 
             Optional<Ingredient> currentIngredient = ingredientDao.findById(groceryListIngredients_id);
 
-            model.addAttribute("grocery_list", groceryList);
-            model.addAttribute("groceryListIngredients", groceryListIngredients);
-            model.addAttribute("currentIngredient", currentIngredient);
-            model.addAttribute("isFavorited", listToFavorite.isFavorited());
+
+        model.addAttribute("grocery_list", groceryList);
+        model.addAttribute("groceryListIngredients", groceryListIngredients);
+        model.addAttribute("currentIngredient", currentIngredient);
+        model.addAttribute("isFavorited", listToFavorite.isFavorited());
+
         }
         return "groceryList/edit";
     }
@@ -133,7 +146,7 @@ public class GroceryListController {
         listToUpdate.setOwner(loggedInUser);
         listToUpdate.setName(name);
         GroceryList updatedList = groceryDao.save(listToUpdate);
-        List<GroceryListIngredients> groceryListIngredients = listToUpdate.getGroceryListIngredient();
+        List<GroceryListIngredients> groceryListIngredients = listToUpdate.getGroceryListIngredients();
 //        System.out.println(groceryListIngredients); does sout correct number of ingredients
 
 //        //Loop for editing current items
@@ -182,7 +195,9 @@ public class GroceryListController {
         return "redirect:/groceryLists";
     }
 
-    //////// FAVORITE
+
+//////// FAVORITE
+
     @PostMapping("/groceryLists/edit/{id}/favorite")
     public String favoriteList(@PathVariable Long id, Model model){
         GroceryList currentGroceryList = groceryDao.getById(id);
@@ -205,35 +220,39 @@ public class GroceryListController {
     }
 
 
-    //////// Deletion
-    @PostMapping("/groceryLists/delete/{id}")
-    public String deleteGroceryList(@PathVariable Long id) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+////////// Deletion
 
+//    @PostMapping("/groceryLists/delete/{id}")
+//    public String deleteGroceryList(@PathVariable Long id) {
+//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//
+//        GroceryList listToDelete = groceryDao.getById(id);
+//
 
-        GroceryList listToDelete = groceryDao.getById(id);
+//        List<GroceryListIngredients> groceryListIngredients = listToDelete.getGroceryListIngredient();
 
-        List<GroceryListIngredients> groceryListIngredients = listToDelete.getGroceryListIngredient();
-//        System.out.println(groceryListIngredients);
+////        System.out.println(groceryListIngredients);
+//
+//        for (GroceryListIngredients listItemsToDelete : groceryListIngredients) {
+//            listItemsToDelete.setId(listItemsToDelete.getId());
+//            listItemsToDelete.setQuantity(listItemsToDelete.getQuantity());
+//            listItemsToDelete.setNotes(listItemsToDelete.getNotes());
+//            listItemsToDelete.setGroceryList(listToDelete);
+//            listItemsToDelete.setUser(currentUser);
+//
+//
+////            System.out.println(listItemsToDelete.getId());
+////            System.out.println(listItemsToDelete.getQuantity());
+////            System.out.println(listItemsToDelete.getNotes());
+//            listIngredientsDao.delete(listItemsToDelete);
+//        }
+//
+//
+//
+//        return "redirect:/groceryLists";
+//    }
 
-        for (GroceryListIngredients listItemsToDelete : groceryListIngredients) {
-            listItemsToDelete.setId(listItemsToDelete.getId());
-            listItemsToDelete.setQuantity(listItemsToDelete.getQuantity());
-            listItemsToDelete.setNotes(listItemsToDelete.getNotes());
-            listItemsToDelete.setGroceryList(listToDelete);
-            listItemsToDelete.setUser(currentUser);
-
-
-//            System.out.println(listItemsToDelete.getId());
-//            System.out.println(listItemsToDelete.getQuantity());
-//            System.out.println(listItemsToDelete.getNotes());
-            listIngredientsDao.delete(listItemsToDelete);
-        }
-
-
-
-        return "redirect:/groceryLists";
-    }
 
 
 

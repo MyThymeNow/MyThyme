@@ -25,7 +25,10 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <section th:fragment="content">
-<!--    <div class="container">-->
+
+    <button onclick="goBack()">Back</button>
+
+    <!--    <div class="container">-->
         <div class="hero-unit">
             <h1>Create Grocery List</h1>
         </div>
@@ -172,6 +175,12 @@
             });
             // ---> current row > ***** DELETE ***** > end
         });
+    </script>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
     </script>
 </section>
 
