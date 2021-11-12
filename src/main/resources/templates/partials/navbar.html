@@ -53,14 +53,14 @@
           <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-<!--           <a class="nav-link" href="#">Logout</a>-->
-          <form class="nav-link" th:action="@{/logout}" th:method="post" th:placeholder="Logout">
-            <a class="nav-link" style="margin-top: 8px" th:href="@{/login}">Logout</a>
+          <form class="nav-link" th:action="@{/logout}" th:method="post">
+<!--            <a class="nav-link"  th:href="@{/login}">Logout</a>-->
+            <button class="btn-link btn" style="margin-top: 8px">Logout</button>
           </form>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">FAQ</a>
-        </li>
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">FAQ</a>-->
+<!--        </li>-->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
           <div class="dropdown-menu" style="background-color:#9DC88D" aria-labelledby="dropdown01">
@@ -105,8 +105,8 @@
         <li class="nav-item active">
           <!-- <a class="nav-link" href="#">Logout</a> -->
           <!--href is the only real diff will see chng in intelij-->
-          <a href="">
-            <form class="nav-link" th:action="@{/login}" th:method="post" th:href="@{/login}">
+          <a class="nav-link" th:href="@{/login}">
+            <form class="nav-link" th:action="@{/login}" th:method="post">
 <!--            <a class="nav-link" style="margin-top: 8px" th:href="@{/login}">Login</a>-->
             login
             </form>
