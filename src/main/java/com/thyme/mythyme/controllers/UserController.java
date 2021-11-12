@@ -59,8 +59,10 @@ public class UserController {
     public String viewMyProfile(Model model) {
 //        User currentUser = users;
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         User UserNDB = users.getById(currentUser.getId());
+        List<GroceryList> allLists = groceryDao.findByOwner_Id(currentUser.getId());
+        model.addAttribute("groceryLists", allLists);
+        model.addAttribute("currentUser", currentUser);
         model.addAttribute("user", UserNDB);
 
         return "user/profile"; //user/view-profile

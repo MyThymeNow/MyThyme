@@ -40,22 +40,4 @@ public class FavoritesController {
         return "user/favorites";
     }
 
-    @GetMapping("/groceryLists/{shareURL}")
-    public String showOneGroceryList(@PathVariable String shareURL, Model model) {
-        GroceryList groceryList = groceryDao.getByShareURL(shareURL);
-        List<GroceryListIngredients> groceryListIngredients = listIngredientsDao.getByGroceryList(groceryList);
-//        UserGroceryList listToFavorite = listDao.getByGroceryList_Id(groceryList.getId());
-        for(GroceryListIngredients item : groceryListIngredients) {
-            Long groceryListIngredients_id = item.getId();
-
-            Optional<Ingredient> currentIngredient = ingredientDao.findById(groceryListIngredients_id);
-
-
-            model.addAttribute("groceryList", groceryList);
-            model.addAttribute("groceryListIngredients", groceryListIngredients);
-            model.addAttribute("currentIngredient", currentIngredient);
-
-        }
-        return "groceryList/show";
-    }
 }
