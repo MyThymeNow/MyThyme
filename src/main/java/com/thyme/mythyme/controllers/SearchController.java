@@ -4,10 +4,7 @@ import com.thyme.mythyme.models.User;
 import com.thyme.mythyme.repository.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class SearchController {
@@ -28,9 +25,12 @@ public class SearchController {
     }
 
     @GetMapping("/search")
-    public String searchApp(@PathVariable String search, Model model) {
-        model.addAttribute("search", search);
+    public String searchApp() {
+//            @RequestParam(name="search") String search, Model model) {
+//        model.addAttribute("search", search);
         return "user/search";
     }
+
+
 
 }
