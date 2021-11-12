@@ -27,7 +27,7 @@ public class GroceryListController {
         this.listIngredientsDao = listIngredientsDao;
         this.ingredientDao = ingredientDao;
     }
-//////// VIEWING
+    //////// VIEWING
     @GetMapping("/groceryLists")
     public String showGroceryLists(Model model) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -74,9 +74,9 @@ public class GroceryListController {
             Ingredient ingredientInDB = ingredientDao.getByName(names[i]);
             if (ingredientInDB == null) {
 
-            Ingredient ingredient = new Ingredient();
-            ingredient.setName(names[i]);
-            ingredientInDB = ingredientDao.save(ingredient);
+                Ingredient ingredient = new Ingredient();
+                ingredient.setName(names[i]);
+                ingredientInDB = ingredientDao.save(ingredient);
             }
 
             GroceryListIngredients groceryListIngredients = new GroceryListIngredients();
@@ -110,10 +110,12 @@ public class GroceryListController {
 
             Optional<Ingredient> currentIngredient = ingredientDao.findById(groceryListIngredients_id);
 
+
         model.addAttribute("grocery_list", groceryList);
         model.addAttribute("groceryListIngredients", groceryListIngredients);
         model.addAttribute("currentIngredient", currentIngredient);
         model.addAttribute("isFavorited", listToFavorite.isFavorited());
+
         }
         return "groceryList/edit";
     }
@@ -182,7 +184,9 @@ public class GroceryListController {
         return "redirect:/groceryLists";
     }
 
+
 //////// FAVORITE
+
     @PostMapping("/groceryLists/edit/{id}/favorite")
     public String favoriteList(@PathVariable Long id, Model model){
         GroceryList currentGroceryList = groceryDao.getById(id);
@@ -234,6 +238,7 @@ public class GroceryListController {
 //
 //        return "redirect:/groceryLists";
 //    }
+
 
 
 
