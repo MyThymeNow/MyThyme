@@ -16,11 +16,18 @@ $(document).ready(function () {
 
 
     // Search
+    // $("#searchButton").click(function (e) {
+    //     e.preventDefault();
+    //     let searchedItems = $("#search-input").val();
+    //     $("#currentCity").html("Search results" + searchedItems);
+    //     console.log(searchedItems);
+
     function searchRecipes() {
         $.ajax({
             url: `https://api.spoonacular.com/food/search?apiKey=${spoonacularKey}&query=apple&number=2`,
             type: "GET"
         }).done(function (data) {
+            $("#search").html("Results" + data);
             console.log(data);
         })
 
