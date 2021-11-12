@@ -35,6 +35,7 @@ main {
     backdrop-filter: blur(10px);
 }
 
+/* Added section 11/11/21*/
 .scroll {
     max-height: 100px;
     overflow-y: auto;
@@ -44,4 +45,11 @@ main {
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+}
+
+.searchBox {
+    display: block;
+    margin-left: auto;
+    /*margin-right: auto;*/
+    width: 15%;
 }

@@ -7,25 +7,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <link rel="stylesheet" href="/css/navbar.css">
   <title>Navbar</title>
-
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
 
 </head>
 
@@ -33,15 +16,21 @@
 <!-- ****** New adjusted navbar template ****** -->
 <nav th:fragment="navbar" class="navbar navbar-dark navbar-expand-lg" style="background-image: linear-gradient(to bottom right,#4D774E,#9DC88D);">
   <!--Authenticated User-->
-  <div sec:authorize = "isAuthenticated()">
-    <!-- Logo Img -->
+  <div>
+    <!-- Logo Img & Name-->
     <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy"/>
     <a class="navbar-brand" th:href="@{/}">MyThyme</a>
+  </div>
+  <div sec:authorize = "isAuthenticated()" class="mr-auto">
+<!--    &lt;!&ndash; Logo Img &ndash;&gt;-->
+<!--    <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy"/>-->
+<!--    <a class="navbar-brand" th:href="@{/}">MyThyme</a>-->
+
     <!-- search bar below -->
-    <form class="form-inline my-2 my-md-0">
-      <input class="form-control" type="text" placeholder="Explore 1000's of recipes" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color: #f1b24a">Search</button>
-    </form>
+<!--    <form class="form-inline my-2 my-md-0">-->
+<!--      <input class="form-control" type="text" placeholder="Explore 1000's of recipes" aria-label="Search">-->
+<!--      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color: #f1b24a">Search</button>-->
+<!--    </form>-->
     <!-- hamburger button-->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myThymeAuth" aria-controls="myThymeAuth" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -53,14 +42,14 @@
           <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <!-- <a class="nav-link" href="#">Logout</a> -->
-          <form class="nav-link" th:action="@{/logout}" th:method="post" th:placeholder="Logout">
-            <a class="nav-link" style="margin-top: 8px" th:href="@{/login}">Logout</a>
+          <form class="nav-link" th:action="@{/logout}" th:method="post">
+            <button class="nav-link btn" style="margin-top: 8px">Logout</button><!-- th:href="@{/login}"-->
           </form>
+<!--          <a class="nav-link btn" type="submit" th:href="@{/logout}" th:method="post">logout</a>-->
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">FAQ</a>
-        </li>
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">FAQ</a>-->
+<!--        </li>-->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
           <div class="dropdown-menu" style="background-color:#9DC88D" aria-labelledby="dropdown01">
@@ -75,44 +64,38 @@
           </div>
         </li>
       </ul>
-      <!--      <form class="form-inline my-2 my-md-0">-->
-      <!--        <input class="form-control" type="text" placeholder="Explore 1000's of recipes" aria-label="Search">-->
-      <!--        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color: #f1b24a">Search</button>-->
-      <!--      </form>-->
+<!--      <form class="form-inline my-2 my-md-0">-->
+<!--        <input class="form-control" type="text" placeholder="Explore 1000's of recipes" aria-label="Search">-->
+<!--        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color: #f1b24a">Search</button>-->
+<!--      </form>-->
     </div>
-
-
   </div>
 
   <!--Non Authenticated User-->
-  <div sec:authorize = "!isAuthenticated()">
-    <!-- Logo Img -->
-    <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy"/>
-    <a class="navbar-brand" th:href="@{/}">MyThyme</a>
-
-    <form class="form-inline my-2 my-md-0">
-      <input class="form-control" type="text" placeholder="Explore 1000's of recipes" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color: #f1b24a">Search</button>
-    </form>
+<!--  <div>-->
+<!--    &lt;!&ndash; Logo Img & Name&ndash;&gt;-->
+<!--    <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy"/>-->
+<!--    <a class="navbar-brand" th:href="@{/}">MyThyme</a>-->
+<!--  </div>-->
+  <div sec:authorize = "!isAuthenticated()" class="mr-auto">
+    <!--hamburger nav button-->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myThymeNotAuth" aria-controls="myThymeNotAuth" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
+    <!--hamburger nav section-->
     <div class="collapse navbar-collapse" id="myThymeNotAuth">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" th:href="@{/}">Home</a> <!-- <span class="sr-only">(current)</span> -->
         </li>
         <li class="nav-item active">
-          <!-- <a class="nav-link" href="#">Logout</a> -->
-          <!--href is the only real diff will see chng in intelij-->
-          <form class="nav-link" th:action="@{/login}" th:method="post">
-            <a class="nav-link" style="margin-top: 8px" th:href="@{/login}">Login</a>
-          </form>
+          <a class="nav-link btn" th:href="@{/login}">Login
+<!--            <form class="nav-link" th:action="@{/login}" th:method="post">-->
+<!--              <button class="nav-link btn" style="margin-top: 8px">login</button>&lt;!&ndash;th:href="@{/login}"&ndash;&gt;-->
+<!--            </form>-->
+          </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">FAQ</a>
-        </li>
+        <!-- dropdown nav link-->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
           <div class="dropdown-menu" style="background-color:#4d774e" aria-labelledby="dropdown01">
@@ -127,9 +110,14 @@
     </div>
   </div>
 
+  <!-- Search bar-->
+  <div>
+    <form class="form-inline my-2 my-md-0">
+      <input class="form-control" type="text" placeholder="Explore 1000's of recipes" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color: #f1b24a">Search</button>
+    </form>
+  </div>
 </nav>
 
 </body>
 </html>
-
-<!-- Correct Navbar new things -->

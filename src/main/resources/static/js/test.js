@@ -16,16 +16,17 @@ $.ajax({
     for (let i = 0; i < 3; i++) {
 
         html += `
-                  <div className="card" style="width: 18rem;"><!-- class="bg-transparent" -->
-        <div className="card-body" style="border: #333333 2px solid; background-image: linear-gradient(180deg, #f1b24a, #9DC88D)">
-            <h5 className="card-title" style="border: #164A41; text-align: center">${data.recipes[i].title}</h5> 
-            <img className="centerImg" src="${data.recipes[i].image}"
-                 style="width: 8rem; length: 8rem; border: #9DC88D 2px solid">  
-            <p className="card-text scroll">
-                ${data.recipes[i].summary} </p> 
-<!--            <a href="#" className="btn" style="color: white; background-color: #f1b24a">View recipe</a> &lt;!&ndash; background-color: #f1b24a&ndash;&gt;-->
-        </div>
-    </div>`
+                  <div class="card" style="width: 18rem"><!-- class="bg-transparent" -->
+                    <div class="card-body" style="border: #333333 2px solid; background-image: linear-gradient(180deg, #f1b24a, #9DC88D)">
+                      <h5 class="card-title" style="border: #164A41; text-align: center">${data.recipes[i].title}</h5>
+                      <img class="centerImg" src="${data.recipes[i].image}" style="width: 8rem; length: 8rem; border: #9DC88D 2px solid">
+                      <br>
+                      <p class="card-text scroll" style="border: #9DC88D 2px solid">${data.recipes[i].summary}</p>
+                      <a href="#" class="btn centerImg" style="color: white; background-color: #f1b24a">View recipe</a>
+
+                    </div>
+                  </div>`;
+
     }
     $("#test-col").html(html);
 

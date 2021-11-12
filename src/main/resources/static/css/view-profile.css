@@ -18,12 +18,8 @@ h2{
 }
 
 form{
-    background-image: linear-gradient(to bottom right,#9DC88D,#f1b24a);
+    /*background-image: linear-gradient(to bottom right,#f1b24a,#9DC88D);*/
 }
-
-/*.delete-stuff{*/
-/*    background-image: linear-gradient(to bottom right, #9DC88D,#f1b24a);*/
-/*}*/
 
 .list-container{
     background: #f1b24a;
