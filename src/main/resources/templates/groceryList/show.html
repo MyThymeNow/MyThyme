@@ -9,7 +9,7 @@
 
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<div sec:authorize="isAuthenticated()">
+
 
     <div><button type="submit"><a th:href="@{/user/favorites}">Back</a></button></div>
 
@@ -17,24 +17,32 @@
 
     <div th:each="ingredient : ${groceryListIngredients}">
         <div class="form-group">
-            <label th:text="${ingredient.ingredient.name}"></label>
+
+            <label th:text=" 'Item: ' + ${ingredient.ingredient.name}"></label>
             <br>
-            <label th:text="${ingredient.getQuantity()}"></label>
+            <label th:text=" 'Quantity: ' + ${ingredient.getQuantity()}"></label>
             <br>
-            <label th:text="${ingredient.getNotes()}"></label>
+            <label th:text=" 'Notes: ' + ${ingredient.getNotes()}"></label>
+
             <br>
         </div>
     </div>
 
+    <button type="submit" id="copyURL" onclick="copyUrl()">Copy URL</button>
 
-    <div>Created By: <span th:text="${groceryList.owner.username}"></span></div>
+
+    <div>Created By: <a th:href="@{|/profile/${groceryList.getOwner().getId()}|}" th:text="${groceryList.owner.username}"></a></div>
 
 <!--    <form th:action="@{|/groceryLists/delete/${groceryList.id}|}" th:method="post">-->
 <!--        <button type="submit">Delete List</button>-->
 <!--    </form>-->
-</div>
 
 <div th:replace="partials/footer::footer"></div>
+<script type="text/javascript">
+    function copyUrl() {
+        navigator.clipboard.writeText(location.href);
 
+    }
+</script>
 </body>
 </html>
