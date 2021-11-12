@@ -16,4 +16,6 @@ public interface UserGroceryListRepository extends JpaRepository<UserGroceryList
     UserGroceryList getByGroceryList(GroceryList groceryList);
 
     List <UserGroceryList> getByFavorited(boolean favorited);
+
+    List<UserGroceryList> getByFavoritedAndUser_Id( boolean favorited, Long id);
 }

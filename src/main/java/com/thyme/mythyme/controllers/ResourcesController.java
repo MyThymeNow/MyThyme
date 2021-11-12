@@ -20,8 +20,7 @@ public class ResourcesController {
     @GetMapping(path = "/keys.js", produces = "application/javascript")
     @ResponseBody
     public String getAPIKeys() {
-        return "const mapboxKey='"+mapboxKey+"'\nconst cocktailDBKey='"+cocktailDBKey+"'\nconst spoonacularKey='"+spoonacularKey+"'";
+        return "const mapboxKey='" + mapboxKey + "'\nconst cocktailDBKey='" + cocktailDBKey + "'\nconst spoonacularKey='" + spoonacularKey + "'";
     }
 }
-
 
