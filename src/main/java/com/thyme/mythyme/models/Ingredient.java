@@ -32,7 +32,7 @@ public class Ingredient {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredient")
     @Getter
     @Setter
-    private List<GroceryListIngredients> GroceryListIngredient;
+    private List<GroceryListIngredients> GroceryListIngredients;
 
     @ManyToMany (mappedBy = "ingredients")
     @Getter

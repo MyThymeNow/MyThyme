@@ -44,7 +44,6 @@ public class FavoritesController {
     public String showOneGroceryList(@PathVariable String shareURL, Model model) {
         GroceryList groceryList = groceryDao.getByShareURL(shareURL);
         List<GroceryListIngredients> groceryListIngredients = listIngredientsDao.getByGroceryList(groceryList);
-//        UserGroceryList listToFavorite = listDao.getByGroceryList_Id(groceryList.getId());
         for(GroceryListIngredients item : groceryListIngredients) {
             Long groceryListIngredients_id = item.getId();
 
