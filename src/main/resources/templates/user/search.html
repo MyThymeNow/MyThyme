@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Search</title>
-
-
 </head>
 <body>
 <!--Search works, fix searching for what-->
@@ -12,15 +10,16 @@
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
-<input id="search" ><button onclick="getIngredient(document.getElementById('search').value)">Search</button>
+<input id="search" ><button onclick="getRecipe(document.getElementById('search').value)">Search</button>
 <div id="output"></div>
-<a href="/groceryLists" id="sourceLink">Add Item</a>
+<a href="" id="sourceLink">Add Item</a>
+<script src="/keys.js"></script>
 <script>
 
     function getSource(id) {
         $.ajax({
             method: "GET",
-            url: "https://api.spoonacular.com/recipes/"+id+"/information?apiKey=&includeNutrition=true",
+            url: "https://api.spoonacular.com/recipes/"+id+"/information?apiKey="+spoonacularKey+"&includeNutrition=true",
             success: function(data) {
                 console.log(data);
                             document.getElementById("sourceLink").innerHTML=data.sourceUrl
@@ -31,7 +30,7 @@
 
     function getRecipe(q){
         $.ajax({
-            url:"https://api.spoonacular.com/recipes/search?apiKey=&number=1&query="+q,
+            url:"https://api.spoonacular.com/recipes/search?apiKey="+spoonacularKey+"&number=1&query="+q,
             success: function(res) {
                 document.getElementById("output").innerHTML="<h1>"+res.results[0].title+"</h1>"
                 getSource(res.results[0].id)
@@ -39,27 +38,27 @@
         });
     }
 
-    function getSourceIngredient(id) {
-        $.ajax({
-            method: "GET",
-            url: "https://api.spoonacular.com/food/ingredients/"+id+"/information?apiKey=",
-            success: function(data) {
-                console.log(data);
-                document.getElementById("sourceLink").innerHTML=data.sourceUrl
-                document.getElementById("sourceLink").href=data.sourceUrl
-            }
-        })
-    }
-
-    function getIngredient(q){
-        $.ajax({
-            url:"https://api.spoonacular.com/food/ingredients/search?apiKey=&number=1&query="+q,
-            success: function(res) {
-                document.getElementById("output").innerHTML="<h1>"+res.results[0].name+"</h1>"
-                getSourceIngredient(res.results[0].id)
-            }
-        });
-    }
+    // function getSourceIngredient(id) {
+    //     $.ajax({
+    //         method: "GET",
+    //         url: "https://api.spoonacular.com/food/ingredients/"+id+"/information?apiKey=",
+    //         success: function(data) {
+    //             console.log(data);
+    //             document.getElementById("sourceLink").innerHTML=data.sourceUrl
+    //             document.getElementById("sourceLink").href=data.sourceUrl
+    //         }
+    //     })
+    // }
+    //
+    // function getIngredient(q){
+    //     $.ajax({
+    //         url:"https://api.spoonacular.com/food/ingredients/search?apiKey=&number=1&query="+q,
+    //         success: function(res) {
+    //             document.getElementById("output").innerHTML="<h1>"+res.results[0].name+"</h1>"
+    //             getSourceIngredient(res.results[0].id)
+    //         }
+    //     });
+    // }
 
 
 
