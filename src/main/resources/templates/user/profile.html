@@ -22,7 +22,8 @@
     <div class="container" th:each="groceryList:${groceryLists}">
 
         <h3 th:text="${groceryList.name}"></h3>
-        <button type="submit"><a th:href="@{/groceryLists/{shareURL}(shareURL=${groceryList.shareURL})}">View</a></button>
+        <button type="submit">    <a th:href="@{/groceryLists/{shareURL}(shareURL=${groceryList.shareURL})}">View List</a>
+        </button>
 
 
     </div>

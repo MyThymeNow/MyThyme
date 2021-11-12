@@ -216,35 +216,35 @@ public class GroceryListController {
     }
 
 
-    //////// Deletion
-    @PostMapping("/groceryLists/delete/{id}")
-    public String deleteGroceryList(@PathVariable Long id) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-
-        GroceryList listToDelete = groceryDao.getById(id);
-
-        List<GroceryListIngredients> groceryListIngredients = listToDelete.getGroceryListIngredient();
-//        System.out.println(groceryListIngredients);
-
-        for (GroceryListIngredients listItemsToDelete : groceryListIngredients) {
-            listItemsToDelete.setId(listItemsToDelete.getId());
-            listItemsToDelete.setQuantity(listItemsToDelete.getQuantity());
-            listItemsToDelete.setNotes(listItemsToDelete.getNotes());
-            listItemsToDelete.setGroceryList(listToDelete);
-            listItemsToDelete.setUser(currentUser);
-
-
-//            System.out.println(listItemsToDelete.getId());
-//            System.out.println(listItemsToDelete.getQuantity());
-//            System.out.println(listItemsToDelete.getNotes());
-            listIngredientsDao.delete(listItemsToDelete);
-        }
-
-
-
-        return "redirect:/groceryLists";
-    }
+//    //////// Deletion
+//    @PostMapping("/groceryLists/delete/{id}")
+//    public String deleteGroceryList(@PathVariable Long id) {
+//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//
+//        GroceryList listToDelete = groceryDao.getById(id);
+//
+//        List<GroceryListIngredients> groceryListIngredients = listToDelete.getGroceryListIngredient();
+////        System.out.println(groceryListIngredients);
+//
+//        for (GroceryListIngredients listItemsToDelete : groceryListIngredients) {
+//            listItemsToDelete.setId(listItemsToDelete.getId());
+//            listItemsToDelete.setQuantity(listItemsToDelete.getQuantity());
+//            listItemsToDelete.setNotes(listItemsToDelete.getNotes());
+//            listItemsToDelete.setGroceryList(listToDelete);
+//            listItemsToDelete.setUser(currentUser);
+//
+//
+////            System.out.println(listItemsToDelete.getId());
+////            System.out.println(listItemsToDelete.getQuantity());
+////            System.out.println(listItemsToDelete.getNotes());
+//            listIngredientsDao.delete(listItemsToDelete);
+//        }
+//
+//
+//
+//        return "redirect:/groceryLists";
+//    }
 
 
 
