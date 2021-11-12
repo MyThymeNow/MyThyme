@@ -71,9 +71,35 @@ $(document).ready(function () {
 //     searchRecipesByIngredients();
 
 
-    function searchForIngredients() {
+    // function searchForIngredients() {
+    //     $.ajax({
+    //         url: `https://api.spoonacular.com/food/ingredients/search?apiKey=${spoonacularKey}&query=chicken&number=10`,
+    //         type: "GET"
+    //     }).done(function (data) {
+    //         console.log(data);
+    //
+    //         let html = "";
+    //         for (let i = 0; i < 10; i++) {
+    //
+    //             html += `
+    //               <div class="card bg-transparent" style="width: 10rem">
+    //                 <div class="card-body">
+    //                   <h5 class="card-title">${data.results[i].name}</h5>
+    //                   <img src="https://spoonacular.com/cdn/ingredients_100x100/${data.results[i].image}">
+    //                   <a href="#" class="btn btn-primary">Add to List</a>
+    //
+    //                 </div>
+    //               </div>`;
+    //         }
+    //         $("#search_results").html(html);
+    //     })
+    // }
+    // searchForIngredients();
+
+
+    function produce() {
         $.ajax({
-            url: `https://api.spoonacular.com/food/ingredients/search?apiKey=${spoonacularKey}&query=chicken&number=10`,
+            url: `https://api.spoonacular.com/food/ingredients/search?apiKey=${spoonacularKey}&query=produce&number=20`,
             type: "GET"
         }).done(function (data) {
             console.log(data);
@@ -81,20 +107,23 @@ $(document).ready(function () {
             let html = "";
             for (let i = 0; i < 10; i++) {
 
-                html += `
+                    html += `
                   <div class="card bg-transparent" style="width: 10rem">
+                  
                     <div class="card-body">
+                        
                       <h5 class="card-title">${data.results[i].name}</h5>
                       <img src="https://spoonacular.com/cdn/ingredients_100x100/${data.results[i].image}">
+                      <p class="card-text">${data[i].results[i].aisle}</p>
                       <a href="#" class="btn btn-primary">Add to List</a>
                   
                     </div>
                   </div>`;
-            }
+                }
             $("#search_results").html(html);
         })
     }
-    searchForIngredients();
+    produce();
 })
 
 
