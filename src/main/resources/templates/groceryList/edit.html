@@ -4,26 +4,37 @@
 <head th:include="partials/header :: head">
     <meta charset="UTF-8">
     <title>Edit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/create.css">
+    <!--    New Template -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <!--    New Template -->
+    <script defer src="/create.js"></script>
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
+<button onclick="goBack()">Back</button>
+
 <section th:fragment="content">
 
-    <div th:if="${!isFavorited}" class="container">
-
-        <form th:action="@{|/groceryLists/edit/${id}/favorite|}" class="favoriteBtn" th:method="post">
-            <button  type="submit" >Favorite</button>
-        </form>
-    </div>
-
-    <div th:if="${isFavorited}" class="container">
-        <form th:action="@{|/groceryLists/edit/${id}/unfavorite|}" class="unFavoriteBtn" th:method="post">
-            <button  type="submit" >Unfavorite</button>
-        </form>
-    </div>
-
     <div class="container">
+        <div th:if="${!isFavorited}" class="container">
+
+            <form th:action="@{|/groceryLists/edit/${id}/favorite|}" class="favoriteBtn" th:method="post">
+                <button  type="submit" >Favorite</button>
+            </form>
+        </div>
+
+        <div th:if="${isFavorited}" class="container">
+            <form th:action="@{|/groceryLists/edit/${id}/unfavorite|}" class="unFavoriteBtn" th:method="post">
+                <button  type="submit" >Unfavorite</button>
+            </form>
+        </div>
+    </div>
+
         <form th:action="@{|/groceryLists/edit/${id}|}" th:method="post" th:object="${grocery_list}">
             <div class="form-group">
                 <input type="text" th:field="*{name}" th:placeholder="name">
@@ -31,30 +42,125 @@
             </div>
 
 
-
             <div id="editIngredients">
-                <h1>Edit Ingredients</h1>
-                <div th:each="ingredient : ${groceryListIngredients}">
-                    <div class="form-group">
+                <h1>Edit Items</h1>
+                <div>
+                    <div class="form-group" th:each="ingredient : ${groceryListIngredients}">
+                        <input type="hidden" name="id[]" id="id[]" th:value="${ingredient.id}">
                         <label for="name[]">Item:</label>
                         <input type="text" name="name[]" id="name[]" th:value="${ingredient.ingredient.name}">
                         <label for="quantity[]">Quantity:</label>
                         <input type="text" name="quantity[]" id="quantity[]" th:value="${ingredient.getQuantity()}">
                         <label for="notes[]">Notes:</label>
                         <input type="text" name="notes[]" id="notes[]" th:value="${ingredient.getNotes()}">
-
                     </div>
+                    <span id="addItemButton" class="btn btn-sm btn-success btn_row_below_new">+</span>
+
                 </div>
             </div>
-            <input value="Save List" type="submit"/>
+            <input value="Save Edits" type="submit"/>
         </form>
-    </div>
+    <br>
 
 
- NEED TO UPDATE DELETE FUNCTIONALITY
-<form th:action="@{|/groceryLists/delete/${id}|}" th:method="post">
-    <button type="submit">Delete List</button>
-</form>
+
+    <script>
+        "use strict";
+        window.onload = (function() {
+            const additionalItem = document.getElementById('addItemButton');
+            const removeItem = document.getElementById('removeItemButton');
+
+            // Section grabs form information
+            const itemForm =
+                `<div class="form-group">
+                  <input type="hidden" name="id[]" id="id[]">
+                  <label for="name[]">Item:</label>
+                  <input type="text" name="name[]" id="name[]">
+                  <label for="quantity[]">Quantity:</label>
+                  <input type="text" name="quantity[]" id="quantity[]">
+                  <label for="notes[]">Notes:</label>
+                  <input type="text" name="notes[]" id="notes[]">
+                  <span id="removeItemButton" class="btn btn-sm btn-danger btn_row_delete">-</span>
+                </div>`
+
+            // Add button feature
+            additionalItem.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                const addedItem = document.getElementById('editIngredients');
+                let newAddedItem = document.createElement("div");
+                newAddedItem.innerHTML = itemForm;
+                addedItem.appendChild(newAddedItem);
+            });
+
+            //Remove button feature removeChild()
+            removeItem.removeEventListener('click', function(event) {
+                event.preventDefault();
+
+                const removeItem = document.getElementById('removingItem');
+                let newRemovedItem = document.removeChild("editIngredients");// *** CHECK THIS SECTION? ****
+                newRemovedItem.innerHtml = itemForm;
+                // removeItem.remove(newRemovedItem);//appendChild(newRemovedItem) old Entry
+                $("newRemovedItem").remove();
+            });
+
+        })
+    </script>
+
+    <!-- todo Script with DELETE functionality below -->
+    <script>
+        $(document).ready(function($){
+            //executes function on click with class 'btn_row_add_below_end'
+            $(document).on('click',".btn_row_add_below_end", function(e){
+                var tableBody = $(document).find('.tbl_code_with_mark').find("tbody");
+                var trLast = tableBody.find("tr:last");
+                var trNew = trLast.clone();
+                trLast.after(trNew);
+            });
+            // ---> add row at end > btn_row_add_below_end
+
+            // ---> current row > new > start
+            $(document).on('click', ".btn_row_below_new", function(e){
+                var r = $(this).closet('tr').clone(); //might NEED to cap Clone
+
+                $.each(r.find('td'), function(i1,v1){
+                    //clear all data/value in td/cell
+                    $(this).html('');
+                }) ;
+
+                $(this).closet('tr').after(r);
+            });
+            // ---> current row > new > end
+
+            // ---> current row > clone > start
+            $(document).on('click',".btn_row_below_clone", function(e){
+                var r = $(this).closet('tr').clone();
+                $(this).closet('tr').after();
+            });
+            // ---> current row > clone > end
+
+            // todo DELETE FEATURE BELOW
+            // ---> current row > ***** DELETE ***** > start
+            $(document).on('click',".btn_row_delete", function(e){
+                var r = $(this).closest('div').remove(); //chng frm closest('tr') to closest('div')
+            });
+            // ---> current row > ***** DELETE ***** > end
+        });
+    </script>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+
+
+<!-- NEED TO UPDATE DELETE FUNCTIONALITY-->
+
+<!--<form th:action="@{|/groceryLists/delete/${id}|}" th:method="post">-->
+<!--    <button type="submit">Delete List</button>-->
+<!--</form>-->
 
 </section>
 

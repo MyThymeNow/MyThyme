@@ -6,7 +6,7 @@
 }
 
 h1{
-    background: linear-gradient(to top left,#f1b24a,#9DC88D);
+    background: linear-gradient(#f1b24a,#9DC88D);
     margin-bottom: 0;
     text-align: center;
 }
@@ -14,11 +14,21 @@ h1{
 h2{
     background-image: linear-gradient(#9DC88D,#f1b24a);
     justify-content: center;
+    margin-bottom: 0;
 }
 
 form{
     /*background-image: linear-gradient(to bottom right,#f1b24a,#9DC88D);*/
 }
+
+.list-container{
+    background: #f1b24a;
+}
+
+.create{
+    background: #f1b24a;
+}
+
 
 
 

@@ -22,4 +22,5 @@ public class ResourcesController {
     public String getAPIKeys() {
         return "const mapboxKey='"+mapboxKey+"'\nconst cocktailDBKey='"+cocktailDBKey+"'\nconst spoonacularKey='"+spoonacularKey+"'";
     }
+
 }

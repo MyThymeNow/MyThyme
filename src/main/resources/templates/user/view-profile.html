@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:include="partials/header :: head">
+
     <meta charset="UTF-8">
     <title>View Profile</title>
     <link rel="stylesheet" href="/css/view-profile.css">
+
 </head>
 
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<h1> View Your Profile Information Here</h1>
+<button type="submit"><a th:href="@{/messages/{otherUserId}(otherUserId=${user.getId()})}">Message</a></button>
+
 
 <div class="user-info" id="info" sec:authorize="isAuthenticated()">
     <div class="profile" style="background-color:#9DC88D;" th:each="user : ${user}">
@@ -20,9 +23,15 @@
         <p><strong>First Name: </strong><div th:text="${user.getFirstName()}"></div></p>
         <p><strong>Last Name: </strong><div th:text="${user.getLastName()}"></div></p>
 
-    </div>
 
-</div>
+  </div>
+
+  <div th:each="groceryLists : ${groceryLists}">
+
+    <h3 th:text="${groceryLists.name}"></h3>
+
+  </div>
+
 
 
 
