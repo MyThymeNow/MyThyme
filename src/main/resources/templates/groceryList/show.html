@@ -11,7 +11,7 @@
 
 
 
-    <div><button type="submit"><a th:href="@{/user/favorites}">Back</a></button></div>
+    <div><button onclick="goBack()">Back</button></div>
 
     <h1 th:text="${groceryList.name}"></h1>
 
@@ -36,13 +36,19 @@
 <!--    <form th:action="@{|/groceryLists/delete/${groceryList.id}|}" th:method="post">-->
 <!--        <button type="submit">Delete List</button>-->
 <!--    </form>-->
-
-<div th:replace="partials/footer::footer"></div>
 <script type="text/javascript">
     function copyUrl() {
         navigator.clipboard.writeText(location.href);
 
     }
 </script>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+<div th:replace="partials/footer::footer"></div>
+
 </body>
 </html>

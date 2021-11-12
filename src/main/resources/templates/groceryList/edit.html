@@ -16,7 +16,7 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<button type="submit"><a th:href="@{/groceryLists}">Back</a></button>
+<button onclick="goBack()">Back</button>
 
 <section th:fragment="content">
 
@@ -146,6 +146,12 @@
             });
             // ---> current row > ***** DELETE ***** > end
         });
+    </script>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
     </script>
 
 
