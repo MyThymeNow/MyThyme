@@ -29,13 +29,11 @@ public class FavoritesController {
     }
 
     @GetMapping("/user/favorites")
-    public String showFavorites (Model model) {
+    public String showUserFavorites (Model model) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<GroceryList> userLists = groceryDao.findByOwner_Id(currentUser.getId());
-        List<UserGroceryList> favoriteLists = listDao.getByFavorited(true);
+        List<UserGroceryList> userFavLists = listDao.getByFavoritedAndUser_Id(true, currentUser.getId());
 
-
-        model.addAttribute("favorites", favoriteLists);
+        model.addAttribute("favorites", userFavLists);
 
         return "user/favorites";
     }
