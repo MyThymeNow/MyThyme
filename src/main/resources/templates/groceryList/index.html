@@ -6,6 +6,7 @@
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>Title</title>
+    <link rel="stylesheet" href="/css/view-profile.css">
     <script defer src="/create.js"></script>
 </head>
 <body>
@@ -13,14 +14,14 @@
 
 <h2>Viewing all Lists</h2>
 
-<div sec:authorize="isAuthenticated()" >
+<div class="create" sec:authorize="isAuthenticated()" >
 
 <!--    <button class="btn btn-outline-primary"><a th:href="@{/create}">Create New List</a></button>-->
     <button type="submit"><a th:href="@{/create}">Create New List</a></button>
 
 </div>
 
-<div class="container" th:each="groceryList:${groceryLists}">
+<div class="list-container" th:each="groceryList:${groceryLists}">
     <h2 th:text="${groceryList.name}"></h2>
 
 <!--    <div th:if="${!isFavorited}" class="container">-->
