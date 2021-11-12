@@ -82,7 +82,7 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @Getter
     @Setter
-    private List<GroceryListIngredients> GroceryListIngredient;
+    private List<GroceryListIngredients> GroceryListIngredients;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @Getter

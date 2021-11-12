@@ -121,10 +121,12 @@ public class GroceryListController {
 
             Optional<Ingredient> currentIngredient = ingredientDao.findById(groceryListIngredients_id);
 
-            model.addAttribute("grocery_list", groceryList);
-            model.addAttribute("groceryListIngredients", groceryListIngredients);
-            model.addAttribute("currentIngredient", currentIngredient);
-            model.addAttribute("isFavorited", listToFavorite.isFavorited());
+
+        model.addAttribute("grocery_list", groceryList);
+        model.addAttribute("groceryListIngredients", groceryListIngredients);
+        model.addAttribute("currentIngredient", currentIngredient);
+        model.addAttribute("isFavorited", listToFavorite.isFavorited());
+
         }
         return "groceryList/edit";
     }
@@ -144,7 +146,7 @@ public class GroceryListController {
         listToUpdate.setOwner(loggedInUser);
         listToUpdate.setName(name);
         GroceryList updatedList = groceryDao.save(listToUpdate);
-        List<GroceryListIngredients> groceryListIngredients = listToUpdate.getGroceryListIngredient();
+        List<GroceryListIngredients> groceryListIngredients = listToUpdate.getGroceryListIngredients();
 //        System.out.println(groceryListIngredients); does sout correct number of ingredients
 
 //        //Loop for editing current items
@@ -193,7 +195,9 @@ public class GroceryListController {
         return "redirect:/groceryLists";
     }
 
-    //////// FAVORITE
+
+//////// FAVORITE
+
     @PostMapping("/groceryLists/edit/{id}/favorite")
     public String favoriteList(@PathVariable Long id, Model model){
         GroceryList currentGroceryList = groceryDao.getById(id);
@@ -216,7 +220,8 @@ public class GroceryListController {
     }
 
 
-//    //////// Deletion
+////////// Deletion
+
 //    @PostMapping("/groceryLists/delete/{id}")
 //    public String deleteGroceryList(@PathVariable Long id) {
 //        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -224,7 +229,9 @@ public class GroceryListController {
 //
 //        GroceryList listToDelete = groceryDao.getById(id);
 //
+
 //        List<GroceryListIngredients> groceryListIngredients = listToDelete.getGroceryListIngredient();
+
 ////        System.out.println(groceryListIngredients);
 //
 //        for (GroceryListIngredients listItemsToDelete : groceryListIngredients) {
@@ -245,6 +252,7 @@ public class GroceryListController {
 //
 //        return "redirect:/groceryLists";
 //    }
+
 
 
 

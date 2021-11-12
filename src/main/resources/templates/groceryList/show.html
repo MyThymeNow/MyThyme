@@ -11,15 +11,19 @@
 
 
 
-    <div th:text="${groceryList.name}"></div>
+    <div><button type="submit"><a th:href="@{/user/favorites}">Back</a></button></div>
+
+    <h1 th:text="${groceryList.name}"></h1>
 
     <div th:each="ingredient : ${groceryListIngredients}">
         <div class="form-group">
+
             <label th:text=" 'Item: ' + ${ingredient.ingredient.name}"></label>
             <br>
             <label th:text=" 'Quantity: ' + ${ingredient.getQuantity()}"></label>
             <br>
             <label th:text=" 'Notes: ' + ${ingredient.getNotes()}"></label>
+
             <br>
         </div>
     </div>
