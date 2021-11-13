@@ -15,10 +15,8 @@
 <h2>Viewing all Lists</h2>
 
 <div class="create" sec:authorize="isAuthenticated()" >
-
 <!--    <button class="btn btn-outline-primary"><a th:href="@{/create}">Create New List</a></button>-->
     <button type="submit"><a th:href="@{/create}">Create New List</a></button>
-
 </div>
 
 <div class="list-container" th:each="groceryList:${groceryLists}">
@@ -27,6 +25,7 @@
 
 <div th:if="${currentUser.getId() == groceryList.getOwner().getId()}">
     <button type="submit" class="edit" ><a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}">Edit</a></button>
+    <button>Delete List</button>
 </div>
 <div th:if="${currentUser.getId() != groceryList.getOwner().getId()}">
     <button type="submit"><a th:href="@{/groceryLists/{shareURL}(shareURL=${groceryList.shareURL})}">View</a></button>
@@ -37,6 +36,7 @@
 </div>
 
 
+<!--Scripts-->
 <script type="text/javascript">
 
 
