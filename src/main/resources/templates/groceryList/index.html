@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
+<head th:include="partials/header :: head">
     <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>Title</title>
+    <link rel="stylesheet" href="/css/page-layout.css">
     <script defer src="/create.js"></script>
 </head>
 <body>
@@ -11,53 +14,69 @@
 
 <h2>Viewing all Lists</h2>
 
-<div sec:authorize="isAuthenticated()" >
+<div class="create" sec:authorize="isAuthenticated()" >
 
 <!--    <button class="btn btn-outline-primary"><a th:href="@{/create}">Create New List</a></button>-->
     <button type="submit"><a th:href="@{/create}">Create New List</a></button>
 
 </div>
 
-<div th:each="groceryList:${groceryLists}">
+<div class="list-container" th:each="groceryList:${groceryLists}">
     <h2 th:text="${groceryList.name}"></h2>
-    <button type="submit"><a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}">Edit List</a></button>
-<!--    <div class="delete-stuff">-->
-<!--    <button type="button" class="btn delete " data-clear-complete-tasks-button>Delete list</button>-->
-<!--    </div>-->
-    <button type="submit">Share</button>
+
+
+<div th:if="${currentUser.getId() == groceryList.getOwner().getId()}">
+    <button type="submit" class="edit" ><a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}">Edit</a></button>
 </div>
-<div class="delete-stuff">
-    <button type="button" class="btn delete " data-clear-complete-tasks-button>Delete list</button>
+<div th:if="${currentUser.getId() != groceryList.getOwner().getId()}">
+    <button type="submit"><a th:href="@{/groceryLists/{shareURL}(shareURL=${groceryList.shareURL})}">View</a></button>
+    <p>Created By: <a th:text="${groceryList.owner.username}" th:href="@{|/profile/${groceryList.getOwner().getId()}|}"></a></p>
 </div>
 
 
-<script>
-    window.onload = (function() {
-        const additionalItem = document.getElementById('addItemButton');
-
-        const itemForm = `<div class="form-group">
-                  <label for="name[]">Item:</label>
-                  <input type="text" name="name[]" id="name[]">
-                  <label for="quantity[]">Quantity:</label>
-                  <input type="text" name="quantity[]" id="quantity[]">
-                  <label for="notes[]">Notes:</label>
-                  <input type="text" name="notes[]" id="notes[]">
-                </div>`
-
-        additionalItem.addEventListener('click', function(event) {
-            event.preventDefault();
+</div>
 
 
-            const addedItem = document.getElementById('additionalItems');
-            let newItem = document.createElement("div");
-            newItem.innerHTML = itemForm;
-            addedItem.appendChild(newItem);
-        });
-    })
+<script type="text/javascript">
+
+
+
+    // const copyURL = new URL(window.location.href);
+    // console.log(copyURL.toString());
+    // navigator.clipboard.writeText(copyURL)
+
+
+
+
+
+    //todo: remove later if not needed
+    // window.onload = (function() {
+    //     const additionalItem = document.getElementById('addItemButton');
+    //
+    //     const itemForm = `<div class="form-group">
+    //               <label for="name[]">Item:</label>
+    //               <input type="text" name="name[]" id="name[]">
+    //               <label for="quantity[]">Quantity:</label>
+    //               <input type="text" name="quantity[]" id="quantity[]">
+    //               <label for="notes[]">Notes:</label>
+    //               <input type="text" name="notes[]" id="notes[]">
+    //             </div>`
+    //
+    //     additionalItem.addEventListener('click', function(event) {
+    //         event.preventDefault();
+    //
+    //
+    //         const addedItem = document.getElementById('additionalItems');
+    //         let newItem = document.createElement("div");
+    //         newItem.innerHTML = itemForm;
+    //         addedItem.appendChild(newItem);
+    //     });
+    // })
 </script>
 <script src="../../js/jquery.js"></script>
 <script src="../../js/jquery_functions.js"></script>
 
 <div th:replace="partials/footer::footer"></div>
+</div>
 </body>
 </html>

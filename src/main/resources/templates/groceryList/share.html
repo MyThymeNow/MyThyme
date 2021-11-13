@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <head th:include="partials/header :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+
+<h2>Share your list with other users!</h2>
+
+
+<form th:action="@{/groceryLists/share/{shareURL}}" method="post" th:object="${listToShare}">
+
+    <label for="name">List Name</label>
+    <input id="name" th:field="*{name}" readonly/>
+    <br>
+    <label for="shareURL">Share URL</label>
+    <input id="shareURL" th:field="*{shareURL}" readonly/>
+    <br>
+</form>
+    <div>
+    <form>
+    <label>Enter the username of shared user:</label>
+
+
+    <input type="submit" value="Share List">
+    </form>
+    </div>
+
+
+
+
+
+
+
+
+<div th:replace="partials/footer::footer"></div>
+
+</body>
+</html>

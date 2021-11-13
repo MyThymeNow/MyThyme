@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Messenger</title>
+    <head th:include="partials/header :: head">
+
+</head>
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<div class="container">
+
+<!--    <button value="Craft New Message" th:href="@{}"></button>-->
+
+    <table class="table table-light">
+
+        <th>Users</th>
+        <div th:each="user : ${users}">
+
+            <tr>
+                <td><a th:href="@{/messages/{otherUserId}(otherUserId=${user.getId()})}" th:text="${user.username}"></a> </td>
+            </tr>
+
+        </div>
+
+    </table>
+
+
+</div>
+
+<footer><p th:replace="partials/footer :: footer"></p></footer>
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
-<head>
+<head th:include="partials/header :: head">
     <meta charset="UTF-8" />
     <title>Create grocery list</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,19 +12,23 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
     <!--    New Template -->
     <script defer src="/create.js"></script>
-<!--    New Template -->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--&lt;!&ndash;    New Template &ndash;&gt;-->
+<!--    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
 
-    <!-- bootstrap js -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<!--    &lt;!&ndash; bootstrap js &ndash;&gt;-->
+<!--    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>-->
+
 </head>
 
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <section th:fragment="content">
-<!--    <div class="container">-->
+
+    <button onclick="goBack()">Back</button>
+
+    <!--    <div class="container">-->
         <div class="hero-unit">
             <h1>Create Grocery List</h1>
         </div>
@@ -172,10 +176,15 @@
             // ---> current row > ***** DELETE ***** > end
         });
     </script>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </section>
 
     <div th:replace="partials/footer::footer"></div>
-    <footer><p th:layout:fragment="footer"></p></footer>
 
     </body>
 </html>
