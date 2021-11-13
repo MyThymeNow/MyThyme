@@ -13,7 +13,7 @@ h1{
 }
 
 h2{
-    background-image: linear-gradient(#9DC88D,#f1b24a);
+    background: #9DC88D;
     justify-content: center;
     margin-bottom: 0;
 }
