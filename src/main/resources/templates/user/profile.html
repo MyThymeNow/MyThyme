@@ -5,7 +5,7 @@
 <head th:include="partials/header :: head">
     <meta charset="UTF-8">
     <title>View Profile</title>
-    <link rel="stylesheet" href="/css/view-profile.css">
+    <link rel="stylesheet" href="/css/page-layout.css">
 </head>
 
 <body>
@@ -25,14 +25,14 @@
         <div th:text="${user.getLastName()}"></div>
         </p>
     </div>
-    <div class="user-lists" th:each="groceryList:${groceryLists}">
+<!--    <div class="user-lists" th:each="groceryList:${groceryLists}">-->
 
-        <h3 th:text="${groceryList.name}"></h3>
-        <button type="submit"><a th:href="@{/groceryLists/{shareURL}(shareURL=${groceryList.shareURL})}">View List</a>
-        </button>
+<!--        <h3 th:text="${groceryList.name}"></h3>-->
+<!--        <button type="submit"><a th:href="@{/groceryLists/{shareURL}(shareURL=${groceryList.shareURL})}">View List</a>-->
+<!--        </button>-->
 
 
-    </div>
+<!--    </div>-->
 
 </div>
 
