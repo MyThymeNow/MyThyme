@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/create.css">
+    <link rel="stylesheet" href="../../css/myThyme.css">
     <!--    New Template -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
     <!--    New Template -->
@@ -26,8 +27,9 @@
 
 <section th:fragment="content">
 
-    <button onclick="goBack()">Back</button>
-
+    <form th:action="@{/groceryLists}" method="get">
+    <button style="border-radius: 4px" type="submit">Back to Grocery Lists</button>
+    </form>
     <!--    <div class="container">-->
         <div class="hero-unit">
             <h1>Create Grocery List</h1>
@@ -36,14 +38,14 @@
         <form th:action="@{/create}" th:method="post" th:object="${grocery_list}">
             <!--ENTER NAME OF LIST-->
             <div class="form-group">
-                <label for="title"></label>
+                <label for="title">List Name: </label>
                 <input id="title" th:field="*{name}"/>
             </div>
             <br>
             <!--ADD ITEMS TO LIST w/ ITEM, AMNT, NOTES-->
             <div id="additionalItems">
                 <h1> Add Items</h1>
-                <div class="form-group tbl_code_with_mark" id="addedItemList">
+                <div class="form-group tbl_code_with_mark"  id="addedItemList">
                     <label for="name[]">Item:</label>
                     <input type="text" name="name[]" id="name[]">
                     <label for="quantity[]">Quantity:</label>
@@ -51,8 +53,8 @@
                     <label for="notes[]">Notes:</label>
                     <input type="text" name="notes[]" id="notes[]">
 <!--                    <button id="addItemButton" class="btn btn-sm btn-success btn_row_below_new" >+</button>-->
-                    <span id="addItemButton" class="btn btn-sm btn-success btn_row_below_new">+</span>
-                    <span id="removeItemButton" class="btn btn-sm btn-danger btn_row_delete">-</span>
+                    <span id="addItemButton" class="btn btn-sm btn-success btn_row_below_new">Add Item</span>
+                    <span style="visibility: hidden" id="removeItemButton" class="btn btn-sm btn-danger btn_row_delete">Remove Item</span>
                 </div>
 <!--                <button type="button" class="btn delete btn-secondary">Remove</button>-->
 <!--                <button id="addItemButton" type="button" class="btn create btn-secondary">+</button>-->
@@ -74,7 +76,7 @@
                 <div th:replace="partials/clearListConfirmModal :: clearModal"></div>
 
 <!--                <button value="reset" class="btn delete buttonClass deleteMe" data-delete-list-button>Clear List</button>-->
-                <button value="Save" type="submit">save</button>
+                <button style="border-radius: 4px"  type="submit">Save List</button>
 <!--                <a th:href="@{/groceryLists}">Save</a>-->
 
 <!--                <button value="Save" type="submit"><a th:href="@{/groceryLists}">Save</a></button>&lt;!&ndash;working&ndash;&gt;-->
@@ -99,7 +101,7 @@
                   <input type="text" name="quantity[]" id="quantity[]">
                   <label for="notes[]">Notes:</label>
                   <input type="text" name="notes[]" id="notes[]">
-                  <span id="removeItemButton" class="btn btn-sm btn-danger btn_row_delete">-</span>
+                  <span id="removeItemButton" class="btn btn-sm btn-danger btn_row_delete">Remove Item</span>
                 </div>`
 
             // Add button feature
@@ -177,11 +179,15 @@
         });
     </script>
 
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+
+    <!-- Favoriting interferes with back button on this page-->
+<!--    <script>-->
+<!--        function goBack() {-->
+<!--            window.history.back();-->
+<!--        }-->
+<!--    </script>-->
+
+
 </section>
 
     <div th:replace="partials/footer::footer"></div>
