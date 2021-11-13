@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.thyme</groupId>
-    <artifactId>MyThyme</artifactId>
+    <artifactId>MyThymeApp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>MyThyme</name>
+    <name>MyThymeApp</name>
     <description>MyThyme Capstone Project</description>
     <properties>
         <java.version>11</java.version>
