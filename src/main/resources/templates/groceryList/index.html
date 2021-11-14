@@ -14,14 +14,13 @@
 
 <h2>Viewing all Lists</h2>
 
-<<<<<<< HEAD
 <div class="create" sec:authorize="isAuthenticated()">
 
     <!--    <button class="btn btn-outline-primary"><a th:href="@{/create}">Create New List</a></button>-->
-=======
+
 <div class="create" sec:authorize="isAuthenticated()" >
 <!--    <button class="btn btn-outline-primary"><a th:href="@{/create}">Create New List</a></button>-->
->>>>>>> 70890133ae4a225cc960591723bce9addde87d47
+
     <button type="submit"><a th:href="@{/create}">Create New List</a></button>
 </div>
 
@@ -29,7 +28,7 @@
     <h2 th:text="${groceryList.name}"></h2>
 
 
-<<<<<<< HEAD
+
     <div th:if="${currentUser.getId() == groceryList.getOwner().getId()}">
         <button type="submit" class="edit-list"><a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}">Edit</a>
         </button>
@@ -42,7 +41,7 @@
     </div>
 </div>
 </div>
-=======
+
 <div th:if="${currentUser.getId() == groceryList.getOwner().getId()}">
     <button type="submit" class="edit" ><a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}">Edit</a></button>
     <button>Delete List</button>
@@ -90,7 +89,7 @@
 <script type="text/javascript">
 
 
-<<<<<<< HEAD
+
     // const copyURL = new URL(window.location.href);
     // console.log(copyURL.toString());
     // navigator.clipboard.writeText(copyURL)
@@ -119,11 +118,11 @@
     //         addedItem.appendChild(newItem);
     //     });
     // })
-=======
+
 
 <script>
 
->>>>>>> 70890133ae4a225cc960591723bce9addde87d47
+
 </script>
 
 <script src="../../js/jquery.js"></script>
