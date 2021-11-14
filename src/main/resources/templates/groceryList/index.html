@@ -15,6 +15,17 @@
 <h2>Viewing all Lists</h2>
 
 <div class="create" sec:authorize="isAuthenticated()" >
+<!--    <button class="btn btn-outline-primary"><a th:href="@{/create}">Create New List</a></button>-->
+    <button type="submit"><a th:href="@{/create}">Create New List</a></button>
+</div>
+
+<div class="list-container" th:each="groceryList:${groceryLists}">
+    <h2 th:text="${groceryList.name}"></h2>
+
+
+<div th:if="${currentUser.getId() == groceryList.getOwner().getId()}">
+    <button type="submit" class="edit" ><a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}">Edit</a></button>
+    <button>Delete List</button>
 
     <form th:action="@{/create}" method="get">
     <button type="submit" style="border-radius: 3px; border-width: 2px; padding: 1px 6px;">Create New List</button>
@@ -53,6 +64,9 @@
 <!--    </div>-->
 </div>
 
+
+<!--Scripts-->
+<script type="text/javascript">
 
 
 
