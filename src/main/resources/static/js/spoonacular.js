@@ -78,7 +78,7 @@ $(document).ready(function () {
         function searchForIngredients(q) {
 
             $.ajax({
-                url: `https://api.spoonacular.com/food/ingredients/search?apiKey=${spoonacularKey}&query=${q}`,
+                url: `https://api.spoonacular.com/food/ingredients/search?query=${q}&apiKey=${spoonacularKey}`,
                 type: "GET"
             }).done(function (data) {
                 console.log(data);
@@ -100,7 +100,6 @@ $(document).ready(function () {
 
         searchForIngredients(q);
     })
-
 });
 //
 //

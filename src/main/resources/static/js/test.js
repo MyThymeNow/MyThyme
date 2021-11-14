@@ -39,19 +39,6 @@
 //
 //
 //
-//     //                 <div class="column" id="test-col">
-//     //                     <div class="card" style="width: 18rem;">
-//     //                     <ul class="list-group list-group-flush">
-//     //
-//     //                         <img src="https://spoonacular.com/cdn/ingredients_100x100/${item.image}">
-//     //                         <li class="list-group-item">Name: ${item.name}</li>
-//     //
-//     //                     </ul>
-//     //                 </div>`
-//     //         $("#test-col").append(breadTest);
-//     //     }
-//     // })
-//
 // });
 //
 // // Cocktail DB
@@ -82,24 +69,6 @@
 // //
 // //
 // //
-// //     // $("#test-col").html("");
-// //     // data.results.forEach(function (item, index) {
-// //     //     if (index < 3) {
-// //     //         console.log(item);
-// //     //
-// //     //         var breadTest = `
-// //     //                 <div class="column" id="test-col">
-// //     //                     <div class="card" style="width: 18rem;">
-// //     //                     <ul class="list-group list-group-flush">
-// //     //
-// //     //                         <img src="https://spoonacular.com/cdn/ingredients_100x100/${item.image}">
-// //     //                         <li class="list-group-item">Name: ${item.name}</li>
-// //     //
-// //     //                     </ul>
-// //     //                 </div>`
-// //     //         $("#test-col").append(breadTest);
-// //     //     }
-// //     // })
 // // });
 // //
 // // // Cocktail DB
