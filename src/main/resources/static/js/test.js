@@ -1,6 +1,13 @@
+// //
+// // // let requestString = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + spoonacularKey + "&ingredients=apples,+flour,+sugar&number=2";
+// //
+// // //Spoonacular
+// // // let requestString = "https://api.spoonacular.com/food/ingredients/search?apiKey=" + spoonacularKey + "&query=bread&number=30";
+// let requestString = "https://api.spoonacular.com/recipes/random?apiKey=" + spoonacularKey + "&number=3";
+// // // let requestCategories = "https://api.spoonacular.com/food/ingredients/9266/information?apiKey=" + spoonacularKey + "&amount=1";
 //
-// // let requestString = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + spoonacularKey + "&ingredients=apples,+flour,+sugar&number=2";
 //
+<<<<<<< HEAD
 // //Spoonacular
 // // let requestString = "https://api.spoonacular.com/food/ingredients/search?apiKey=" + spoonacularKey + "&query=bread&number=30";
 //
@@ -13,6 +20,8 @@
 // // // let requestCategories = "https://api.spoonacular.com/food/ingredients/9266/information?apiKey=" + spoonacularKey + "&amount=1";
 //
 //
+=======
+>>>>>>> 119d7c3e7b1754aeb3dc4f213557b54f7e8c9106
 // $.ajax({
 //     url: requestString,
 //     type: "GET"
@@ -23,7 +32,11 @@
 //     for (let i = 0; i < 3; i++) {
 //
 //         html += `
+<<<<<<< HEAD
 //                   <div class="card ml-3" style="width: 18rem"><!-- class="bg-transparent" -->
+=======
+//                   <div class="card ml-4" style="width: 18rem"><!-- class="bg-transparent" -->
+>>>>>>> 119d7c3e7b1754aeb3dc4f213557b54f7e8c9106
 //                     <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a"><!--9DC88D light green-->
 //                       <h5 class="card-title text-light font-weight-bold" style="display: flex; flex-direction: row; border: #164A41; text-align: center">${data.recipes[i].title}</h5>
 //                       <img class="centerImg shadow bg-white rounded" src="${data.recipes[i].image}" style="display: flex; flex-direction: row; width: 8rem; length: 8rem; border: #164A41 2px solid">
@@ -54,6 +67,7 @@
 //     //         $("#test-col").append(breadTest);
 //     //     }
 //     // })
+//
 // });
 //
 // // Cocktail DB
