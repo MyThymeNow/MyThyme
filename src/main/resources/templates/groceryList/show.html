@@ -9,7 +9,7 @@
 
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-
+<section th:fragment="content">
 
     <div><button onclick="goBack()">Back</button></div>
 
@@ -48,6 +48,7 @@
     }
 </script>
 
+</section>
 <div th:replace="partials/footer::footer"></div>
 
 </body>
