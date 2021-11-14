@@ -22,9 +22,9 @@
 
     <div class="profile" style="background-color:#9DC88D;" th:each="user : ${user}">
 
-        <p class="userInfo"><strong>Username: </strong><div th:text="${user.getUsername()}"></div></p>
-        <p class="userInfo"><strong>First Name: </strong><div th:text="${user.getFirstName()}"></div></p>
-        <p class="userInfo"><strong>Last Name: </strong><div th:text="${user.getLastName()}"></div></p>
+        <p><strong>Username: </strong><div th:text="${user.getUsername()}"></div></p>
+        <p><strong>First Name: </strong><div th:text="${user.getFirstName()}"></div></p>
+        <p><strong>Last Name: </strong><div th:text="${user.getLastName()}"></div></p>
 
     </div>
 
