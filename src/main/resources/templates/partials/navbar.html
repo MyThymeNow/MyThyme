@@ -16,7 +16,7 @@
 <!-- ****** New adjusted navbar template ****** -->
 <nav th:fragment="navbar" class="navbar navbar-dark navbar-expand-lg" style="background: #f1b24a;">
   <!--Authenticated User-->
-  <div>
+  <div class="siteLogo">
     <!-- Logo Img & Name-->
     <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy"/>
     <a class="navbar-brand" th:href="@{/}">MyThyme</a>
@@ -52,7 +52,7 @@
 <!--        </li>-->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
-          <div class="dropdown-menu" style="background-color:#9DC88D" aria-labelledby="dropdown01">
+          <div class="dropdown-menu" style="background-color:#f1b24a" aria-labelledby="dropdown01">
             <a class="dropdown-item" th:href="@{/groceryLists}">Grocery List</a>
             <a class="dropdown-item" th:href="@{/user/favorites}">Favorites</a>
             <a class="dropdown-item" th:href="@{/recipes}">Recipes</a>
@@ -77,7 +77,7 @@
 <!--    <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy"/>-->
 <!--    <a class="navbar-brand" th:href="@{/}">MyThyme</a>-->
 <!--  </div>-->
-  <div sec:authorize = "!isAuthenticated()" class="mr-auto">
+  <div sec:authorize = "!isAuthenticated()">
     <!--hamburger nav button-->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myThymeNotAuth" aria-controls="myThymeNotAuth" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -88,23 +88,25 @@
         <li class="nav-item active">
           <a class="nav-link" th:href="@{/}">Home</a> <!-- <span class="sr-only">(current)</span> -->
         </li>
-        <li class="nav-item active">
-          <a class="nav-link btn" th:href="@{/login}">Login
-<!--            <form class="nav-link" th:action="@{/login}" th:method="post">-->
-<!--              <button class="nav-link btn" style="margin-top: 8px">login</button>&lt;!&ndash;th:href="@{/login}"&ndash;&gt;-->
-<!--            </form>-->
-          </a>
-        </li>
+
         <!-- dropdown nav link-->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
-          <div class="dropdown-menu" style="background-color:#4d774e" aria-labelledby="dropdown01">
+          <div class="dropdown-menu" style="background-color:#f1b24a" aria-labelledby="dropdown01">
             <a class="dropdown-item" th:href="@{/login}">Grocery List</a>
             <a class="dropdown-item" th:href="@{/recipes}">Recipes</a>
             <a class="dropdown-item" th:href="@{/sign-up}">Sign up</a>
             <!--Alternative option for dropdown-->
             <!-- <button type="button" name="button"><a class="dropdown-item" th:href="@{/profile}">My Profile</a></button> -->
           </div>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" th:href="@{/login}">Login
+            <!--            <form class="nav-link" th:action="@{/login}" th:method="post">-->
+            <!--              <button class="nav-link btn" style="margin-top: 8px">login</button>&lt;!&ndash;th:href="@{/login}"&ndash;&gt;-->
+            <!--            </form>-->
+          </a>
         </li>
       </ul>
     </div>
