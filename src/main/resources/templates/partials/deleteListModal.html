@@ -1,39 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Confirm List Clearing </title>
+    <title>Title</title>
 </head>
-
 <body>
-<div th:fragment="clearModal">
+
+<div th:fragment="deleteModal">
   <!-- Modal Window -->
-  <div class="modal fade" id="clearListBackdrop" tabindex="-1" aria-labelledby="clearListLabel" aria-hidden="true">
+  <div class="modal fade" id="deleteListBackdrop" tabindex="-1" aria-labelledby="deleteListLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content" style="background-color: #f1b24a">
         <div class="modal-header" style="background-color: #f1b24a">
           <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy"/>
-          <h5 class="modal-title" id="clearListLabel" style="color: #ffffff">Please Confirm</h5><!--Modal title-->
+          <h5 class="modal-title" id="deleteListLabel" style="color: #ffffff">Please Confirm</h5><!--Modal title-->
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          Are you sure you want to clear your list?
+          Are you sure you want to delete this list?
         </div>
         <div class="modal-footer" style="background-color: #f1b24a">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #164A41">Close</button>
           <!--          <button type="button" class="btn btn-danger delete buttonClass deleteMe">Clear</button>-->
-          <a th:href="@{/create}" class="btn btn-danger delete buttonClass deleteMe" data-delete-list-button>Clear</a>
+          <a th:href="@{/groceryLists}" class="btn btn-danger delete buttonClass deleteMe" data-delete-list-button>Delete</a>
         </div>
       </div>
     </div>
   </div>
 
 </div>
-
-
 
 </body>
 </html>

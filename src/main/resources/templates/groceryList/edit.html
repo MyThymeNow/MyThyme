@@ -16,9 +16,9 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<button onclick="goBack()">Back</button>
-
 <section th:fragment="content">
+
+<button onclick="goBack()">Back</button>
 
     <div class="container">
         <div th:if="${!isFavorited}" class="container">
@@ -37,6 +37,7 @@
 
         <form th:action="@{|/groceryLists/edit/${id}|}" th:method="post" th:object="${grocery_list}">
             <div class="form-group">
+                <label>List Name: </label>
                 <input type="text" th:field="*{name}" th:placeholder="name">
                 <input type="hidden" th:field="*{shareURL}" th:placeholder="shareURL"> <!-- Hidden so users can't edit -->
             </div>
@@ -54,11 +55,11 @@
                         <label for="notes[]">Notes:</label>
                         <input type="text" name="notes[]" id="notes[]" th:value="${ingredient.getNotes()}">
                     </div>
-                    <span id="addItemButton" class="btn btn-sm btn-success btn_row_below_new">+</span>
+                    <span id="addItemButton" class="btn btn-sm btn-success btn_row_below_new">Add Item</span>
 
                 </div>
             </div>
-            <input value="Save Edits" type="submit"/>
+            <button type="submit">Save Edits</button>
         </form>
     <br>
 
@@ -80,7 +81,7 @@
                   <input type="text" name="quantity[]" id="quantity[]">
                   <label for="notes[]">Notes:</label>
                   <input type="text" name="notes[]" id="notes[]">
-                  <span id="removeItemButton" class="btn btn-sm btn-danger btn_row_delete">-</span>
+                  <span id="removeItemButton" class="btn btn-sm btn-danger btn_row_delete">Remove Item</span>
                 </div>`
 
             // Add button feature

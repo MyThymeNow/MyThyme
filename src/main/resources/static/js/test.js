@@ -7,6 +7,10 @@
 // // // let requestCategories = "https://api.spoonacular.com/food/ingredients/9266/information?apiKey=" + spoonacularKey + "&amount=1";
 //
 //
+<<<<<<< HEAD
+=======
+
+>>>>>>> 70890133ae4a225cc960591723bce9addde87d47
 // $.ajax({
 //     url: requestString,
 //     type: "GET"
@@ -17,6 +21,11 @@
 //     for (let i = 0; i < 3; i++) {
 //
 //         html += `
+<<<<<<< HEAD
+=======
+//                   <div class="card ml-3" style="width: 18rem"><!-- class="bg-transparent" -->
+
+>>>>>>> 70890133ae4a225cc960591723bce9addde87d47
 //                   <div class="card ml-4" style="width: 18rem"><!-- class="bg-transparent" -->
 //                     <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a"><!--9DC88D light green-->
 //                       <h5 class="card-title text-light font-weight-bold" style="display: flex; flex-direction: row; border: #164A41; text-align: center">${data.recipes[i].title}</h5>
@@ -48,6 +57,7 @@
 //     //         $("#test-col").append(breadTest);
 //     //     }
 //     // })
+//
 // });
 //
 // // Cocktail DB
