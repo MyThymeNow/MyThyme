@@ -34,6 +34,8 @@ form{
 .user{
     background: #9DC88D;
     margin-bottom: 0;
+    text-align: center;
+
 }
 
 .user-lists{
@@ -68,3 +70,9 @@ form{
     justify-content: center;
     color: white;
 }
+
+.section{
+    background-color: #9DC88D;
+    justify-items: center;
+}
+
