@@ -1,6 +1,6 @@
-// "use strict"
-//
-// $(document).ready(function () {
+"use strict"
+
+$(document).ready(function () {
 //
 //     // Random recipes on Landing page
 //     // function getRandomRecipes() {
@@ -71,30 +71,37 @@
 // //     searchRecipesByIngredients();
 //
 //
-//     // function searchForIngredients() {
-//     //     $.ajax({
-//     //         url: `https://api.spoonacular.com/food/ingredients/search?apiKey=${spoonacularKey}&query=chicken&number=10`,
-//     //         type: "GET"
-//     //     }).done(function (data) {
-//     //         console.log(data);
-//     //
-//     //         let html = "";
-//     //         for (let i = 0; i < 10; i++) {
-//     //
-//     //             html += `
-//     //               <div class="card bg-transparent" style="width: 10rem">
-//     //                 <div class="card-body">
-//     //                   <h5 class="card-title">${data.results[i].name}</h5>
-//     //                   <img src="https://spoonacular.com/cdn/ingredients_100x100/${data.results[i].image}">
-//     //                   <a href="#" class="btn btn-primary">Add to List</a>
-//     //
-//     //                 </div>
-//     //               </div>`;
-//     //         }
-//     //         $("#search_results").html(html);
-//     //     })
-//     // }
-//     // searchForIngredients();
+    $("#search-button").click(function (e) {
+        e.preventDefault();
+        let q = $("#search-input").val();
+
+        function searchForIngredients(q) {
+
+            $.ajax({
+                url: `https://api.spoonacular.com/food/ingredients/search?apiKey=${spoonacularKey}&query=${q}`,
+                type: "GET"
+            }).done(function (data) {
+                console.log(data);
+
+                let html = "";
+                for (let i = 0; i < 10; i++) {
+                    html += `
+                  <div class="card bg-transparent" style="width: 10rem">
+                    <div class="card-body">
+                    <h5 class="card-title">${data.results[i].name}</h5>
+                    <img src="https://spoonacular.com/cdn/ingredients_100x100/${data.results[i].image}">
+                      <a href="#" class="btn btn-primary">Add to List</a>
+                    </div>
+                  </div>`;
+                }
+                $("#search_results").html(html);
+            })
+        }
+
+        searchForIngredients(q);
+    })
+
+});
 //
 //
 //     function produce() {
