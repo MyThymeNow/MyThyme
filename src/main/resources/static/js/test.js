@@ -1,9 +1,3 @@
-//
-// // let requestString = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + spoonacularKey + "&ingredients=apples,+flour,+sugar&number=2";
-//
-// //Spoonacular
-// // let requestString = "https://api.spoonacular.com/food/ingredients/search?apiKey=" + spoonacularKey + "&query=bread&number=30";
-//
 // //
 // // // let requestString = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + spoonacularKey + "&ingredients=apples,+flour,+sugar&number=2";
 // //
@@ -13,6 +7,7 @@
 // // // let requestCategories = "https://api.spoonacular.com/food/ingredients/9266/information?apiKey=" + spoonacularKey + "&amount=1";
 //
 //
+
 // $.ajax({
 //     url: requestString,
 //     type: "GET"
@@ -24,6 +19,8 @@
 //
 //         html += `
 //                   <div class="card ml-3" style="width: 18rem"><!-- class="bg-transparent" -->
+
+//                   <div class="card ml-4" style="width: 18rem"><!-- class="bg-transparent" -->
 //                     <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a"><!--9DC88D light green-->
 //                       <h5 class="card-title text-light font-weight-bold" style="display: flex; flex-direction: row; border: #164A41; text-align: center">${data.recipes[i].title}</h5>
 //                       <img class="centerImg shadow bg-white rounded" src="${data.recipes[i].image}" style="display: flex; flex-direction: row; width: 8rem; length: 8rem; border: #164A41 2px solid">
@@ -54,6 +51,7 @@
 //     //         $("#test-col").append(breadTest);
 //     //     }
 //     // })
+//
 // });
 //
 // // Cocktail DB
