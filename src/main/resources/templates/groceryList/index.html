@@ -40,11 +40,11 @@
 
                         <!-- Owns List -->
                         <form th:if="${currentUser.getId() == groceryList.getOwner().getId()}" th:action="@{/groceryLists/edit/{id}(id=${groceryList.id})}" method="get">
-                            <a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: white; background-color: #f1b24a">Edit Recipe</a>
+                            <a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: white; background-color: #f1b24a">Edit List</a>
                         </form>
                         <!-- Does Not Own List -->
                         <form th:if="${currentUser.getId() != groceryList.getOwner().getId()}" th:action="@{/groceryLists/{shareURL}(shareURL=${groceryList.shareURL})}" method="get">
-                            <a th:href="@{/groceryLists/{shareURL}(shareURL=${groceryList.shareURL})}" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: white; background-color: #f1b24a">View Recipe</a>
+                            <a th:href="@{/groceryLists/{shareURL}(shareURL=${groceryList.shareURL})}" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: white; background-color: #f1b24a">View List</a>
                         </form>
                     </div>
                 </div>
