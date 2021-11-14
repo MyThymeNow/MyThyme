@@ -16,20 +16,17 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<button type="submit"><a th:href="@{/messages/{otherUserId}(otherUserId=${user.getId()})}">Message</a></button>
+<form th:action="@{/messages/{otherUserId}(otherUserId=${user.getId()})}" method="get">
+<button type="submit">Message User</button>
+</form>
 
-
-<div class="user-info" id="info" sec:authorize="isAuthenticated()">
     <div class="profile" style="background-color:#9DC88D;" th:each="user : ${user}">
 
         <p><strong>Username: </strong><div th:text="${user.getUsername()}"></div></p>
         <p><strong>First Name: </strong><div th:text="${user.getFirstName()}"></div></p>
         <p><strong>Last Name: </strong><div th:text="${user.getLastName()}"></div></p>
 
-
-  </div>
-
-</div>
+    </div>
 
   <div th:each="groceryLists : ${groceryLists}">
 
