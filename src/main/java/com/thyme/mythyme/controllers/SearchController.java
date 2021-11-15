@@ -26,11 +26,6 @@ public class SearchController {
 
     @GetMapping("/search")
     public String searchApp() {
-//            @RequestParam(name="search") String search, Model model) {
-//        model.addAttribute("search", search);
         return "user/search";
     }
-
-
-
 }
