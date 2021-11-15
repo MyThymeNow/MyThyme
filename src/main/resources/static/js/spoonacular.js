@@ -17,22 +17,17 @@ $(document).ready(function () {
 //
 
     // Search recipes - works
+    function searchRecipes(q) {
+        $.ajax({
+            url: `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularKey}&query=${q}&number=10&addRecipeInformation=true`,
+            type: "GET"
+        }).done(function (data) {
+            console.log(data);
 
-    $("#search-button").click(function (e) {
-        e.preventDefault();
-        let q = $("#search-input").val();
+            let html = "";
+            for (let i = 0; i < 5; i++) {
 
-        function searchRecipes() {
-            $.ajax({
-                url: `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularKey}&query=${q}&number=10&addRecipeInformation=true`,
-                type: "GET"
-            }).done(function (data) {
-                console.log(data);
-
-                let html = "";
-                for (let i = 0; i < 5; i++) {
-
-                    html += `
+                html += `
                   <div class="card bg-transparent" style="width: 25rem">
                     <div class="card-body">
                       <h5 class="card-title">${data.results[i].title}</h5>
@@ -43,12 +38,18 @@ $(document).ready(function () {
 
                     </div>
                   </div>`;
-                }
-                $("#search_results").html(html);
-            })
-        }
-        searchRecipes();
+            }
+            $("#search_results").html(html);
+        })
+    }
+    $("#search-button").click(function (e) {
+        e.preventDefault();
+        let q = $("#search-input").val();
+
+
+        searchRecipes(q);
     })
+    searchRecipes($("#search-input").val());
 //
 //
 //     // Beverages
