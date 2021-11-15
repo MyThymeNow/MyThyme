@@ -11,21 +11,15 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<h1> View Your Profile Information Here</h1>
+<h1> View Your Profile Information Here</h1><br>
 
-<div class="justify-content-center row" sec:authorize="isAuthenticated()">
+<div class="justify-content-center row" style="padding-top: 5px" sec:authorize="isAuthenticated()">
     <div class="user col" th:each="user : ${user}">
 
         <div class="card shadow p-3 mb-5 rounded" style="background-color: #f1b24a; width: 18rem;">
             <img src="/MyThymeUpdatedLogo.png" class="card-img-top" alt="profile-image">
             <div class="card-body">
-                <h5 class="card-title">My Bio</h5>
-                <p class="scroll card-text scrollable-element shadow p-3 mb-5 rounded">
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                    A user food preferences and other information they may find interesting to have here.
-                </p>
-            </div>
-            <ul class="list-group list-group-flush">
+                <ul class="list-group list-group-flush">
 <!--                test-->
                 <li style="background-color: #f1b24a; text-align: center" class="list-group-item shadow p-3 mb-5 rounded">
                     <p><strong>Username: </strong>
@@ -53,20 +47,73 @@
 <!--                    </p>-->
 <!--                </li>-->
             </ul>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">My Bio</h5>
+                <p class="scroll card-text shadow p-3 mb-5 rounded">
+                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                    A user food preferences and other information they may find interesting to have here.
+                </p>
+            </div>
+
             <div class="card-body">
                 <a th:href="@{/messages}" style="background-color: #164A41; color: #ffffff" class="btn">Messages</a>
                 <a href="#" style="background-color: #164A41; color: #ffffff" class="btn">Edit Profile</a>
             </div>
         </div>
 
+        <!--    2nd attempt carouselExampleCaptions-->
+        <div id="myThymeCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#myThymeCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myThymeCarousel" data-slide-to="1"></li>
+                <li data-target="#myThymeCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a th:href="@{/messages}"><img src="https://www.errenskitchen.com/wp-content/uploads/2019/02/chocolate-chip-cookies-3-500x375.jpg" class="d-block w-100" alt="..."></a>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Messages</h5>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a th:href="@{/user/favorites}"><img src="https://i2.wp.com/thedelightfullaugh.com/wp-content/uploads/2021/05/apple-pie-2.jpg?fit=500%2C500&ssl=1" class="d-block w-100" alt="..."></a>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>My Favorites</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a th:href="@{/groceryList}"><img src="https://www.errenskitchen.com/wp-content/uploads/2019/02/chocolate-chip-cookies-3-500x375.jpg" class="d-block w-100" alt="..."></a>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Create a List</h5>
+                        <p>Get started creating your own list</p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#myThymeCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#myThymeCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
     </div>
 
-    <div class="col">
-        <h1>This is a test</h1>
-    </div>
+<!--    Carousel API Testing-->
+<!--    <div class="col">-->
+<!--        <div class="card-group" id="profile-col">-->
+<!--        </div>-->
+<!--    </div>-->
+
+
 
 </div>
 
+<script src="/js/userProfile.js"></script>
 <div th:replace="partials/footer::footer"></div>
 </body>
 </html>
