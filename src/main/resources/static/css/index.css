@@ -21,16 +21,44 @@
 }
 
 main {
-    background-image: linear-gradient(to right, #164A41 , #4D774E, #9DC88D);
+    background: #9DC88D;
     /*color: #F1B24A;*/
 }
 
 #saveButton {
-    background-color: #F1B24A;
+    background-color: #164A41;
     color: white;
 }
 
 #test-col {
     background-color: rgba(255, 255, 255, .15);
     backdrop-filter: blur(10px);
+}
+
+/* Added section 11/11/21*/
+.scroll {
+    max-height: 100px;
+    overflow-y: auto;
+}
+.centerImg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.searchBox {
+    display: block;
+    margin-left: auto;
+    /*margin-right: auto;*/
+    width: 15%;
+}
+
+.display-4{
+    background: #164A41;
+    color: aliceblue;
+}
+
+.card-container{
+    background: #9DC88D;
 }

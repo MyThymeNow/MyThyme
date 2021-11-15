@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:include="partials/header :: head">
+
     <meta charset="UTF-8">
     <title>View Profile</title>
+    <link rel="stylesheet" href="/css/view-profile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Righteous&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<h1> View Your Profile Information Here</h1>
+<form th:action="@{/messages/{otherUserId}(otherUserId=${user.getId()})}" method="get">
+<button type="submit">Message User</button>
+</form>
 
-<div class="justify-content-center" sec:authorize="isAuthenticated()">
-    <div th:each="user : ${user}">
+    <div class="profile" style="background-color:#9DC88D;" th:each="user : ${user}">
 
         <p><strong>Username: </strong><div th:text="${user.getUsername()}"></div></p>
-        <p>First Name: <div th:text="${user.getFirstName()}"></div></p>
-        <p>Last Name: <div th:text="${user.getLastName()}"></div></p>
+        <p><strong>First Name: </strong><div th:text="${user.getFirstName()}"></div></p>
+        <p><strong>Last Name: </strong><div th:text="${user.getLastName()}"></div></p>
 
     </div>
 
-</div>
+  <div th:each="groceryLists : ${groceryLists}">
+
+    <h3 th:text="${groceryLists.name}"></h3>
+
+  </div>
+
 
 
 

@@ -1,0 +1,63 @@
+
+.profile{
+    background-image: linear-gradient(to bottom right, #9DC88D,#f1b24a);
+    justify-content: center;
+    ;
+}
+
+h1{
+    background: #9DC88D;
+    margin-bottom: 0;
+    text-align: center;
+    font-family: 'Lobster', cursive;
+}
+
+h2{
+    background: #9DC88D;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+form{
+    justify-content: space-evenly;
+    background: #9DC88D;
+}
+
+.list-container{
+    background: #f1b24a;
+}
+
+.create{
+    background: #9DC88D;
+}
+
+.user{
+    background: #9DC88D;
+    margin-bottom: 0;
+}
+
+.user-lists{
+    background: #9DC88D;
+    margin-top: 0;
+}
+
+.login{
+
+    text-align: center;
+}
+
+.table-light{
+    background: #9DC88D;
+}
+
+.edit{
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.favorites{
+    text-align: center;
+    background: #9DC88D;
+}
+
