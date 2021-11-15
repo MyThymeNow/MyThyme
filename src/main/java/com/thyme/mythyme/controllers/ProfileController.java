@@ -49,11 +49,13 @@ public class ProfileController {
         user.setId(loggedInUser.getId());
         user.setAdmin(loggedInUser.isAdmin());
         user.setPassword(loggedInUser.getPassword());
+        user.setBio(loggedInUser.getBio());
 
 
         userDao.save(user);
         return "redirect:/profile";
     }
+
 
 
 }
