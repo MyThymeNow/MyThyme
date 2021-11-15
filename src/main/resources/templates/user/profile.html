@@ -15,7 +15,7 @@
 
 <div class="justify-content-center row" style="padding-top: 5px" sec:authorize="isAuthenticated()">
     <div class="user col" th:each="user : ${user}">
-
+<!--    <div class="user-lists" th:each="groceryList:${groceryLists}">-->
         <div class="card shadow p-3 mb-5 rounded row" style="background-color: #f1b24a; width: 18rem;">
             <img src="/MyThymeUpdatedLogo.png" class="card-img-top" alt="profile-image">
             <div class="card-body">
@@ -102,5 +102,6 @@
 
 <script src="/js/userProfile.js"></script>
 <div th:replace="partials/footer::footer"></div>
+
 </body>
 </html>

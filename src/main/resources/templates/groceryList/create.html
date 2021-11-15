@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/create.css">
     <link rel="stylesheet" href="../../css/myThyme.css">
+    <link rel="stylesheet" href="/css/page-layout.css">
     <!--    New Template -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
     <!--    New Template -->
@@ -34,31 +35,58 @@
         <div class="hero-unit">
             <h1>Create Grocery List</h1>
         </div>
+<!--    <span id="addItemButton" class="btn btn-sm btn-success btn_row_below_new">Add Item</span>-->
     <!-- Form that allows user to create grocery list and save-->
         <form th:action="@{/create}" th:method="post" th:object="${grocery_list}">
+            <span id="addItemButton" class="btn btn-sm btn-success btn_row_below_new">Add Item</span>
             <!--ENTER NAME OF LIST-->
             <div class="form-group">
                 <label for="title">List Name: </label>
                 <input id="title" th:field="*{name}"/>
             </div>
-            <br>
-            <!--ADD ITEMS TO LIST w/ ITEM, AMNT, NOTES-->
-            <div id="additionalItems">
-                <h1> Add Items</h1>
-                <div class="form-group tbl_code_with_mark"  id="addedItemList">
-                    <label for="name[]">Item:</label>
-                    <input type="text" name="name[]" id="name[]">
-                    <label for="quantity[]">Quantity:</label>
-                    <input type="text" name="quantity[]" id="quantity[]">
-                    <label for="notes[]">Notes:</label>
-                    <input type="text" name="notes[]" id="notes[]">
-<!--                    <button id="addItemButton" class="btn btn-sm btn-success btn_row_below_new" >+</button>-->
-                    <span id="addItemButton" class="btn btn-sm btn-success btn_row_below_new">Add Item</span>
-                    <span style="visibility: hidden" id="removeItemButton" class="btn btn-sm btn-danger btn_row_delete">Remove Item</span>
+            <h1> Add Items</h1>
+            <div class="list-container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="card" style="width: 18rem;"  id="additionalItems">
+                            <div class="card-body" style="background-color: #9DC88D">
+                                <br>
+                                <div>
+                                    <div class="form-group tbl_code_with_mark"  id="addedItemList">
+                                        <label for="name[]">Item:</label>
+                                        <input type="text" name="name[]" id="name[]">
+                                        <label for="quantity[]">Quantity:</label>
+                                        <input type="text" name="quantity[]" id="quantity[]">
+                                        <label for="notes[]">Notes:</label>
+                                        <input type="text" name="notes[]" id="notes[]">
+                                        <span style="visibility: hidden" id="removeItemButton" class="btn btn-sm btn-danger btn_row_delete">Remove Item</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-<!--                <button type="button" class="btn delete btn-secondary">Remove</button>-->
-<!--                <button id="addItemButton" type="button" class="btn create btn-secondary">+</button>-->
             </div>
+<!--                        <div class="form-group">-->
+<!--                            <label for="title">List Name: </label>-->
+<!--                            <input id="title" th:field="*{name}"/>-->
+<!--                        </div>-->
+<!--                        <br>-->
+                        <!--ADD ITEMS TO LIST w/ ITEM, AMNT, NOTES-->
+<!--                        <div id="additionalItems">-->
+<!--                            <h1> Add Items</h1>-->
+<!--                            <div class="form-group tbl_code_with_mark"  id="addedItemList">-->
+<!--                                <label for="name[]">Item:</label>-->
+<!--                                <input type="text" name="name[]" id="name[]">-->
+<!--                                <label for="quantity[]">Quantity:</label>-->
+<!--                                <input type="text" name="quantity[]" id="quantity[]">-->
+<!--                                <label for="notes[]">Notes:</label>-->
+<!--                                <input type="text" name="notes[]" id="notes[]">-->
+
+<!--                            </div>-->
+            <!--                <button type="button" class="btn delete btn-secondary">Remove</button>-->
+            <!--                <button id="addItemButton" type="button" class="btn create btn-secondary">+</button>-->
+<!--                        </div>-->
             <br>
 <!--                <input type="button" class="btn btn-sm btn-danger btn_row_delete btn-secondary">-</input>-->
             <!--       ****** deleting *****  <button type="button" class="btn btn-danger delete btn-secondary">X</button>-->
@@ -94,15 +122,17 @@
 
             // Section grabs form information
             const itemForm =
-                `<div class="form-group">
-                  <label for="name[]">Item:</label>
-                  <input type="text" name="name[]" id="name[]">
-                  <label for="quantity[]">Quantity:</label>
-                  <input type="text" name="quantity[]" id="quantity[]">
-                  <label for="notes[]">Notes:</label>
-                  <input type="text" name="notes[]" id="notes[]">
-                  <span id="removeItemButton" class="btn btn-sm btn-danger btn_row_delete">Remove Item</span>
-                </div>`
+                `<div class="card" style="background-color: #9DC88D;width: 18rem; padding-top: 4px;">
+                                    <div class="form-group">
+<!--                                        <label for="name[]"></label>-->
+                                        <input type="text" name="name[]" id="name[]" placeholder="Item">
+<!--                                        <label for="quantity[]">Quantity:</label>-->
+                                        <input type="text" name="quantity[]" id="quantity[]"placeholder="Quantity">
+<!--                                        <label for="notes[]">Notes:</label>-->
+                                        <input type="text" name="notes[]" id="notes[]"placeholder="Notes">
+                                        <span id="removeItemButton" class="btn btn-sm btn-danger btn_row_delete" style="display: flex; width: 8em;">Remove Item</span>
+                                    </div>
+                                </div>`
 
             // Add button feature
             additionalItem.addEventListener('click', function(event) {

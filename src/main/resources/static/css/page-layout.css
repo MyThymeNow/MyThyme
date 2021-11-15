@@ -5,8 +5,11 @@
     ;
 }
 
+body {
+    background-color: #9DC88D;
+}
+
 h1{
-    background: #9DC88D;
     margin-bottom: 0;
     text-align: center;
     font-family: 'Lobster', cursive;
@@ -20,7 +23,7 @@ h2{
 
 form{
     justify-content: space-evenly;
-    background: #9DC88D;
+    /*background: #9DC88D;*/
 }
 
 .list-container{
@@ -28,12 +31,14 @@ form{
 }
 
 .create{
-    background: #f1b24a;
+    background: #9DC88D;
 }
 
 .user{
     background: #9DC88D;
     margin-bottom: 0;
+    text-align: center;
+
 }
 
 .user-lists{
@@ -84,3 +89,17 @@ form{
 ::-webkit-scrollbar-thumb:hover {
     background: #9DC88D;
 }
+
+.newListButton{
+    background-color: #164A41;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.section{
+    background-color: #9DC88D;
+    justify-items: center;
+}
+
