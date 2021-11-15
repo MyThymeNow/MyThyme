@@ -47,6 +47,11 @@ public class User {
     @Setter
     private String lastName;
 
+    @Column //(nullable = false)
+    @Getter
+    @Setter
+    private String bio;
+
     @Column
     @Getter
     @Setter

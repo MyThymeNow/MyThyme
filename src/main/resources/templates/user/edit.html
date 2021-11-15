@@ -15,20 +15,24 @@
         First Name:
         <label>
             <input th:field="*{firstName}"/>
-        </label>
+        </label><br>
         Last Name:
         <label>
             <input th:field="*{lastName}"/>
-        </label>
+        </label><br>
         Email:
         <label>
             <input th:field="*{email}"/>
-        </label>
+        </label><br>
         Username:
         <label>
             <input th:field="*{username}"/>
-        </label>
-        <input onclick=""  type="submit">
+        </label><br>
+        Bio:
+        <label>
+            <input th:text="*{bio}"/>
+        </label><br>
+        <input onclick=""  type="submit" style="background-color: #164A41; color: #ffffff">
     </form>
 
 </div>
