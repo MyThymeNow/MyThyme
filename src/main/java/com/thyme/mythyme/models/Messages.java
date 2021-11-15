@@ -41,13 +41,13 @@ public class Messages implements  Comparable <Messages>{
     @JoinColumn(name = "sender_id")
     @Getter
     @Setter
-    private User sender;
+    public User sender;
 
     @ManyToOne
     @JoinColumn(name = "receiver_id")
     @Getter
     @Setter
-    private User receiver;
+    public User receiver;
 
 
     public int compareTo(Messages o){

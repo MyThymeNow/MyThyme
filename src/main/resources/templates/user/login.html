@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head th:include="partials/header :: head">
-  <meta charset="UTF-8" />
-  <title>Log In</title>
+    <meta charset="UTF-8"/>
+    <title>Log In</title>
+    <link rel="stylesheet" href="/css/page-layout.css">
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
+<div style="display: flex; justify-content: center; margin-top: 0;" th:if="${param.logout}">
+    You have been logged out.
+</div>
 
-<h1>Log In</h1>
+<h1 style="margin: 8px; padding: 8px">Welcome Back to MyThyme!</h1>
+<p style="display: flex; justify-content: center; margin-top: 0;">Please log-in below.</p>
 <!--<div th:if="${param.error}">-->
 <!--  Invalid Username and Password.-->
 <!--</div>-->
@@ -16,24 +21,25 @@
 
 <div class="error" th:if="${param.error}"
      th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
-  Error: <span th:text="${errorMsg}">error</span>
+    Error: <span th:text="${errorMsg}">error</span>
 </div>
 
-<div th:if="${param.logout}">
-  You have been logged out.
+
+
+<div class="login">
+    <form th:action="@{/login}" method="post">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text"/>
+        <br>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password"/>
+        <br>
+        <input type="submit" value="Log In"/>
+    </form>
 </div>
-
-<form th:action="@{/login}" method="post">
-  <label for="username">Username</label>
-  <input id="username" name="username" type="text" />
-  <label for="password">Password</label>
-  <input id="password" name="password" type="password" />
-  <input type="submit" value="Log In" />
-</form>
-
 <br>
 <br>
 
-<footer><p th:replace="partials/footer :: footer"></p></footer>
+<div th:replace="partials/footer::footer"></div>
 </body>
 </html>

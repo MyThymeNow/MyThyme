@@ -20,3 +20,7 @@
     margin:1em 0 3em;
     border-radius:5px;
 }
+
+body{
+    background-image: radial-gradient(#f1b24a,#9DC88D);
+}

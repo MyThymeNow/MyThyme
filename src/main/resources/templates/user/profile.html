@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:include="partials/header :: head">
+    <meta charset="UTF-8">
+    <title>View Profile</title>
+    <link rel="stylesheet" href="/css/page-layout.css">
+</head>
+
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<h1> View Your Profile Information Here</h1>
+
+<div class="justify-content-center" sec:authorize="isAuthenticated()">
+    <div class="user" th:each="user : ${user}">
+        <p><strong>Username: </strong>
+        <div th:text="${user.getUsername()}"></div>
+        </p>
+        <p><strong>First Name: </strong>
+        <div th:text="${user.getFirstName()}"></div>
+        </p>
+        <p><strong>Last Name: </strong>
+        <div th:text="${user.getLastName()}"></div>
+        </p>
+    </div>
+<!--    <div class="user-lists" th:each="groceryList:${groceryLists}">-->
+
+<!--        <h3 th:text="${groceryList.name}"></h3>-->
+<!--            <form th:href="@{/groceryLists/{shareURL}(shareURL=${groceryList.shareURL})}" method="get">-->
+<!--                <button type="submit">View List</button>-->
+<!--            </form>-->
+
+
+
+<!--    </div>-->
+
+</div>
+
+
+<div th:replace="partials/footer::footer"></div>
+</body>
+</html>

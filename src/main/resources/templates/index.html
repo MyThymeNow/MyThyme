@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MyThyme</title>
-
-<!--    <link rel="stylesheet" href="/css/index.css">-->
+    <link rel="stylesheet" href="/css/index.css">
 <!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>-->
 
 
@@ -17,7 +16,6 @@
 <main>
 
 <!--Jumbotron-->
-
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <h1 class="display-4">MyThyme</h1>
@@ -40,7 +38,7 @@
             <div class="card text-center border-0 bg-transparent">
                 <div class="card-body">
                     <img src="/img/produce.jpg" class="rounded-circle" alt="..." width="120" height="120">
-                    <h6><a href="#">Fruits & Vegetables</a></h6>
+                    <h6><a href="/categories/produce">Fruits & Vegetables</a></h6>
                 </div>
             </div>
         </div>
@@ -48,7 +46,7 @@
             <div class="card text-center border-0 bg-transparent">
                 <div class="card-body">
                     <img src="/img/meat.jpg" class="rounded-circle" alt="..." width="120" height="120">
-                    <h6><a href="#">Meat & Seafood</a></h6>
+                    <h6><a href="/categories/meat">Meat & Seafood</a></h6>
                 </div>
             </div>
         </div>
@@ -56,7 +54,7 @@
             <div class="card text-center border-0 bg-transparent">
                 <div class="card-body">
                     <img src="/img/bread.jpg" class="rounded-circle float-left" alt="..." width="120" height="120">
-                    <h6><a href="#">Bakery</a></h6>
+                    <h6><a href="/categories/bakery">Bakery</a></h6>
                 </div>
             </div>
         </div>
@@ -64,7 +62,7 @@
             <div class="card text-center border-0 bg-transparent">
                 <div class="card-body">
                     <img src="/img/frozen.jpg" class="rounded-circle float-left" alt="..." width="120" height="120">
-                    <h6><a href="#">Frozen</a></h6>
+                    <h6><a href="/categories/frozen">Frozen</a></h6>
                 </div>
             </div>
         </div>
@@ -72,7 +70,7 @@
             <div class="card text-center border-0 bg-transparent">
                 <div class="card-body">
                     <img src="/img/beverages.jpg" class="rounded-circle float-left" alt="..." width="120" height="120">
-                    <h6><a href="#">Beverages</a></h6>
+                    <h6><a href="/categories/beverages">Beverages</a></h6>
                 </div>
             </div>
         </div>
@@ -80,17 +78,190 @@
             <div class="card text-center border-0 bg-transparent">
                 <div class="card-body">
                     <img src="/img/petSupplies.jpg" class="rounded-circle float-left" alt="..." width="120" height="120">
-                    <h6><a href="#">Pet Supplies</a></h6>
+                    <h6><a href="/categories/pet">Pet Supplies</a></h6>
                 </div>
             </div>
         </div>
     </div>
     <hr>
 </div>
-</div>
 
 <br>
 <br>
+<div class="container" style="display: flex; flex-direction: row">
+    <div class="card ml-3" style="width: 18rem"><!-- class="bg-transparent" -->
+     <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a">
+         <h5 class="card-title text-light font-weight-bold" style="display: flex; flex-direction: row; border: #164A41; text-align: center">Grandma's Secret Chocolate Chip
+                 Cookies</h5> <!-- ${data.recipes[i].title} -->
+         <img class="centerImg shadow bg-white rounded"
+              src="https://www.errenskitchen.com/wp-content/uploads/2019/02/chocolate-chip-cookies-3-500x375.jpg"
+              style="display: flex; flex-direction: row; width: 8rem; length: 8rem; border: #164A41 2px solid"> <!-- ${data.recipes[i].image} -->
+         <br>
+             <p class="card-text scroll shadow p-3 mb-5 rounded" style="display: flex; flex-direction: row; background-color: #ffffff; color: #000">
+                     MyThyme is an app designed to make cost effective shopping seamless for everyone.
+                     Users can select items they wish to buy, and will be given costs of those items at various
+                     locations,
+                     making deciding where to buy from simple. Users can also save and share their created grocery lists,
+                     while also being provided recommended recipes based on items on their list. MyThyme was created by a
+                     group of 4 developers, utilizing Java, JavaScript, MySQL, Spring Boot, HTML, CSS and several APIs.
+
+                     MyThyme is an app designed to make cost effective shopping seamless for everyone.
+                     Users can select items they wish to buy, and will be given costs of those items at various
+                     locations,
+                     making deciding where to buy from simple. Users can also save and share their created grocery lists,
+                     while also being provided recommended recipes based on items on their list. MyThyme was created by a
+                     group of 4 developers, utilizing Java, JavaScript, MySQL, Spring Boot, HTML, CSS and several APIs.
+                 </p> <!-- ${data.recipes[i].summary} -->
+             <a href="#" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: white; background-color: #164A41">View
+                     recipe</a> <!-- background-color: #f1b24a-->
+     </div>
+ </div>
+    <!--2nd card-->
+    <div class="card ml-3" style="width: 18rem"><!-- class="bg-transparent" -->
+        <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a">
+            <h5 class="card-title text-light font-weight-bold" style="display: flex; flex-direction: row; border: #164A41; text-align: center">Grandma's Secret Chocolate Chip
+                Cookies</h5> <!-- ${data.recipes[i].title} -->
+            <img class="centerImg shadow bg-white rounded"
+                 src="https://www.errenskitchen.com/wp-content/uploads/2019/02/chocolate-chip-cookies-3-500x375.jpg"
+                 style="display: flex; flex-direction: row; width: 8rem; length: 8rem; border: #164A41 2px solid"> <!-- ${data.recipes[i].image} -->
+            <br>
+            <p class="card-text scroll shadow p-3 mb-5 rounded" style="display: flex; flex-direction: row; background-color: #ffffff; color: #000">
+                MyThyme is an app designed to make cost effective shopping seamless for everyone.
+                Users can select items they wish to buy, and will be given costs of those items at various
+                locations,
+                making deciding where to buy from simple. Users can also save and share their created grocery lists,
+                while also being provided recommended recipes based on items on their list. MyThyme was created by a
+                group of 4 developers, utilizing Java, JavaScript, MySQL, Spring Boot, HTML, CSS and several APIs.
+
+                MyThyme is an app designed to make cost effective shopping seamless for everyone.
+                Users can select items they wish to buy, and will be given costs of those items at various
+                locations,
+                making deciding where to buy from simple. Users can also save and share their created grocery lists,
+                while also being provided recommended recipes based on items on their list. MyThyme was created by a
+                group of 4 developers, utilizing Java, JavaScript, MySQL, Spring Boot, HTML, CSS and several APIs.
+            </p> <!-- ${data.recipes[i].summary} -->
+            <a href="#" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: white; background-color: #164A41">View
+                recipe</a> <!-- background-color: #f1b24a-->
+        </div>
+    </div>
+    <!--3rd card-->
+    <div class="card ml-3" style="width: 18rem"><!-- class="bg-transparent" -->
+        <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a">
+            <h5 class="card-title text-light font-weight-bold" style="display: flex; flex-direction: row; border: #164A41; text-align: center">Grandma's Secret Chocolate Chip
+                Cookies</h5> <!-- ${data.recipes[i].title} -->
+            <img class="centerImg shadow bg-white rounded"
+                 src="https://www.errenskitchen.com/wp-content/uploads/2019/02/chocolate-chip-cookies-3-500x375.jpg"
+                 style="display: flex; flex-direction: row; width: 8rem; length: 8rem; border: #164A41 2px solid"> <!-- ${data.recipes[i].image} -->
+            <br>
+            <p class="card-text scroll shadow p-3 mb-5 rounded" style="display: flex; flex-direction: row; background-color: #ffffff; color: #000">
+                MyThyme is an app designed to make cost effective shopping seamless for everyone.
+                Users can select items they wish to buy, and will be given costs of those items at various
+                locations,
+                making deciding where to buy from simple. Users can also save and share their created grocery lists,
+                while also being provided recommended recipes based on items on their list. MyThyme was created by a
+                group of 4 developers, utilizing Java, JavaScript, MySQL, Spring Boot, HTML, CSS and several APIs.
+
+                MyThyme is an app designed to make cost effective shopping seamless for everyone.
+                Users can select items they wish to buy, and will be given costs of those items at various
+                locations,
+                making deciding where to buy from simple. Users can also save and share their created grocery lists,
+                while also being provided recommended recipes based on items on their list. MyThyme was created by a
+                group of 4 developers, utilizing Java, JavaScript, MySQL, Spring Boot, HTML, CSS and several APIs.
+            </p> <!-- ${data.recipes[i].summary} -->
+            <a href="#" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: white; background-color: #164A41">View
+                recipe</a> <!-- background-color: #f1b24a-->
+        </div>
+    </div>
+
+</div>
+
+
+    <!--fake card container-->
+<!--<div class="container" style="display: flex; flex-direction: row">-->
+<!--    <div class="card" style="width: 18rem;">&lt;!&ndash; class="bg-transparent" &ndash;&gt;-->
+<!--        <div class="card-body" style="background-color: #f1b24a">-->
+<!--            <h5 class="card-title text-light font-weight-bold" style="display: flex; flex-direction: row; border: #f1b24a; text-align: center">Grandma's Secret Chocolate Chip-->
+<!--                Cookies</h5> &lt;!&ndash; ${data.recipes[i].title} &ndash;&gt;-->
+<!--            <img class="centerImg shadow bg-white rounded"-->
+<!--                 src="https://www.errenskitchen.com/wp-content/uploads/2019/02/chocolate-chip-cookies-3-500x375.jpg"-->
+<!--                 style="display: flex; flex-direction: row; width: 8rem; length: 8rem; border: #9DC88D 2px solid"> &lt;!&ndash; ${data.recipes[i].image} &ndash;&gt;-->
+<!--            <br>-->
+<!--            <p class="card-text scroll shadow p-3 mb-5 rounded" style="word-wrap: break-word; display: flex; flex-direction: row; background-color: #ffffff; color: #164A41">-->
+<!--                MyThyme is an app designed to make cost effective shopping seamless for everyone.-->
+<!--                Users can select items they wish to buy, and will be given costs of those items at various-->
+<!--                locations,-->
+<!--                making deciding where to buy from simple. Users can also save and share their created grocery lists,-->
+<!--                while also being provided recommended recipes based on items on their list. MyThyme was created by a-->
+<!--                group of 4 developers, utilizing Java, JavaScript, MySQL, Spring Boot, HTML, CSS and several APIs.-->
+
+<!--                MyThyme is an app designed to make cost effective shopping seamless for everyone.-->
+<!--                Users can select items they wish to buy, and will be given costs of those items at various-->
+<!--                locations,-->
+<!--                making deciding where to buy from simple. Users can also save and share their created grocery lists,-->
+<!--                while also being provided recommended recipes based on items on their list. MyThyme was created by a-->
+<!--                group of 4 developers, utilizing Java, JavaScript, MySQL, Spring Boot, HTML, CSS and several APIs.-->
+<!--            </p> &lt;!&ndash; ${data.recipes[i].summary} &ndash;&gt;-->
+<!--            <a href="#" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: #ffffff; background-color: #164A41">View-->
+<!--                recipe</a> &lt;!&ndash; background-color: #f1b24a&ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;2nd card&ndash;&gt;-->
+<!--    <div class="card" style="width: 18rem;">&lt;!&ndash; class="bg-transparent" &ndash;&gt;-->
+<!--        <div class="card-body" style="background-color: #f1b24a">-->
+<!--            <h5 class="card-title text-light font-weight-bold" style="display: flex; flex-direction: row; border: #f1b24a; text-align: center">Grandma's Secret Chocolate Chip-->
+<!--                Cookies</h5> &lt;!&ndash; ${data.recipes[i].title} &ndash;&gt;-->
+<!--            <img class="centerImg shadow bg-white rounded"-->
+<!--                 src="https://www.errenskitchen.com/wp-content/uploads/2019/02/chocolate-chip-cookies-3-500x375.jpg"-->
+<!--                 style="display: flex; flex-direction: row; width: 8rem; length: 8rem; border: #9DC88D 2px solid"> &lt;!&ndash; ${data.recipes[i].image} &ndash;&gt;-->
+<!--            <br>-->
+<!--            <p class="card-text scroll shadow p-3 mb-5 rounded" style="word-wrap: break-word; display: flex; flex-direction: row; background-color: #ffffff; color: #164A41">-->
+<!--                MyThyme is an app designed to make cost effective shopping seamless for everyone.-->
+<!--                Users can select items they wish to buy, and will be given costs of those items at various-->
+<!--                locations,-->
+<!--                making deciding where to buy from simple. Users can also save and share their created grocery lists,-->
+<!--                while also being provided recommended recipes based on items on their list. MyThyme was created by a-->
+<!--                group of 4 developers, utilizing Java, JavaScript, MySQL, Spring Boot, HTML, CSS and several APIs.-->
+
+<!--                MyThyme is an app designed to make cost effective shopping seamless for everyone.-->
+<!--                Users can select items they wish to buy, and will be given costs of those items at various-->
+<!--                locations,-->
+<!--                making deciding where to buy from simple. Users can also save and share their created grocery lists,-->
+<!--                while also being provided recommended recipes based on items on their list. MyThyme was created by a-->
+<!--                group of 4 developers, utilizing Java, JavaScript, MySQL, Spring Boot, HTML, CSS and several APIs.-->
+<!--            </p> &lt;!&ndash; ${data.recipes[i].summary} &ndash;&gt;-->
+<!--            <a href="#" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: #ffffff; background-color: #164A41">View-->
+<!--                recipe</a> &lt;!&ndash; background-color: #f1b24a&ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;3rd card&ndash;&gt;-->
+<!--    <div class="card" style="width: 18rem;">&lt;!&ndash; class="bg-transparent" &ndash;&gt;-->
+<!--        <div class="card-body" style="background-color: #f1b24a">-->
+<!--            <h5 class="card-title text-light font-weight-bold" style="display: flex; flex-direction: row; border: #f1b24a; text-align: center">Grandma's Secret Chocolate Chip-->
+<!--                Cookies</h5> &lt;!&ndash; ${data.recipes[i].title} &ndash;&gt;-->
+<!--            <img class="centerImg shadow bg-white rounded"-->
+<!--                 src="https://www.errenskitchen.com/wp-content/uploads/2019/02/chocolate-chip-cookies-3-500x375.jpg"-->
+<!--                 style="display: flex; flex-direction: row; width: 8rem; length: 8rem; border: #9DC88D 2px solid"> &lt;!&ndash; ${data.recipes[i].image} &ndash;&gt;-->
+<!--            <br>-->
+<!--            <p class="card-text scroll shadow p-3 mb-5 rounded" style="word-wrap: break-word; display: flex; flex-direction: row; background-color: #ffffff; color: #164A41">-->
+<!--                MyThyme is an app designed to make cost effective shopping seamless for everyone.-->
+<!--                Users can select items they wish to buy, and will be given costs of those items at various-->
+<!--                locations,-->
+<!--                making deciding where to buy from simple. Users can also save and share their created grocery lists,-->
+<!--                while also being provided recommended recipes based on items on their list. MyThyme was created by a-->
+<!--                group of 4 developers, utilizing Java, JavaScript, MySQL, Spring Boot, HTML, CSS and several APIs.-->
+
+<!--                MyThyme is an app designed to make cost effective shopping seamless for everyone.-->
+<!--                Users can select items they wish to buy, and will be given costs of those items at various-->
+<!--                locations,-->
+<!--                making deciding where to buy from simple. Users can also save and share their created grocery lists,-->
+<!--                while also being provided recommended recipes based on items on their list. MyThyme was created by a-->
+<!--                group of 4 developers, utilizing Java, JavaScript, MySQL, Spring Boot, HTML, CSS and several APIs.-->
+<!--            </p> &lt;!&ndash; ${data.recipes[i].summary} &ndash;&gt;-->
+<!--            <a href="#" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: #ffffff; background-color: #164A41">View-->
+<!--                recipe</a> &lt;!&ndash; background-color: #f1b24a&ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 
 <!--Scrolling main content-->
@@ -104,7 +275,6 @@
 
 </main>
 <div th:replace="partials/footer::footer"></div>
-
 
 <script src="/js/jquery.js"></script>
 <script src="/keys.js"></script>
