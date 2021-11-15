@@ -79,3 +79,13 @@ form{
     justify-items: center;
 }
 
+.message-sent{
+    margin: 0;
+}
+
+
+.mb-4{
+    display: flex;
+    justify-content: flex-end;
+
+}
