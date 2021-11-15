@@ -34,6 +34,8 @@ form{
 .user{
     background: #9DC88D;
     margin-bottom: 0;
+    text-align: center;
+
 }
 
 .user-lists{
@@ -59,5 +61,18 @@ form{
 .favorites{
     text-align: center;
     background: #9DC88D;
+}
+
+.newListButton{
+    background-color: #164A41;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.section{
+    background-color: #9DC88D;
+    justify-items: center;
 }
 
