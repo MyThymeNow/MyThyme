@@ -16,7 +16,7 @@
 <div class="justify-content-center row" style="padding-top: 5px" sec:authorize="isAuthenticated()">
     <div class="user col" th:each="user : ${user}">
 
-        <div class="card shadow p-3 mb-5 rounded" style="background-color: #f1b24a; width: 18rem;">
+        <div class="card shadow p-3 mb-5 rounded row" style="background-color: #f1b24a; width: 18rem;">
             <img src="/MyThymeUpdatedLogo.png" class="card-img-top" alt="profile-image">
             <div class="card-body">
                 <ul class="list-group list-group-flush">
@@ -24,27 +24,14 @@
                 <li style="background-color: #f1b24a; text-align: center" class="list-group-item shadow p-3 mb-5 rounded">
                     <p><strong>Username: </strong>
                     <div th:text="${user.getUsername()}"></div></p>
-
-                    <p><strong>First Name: </strong>
-                    <div th:text="${user.getFirstName()}"></div></p>
-
-                    <p><strong>Last Name: </strong>
-                    <div th:text="${user.getLastName()}"></div></p>
                 </li>
 <!--                <li style="background-color: #f1b24a; text-align: center" class="list-group-item shadow p-3 mb-5 rounded">-->
-<!--                    <p><strong>Username: </strong>-->
-<!--                    <div th:text="${user.getUsername()}"></div>-->
-<!--                    </p>-->
-<!--                </li>-->
-<!--                <li style="background-color: #f1b24a; text-align: center" class="list-group-item shadow p-3 mb-5 rounded">-->
 <!--                    <p><strong>First Name: </strong>-->
-<!--                    <div th:text="${user.getFirstName()}"></div>-->
-<!--                    </p>-->
+<!--                    <div th:text="${user.getFirstName()}"></div></p>-->
 <!--                </li>-->
 <!--                <li style="background-color: #f1b24a; text-align: center" class="list-group-item shadow p-3 mb-5 rounded">-->
 <!--                    <p><strong>Last Name: </strong>-->
-<!--                    <div th:text="${user.getLastName()}"></div>-->
-<!--                    </p>-->
+<!--                    <div th:text="${user.getLastName()}"></div></p>-->
 <!--                </li>-->
             </ul>
             </div>
@@ -58,7 +45,7 @@
 
             <div class="card-body">
                 <a th:href="@{/messages}" style="background-color: #164A41; color: #ffffff" class="btn">Messages</a>
-                <a href="#" style="background-color: #164A41; color: #ffffff" class="btn">Edit Profile</a>
+                <a th:href="@{/profile/edit}" style="background-color: #164A41; color: #ffffff" class="btn">Edit Profile</a>
             </div>
         </div>
 
