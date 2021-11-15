@@ -60,3 +60,7 @@ form{
     text-align: center;
     background: #9DC88D;
 }
+
+.scrollable-element {
+    scrollbar-color: red yellow;/* #164A41 #f1b24a */
+}
