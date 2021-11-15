@@ -12,57 +12,50 @@
 
 <section th:fragment="content">
 
-<h2>Viewing all Lists</h2>
 
-<div class="create" sec:authorize="isAuthenticated()" >
-<!--    <button class="btn btn-outline-primary"><a th:href="@{/create}">Create New List</a></button>-->
-    <button type="submit"><a th:href="@{/create}">Create New List</a></button>
-</div>
+    <h2>Viewing all Lists</h2>
 
-<div class="list-container" th:each="groceryList:${groceryLists}">
-    <h2 th:text="${groceryList.name}"></h2>
+    <div class="create" sec:authorize="isAuthenticated()">
+
+        <!--    <button class="btn btn-outline-primary"><a th:href="@{/create}">Create New List</a></button>-->
 
 
-<div th:if="${currentUser.getId() == groceryList.getOwner().getId()}">
-    <button type="submit" class="edit" ><a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}">Edit</a></button>
-    <button>Delete List</button>
+        <form th:action="@{/create}" method="get">
+            <div>
+                <button class="newListButton" type="submit" style="border-radius: 3px; border-width: 2px; padding: 1px 6px;">Create New List </button>
+            </div>
+        </form>
 
-    <form th:action="@{/create}" method="get">
-    <button type="submit" style="border-radius: 3px; border-width: 2px; padding: 1px 6px;">Create New List</button>
-    </form>
-</div>
 
-<div class="list-container">
+        <div class="list-container">
+            <div class="row" style="background-color: #9DC88D">
+                <div class="col-sm-4"  th:each="groceryList:${groceryLists}">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body" style="background-color: #f1b24a">
+                            <h5 class="card-title text-light font-weight-bold"
+                                style="flex-direction: row; border: #164A41; text-align: center"
+                                th:text="${groceryList.name}"></h5>
+                            <img class="centerImg shadow bg-white rounded"
+                                 src="/img/listStockPhoto.jpg" alt="..."
+                                 style="display: flex; flex-direction: row; width: 8rem; length: 8rem; border: #164A41 2px solid">
+                            <!-- ${data.recipes[i].image} -->
+                            <br>
 
-<!--    <div class="container">-->
-        <div class="row">
-            <div class="col-sm-4" th:each="groceryList:${groceryLists}">
-                <div class="card" style="width: 18rem;"><!-- class="bg-transparent" -->
-                    <div class="card-body" style="background-color: #9DC88D">
-                        <h5 class="card-title text-light font-weight-bold" style="flex-direction: row; border: #164A41; text-align: center" th:text="${groceryList.name}"></h5> <!-- ${data.recipes[i].title} -->
-                        <img class="centerImg shadow bg-white rounded"
-                             src="/img/listStockPhoto.jpg" alt="..."
-                            style="display: flex; flex-direction: row; width: 8rem; length: 8rem; border: #9DC88D 2px solid"> <!-- ${data.recipes[i].image} -->
-                        <br>
+                            <p style="text-align: center" th:if="${currentUser.getId() != groceryList.getOwner().getId()}">List Created By: <a th:text="${groceryList.owner.username}" th:href="@{|/profile/${groceryList.getOwner().getId()}|}"></a></p>
 
-                        <p style="text-align: center" th:if="${currentUser.getId() != groceryList.getOwner().getId()}">List Created By: <a th:text="${groceryList.owner.username}" th:href="@{|/profile/${groceryList.getOwner().getId()}|}"></a></p>
+                            <p style="text-align: center; visibility: hidden" th:if="${currentUser.getId() == groceryList.getOwner().getId()}">List Created By: <a th:text="${groceryList.owner.username}" th:href="@{|/profile/${groceryList.getOwner().getId()}|}"></a></p>
 
-                        <p style="text-align: center; visibility: hidden" th:if="${currentUser.getId() == groceryList.getOwner().getId()}">List Created By: <a th:text="${groceryList.owner.username}" th:href="@{|/profile/${groceryList.getOwner().getId()}|}"></a></p>
-
-                        <!-- Owns List -->
-                        <form th:if="${currentUser.getId() == groceryList.getOwner().getId()}" th:action="@{/groceryLists/edit/{id}(id=${groceryList.id})}" method="get">
-                            <a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: white; background-color: #f1b24a">Edit Recipe</a>
-                        </form>
-                        <!-- Does Not Own List -->
-                        <form th:if="${currentUser.getId() != groceryList.getOwner().getId()}" th:action="@{/groceryLists/{shareURL}(shareURL=${groceryList.shareURL})}" method="get">
-                            <a th:href="@{/groceryLists/{shareURL}(shareURL=${groceryList.shareURL})}" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: white; background-color: #f1b24a">View Recipe</a>
-                        </form>
+                            <!-- Owns List -->
+                            <form  th:if="${currentUser.getId() == groceryList.getOwner().getId()}" th:action="@{/groceryLists/edit/{id}(id=${groceryList.id})}" method="get"><a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: white; background-color: #164A41">Edit List</a></form>
+                            <!-- Does Not Own List -->
+                            <form th:if="${currentUser.getId() != groceryList.getOwner().getId()}" th:action="@{/groceryLists/{shareURL}(shareURL=${groceryList.shareURL})}" method="get"><a th:href="@{/groceryLists/{shareURL}(shareURL=${groceryList.shareURL})}" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: white; background-color: #9DC88D">View List</a></form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-<!--    </div>-->
-</div>
+    </div>
+
 
 
 <!--Scripts-->
@@ -70,12 +63,40 @@
 
 
 
-<script>
+    // const copyURL = new URL(window.location.href);
+    // console.log(copyURL.toString());
+    // navigator.clipboard.writeText(copyURL)
+
+
+    //todo: remove later if not needed
+    // window.onload = (function() {
+    //     const additionalItem = document.getElementById('addItemButton');
+    //
+    //     const itemForm = `<div class="form-group">
+    //               <label for="name[]">Item:</label>
+    //               <input type="text" name="name[]" id="name[]">
+    //               <label for="quantity[]">Quantity:</label>
+    //               <input type="text" name="quantity[]" id="quantity[]">
+    //               <label for="notes[]">Notes:</label>
+    //               <input type="text" name="notes[]" id="notes[]">
+    //             </div>`
+    //
+    //     additionalItem.addEventListener('click', function(event) {
+    //         event.preventDefault();
+    //
+    //
+    //         const addedItem = document.getElementById('additionalItems');
+    //         let newItem = document.createElement("div");
+    //         newItem.innerHTML = itemForm;
+    //         addedItem.appendChild(newItem);
+    //     });
+    // })
 
 </script>
 
 <script src="../../js/jquery.js"></script>
 <script src="../../js/jquery_functions.js"></script>
+
 </section>
 <div th:replace="partials/footer::footer"></div>
 </body>
