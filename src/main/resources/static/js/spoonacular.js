@@ -18,40 +18,40 @@ $(document).ready(function () {
 
     // Search recipes - works
 
-    // $("#search-button").click(function (e) {
-    //     e.preventDefault();
-    //     let q = $("#search-input").val();
-    //
-    //     function searchRecipes() {
-    //         $.ajax({
-    //             url: `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularKey}&query=${q}&number=10&addRecipeInformation=true`,
-    //             type: "GET"
-    //         }).done(function (data) {
-    //             console.log(data);
-    //
-    //             let html = "";
-    //             for (let i = 0; i < 5; i++) {
-    //
-    //                 html += `
-    //               <div class="card bg-transparent" style="width: 25rem">
-    //                 <div class="card-body">
-    //                   <h5 class="card-title">${data.results[i].title}</h5>
-    //                   <img src="${data.results[i].image}">
-    //                   <p class="card-text">${data.results[i].summary}</p>
-    //                   <a href="${data.results[i].sourceUrl}" class="btn btn-primary">View Recipe</a>
-    //                   <a href="#" class="btn btn-primary">Add to List</a>
-    //
-    //                 </div>
-    //               </div>`;
-    //             }
-    //             $("#search_results").html(html);
-    //         })
-    //     }
-    //     searchRecipes();
-    // })
+    $("#search-button").click(function (e) {
+        e.preventDefault();
+        let q = $("#search-input").val();
 
+        function searchRecipes() {
+            $.ajax({
+                url: `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularKey}&query=${q}&number=10&addRecipeInformation=true`,
+                type: "GET"
+            }).done(function (data) {
+                console.log(data);
 
-    // Beverages
+                let html = "";
+                for (let i = 0; i < 5; i++) {
+
+                    html += `
+                  <div class="card bg-transparent" style="width: 25rem">
+                    <div class="card-body">
+                      <h5 class="card-title">${data.results[i].title}</h5>
+                      <img src="${data.results[i].image}">
+                      <p class="card-text">${data.results[i].summary}</p>
+                      <a href="${data.results[i].sourceUrl}" class="btn btn-primary">View Recipe</a>
+                      <a href="#" class="btn btn-primary">Add to List</a>
+
+                    </div>
+                  </div>`;
+                }
+                $("#search_results").html(html);
+            })
+        }
+        searchRecipes();
+    })
+//
+//
+//     // Beverages
     function beverages() {
         $.ajax({
             url: `https://api.spoonacular.com/recipes/complexSearch?type=beverage&apiKey=${spoonacularKey}&addRecipeInformation=true`,
@@ -76,9 +76,9 @@ $(document).ready(function () {
         })
     }
     beverages();
-
-
-// Main course
+//
+//
+// // Main course
     function mainCourse() {
         $.ajax({
             url: `https://api.spoonacular.com/recipes/complexSearch?type=main course&apiKey=${spoonacularKey}&addRecipeInformation=true`,
@@ -103,9 +103,9 @@ $(document).ready(function () {
         })
     }
     mainCourse();
-
-
-    // Sides
+//
+//
+//     // Sides
     function sides() {
         $.ajax({
             url: `https://api.spoonacular.com/recipes/complexSearch?type=side dish&apiKey=${spoonacularKey}&addRecipeInformation=true`,
@@ -130,9 +130,9 @@ $(document).ready(function () {
         })
     }
     sides();
-
-
-    // Desserts
+//
+//
+//     // Desserts
     function dessert() {
         $.ajax({
             url: `https://api.spoonacular.com/recipes/complexSearch?type=dessert&apiKey=${spoonacularKey}&addRecipeInformation=true`,
@@ -157,9 +157,9 @@ $(document).ready(function () {
         })
     }
     dessert();
-
-
-    // Bread
+//
+//
+//     // Bread
     function bread() {
         $.ajax({
             url: `https://api.spoonacular.com/recipes/complexSearch?type=bread&apiKey=${spoonacularKey}&addRecipeInformation=true`,
@@ -184,10 +184,10 @@ $(document).ready(function () {
         })
     }
     bread();
-
-
-
-    // Appetizers
+//
+//
+//
+//     // Appetizers
     function appetizers() {
         $.ajax({
             url: `https://api.spoonacular.com/recipes/complexSearch?type=appetizer&apiKey=${spoonacularKey}&addRecipeInformation=true`,
