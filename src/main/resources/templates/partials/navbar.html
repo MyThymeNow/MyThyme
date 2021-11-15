@@ -18,10 +18,10 @@
   <!--Authenticated User-->
   <div>
     <!-- Logo Img & Name-->
-    <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy"/>
-    <a class="navbar-brand" th:href="@{/}">MyThyme</a>
+    <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy" th:href="@{/}"/>
+<!--    <a class="navbar-brand" >MyThyme</a>-->
   </div>
-  <div sec:authorize = "isAuthenticated()" class="mr-auto">
+  <div sec:authorize = "isAuthenticated()" class="mr-auto" style="display: flex">
 <!--    &lt;!&ndash; Logo Img &ndash;&gt;-->
 <!--    <img src="/MyThymeUpdatedLogo.png" width="60" height="60" class="d-inline-block align-top" alt="" loading="lazy"/>-->
 <!--    <a class="navbar-brand" th:href="@{/}">MyThyme</a>-->
@@ -41,12 +41,11 @@
         <li class="nav-item active">
           <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item active">
-          <form class="nav-link" th:action="@{/logout}" th:method="post" style="background: #f1b24a; padding: 0;">
-            <button class="nav-link btn" style="margin-top: 0px; background: #f1b24a; color: white">Logout</button><!-- th:href="@{/login}"-->
-          </form>
-        </li>
+      </ul>
+    </div>
 
+    <div>
+      <ul class="navbar-nav">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">More</a>
           <div class="dropdown-menu" style="background-color:#f1b24a" aria-labelledby="dropdown01">
@@ -56,24 +55,30 @@
             <a class="dropdown-item" th:href="@{/messages}">Messages</a>
 <!--            <a class="dropdown-item" th:href="@{/coupons}">Coupon</a>-->
             <a class="dropdown-item" th:href="@{/profile}">My Profile</a>
-
           </div>
         </li>
       </ul>
+    </div>
 
+    <div>
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <form class="nav-link" th:action="@{/logout}" th:method="post" style="background: #f1b24a; padding: 0;">
+            <button class="nav-link btn" style="margin-top: 0px; background: #f1b24a; color: white">Logout</button><!-- th:href="@{/login}"-->
+          </form>
+        </li>
+      </ul>
     </div>
   </div>
 
 
-  <div sec:authorize = "!isAuthenticated()" class="mr-auto">
+  <div sec:authorize = "!isAuthenticated()" class="mr-auto" style="display: flex">
     <!--hamburger nav button-->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myThymeNotAuth" aria-controls="myThymeNotAuth" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <!--hamburger nav section-->
     <div class="collapse navbar-collapse" id="myThymeNotAuth">
-
-      <div>
         <ul class="navbar-nav">
           <li class="nav-item active">
             <a class="nav-link" th:href="@{/}">Home</a>
@@ -103,7 +108,7 @@
         </ul>
       </div>
     </div>
-  </div>
+
 
   <!-- Search bar-->
   <div>

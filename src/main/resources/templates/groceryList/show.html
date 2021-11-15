@@ -16,27 +16,27 @@
 
     <h1 th:text="${groceryList.name}"></h1>
 
-    <div th:each="ingredient : ${groceryListIngredients}">
-        <div class="form-group">
-
-            <label th:text=" 'Item: ' + ${ingredient.ingredient.name}"></label>
-            <br>
-            <label th:text=" 'Quantity: ' + ${ingredient.getQuantity()}"></label>
-            <br>
-            <label th:text=" 'Notes: ' + ${ingredient.getNotes()}"></label>
-
-            <br>
+    <div class="list-container">
+        <div class="row" style="margin-top: 12px">
+            <div class="col-sm-4" style="display: flex; justify-content: center; margin-top: 12px; margin-bottom: 12px" th:each="ingredient : ${groceryListIngredients}">
+                <div class="card" style="width: 18rem;" ><!-- class="bg-transparent" -->
+                    <div class="card-body" style="background-color: #9DC88D">
+                        <h4 class="card-title text-light font-weight-bold" style="flex-direction: row; border: #164A41; text-align: center" th:text="${ingredient.ingredient.name}"></h4> <!-- ${data.recipes[i].title} -->
+                        <br>
+                        <label th:text=" 'Quantity: ' + ${ingredient.getQuantity()}"></label>
+                        <br>
+                        <label th:text=" 'Notes: ' + ${ingredient.getNotes()}"></label>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <button type="submit" id="copyURL" onclick="copyUrl()">Copy URL</button>
 
+    <div style="display: flex; justify-content: center; margin: 12px;"><button type="submit" id="copyURL" onclick="copyUrl()">Copy URL</button></div>
 
-    <div>Created By: <a th:href="@{|/profile/${groceryList.getOwner().getId()}|}" th:text="${groceryList.owner.username}"></a></div>
+    <div style="display: flex; justify-content: center">Created By: <a th:href="@{|/profile/${groceryList.getOwner().getId()}|}" th:text="${groceryList.owner.username}"></a></div>
 
-<!--    <form th:action="@{|/groceryLists/delete/${groceryList.id}|}" th:method="post">-->
-<!--        <button type="submit">Delete List</button>-->
-<!--    </form>-->
 <script type="text/javascript">
     function copyUrl() {
         navigator.clipboard.writeText(location.href);

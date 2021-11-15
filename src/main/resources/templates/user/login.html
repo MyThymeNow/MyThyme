@@ -8,8 +8,12 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
+<div style="display: flex; justify-content: center; margin-top: 0;" th:if="${param.logout}">
+    You have been logged out.
+</div>
 
-<h1>Log In</h1>
+<h1 style="margin: 8px; padding: 8px">Welcome Back to MyThyme!</h1>
+<p style="display: flex; justify-content: center; margin-top: 0;">Please log-in below.</p>
 <!--<div th:if="${param.error}">-->
 <!--  Invalid Username and Password.-->
 <!--</div>-->
@@ -20,16 +24,16 @@
     Error: <span th:text="${errorMsg}">error</span>
 </div>
 
-<div style="background: #4D774E" th:if="${param.logout}">
-    You have been logged out.
-</div>
+
 
 <div class="login">
     <form th:action="@{/login}" method="post">
         <label for="username">Username</label>
         <input id="username" name="username" type="text"/>
+        <br>
         <label for="password">Password</label>
         <input id="password" name="password" type="password"/>
+        <br>
         <input type="submit" value="Log In"/>
     </form>
 </div>
