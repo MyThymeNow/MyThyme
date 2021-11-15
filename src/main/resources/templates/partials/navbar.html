@@ -74,6 +74,18 @@
         <ul class="navbar-nav">
           <li class="nav-item active">
             <a class="nav-link" th:href="@{/}">Home</a>
+            <ul class="navbar-nav">
+              <!-- dropdown nav link-->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">More</a>
+                <div class="dropdown-menu" style="background-color:#f1b24a" aria-labelledby="dropdown01">
+                  <a class="dropdown-item" th:href="@{/login}">Grocery List</a>
+                  <a class="dropdown-item" th:href="@{/recipes}">Recipes</a>
+                  <a class="dropdown-item" th:href="@{/sign-up}">Sign up</a>
+                </div>
+              </li>
+            </ul>
+
           </li>
         </ul>
       </div>
