@@ -13,10 +13,11 @@
 
 <h1> View Your Profile Information Here</h1>
 
-<div class="justify-content-center" sec:authorize="isAuthenticated()">
-    <div class="user" th:each="user : ${user}">
-        <div class="card" style="background-color: #f1b24a; width: 18rem;">
-            <img src="/MyThymeUpdatedLogo.png" class="card-img-top" alt="...">
+<div class="justify-content-center row" sec:authorize="isAuthenticated()">
+    <div class="user col" th:each="user : ${user}">
+
+        <div class="card shadow p-3 mb-5 rounded" style="background-color: #f1b24a; width: 18rem;">
+            <img src="/MyThymeUpdatedLogo.png" class="card-img-top" alt="profile-image">
             <div class="card-body">
                 <h5 class="card-title">My Bio</h5>
                 <p class="scroll card-text scrollable-element shadow p-3 mb-5 rounded">
@@ -57,19 +58,13 @@
                 <a href="#" style="background-color: #164A41; color: #ffffff" class="btn">Edit Profile</a>
             </div>
         </div>
+
     </div>
 
-    <!--    <div class="user" th:each="user : ${user}">-->
-<!--        <p><strong>Username: </strong>-->
-<!--        <div th:text="${user.getUsername()}"></div>-->
-<!--        </p>-->
-<!--        <p>First Name:-->
-<!--        <div th:text="${user.getFirstName()}"></div>-->
-<!--        </p>-->
-<!--        <p>Last Name:-->
-<!--        <div th:text="${user.getLastName()}"></div>-->
-<!--        </p>-->
-<!--    </div>-->
+    <div class="col">
+        <h1>This is a test</h1>
+    </div>
+
 </div>
 
 <div th:replace="partials/footer::footer"></div>
