@@ -58,11 +58,11 @@ public class PostController {
             groceryListIngredients.setUser(loggedInUser);
             listIngredientsDao.save(groceryListIngredients);
 
+
             ingredientInDB.setName(data.getIngredients().get(i).getName());
             ingredientInDB.setId(ingredientInDB.getId());
             ingredientDao.save(ingredientInDB);
         }
         return "redirect:/profile";
-    }
 
 }
