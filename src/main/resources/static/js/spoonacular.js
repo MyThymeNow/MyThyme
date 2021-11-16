@@ -152,9 +152,9 @@ $(document).ready(function () {
                       <h5 class="card-title">${data.results[i].title}</h5>
                       <img src="${data.results[i].image}">
                       <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
-                      <div sec:authorize="isAuthenticated()">
+
                       <a href="#" id="listButton" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
-                     </div>
+      
                     </div>
                   </div>`;
             }
@@ -235,7 +235,7 @@ $(document).ready(function () {
                       <img src="${data.results[i].image}">
                       <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
                       <div sec:authorize="isAuthenticated()">
-                      <a href="#" id="listButton" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
+                      <a href="#" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
                      </div>
                     </div>
                   </div>`;
@@ -264,7 +264,7 @@ $(document).ready(function () {
                       <img src="${data.results[i].image}">
                       <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
                       <div sec:authorize="isAuthenticated()">
-                      <a href="#" id="listButton" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
+                      <a href="#" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
                      </div>
                     </div>
                   </div>`;
@@ -292,9 +292,9 @@ $(document).ready(function () {
                       <h5 class="card-title">${data.results[i].title}</h5>
                       <img src="${data.results[i].image}">
                       <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
-                      <div sec:authorize="isAuthenticated()">
-                      <a href="#" id="listButton" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
-                     </div>
+
+                      <a href="#" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
+
                     </div>
                   </div>`;
             }
@@ -322,8 +322,7 @@ $(document).ready(function () {
                       <h5 class="card-title">${data.results[i].title}</h5>
                       <img src="${data.results[i].image}">
                       <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
-                      <div sec:authorize="isAuthenticated()">
-                      <a href="#" id="listButton" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
+                      <a href="#" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
                      </div>
                     </div>
                   </div>`;
