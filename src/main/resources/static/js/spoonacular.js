@@ -1,5 +1,8 @@
 "use strict"
 
+let recipeDetails = null;
+
+
 
 $(document).ready(function () {
 //
@@ -86,6 +89,7 @@ $(document).ready(function () {
             url: `https://api.spoonacular.com/recipes/complexSearch?type=main course&apiKey=${spoonacularKey}&addRecipeInformation=true&fillIngredients=true`,
             type: "GET"
         }).done(function (data) {
+            recipeDetails = data
             console.log(data);
 
 
@@ -108,18 +112,32 @@ $(document).ready(function () {
                 e.preventDefault();
                 const recipeId = $(this).attr("data-id")
                 console.log(recipeId);
+                const recipe = recipeDetails.results.find(result => result.id == recipeId)
+                console.log(recipe)
+
+                const recipeData = {
+                    name: "bob",
+                    ingredients: [
+                        {
+                            name: "potato",
+                            quantity: 3,
+                            notes: "resstle Potatos, ripe"
+                        }
+                    ]
+                }
 
                 // TODO
                 // immediately after getting recipe, use fetch to get id from api and send
+                // const url = `https://api.spoonacular.com/recipes/complexSearch?type=main course&apiKey=${spoonacularKey}&addRecipeInformation=true&fillIngredients=true`;
+                // fetch(url, recipeId)
+                //     .then(response => console.log(response))
+                //     .catch(error => console.log(error));
 
-                function saveRecipe(recipeId) {
+                function saveRecipe(data) {
                     let token = $("meta[name='_csrf']").attr("content");
                     let header = $("meta[name='_csrf_header']").attr("content");
 
-                    // $(".btn").click(function (e) {
-                    //     e.preventDefault();
-                    //     const recipeId = $(this).attr("data-id")
-                    //     console.log(recipeId);
+                    console.log($("meta[name='_csrf']").attr("content"),token)
 
                     $(document).ajaxSend(function (e, xhr, options) {
                         xhr.setRequestHeader(header, token);
@@ -139,7 +157,7 @@ $(document).ready(function () {
                     })
                     // Make call to api using the recipe ID
                 }
-                saveRecipe(recipeId);
+                saveRecipe(recipeData);
 
             })
             })

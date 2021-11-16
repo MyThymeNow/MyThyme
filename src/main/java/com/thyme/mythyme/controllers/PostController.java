@@ -2,6 +2,7 @@ package com.thyme.mythyme.controllers;
 
 import com.thyme.mythyme.models.GroceryList;
 import com.thyme.mythyme.models.GroceryListIngredients;
+import com.thyme.mythyme.models.SpoonacularRequest;
 import com.thyme.mythyme.repository.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +26,7 @@ public class PostController {
     }
 
     @PostMapping("/saveIngredients")
-    public String saveRecipe(@RequestBody GroceryList data) {
+    public String saveRecipe(@RequestBody SpoonacularRequest data) {
         System.out.println(data);
 
 //        GroceryList groceryList = groceryDao.getById(recipeId);
