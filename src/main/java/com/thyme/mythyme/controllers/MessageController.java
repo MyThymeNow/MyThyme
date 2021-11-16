@@ -6,6 +6,7 @@ import com.thyme.mythyme.models.User;
 import com.thyme.mythyme.repository.GroceryListRepository;
 import com.thyme.mythyme.repository.MessagesRepository;
 import com.thyme.mythyme.repository.UserRepository;
+import com.thyme.mythyme.utils.SortByTimestamp;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -51,9 +54,21 @@ public class MessageController {
         List<Messages> sentMessages = messageDao.getAllBySenderAndReceiver(loggedInUser, otherUser);
         List<Messages> receivedMessages = messageDao.getAllBySenderAndReceiver(otherUser, loggedInUser);
 
+        List<Messages> allMessages = new ArrayList<>();
+        allMessages.addAll(sentMessages);
+        allMessages.addAll(receivedMessages);
+        Collections.sort(allMessages, new SortByTimestamp());
+
+        for (Messages message : allMessages){
+            System.out.println(message.getTimestamp());
+        }
+
+        model.addAttribute("messages",allMessages);
         model.addAttribute("otheruser", otherUser);
         model.addAttribute("sentmessages", sentMessages);
         model.addAttribute("receivedmessages", receivedMessages);
+
+
 
         return "user/message";
     }
@@ -72,6 +87,8 @@ public class MessageController {
         messageDao.save(newMessage);
 
         return "redirect:/messages/" + id;
+
+
     }
 
     @GetMapping("messages")
@@ -84,6 +101,8 @@ public class MessageController {
 
         messageHistory.addAll(user.getReceivedMessages());
         messageHistory.addAll(user.getSentMessages());
+
+
 
 
         for (Messages messages : messageHistory) {

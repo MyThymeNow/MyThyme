@@ -18,12 +18,11 @@
 <!--Jumbotron-->
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-4">MyThyme</h1>
-        <p class="lead">This is the jumbotron example for the MyThyme landing page.</p>
+        <h1 class="display-4" style="padding: 24px; font-size: 6rem; width: 100%">MyThyme</h1>
         <hr class="my-4">
-        <p>MyThyme is an app designed to make cost effective shopping seamless for everyone. Users can select items they wish to buy, and will be given costs of those items at various locations, making deciding where to buy from simple. Users can also save and share their created grocery lists, while also being provided recommended recipes based on items on their list. MyThyme was created by a group of 4 developers, utilizing Java, JavaScript, MySQL, Spring Boot, HTML, CSS and several APIs.</p>
+        <p>MyThyme is a digital cookbook, designed to let users create grocery lists and recipes. Users can also save and share their created grocery lists, while also being provided recommended recipes based on items on their list. MyThyme was created by a group of 4 developers, utilizing Java, JavaScript, MySQL, Spring Boot, HTML, CSS and several APIs.</p>
         <p class="lead">
-            <a class="btn btn-primary btn-lg" href="#" role="button" id="saveButton">Start saving</a>
+            <a class="btn btn-primary btn-lg" th:href="@{/sign-up}" role="button" id="saveButton">Get Started!</a>
         </p>
     </div>
 </div>
@@ -37,48 +36,50 @@
         <div class="col-sm-2">
             <div class="card text-center border-0 bg-transparent">
                 <div class="card-body">
-                    <img src="/img/produce.jpg" class="rounded-circle" alt="..." width="120" height="120">
-                    <h6><a href="/categories/produce">Fruits & Vegetables</a></h6>
+                    <h6><a href="/categories/maincourse">Main Courses</a></h6>
+                    <a href="/categories/maincourse"><img src="/img/maincourse.png" width="100" height="80" ></a>
                 </div>
             </div>
         </div>
         <div class="col-sm-2">
             <div class="card text-center border-0 bg-transparent">
                 <div class="card-body">
-                    <img src="/img/meat.jpg" class="rounded-circle" alt="..." width="120" height="120">
-                    <h6><a href="/categories/meat">Meat & Seafood</a></h6>
+                    <h6><a href="/categories/sidedishes">Side Dishes</a></h6>
+                    <a href="/categories/sidedishes"><img src="/img/side.png" width="100" height="80"></a>
                 </div>
             </div>
         </div>
         <div class="col-sm-2">
             <div class="card text-center border-0 bg-transparent">
                 <div class="card-body">
-                    <img src="/img/bread.jpg" class="rounded-circle float-left" alt="..." width="120" height="120">
-                    <h6><a href="/categories/bakery">Bakery</a></h6>
+                    <h6><a href="/categories/appetizers">Appetizers</a></h6>
+                    <a href="/categories/appetizers"><img src="/img/apps.png" width="100" height="80"></a>
                 </div>
             </div>
         </div>
         <div class="col-sm-2">
             <div class="card text-center border-0 bg-transparent">
                 <div class="card-body">
-                    <img src="/img/frozen.jpg" class="rounded-circle float-left" alt="..." width="120" height="120">
-                    <h6><a href="/categories/frozen">Frozen</a></h6>
+                    <h6><a href="/categories/bread">Bread & Baking</a></h6>
+                    <a href="/categories/bread"><img src="/img/bread.png" width="100" height="80"></a>
                 </div>
             </div>
         </div>
         <div class="col-sm-2">
             <div class="card text-center border-0 bg-transparent">
                 <div class="card-body">
-                    <img src="/img/beverages.jpg" class="rounded-circle float-left" alt="..." width="120" height="120">
                     <h6><a href="/categories/beverages">Beverages</a></h6>
+                    <a href="/categories/beverages"><img src="/img/beverage.png" width="100" height="80"></a>
+
                 </div>
             </div>
         </div>
         <div class="col-sm-2">
             <div class="card text-center border-0 bg-transparent">
                 <div class="card-body">
-                    <img src="/img/petSupplies.jpg" class="rounded-circle float-left" alt="..." width="120" height="120">
-                    <h6><a href="/categories/pet">Pet Supplies</a></h6>
+                    <h6><a href="/categories/desserts">Desserts</a></h6>
+                    <a href="/categories/desserts"><img src="/img/dessert.png" width="100" height="80"></a>
+
                 </div>
             </div>
         </div>

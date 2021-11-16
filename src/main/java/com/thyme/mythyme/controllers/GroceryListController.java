@@ -20,13 +20,14 @@ public class GroceryListController {
     private final GroceryListIngredientsRepository listIngredientsDao;
     private final IngredientRepository ingredientDao;
 
-    public GroceryListController(GroceryListRepository groceryDao, UserGroceryListRepository listDao, UserRepository userDao, GroceryListIngredientsRepository listIngredientsDao , IngredientRepository ingredientDao) {
+    public GroceryListController(GroceryListRepository groceryDao, UserGroceryListRepository listDao, UserRepository userDao, GroceryListIngredientsRepository listIngredientsDao, IngredientRepository ingredientDao) {
         this.groceryDao = groceryDao;
         this.userDao = userDao;
         this.listDao = listDao;
         this.listIngredientsDao = listIngredientsDao;
         this.ingredientDao = ingredientDao;
     }
+
     //////// VIEWING
     @GetMapping("/groceryLists")
     public String showGroceryLists(Model model) {
@@ -41,7 +42,7 @@ public class GroceryListController {
     public String showOneGroceryList(@PathVariable String shareURL, Model model) {
         GroceryList groceryList = groceryDao.getByShareURL(shareURL);
         List<GroceryListIngredients> groceryListIngredients = listIngredientsDao.getByGroceryListId(groceryList.getId());
-        for(GroceryListIngredients item : groceryListIngredients) {
+        for (GroceryListIngredients item : groceryListIngredients) {
             Long groceryListIngredients_id = item.getId();
 
             Optional<Ingredient> currentIngredient = ingredientDao.findById(groceryListIngredients_id);
@@ -65,9 +66,9 @@ public class GroceryListController {
     @PostMapping("/create") // previously had groceryList/create in parenthesis
     public String saveUserGroceryList(
             @ModelAttribute GroceryList listToCreate,
-            @RequestParam(name="name[]") String[] names,
-            @RequestParam(name="quantity[]") String[] quantities,
-            @RequestParam (name="notes[]") String[] notes
+            @RequestParam(name = "name[]") String[] names,
+            @RequestParam(name = "quantity[]") String[] quantities,
+            @RequestParam(name = "notes[]") String[] notes
             //@RequestParam (name="status[]") String[] status //todo might be API dependent
     ) {
 //        GroceryList groceryList = groceryDao.getByShareURL(listToCreate.toString());
@@ -81,7 +82,7 @@ public class GroceryListController {
         newList.setGroceryList(listToCreate);
         listDao.save(newList);
 
-        for(int i = 0; i < names.length; i++) {
+        for (int i = 0; i < names.length; i++) {
             Ingredient ingredientInDB = ingredientDao.getByName(names[i]);
             if (ingredientInDB == null) {
 
@@ -104,28 +105,28 @@ public class GroceryListController {
             ingredientDao.save(ingredientInDB);
 
         }
-        return"redirect:/groceryLists";
+        return "redirect:/groceryLists";
     }
 
 
 //////// Editing
 
     @GetMapping("/groceryLists/edit/{id}")
-    public String showEditGroceryListForm(@PathVariable long id,Model model) {
+    public String showEditGroceryListForm(@PathVariable long id, Model model) {
         GroceryList groceryList = groceryDao.getById(id);
         List<GroceryListIngredients> groceryListIngredients = listIngredientsDao.getByGroceryList(groceryList);
         UserGroceryList listToFavorite = listDao.getByGroceryList_Id(id);
 
-        for(GroceryListIngredients item : groceryListIngredients) {
+        for (GroceryListIngredients item : groceryListIngredients) {
             Long groceryListIngredients_id = item.getId();
 
             Optional<Ingredient> currentIngredient = ingredientDao.findById(groceryListIngredients_id);
 
 
-        model.addAttribute("grocery_list", groceryList);
-        model.addAttribute("groceryListIngredients", groceryListIngredients);
-        model.addAttribute("currentIngredient", currentIngredient);
-        model.addAttribute("isFavorited", listToFavorite.isFavorited());
+            model.addAttribute("grocery_list", groceryList);
+            model.addAttribute("groceryListIngredients", groceryListIngredients);
+            model.addAttribute("currentIngredient", currentIngredient);
+            model.addAttribute("isFavorited", listToFavorite.isFavorited());
 
         }
         return "groceryList/edit";
@@ -135,10 +136,10 @@ public class GroceryListController {
     public String editGroceryList(
             @PathVariable Long id,
             @RequestParam String name,
-            @RequestParam(name="id[]") String[] ids,
-            @RequestParam(name="name[]") String[] names,
-            @RequestParam(name="quantity[]") String[] quantities,
-            @RequestParam (name="notes[]") String[] notes
+            @RequestParam(name = "id[]") String[] ids,
+            @RequestParam(name = "name[]") String[] names,
+            @RequestParam(name = "quantity[]") String[] quantities,
+            @RequestParam(name = "notes[]") String[] notes
             //@RequestParam (name="status[]") String[] status //todo might be API dependent
     ) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -168,7 +169,7 @@ public class GroceryListController {
 //        }
 
         //Loop for creating new ingredients
-        for(int i = 0; i < names.length; i++) {
+        for (int i = 0; i < names.length; i++) {
             Ingredient ingredientInDB = ingredientDao.getByName(names[i]);
 
             if (ingredientInDB == null) {
@@ -177,7 +178,7 @@ public class GroceryListController {
                 ingredientInDB = ingredientDao.save(ingredient);
             }
             GroceryListIngredients newGroceryListIngredients = new GroceryListIngredients();
-            if(ids[i].length() > 0) {
+            if (ids[i].length() > 0) {
                 newGroceryListIngredients.setId(Integer.parseInt(ids[i]));
             }
             newGroceryListIngredients.setQuantity(Long.parseLong(quantities[i]));
@@ -199,7 +200,7 @@ public class GroceryListController {
 //////// FAVORITE
 
     @PostMapping("/groceryLists/edit/{id}/favorite")
-    public String favoriteList(@PathVariable Long id, Model model){
+    public String favoriteList(@PathVariable Long id, Model model) {
         GroceryList currentGroceryList = groceryDao.getById(id);
         UserGroceryList listToFavorite = listDao.getByGroceryList(currentGroceryList);
         listToFavorite.setFavorited(true);
@@ -211,13 +212,15 @@ public class GroceryListController {
     }
 
     @PostMapping("/groceryLists/edit/{id}/unfavorite")
-    public String unFavoriteList(@PathVariable Long id){
+    public String unFavoriteList(@PathVariable Long id) {
         GroceryList currentGroceryList = groceryDao.getById(id);
         UserGroceryList listToUnfavorite = listDao.getByGroceryList(currentGroceryList);
         listToUnfavorite.setFavorited(false);
         listDao.save(listToUnfavorite);
         return "redirect:/groceryLists/edit/" + id;
     }
+
+
 
 
 ////////// Deletion
@@ -252,8 +255,6 @@ public class GroceryListController {
 //
 //        return "redirect:/groceryLists";
 //    }
-
-
 
 
 }

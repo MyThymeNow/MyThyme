@@ -25,7 +25,9 @@ public class SearchController {
     }
 
     @GetMapping("/search")
-    public String searchApp() {
+    public String searchApp(@RequestParam String searchInput, Model model) {
+        model.addAttribute("searchInputText", searchInput);
+        System.out.println(searchInput);
         return "user/search";
     }
 }

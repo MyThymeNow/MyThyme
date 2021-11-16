@@ -6,24 +6,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class CategoriesController {
 
-    @GetMapping("/categories/meat")
-    public String showMeatAndSeafood() {
-        return "categories/meat";
+    @GetMapping("/categories/sidedishes")
+    public String showSideDishes() {
+        return "/categories/sidedishes";
+    }
+
+    @GetMapping("/categories/appetizers")
+    public String showAppetizers() {
+        return "/categories/appetizers";
+    }
+
+    @GetMapping("/categories/maincourse")
+    public String showMainCourses() {
+        return "/categories/maincourse";
     }
 
     @GetMapping("/categories/bread")
-    public String showBread() {
-        return "categories/bread";
-    }
-
-    @GetMapping("/categories/produce")
-    public String showProduce() {
-        return "categories/produce";
-    }
-
-    @GetMapping("/categories/frozen")
-    public String showFrozen() {
-        return "categories/frozen";
+    public String showBreadItems() {
+        return "/categories/bread";
     }
 
     @GetMapping("/categories/beverages")
@@ -31,11 +31,10 @@ public class CategoriesController {
         return "categories/beverages";
     }
 
-    @GetMapping("/categories/pet")
-    public String showPetSupplies() {
-        return "categories/pet";
+    @GetMapping("/categories/desserts")
+    public String showDesserts() {
+        return "/categories/desserts";
     }
-
 
 
 
