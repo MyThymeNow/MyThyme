@@ -125,5 +125,9 @@ form{
 
 .toast-body{
     padding: 0;
+    flex-direction: column;
 }
 
+.message-received{
+    border-style: ridge;
+}
