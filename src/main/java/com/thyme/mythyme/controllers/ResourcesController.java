@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class ResourcesController {
 
-    @Value("{pk.eyJ1IjoibmljLWd1dDIyIiwiYSI6ImNrcjUxdWI2djMxbmUzMXFoeTUweXE4aDgifQ.Clqy7tvpH-B5ma2v43GXUw}")
+    @Value("${MAPBOXAPIKEY}")
     private String mapboxKey;
 
-    @Value("{1}")
+    @Value("${COCKTAILDBAPIKEY}")
     private String cocktailDBKey;
 
-    @Value("{fe4d846e30994b3fb65b1adfbfbf342c}")
+    @Value("${SPOONACULARAPIKEY}")
     private String spoonacularKey;
 
     @GetMapping(path = "/keys.js", produces = "application/javascript")

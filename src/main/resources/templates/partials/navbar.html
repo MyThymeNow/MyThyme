@@ -93,12 +93,16 @@
 
   <!-- Search bar-->
   <div>
-    <form class="form-inline my-2 my-md-0">
-      <input class="form-control" type="text" placeholder="Explore 1000's of recipes" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color: white; background-color: #164A41">Search</button>
+    <form action="/search" class="form-inline my-2 my-md-0" method="get">
+      <input th:value="${searchInputText}" id="search-input" name="searchInput" class="form-control" type="search" placeholder="Explore 1000's of recipes" aria-label="Search">
+      <button id="search-button" class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color: white; background-color: #164A41">Search</button>
     </form>
   </div>
 </nav>
 
+
+<script src="/js/jquery.js"></script>
+<script src="/keys.js"></script>
+<script src="/js/spoonacular.js"></script>
 </body>
 </html>

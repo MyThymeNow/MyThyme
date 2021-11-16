@@ -1,5 +1,9 @@
 "use strict"
 
+let recipeDetails = null;
+
+
+
 $(document).ready(function () {
 //
 //     // Random recipes on Landing page
@@ -15,98 +19,47 @@ $(document).ready(function () {
 //     // getRandomRecipes();
 //
 //
-//         // function searchProducts() {
-//         //     $.ajax({
-//         //         url: `https://api.spoonacular.com/food/products/search?apiKey=${spoonacularKey}&query=apple&number=20`,
-//         //         type: "GET"
-//         //     }).done(function (data) {
-//         //         console.log(data);
-//         //
-//         //         let html = "";
-//         //         for (let i = 0; i < 20; i++) {
-//         //
-//         //             html += `
-//         //           <div class="card bg-transparent" style="width: 10rem">
-//         //             <div class="card-body">
-//         //               <h5 class="card-title">${data.products[i].title}</h5>
-//         //               <img src="${data.products[i].image}">
-//         //               <p class="card-text">${data.products[i].id}</p>
-//         //               <a href="#" class="btn btn-primary">View Product</a>
-//         //               <a href="#" class="btn btn-primary">Add to List</a>
-//         //
-//         //             </div>
-//         //           </div>`;
-//         //         }
-//         //         $("#search_results").html(html);
-//         //         })
-//         // }
-//         //         searchProducts();
-//
-//
-// //     function searchRecipesByIngredients() {
-// //         $.ajax({
-// //             url: `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${spoonacularKey}&ingredients=apples,+flour&number=3`,
-// //             type: "GET"
-// //         }).done(function (data) {
-// //             console.log(data);
-// //
-// //             let html = "";
-// //             for (let i = 0; i < 3; i++) {
-// //
-// //                 html += `
-// //                   <div class="card bg-transparent" style="width: 10rem">
-// //                     <div class="card-body">
-// //                       <h5 class="card-title">${data[i].title}</h5>
-// //                       <img src="${data[i].image}">
-// //                       <p class="card-text">${data[i].id}</p>
-// //                       <a href="#" class="btn btn-primary">View Recipe</a>
-// // <!--                      <a href="#" class="btn btn-primary">Add to List</a>-->
-// //
-// //                     </div>
-// //                   </div>`;
-// //             }
-// //             $("#search_results").html(html);
-// //         })
-// //     }
-// //     searchRecipesByIngredients();
-//
-//
-    $("#search-button").click(function (e) {
-        e.preventDefault();
-        let q = $("#search-input").val();
 
-        function searchForIngredients(q) {
-
-            $.ajax({
-                url: `https://api.spoonacular.com/food/ingredients/search?apiKey=${spoonacularKey}&query=${q}`,
-                type: "GET"
-            }).done(function (data) {
-                console.log(data);
-
-                let html = "";
-                for (let i = 0; i < 10; i++) {
-                    html += `
-                  <div class="card bg-transparent" style="width: 10rem">
-                    <div class="card-body">
-                    <h5 class="card-title">${data.results[i].name}</h5>
-                    <img src="https://spoonacular.com/cdn/ingredients_100x100/${data.results[i].image}">
-                      <a href="#" class="btn btn-primary">Add to List</a>
-                    </div>
-                  </div>`;
-                }
-                $("#search_results").html(html);
-            })
-        }
-
-        searchForIngredients(q);
-    })
-
-});
+    // Search recipes - works
+    // function searchRecipes(q) {
+    //     $.ajax({
+    //         url: `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularKey}&query=${q}&number=10&addRecipeInformation=true`,
+    //         type: "GET"
+    //     }).done(function (data) {
+    //         console.log(data);
+    //
+    //         let html = "";
+    //         for (let i = 0; i < 5; i++) {
+    //
+    //             html += `
+    //               <div class="card bg-transparent" style="width: 25rem">
+    //                 <div class="card-body">
+    //                   <h5 class="card-title">${data.results[i].title}</h5>
+    //                   <img src="${data.results[i].image}">
+    //                   <p class="card-text">${data.results[i].summary}</p>
+    //                   <a href="${data.results[i].sourceUrl}" class="btn btn-primary">View Recipe</a>
+    //                   <a href="#" class="btn btn-primary">Add to List</a>
+    //
+    //                 </div>
+    //               </div>`;
+    //         }
+    //         $("#search_results").html(html);
+    //     })
+    // }
+    // $("#search-button").click(function (e) {
+    //     e.preventDefault();
+    //     let q = $("#search-input").val();
+    //
+    //
+    //     searchRecipes(q);
+    // })
+    // searchRecipes($("#search-input").val());
 //
 //
-//     function produce() {
+//     // Beverages
+//     function beverages() {
 //         $.ajax({
-//             url: `https://api.spoonacular.com/food/ingredients/search?apiKey=${spoonacularKey}&query=produce&number=20`,
+//             url: `https://api.spoonacular.com/recipes/complexSearch?type=beverage&apiKey=${spoonacularKey}&addRecipeInformation=true`,
 //             type: "GET"
 //         }).done(function (data) {
 //             console.log(data);
@@ -116,28 +69,235 @@ $(document).ready(function () {
 //
 //                     html += `
 //                   <div class="card bg-transparent" style="width: 10rem">
-//
 //                     <div class="card-body">
-//
-//                       <h5 class="card-title">${data.results[i].name}</h5>
-//                       <img src="https://spoonacular.com/cdn/ingredients_100x100/${data.results[i].image}">
-//                       <p class="card-text">${data[i].results[i].aisle}</p>
+//                       <h5 class="card-title">${data.results[i].title}</h5>
+//                       <img src="${data.results[i].image}">
+//                       <a href="${data.results[i].sourceUrl}" class="btn btn-primary">View Recipe</a>
 //                       <a href="#" class="btn btn-primary">Add to List</a>
-//
 //                     </div>
 //                   </div>`;
 //                 }
-//             $("#search_results").html(html);
+//             $("#beverage_results").html(html);
 //         })
 //     }
-//     produce();
-// })
+//     beverages();
 //
 //
-//             // function getPriceEstimate() {
-//             //     $.ajax({
-//             //         url:
-//             //     })
-//             // }
+// // Main course
+    function mainCourse() {
+        $.ajax({
+            url: `https://api.spoonacular.com/recipes/complexSearch?type=main course&apiKey=${spoonacularKey}&addRecipeInformation=true&fillIngredients=true`,
+            type: "GET"
+        }).done(function (data) {
+            recipeDetails = data
+            console.log(data);
+
+
+            let html = "";
+            for (let i = 0; i < 10; i++) {
+
+                html += `
+                  <div class="card bg-transparent" style="width: 10rem">
+                    <div class="card-body">
+                      <h5 class="card-title">${data.results[i].title}</h5>
+                      <img src="${data.results[i].image}">
+                      <a href="${data.results[i].sourceUrl}" class="btn btn-primary">View Recipe</a>
+                      <a href="#" class="btn btn-primary" data-id="${data.results[i].id}" >Add to List</a>
+                    </div>
+                  </div>`;
+            }
+            $("#maincourse_results").html(html);
+
+            $(".btn").click(function (e) {
+                e.preventDefault();
+                const recipeId = $(this).attr("data-id")
+                console.log(recipeId);
+                const recipe = recipeDetails.results.find(result => result.id == recipeId)
+                console.log(recipe)
+
+                const recipeData = {
+                    name: "bob",
+                    ingredients: [
+                        {
+                            name: "potato",
+                            quantity: 3,
+                            notes: "resstle Potatos, ripe"
+                        }
+                    ]
+                }
+
+                // TODO
+                // immediately after getting recipe, use fetch to get id from api and send
+                // const url = `https://api.spoonacular.com/recipes/complexSearch?type=main course&apiKey=${spoonacularKey}&addRecipeInformation=true&fillIngredients=true`;
+                // fetch(url, recipeId)
+                //     .then(response => console.log(response))
+                //     .catch(error => console.log(error));
+
+                function saveRecipe(data) {
+                    let token = $("meta[name='_csrf']").attr("content");
+                    let header = $("meta[name='_csrf_header']").attr("content");
+
+                    console.log($("meta[name='_csrf']").attr("content"),token)
+
+                    $(document).ajaxSend(function (e, xhr, options) {
+                        xhr.setRequestHeader(header, token);
+                    });
+
+
+                    $.post({
+                        contentType: "application/json",
+                        url: "/saveIngredients",
+                        data: JSON.stringify(data),
+                        timeout: 600000,
+                        success: function (data) {
+                            console.log(data);
+
+                        }
+
+                    })
+                    // Make call to api using the recipe ID
+                }
+                saveRecipe(recipeData);
+
+            })
+            })
+
+}
+    mainCourse();
+
+
+
+
+
+    // function addIngredientsFromRecipe(ID) {
+    //
+    //     let token = $("meta[name='_csrf']").attr("content");
+    //     let header = $("meta[name='_csrf_header']").attr("content");
+    //
+    //     let data = {}
+    //     data[] = ID; // results.id?
+    //     $(document.ajaxSend(function(e, xhr, options) {
+    //         xhr.setRequestHeader(header, token);
+    //     });
+    //
+    //     $.post({
+    //         contentType: "application/json",
+    //         url: "/maincourse",
+    //         data: JSON.stringify(data),
+    //         timeout: 600000, // do I need this?
+    //         success: function (data) {
+    //             $("#")
+    //         }
+    //     })
+    // }
+
+
+
+     // Sides
+//     function sides() {
+//         $.ajax({
+//             url: `https://api.spoonacular.com/recipes/complexSearch?type=side dish&apiKey=${spoonacularKey}&addRecipeInformation=true`,
+//             type: "GET"
+//         }).done(function (data) {
+//             console.log(data);
 //
+//             let html = "";
+//             for (let i = 0; i < 10; i++) {
 //
+//                 html += `
+//                   <div class="card bg-transparent" style="width: 10rem">
+//                     <div class="card-body">
+//                       <h5 class="card-title">${data.results[i].title}</h5>
+//                       <img src="${data.results[i].image}">
+//                       <a href="${data.results[i].sourceUrl}" class="btn btn-primary">View Recipe</a>
+//                       <a href="#" class="btn btn-primary">Add to List</a>
+//                     </div>
+//                   </div>`;
+//             }
+//             $("#side_results").html(html);
+//         })
+//     }
+//     sides();
+// //
+// //
+// //     // Desserts
+//     function dessert() {
+//         $.ajax({
+//             url: `https://api.spoonacular.com/recipes/complexSearch?type=dessert&apiKey=${spoonacularKey}&addRecipeInformation=true`,
+//             type: "GET"
+//         }).done(function (data) {
+//             console.log(data);
+//
+//             let html = "";
+//             for (let i = 0; i < 10; i++) {
+//
+//                 html += `
+//                   <div class="card bg-transparent" style="width: 10rem">
+//                     <div class="card-body">
+//                       <h5 class="card-title">${data.results[i].title}</h5>
+//                       <img src="${data.results[i].image}">
+//                       <a href="${data.results[i].sourceUrl}" class="btn btn-primary">View Recipe</a>
+//                       <a href="#" class="btn btn-primary">Add to List</a>
+//                     </div>
+//                   </div>`;
+//             }
+//             $("#dessert_results").html(html);
+//         })
+//     }
+//     dessert();
+// //
+// //
+// //     // Bread
+//     function bread() {
+//         $.ajax({
+//             url: `https://api.spoonacular.com/recipes/complexSearch?type=bread&apiKey=${spoonacularKey}&addRecipeInformation=true`,
+//             type: "GET"
+//         }).done(function (data) {
+//             console.log(data);
+//
+//             let html = "";
+//             for (let i = 0; i < 10; i++) {
+//
+//                 html += `
+//                   <div class="card bg-transparent" style="width: 10rem">
+//                     <div class="card-body">
+//                       <h5 class="card-title">${data.results[i].title}</h5>
+//                       <img src="${data.results[i].image}">
+//                       <a href="${data.results[i].sourceUrl}" class="btn btn-primary">View Recipe</a>
+//                       <a href="#" class="btn btn-primary">Add to List</a>
+//                     </div>
+//                   </div>`;
+//             }
+//             $("#bread_results").html(html);
+//         })
+//     }
+//     bread();
+// //
+// //
+// //
+// //     // Appetizers
+//     function appetizers() {
+//         $.ajax({
+//             url: `https://api.spoonacular.com/recipes/complexSearch?type=appetizer&apiKey=${spoonacularKey}&addRecipeInformation=true`,
+//             type: "GET"
+//         }).done(function (data) {
+//             console.log(data);
+//
+//             let html = "";
+//             for (let i = 0; i < 10; i++) {
+//
+//                 html += `
+//                   <div class="card bg-transparent" style="width: 10rem">
+//                     <div class="card-body">
+//                       <h5 class="card-title">${data.results[i].title}</h5>
+//                       <img src="${data.results[i].image}">
+//                       <a href="${data.results[i].sourceUrl}" class="btn btn-primary">View Recipe</a>
+//                       <a href="#" class="btn btn-primary">Add to List</a>
+//                     </div>
+//                   </div>`;
+//             }
+//             $("#app_results").html(html);
+//         })
+//     }
+//     appetizers();
+});
