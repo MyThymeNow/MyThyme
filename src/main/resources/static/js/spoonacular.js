@@ -37,7 +37,7 @@ $(document).ready(function () {
                       <h5 class="card-title">${data.results[i].title}</h5>
                       <img src="${data.results[i].image}">
                       <p class="card-text">${data.results[i].summary}</p>
-                      <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
+                      <a href="${data.results[i].sourceUrl}" class="btn btn2" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
                          
                           <a href="#" id="listButton" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
                          
@@ -62,75 +62,76 @@ $(document).ready(function () {
 //
 //
 //     // Beverages
-//     function beverages() {
-//         $.ajax({
-//             url: `https://api.spoonacular.com/recipes/complexSearch?type=beverage&apiKey=${spoonacularKey}&addRecipeInformation=true&fillIngredients=true`,
-//             type: "GET"
-//         }).done(function (data) {
-//             console.log(data);
-//
-//             let html = "";
-//             for (let i = 0; i < 10; i++) {
-//
-//                     html += `
-//                   <div class="card bg-transparent ml-4" style="width: 18rem">
-//                     <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a">
-//                       <h5 class="card-title">${data.results[i].title}</h5>
-//                       <img src="${data.results[i].image}">
-//                       <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
-//                       <div sec:authorize="isAuthenticated()">
-//                       <a href="#" id="bevButton" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
-//                      </div>
-//                     </div>
-//                   </div>`;
-//                 }
-//             $("#beverage_results").html(html);
-//             $("#bevButton").click(function (e) {
-//                 e.preventDefault();
-//                 const recipeId = $(this).attr("data-id")
-//                 console.log(recipeId);
-//                 const recipe = recipeDetails.results.find(result => result.id == recipeId)
-//                 console.log(recipe)
-//
-//
-//                 const recipeData = {
-//                     name: recipe.title,
-//                     ingredients: recipe.extendedIngredients.map(ingredient => ({name: ingredient.name, quantity: ingredient.amount, notes: ingredient.originalString}))
-//                 }
-//
-//
-//                 function saveRecipe(data) {
-//                     let token = $("meta[name='_csrf']").attr("content");
-//                     let header = $("meta[name='_csrf_header']").attr("content");
-//
-//                     console.log($("meta[name='_csrf']").attr("content"), token)
-//
-//                     $(document).ajaxSend(function (e, xhr, options) {
-//                         xhr.setRequestHeader(header, token);
-//                     });
-//
-//
-//                     $.post({
-//                         contentType: "application/json",
-//                         url: "/saveIngredients",
-//                         data: JSON.stringify(data),
-//                         timeout: 600000,
-//                         success: function (data) {
-//                             console.log(data);
-//
-//                         }
-//
-//                     })
-//                     // Make call to api using the recipe ID
-//                 }
-//
-//                 saveRecipe(recipeData);
-//             })
-//
-//         })
-//
-//     }
-//     beverages();
+    function beverages() {
+        $.ajax({
+            url: `https://api.spoonacular.com/recipes/complexSearch?type=beverage&apiKey=${spoonacularKey}&addRecipeInformation=true&fillIngredients=true`,
+            type: "GET"
+        }).done(function (data) {
+            console.log(data);
+
+            let html = "";
+            for (let i = 0; i < 10; i++) {
+
+                    html += `
+                  <div class="card bg-transparent ml-4" style="width: 18rem">
+                    <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a">
+                      <h5 class="card-title">${data.results[i].title}</h5>
+                      <img src="${data.results[i].image}">
+                      <a href="${data.results[i].sourceUrl}" class="btn btn2" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
+
+                      <a href="#" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
+
+                    </div>
+                  </div>`;
+                }
+            $("#beverage_results").html(html);
+
+        //     $(".btn").click(function (e) {
+        //         e.preventDefault();
+        //         const recipeId = $(this).attr("data-id")
+        //         console.log(recipeId);
+        //         const recipe = recipeDetails.results.find(result => result.id == recipeId)
+        //         console.log(recipe)
+        //
+        //
+        //         const recipeData = {
+        //             name: recipe.title,
+        //             ingredients: recipe.extendedIngredients.map(ingredient => ({name: ingredient.name, quantity: ingredient.amount, notes: ingredient.originalString}))
+        //         }
+        //
+        //
+        //         function saveRecipe(data) {
+        //             let token = $("meta[name='_csrf']").attr("content");
+        //             let header = $("meta[name='_csrf_header']").attr("content");
+        //
+        //             console.log($("meta[name='_csrf']").attr("content"), token)
+        //
+        //             $(document).ajaxSend(function (e, xhr, options) {
+        //                 xhr.setRequestHeader(header, token);
+        //             });
+        //
+        //
+        //             $.post({
+        //                 contentType: "application/json",
+        //                 url: "/saveIngredients",
+        //                 data: JSON.stringify(data),
+        //                 timeout: 600000,
+        //                 success: function (data) {
+        //                     console.log(data);
+        //
+        //                 }
+        //
+        //             })
+        //             // Make call to api using the recipe ID
+        //         }
+        //
+        //         saveRecipe(recipeData);
+        //     })
+        //
+        })
+
+    }
+    beverages();
 //
 //
 // // Main course
@@ -151,16 +152,16 @@ $(document).ready(function () {
                     <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a">
                       <h5 class="card-title">${data.results[i].title}</h5>
                       <img src="${data.results[i].image}">
-                      <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
+                      <a href="${data.results[i].sourceUrl}" class="btn btn2" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
 
-                      <a href="#" id="listButton" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
+                      <a href="#" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
       
                     </div>
                   </div>`;
             }
             $("#maincourse_results").html(html);
 
-            $("#listButton").click(function (e) {
+            $(".btn").click(function (e) {
                 e.preventDefault();
                 const recipeId = $(this).attr("data-id")
                 console.log(recipeId);
@@ -233,10 +234,8 @@ $(document).ready(function () {
                     <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a">
                       <h5 class="card-title">${data.results[i].title}</h5>
                       <img src="${data.results[i].image}">
-                      <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
-                      <div sec:authorize="isAuthenticated()">
+                      <a href="${data.results[i].sourceUrl}" class="btn btn2" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
                       <a href="#" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
-                     </div>
                     </div>
                   </div>`;
             }
@@ -262,10 +261,10 @@ $(document).ready(function () {
                     <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a">
                       <h5 class="card-title">${data.results[i].title}</h5>
                       <img src="${data.results[i].image}">
-                      <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
-                      <div sec:authorize="isAuthenticated()">
+                      <a href="${data.results[i].sourceUrl}" class="btn btn2" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
+
                       <a href="#" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
-                     </div>
+
                     </div>
                   </div>`;
             }
@@ -291,7 +290,7 @@ $(document).ready(function () {
                     <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a">
                       <h5 class="card-title">${data.results[i].title}</h5>
                       <img src="${data.results[i].image}">
-                      <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
+                      <a href="${data.results[i].sourceUrl}" class="btn btn2" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
 
                       <a href="#" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
 
@@ -321,7 +320,7 @@ $(document).ready(function () {
                     <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a">
                       <h5 class="card-title">${data.results[i].title}</h5>
                       <img src="${data.results[i].image}">
-                      <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
+                      <a href="${data.results[i].sourceUrl}" class="btn btn2" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
                       <a href="#" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
                      </div>
                     </div>
