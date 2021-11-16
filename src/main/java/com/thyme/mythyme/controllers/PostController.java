@@ -31,13 +31,14 @@ public class PostController {
         System.out.println(data);
         GroceryList groceryList = new GroceryList();
         groceryList.setName(data.getName());
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         UUID uuid = UUID.randomUUID();
-        groceryList.setOwner(loggedInUser);
+        groceryList.setOwner(currentUser);
         groceryList.setShareURL(uuid.toString());
         GroceryList groceryListInDB = groceryDao.save(groceryList);
         UserGroceryList newList = new UserGroceryList();
-        newList.setUser(loggedInUser);
+        newList.setUser(currentUser);
         newList.setGroceryList(groceryList);
         listDao.save(newList);
 
@@ -55,7 +56,7 @@ public class PostController {
             groceryListIngredients.setNotes(data.getIngredients().get(i).getNotes());
             groceryListIngredients.setGroceryList(groceryListInDB);
             groceryListIngredients.setIngredient(ingredientInDB);
-            groceryListIngredients.setUser(loggedInUser);
+            groceryListIngredients.setUser(currentUser);
             listIngredientsDao.save(groceryListIngredients);
 
 
@@ -66,4 +67,8 @@ public class PostController {
         return "redirect:/profile";
 
     }
+
 }
+
+}
+

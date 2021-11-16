@@ -13,36 +13,31 @@
 
 <h1> View Your Profile Information Here</h1><br>
 
-<div class="justify-content-center row" style="padding-top: 5px" sec:authorize="isAuthenticated()">
-    <div class="user col" th:each="user:${currentUser}">
+<div class="row" style="padding-top: 5px" sec:authorize="isAuthenticated()">
+    <div class="user col-4" th:each="user:${currentUser}">
         <!--2nd user card-->
         <div class="card mb-3 shadow p-3 mb-5 rounded" style="max-width: 20em; background-color: #f1b24a; justify-content: center">
-            <img src="https://image.shutterstock.com/image-vector/viking-characters-god-loki-warriors-600w-2016325223.jpg" style="height: 200px; width: 200px; border: black 2px solid" class="card-img-top" alt="...">
+            <img src="https://image.shutterstock.com/image-vector/viking-characters-god-loki-warriors-600w-2016325223.jpg" style="height: 200px; width: 200px; border: black 2px solid; align-self: center" class="card-img-top justify-content-center" alt="...">
             <div class="card-body">
-<!--                <h5 class="card-title">Card title</h5>-->
                 <!-- user info section -->
 <!--                <div class="card-body">-->
                     <ul class="list-group list-group-flush">
-                        <li style="background-color: #f1b24a; text-align: center; border-bottom: white" class="list-group-item shadow p-3 mb-5 rounded">
+                        <li style="background-color: #f1b24a; text-align: center" class="list-group-item shadow p-3 mb-5 rounded">
                             <p><strong>Username: </strong>
-                            <div th:text="${currentUser.username}"></div></p>
-                        </li>
-                        <!--                <li style="background-color: #f1b24a; text-align: center" class="list-group-item shadow p-3 mb-5 rounded">-->
-                        <!--                    <p><strong>First Name: </strong>-->
-                        <!--                    <div th:text="${user.getFirstName()}"></div></p>-->
-                        <!--                </li>-->
-                        <!--                <li style="background-color: #f1b24a; text-align: center" class="list-group-item shadow p-3 mb-5 rounded">-->
-                        <!--                    <p><strong>Last Name: </strong>-->
-                        <!--                    <div th:text="${user.getLastName()}"></div></p>-->
-                        <!--                </li>-->
+                            <div th:text="${currentUser.username}"></div>
+                            <!--                    <p><strong>First Name: </strong>-->
+                            <!--                    <div th:text="${user.getFirstName()}"></div></p>-->
 
+                            <!--                    <p><strong>Last Name: </strong>-->
+                            <!--                    <div th:text="${user.getLastName()}"></div></p>-->
+                            </p>
+                        </li>
                     </ul>
                 </div>
                 <!--Bio-->
                 <div class="card-body" >
                     <h5 class="card-title">My Bio</h5>
-                    <p class="scroll card-text shadow p-3 mb-5 rounded" th:text="${currentUser.bio}">
-                    </p>
+                    <p class="scroll card-text shadow p-3 mb-5 rounded" th:text="${currentUser.bio}"></p>
                 </div>
                 <!--card button-->
                 <div class="card-body">
@@ -51,96 +46,43 @@
                 </div>
             </div>
         </div>
-        <!--    2nd attempt carouselExampleCaptions-->
-        <div id="myThymeCarousel" class="carousel slide col" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#myThymeCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myThymeCarousel" data-slide-to="1"></li>
-                <li data-target="#myThymeCarousel" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <a th:href="@{/messages}"><img src="https://www.errenskitchen.com/wp-content/uploads/2019/02/chocolate-chip-cookies-3-500x375.jpg" class="align-items-center justify-content-center d-block w-100" alt="..."></a>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5 style="color: #f1b24a"><strong>Messages</strong></h5>
-                        <p>Nulla viking-characters-god-loki-warriors-600w-2016325223tae elit libero, a pharetra augue mollis interdum.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <a th:href="@{/user/favorites}"><img src="https://i2.wp.com/thedelightfullaugh.com/wp-content/uploads/2021/05/apple-pie-2.jpg?fit=500%2C500&ssl=1" class="d-block w-80" alt="..."></a>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5 style="color: #164A41"><strong>My Favorites</strong></h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <a th:href="@{/groceryLists}"><img src="https://www.errenskitchen.com/wp-content/uploads/2019/02/chocolate-chip-cookies-3-500x375.jpg" class="d-block w-80 " alt="..."></a>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5 style="color: #f1b24a"><strong>Create a List</strong></h5>
-                        <p>Get started creating your own list</p>
-                    </div>
-                </div>
 
+    <!--    Carousel API Testing-->
+    <div class="col-8">
+<!--        <div class="card-group">-->
+            <div id="myThymeCarousel" class="carousel slide col" data-ride="carousel" style="width: fit-content">
+                <ol class="carousel-indicators">
+                    <li data-target="#myThymeCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myThymeCarousel" data-slide-to="1"></li>
+                    <li data-target="#myThymeCarousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner" id="profile-col" style="border-radius: 12%">
+                    <!--    Carousel API JS Enters here-->
+                </div>
+                <a class="carousel-control-prev" href="#myThymeCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#myThymeCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
-            <a class="carousel-control-prev" href="#myThymeCarousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#myThymeCarousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-
-<!--        todo OLD LAYOUT-->
-<!--    <div class="user-lists" th:each="groceryList:${groceryLists}">-->
-<!--        <div class="card shadow p-3 mb-5 rounded row" style="background-color: #f1b24a; width: 18rem;">-->
-<!--            <img src="https://image.shutterstock.com/image-vector/viking-characters-god-loki-warriors-600w-2016325223.jpg" class="card-img-top" alt="profile-image">-->
-<!--&lt;!&ndash;            src="/MyThymeUpdatedLogo.png"&ndash;&gt;-->
-<!--            <div class="card-body">-->
-<!--                <ul class="list-group list-group-flush">-->
-<!--&lt;!&ndash;                test&ndash;&gt;-->
-<!--                <li style="background-color: #f1b24a; text-align: center" class="list-group-item shadow p-3 mb-5 rounded">-->
-<!--                    <p><strong>Username: </strong>-->
-<!--                    <div th:text="${user.getUsername()}"></div></p>-->
-<!--                </li>-->
-<!--&lt;!&ndash;                <li style="background-color: #f1b24a; text-align: center" class="list-group-item shadow p-3 mb-5 rounded">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <p><strong>First Name: </strong>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div th:text="${user.getFirstName()}"></div></p>&ndash;&gt;-->
-<!--&lt;!&ndash;                </li>&ndash;&gt;-->
-<!--&lt;!&ndash;                <li style="background-color: #f1b24a; text-align: center" class="list-group-item shadow p-3 mb-5 rounded">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <p><strong>Last Name: </strong>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div th:text="${user.getLastName()}"></div></p>&ndash;&gt;-->
-<!--&lt;!&ndash;                </li>&ndash;&gt;-->
-<!--            </ul>-->
-<!--            </div>-->
-<!--&lt;!&ndash;            <div class="card-body" >&ndash;&gt;-->
-<!--&lt;!&ndash;                <h5 class="card-title">My Bio</h5>&ndash;&gt;-->
-<!--&lt;!&ndash;                <p class="scroll card-text shadow p-3 mb-5 rounded">&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    Some quick example text to build on the card title and make up the bulk of the card's content.&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    A user food preferences and other information they may find interesting to have here.&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                <div th:text="${user.getBio()}"></div>&ndash;&gt;-->
-<!--&lt;!&ndash;                </p>&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;card button&ndash;&gt;-->
-<!--&lt;!&ndash;            <div class="card-body">&ndash;&gt;-->
-<!--&lt;!&ndash;                <a th:href="@{/messages}" style="background-color: #164A41; color: #ffffff" class="btn">Messages</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                <a th:href="@{/profile/edit}" style="background-color: #164A41; color: #ffffff" class="btn">Edit Profile</a>&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
 <!--        </div>-->
-
     </div>
-
-<!--&lt;!&ndash;    Carousel API Testing&ndash;&gt;-->
-<!--    <div class="col">-->
-<!--        <div class="card-group" id="profile-col">-->
-<!--        </div>-->
-<!--    </div>-->
 
 </div>
 
-<script src="/js/userProfile.js"></script>
+
+
+
+
+
 <div th:replace="partials/footer::footer"></div>
+<!-- Scripts -->
+<script src="/js/jquery.js"></script>
+<script src="/keys.js"></script>
+<script src="/js/userProfile.js"></script>
 
 </body>
 </html>

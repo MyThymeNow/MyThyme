@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "grocery_lists")
-@ToString
+//@ToString
 public class GroceryList {
 
     @Id
