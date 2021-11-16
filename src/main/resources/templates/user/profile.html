@@ -17,12 +17,12 @@
     <div class="user col" th:each="user:${currentUser}">
         <!--2nd user card-->
         <div class="card mb-3 shadow p-3 mb-5 rounded" style="max-width: 20em; background-color: #f1b24a; justify-content: center">
-            <img src="https://image.shutterstock.com/image-vector/viking-characters-god-loki-warriors-600w-2016325223.jpg" style="height: 200px; width: 200px; border: black 2px solid;" class="card-img-top justify-content-center" alt="...">
+            <img src="https://image.shutterstock.com/image-vector/viking-characters-god-loki-warriors-600w-2016325223.jpg" style="height: 200px; width: 200px; border: black 2px solid; align-self: center" class="card-img-top justify-content-center" alt="...">
             <div class="card-body">
                 <!-- user info section -->
 <!--                <div class="card-body">-->
                     <ul class="list-group list-group-flush">
-                        <li style="background-color: #f1b24a; text-align: center; border-bottom: white" class="list-group-item shadow p-3 mb-5 rounded">
+                        <li style="background-color: #f1b24a; text-align: center" class="list-group-item shadow p-3 mb-5 rounded">
                             <p><strong>Username: </strong>
                             <div th:text="${currentUser.username}"></div>
                             <!--                    <p><strong>First Name: </strong>-->
@@ -47,58 +47,62 @@
             </div>
         </div>
         <!--Carousel Practice Section-->
-        <div id="myThymeCarousel" class="carousel slide col" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#myThymeCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myThymeCarousel" data-slide-to="1"></li>
-                <li data-target="#myThymeCarousel" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <a th:href="@{/messages}"><img src="https://www.errenskitchen.com/wp-content/uploads/2019/02/chocolate-chip-cookies-3-500x375.jpg" class="align-items-center justify-content-center d-block w-100" alt="..."></a>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5 style="color: #f1b24a"><strong>Messages</strong></h5>
-                        <p>Nulla viking-characters-god-loki-warriors-600w-2016325223tae elit libero, a pharetra augue mollis interdum.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <a th:href="@{/user/favorites}"><img src="https://i2.wp.com/thedelightfullaugh.com/wp-content/uploads/2021/05/apple-pie-2.jpg?fit=500%2C500&ssl=1" class="d-block w-80" alt="..."></a>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5 style="color: #164A41"><strong>My Favorites</strong></h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <a th:href="@{/groceryList}"><img src="https://www.errenskitchen.com/wp-content/uploads/2019/02/chocolate-chip-cookies-3-500x375.jpg" class="d-block w-80 " alt="..."></a>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5 style="color: #f1b24a"><strong>Create a List</strong></h5>
-                        <p>Get started creating your own list</p>
-                    </div>
-                </div>
+<!--        <div id="myThymeCarousel" class="carousel slide col" data-ride="carousel">-->
+<!--            <ol class="carousel-indicators">-->
+<!--                <li data-target="#myThymeCarousel" data-slide-to="0" class="active"></li>-->
+<!--                <li data-target="#myThymeCarousel" data-slide-to="1"></li>-->
+<!--                <li data-target="#myThymeCarousel" data-slide-to="2"></li>-->
+<!--            </ol>-->
+<!--            <div class="carousel-inner">-->
+<!--                <div class="carousel-item active">-->
+<!--                    <a th:href="@{/messages}"><img src="https://www.errenskitchen.com/wp-content/uploads/2019/02/chocolate-chip-cookies-3-500x375.jpg" class="align-items-center justify-content-center d-block w-100" alt="..."></a>-->
+<!--                    <div class="carousel-caption d-none d-md-block">-->
+<!--                        <h5 style="color: #f1b24a"><strong>Messages</strong></h5>-->
+<!--                        <p>Nulla viking-characters-god-loki-warriors-600w-2016325223tae elit libero, a pharetra augue mollis interdum.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="carousel-item">-->
+<!--                    <a th:href="@{/user/favorites}"><img src="https://i2.wp.com/thedelightfullaugh.com/wp-content/uploads/2021/05/apple-pie-2.jpg?fit=500%2C500&ssl=1" class="d-block w-80" alt="..."></a>-->
+<!--                    <div class="carousel-caption d-none d-md-block">-->
+<!--                        <h5 style="color: #164A41"><strong>My Favorites</strong></h5>-->
+<!--                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="carousel-item">-->
+<!--                    <a th:href="@{/groceryList}"><img src="https://www.errenskitchen.com/wp-content/uploads/2019/02/chocolate-chip-cookies-3-500x375.jpg" class="d-block w-80 " alt="..."></a>-->
+<!--                    <div class="carousel-caption d-none d-md-block">-->
+<!--                        <h5 style="color: #f1b24a"><strong>Create a List</strong></h5>-->
+<!--                        <p>Get started creating your own list</p>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-            </div>
-            <a class="carousel-control-prev" href="#myThymeCarousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#myThymeCarousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
+<!--            </div>-->
+<!--            <a class="carousel-control-prev" href="#myThymeCarousel" role="button" data-slide="prev">-->
+<!--                <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--                <span class="sr-only">Previous</span>-->
+<!--            </a>-->
+<!--            <a class="carousel-control-next" href="#myThymeCarousel" role="button" data-slide="next">-->
+<!--                <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--                <span class="sr-only">Next</span>-->
+<!--            </a>-->
+<!--        </div>-->
 
     </div>
 
-<!--&lt;!&ndash;    Carousel API Testing&ndash;&gt;-->
-<!--    <div class="col">-->
-<!--        <div class="card-group" id="profile-col">-->
-<!--        </div>-->
-<!--    </div>-->
+<!--    Carousel API Testing-->
+    <div class="col">
+        <div class="card-group" id="profile-col">
+        </div>
+    </div>
 
 </div>
 
-<script src="/js/userProfile.js"></script>
+
 <div th:replace="partials/footer::footer"></div>
+<!-- Scripts -->
+<script src="/js/jquery.js"></script>
+<script src="/keys.js"></script>
+<script src="/js/userProfile.js"></script>
 
 </body>
 </html>
