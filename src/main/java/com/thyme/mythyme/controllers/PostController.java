@@ -64,5 +64,5 @@ public class PostController {
             ingredientDao.save(ingredientInDB);
         }
         return "redirect:/profile";
-
+    }
 }
