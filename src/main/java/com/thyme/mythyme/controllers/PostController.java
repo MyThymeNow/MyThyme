@@ -1,12 +1,13 @@
 package com.thyme.mythyme.controllers;
 
-import com.thyme.mythyme.models.GroceryList;
-import com.thyme.mythyme.models.GroceryListIngredients;
-import com.thyme.mythyme.models.SpoonacularRequest;
+import com.thyme.mythyme.models.*;
 import com.thyme.mythyme.repository.*;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.UUID;
 
 @Controller
 public class PostController {
@@ -28,10 +29,40 @@ public class PostController {
     @PostMapping("/saveIngredients")
     public String saveRecipe(@RequestBody SpoonacularRequest data) {
         System.out.println(data);
+        GroceryList groceryList = new GroceryList();
+        groceryList.setName(data.getName());
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UUID uuid = UUID.randomUUID();
+        groceryList.setOwner(loggedInUser);
+        groceryList.setShareURL(uuid.toString());
+        GroceryList groceryListInDB = groceryDao.save(groceryList);
+        UserGroceryList newList = new UserGroceryList();
+        newList.setUser(loggedInUser);
+        newList.setGroceryList(groceryList);
+        listDao.save(newList);
 
-//        GroceryList groceryList = groceryDao.getById(recipeId);
-//        groceryDao.save(groceryList);
-        return "/saveIngredients";
-    }
+        for (int i = 0; i < data.getIngredients().size(); i++) {
+            Ingredient ingredientInDB = ingredientDao.getByName(data.getIngredients().get(i).getName());
+            if (ingredientInDB == null) {
+
+                Ingredient ingredient = new Ingredient();
+                ingredient.setName(data.getIngredients().get(i).getName());
+                ingredientInDB = ingredientDao.save(ingredient);
+            }
+
+            GroceryListIngredients groceryListIngredients = new GroceryListIngredients();
+            groceryListIngredients.setQuantity(data.getIngredients().get(i).getQuantity().longValue());
+            groceryListIngredients.setNotes(data.getIngredients().get(i).getNotes());
+            groceryListIngredients.setGroceryList(groceryListInDB);
+            groceryListIngredients.setIngredient(ingredientInDB);
+            groceryListIngredients.setUser(loggedInUser);
+            listIngredientsDao.save(groceryListIngredients);
+
+
+            ingredientInDB.setName(data.getIngredients().get(i).getName());
+            ingredientInDB.setId(ingredientInDB.getId());
+            ingredientDao.save(ingredientInDB);
+        }
+        return "redirect:/profile";
 
 }
