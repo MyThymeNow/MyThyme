@@ -33,7 +33,7 @@ $(document).ready(function () {
 
                 html += `
                   <div class="card bg-transparent" style="width: 25rem">
-                    <div class="card-body">
+                    <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a">
                       <h5 class="card-title">${data.results[i].title}</h5>
                       <img src="${data.results[i].image}">
                       <p class="card-text">${data.results[i].summary}</p>
@@ -69,8 +69,8 @@ $(document).ready(function () {
             for (let i = 0; i < 10; i++) {
 
                     html += `
-                  <div class="card bg-transparent" style="width: 10rem">
-                    <div class="card-body">
+                  <div class="card bg-transparent ml-4" style="width: 18rem">
+                    <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a">
                       <h5 class="card-title">${data.results[i].title}</h5>
                       <img src="${data.results[i].image}">
                       <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
@@ -144,8 +144,8 @@ $(document).ready(function () {
             for (let i = 0; i < 10; i++) {
 
                 html += `
-                  <div class="card bg-transparent" style="width: 10rem">
-                    <div class="card-body">
+                  <div class="card bg-transparent ml-4" style="width: 18rem">
+                    <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a">
                       <h5 class="card-title">${data.results[i].title}</h5>
                       <img src="${data.results[i].image}">
                       <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
@@ -219,8 +219,8 @@ $(document).ready(function () {
             for (let i = 0; i < 10; i++) {
 
                 html += `
-                  <div class="card bg-transparent" style="width: 10rem">
-                    <div class="card-body">
+                  <div class="card bg-transparent ml-4" style="width: 18rem">
+                    <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a">
                       <h5 class="card-title">${data.results[i].title}</h5>
                       <img src="${data.results[i].image}">
                       <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
@@ -291,8 +291,8 @@ $(document).ready(function () {
             for (let i = 0; i < 10; i++) {
 
                 html += `
-                  <div class="card bg-transparent" style="width: 10rem">
-                    <div class="card-body">
+                  <div class="card bg-transparent ml-4" style="width: 18rem">
+                    <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a">
                       <h5 class="card-title">${data.results[i].title}</h5>
                       <img src="${data.results[i].image}">
                       <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
@@ -362,8 +362,8 @@ $(document).ready(function () {
             for (let i = 0; i < 10; i++) {
 
                 html += `
-                  <div class="card bg-transparent" style="width: 10rem">
-                    <div class="card-body">
+                  <div class="card bg-transparent ml-4" style="width: 18rem">
+                    <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a">
                       <h5 class="card-title">${data.results[i].title}</h5>
                       <img src="${data.results[i].image}">
                       <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
@@ -433,8 +433,8 @@ $(document).ready(function () {
             for (let i = 0; i < 10; i++) {
 
                 html += `
-                  <div class="card bg-transparent" style="width: 10rem">
-                    <div class="card-body">
+                  <div class="card bg-transparent ml-4" style="width: 18rem">
+                    <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a">
                       <h5 class="card-title">${data.results[i].title}</h5>
                       <img src="${data.results[i].image}">
                       <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
