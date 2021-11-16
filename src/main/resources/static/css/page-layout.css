@@ -107,11 +107,17 @@ form{
 
 .message-received{
     margin: 0;
+
+}
+
+.message-sent{
+    border-style: outset;
 }
 
 .mb-4-sent{
     display: flex;
     justify-content: flex-end;
+
 
 
 }
@@ -120,3 +126,4 @@ form{
 .toast-body{
     padding: 0;
 }
+
