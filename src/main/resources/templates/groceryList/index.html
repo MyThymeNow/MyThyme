@@ -44,6 +44,8 @@
                             <p style="text-align: center; visibility: hidden" th:if="${currentUser.getId() == groceryList.getOwner().getId()}">List Created By: <a th:text="${groceryList.owner.username}" th:href="@{|/profile/${groceryList.getOwner().getId()}|}"></a></p>
                             <!-- Owns List -->
                             <form  th:if="${currentUser.getId() == groceryList.getOwner().getId()}" th:action="@{/groceryLists/edit/{id}(id=${groceryList.id})}" method="get"><a th:href="@{/groceryLists/edit/{id}(id=${groceryList.id})}" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: white; background-color: #164A41">Edit List</a></form>
+                            <form  th:if="${currentUser.getId() == groceryList.getOwner().getId()}" th:action="@{/groceryLists/{shareURL}(shareURL=${groceryList.shareURL})}" method="get" ><a th:href="@{/groceryLists/{shareURL}(shareURL=${groceryList.shareURL})}" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: white; background-color: #9DC88D">View List</a></form>
+
                         </div>
                     </div>
                 </div>

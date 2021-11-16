@@ -42,6 +42,8 @@ public class GroceryListController {
     public String showOneGroceryList(@PathVariable String shareURL, Model model) {
         GroceryList groceryList = groceryDao.getByShareURL(shareURL);
         List<GroceryListIngredients> groceryListIngredients = listIngredientsDao.getByGroceryListId(groceryList.getId());
+        UserGroceryList listToFavorite = listDao.getByGroceryList_ShareURL(shareURL);
+
         for (GroceryListIngredients item : groceryListIngredients) {
             Long groceryListIngredients_id = item.getId();
 
@@ -50,6 +52,8 @@ public class GroceryListController {
             model.addAttribute("groceryList", groceryList);
             model.addAttribute("groceryListIngredients", groceryListIngredients);
             model.addAttribute("currentIngredient", currentIngredient);
+            model.addAttribute("isFavorited", listToFavorite.isFavorited());
+
         }
         return "groceryList/show";
     }
@@ -115,7 +119,6 @@ public class GroceryListController {
     public String showEditGroceryListForm(@PathVariable long id, Model model) {
         GroceryList groceryList = groceryDao.getById(id);
         List<GroceryListIngredients> groceryListIngredients = listIngredientsDao.getByGroceryList(groceryList);
-        UserGroceryList listToFavorite = listDao.getByGroceryList_Id(id);
 
         for (GroceryListIngredients item : groceryListIngredients) {
             Long groceryListIngredients_id = item.getId();
@@ -126,7 +129,6 @@ public class GroceryListController {
             model.addAttribute("grocery_list", groceryList);
             model.addAttribute("groceryListIngredients", groceryListIngredients);
             model.addAttribute("currentIngredient", currentIngredient);
-            model.addAttribute("isFavorited", listToFavorite.isFavorited());
 
         }
         return "groceryList/edit";
@@ -199,25 +201,25 @@ public class GroceryListController {
 
 //////// FAVORITE
 
-    @PostMapping("/groceryLists/edit/{id}/favorite")
-    public String favoriteList(@PathVariable Long id, Model model) {
-        GroceryList currentGroceryList = groceryDao.getById(id);
+    @PostMapping("/groceryLists/{shareURL}/favorite")
+    public String favoriteList(@PathVariable String shareURL, Model model) {
+        GroceryList currentGroceryList = groceryDao.getByShareURL(shareURL);
         UserGroceryList listToFavorite = listDao.getByGroceryList(currentGroceryList);
         listToFavorite.setFavorited(true);
         listDao.save(listToFavorite);
 
         model.addAttribute("isFavorited", !listToFavorite.isFavorited());
 
-        return "redirect:/groceryLists/edit/" + id;
+        return "redirect:/groceryLists/" + shareURL;
     }
 
-    @PostMapping("/groceryLists/edit/{id}/unfavorite")
-    public String unFavoriteList(@PathVariable Long id) {
-        GroceryList currentGroceryList = groceryDao.getById(id);
+    @PostMapping("/groceryLists/{shareURL}/unfavorite")
+    public String unFavoriteList(@PathVariable String shareURL) {
+        GroceryList currentGroceryList = groceryDao.getByShareURL(shareURL);
         UserGroceryList listToUnfavorite = listDao.getByGroceryList(currentGroceryList);
         listToUnfavorite.setFavorited(false);
         listDao.save(listToUnfavorite);
-        return "redirect:/groceryLists/edit/" + id;
+        return "redirect:/groceryLists/" + shareURL;
     }
 
 

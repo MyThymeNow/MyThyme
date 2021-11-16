@@ -11,7 +11,7 @@ public interface UserGroceryListRepository extends JpaRepository<UserGroceryList
 
     UserGroceryList getByUser_Id(long id);
 
-    UserGroceryList getByGroceryList_Id(Long id);
+    UserGroceryList getByGroceryList_ShareURL(String shareURL);
 
     UserGroceryList getByGroceryList(GroceryList groceryList);
 
