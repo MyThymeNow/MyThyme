@@ -8,22 +8,22 @@ public class CategoriesController {
 
     @GetMapping("/categories/sidedishes")
     public String showSideDishes() {
-        return "/categories/sidedishes";
+        return "categories/sidedishes";
     }
 
     @GetMapping("/categories/appetizers")
     public String showAppetizers() {
-        return "/categories/appetizers";
+        return "categories/appetizers";
     }
 
     @GetMapping("/categories/maincourse")
     public String showMainCourses() {
-        return "/categories/maincourse";
+        return "categories/maincourse";
     }
 
     @GetMapping("/categories/bread")
     public String showBreadItems() {
-        return "/categories/bread";
+        return "categories/bread";
     }
 
     @GetMapping("/categories/beverages")
@@ -33,7 +33,7 @@ public class CategoriesController {
 
     @GetMapping("/categories/desserts")
     public String showDesserts() {
-        return "/categories/desserts";
+        return "categories/desserts";
     }
 
 
