@@ -112,6 +112,7 @@ form{
 
 .message-sent{
     border-style: outset;
+    border-width: medium;
 }
 
 .mb-4-sent{
@@ -130,4 +131,5 @@ form{
 
 .message-received{
     border-style: ridge;
+    border-width: medium;
 }
