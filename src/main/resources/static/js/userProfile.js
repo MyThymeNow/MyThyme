@@ -2,7 +2,6 @@
 // let requestString = "https://api.spoonacular.com/recipes/random?apiKey=" + spoonacularKey + "&number=3";
 // // // // let requestCategories = "https://api.spoonacular.com/food/ingredients/9266/information?apiKey=" + spoonacularKey + "&amount=1";
 // //
-// //
 // $.ajax({
 //     url: requestString,
 //     type: "GET"
