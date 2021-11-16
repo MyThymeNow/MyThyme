@@ -12,7 +12,7 @@
 
 <section th:fragment="content">
 
-    <div><button onclick="goBack()">Back</button></div>
+    <div><button onclick="goBack()" style="border-radius: 4px; background-color: #164A41; color: white;">Back</button></div>
 
     <h1 th:text="${groceryList.name}"></h1>
 
@@ -33,7 +33,7 @@
     </div>
 
 
-    <div style="display: flex; justify-content: center; margin: 12px;"><button type="submit" id="copyURL" onclick="copyUrl()">Copy URL</button></div>
+    <div style="display: flex; justify-content: center; margin: 12px; "><button type="submit" id="copyURL" onclick="copyUrl()" style="border-radius: 4px; background-color: #164A41; color: white; width: 6rem">Copy URL</button></div>
 
     <div style="display: flex; justify-content: center">Created By: <a th:href="@{|/profile/${groceryList.getOwner().getId()}|}" th:text="${groceryList.owner.username}"></a></div>
 

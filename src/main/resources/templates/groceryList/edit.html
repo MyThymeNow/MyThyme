@@ -19,19 +19,22 @@
 
 <section class="section " th:fragment="content">
 
-<button onclick="goBack()">Back</button>
+
 
     <div class="container">
+
+        <button onclick="goBack()" style="border-radius: 4px; background-color: #164A41; color: white;">Back</button>
+
         <div th:if="${!isFavorited}" class="container">
 
             <form th:action="@{|/groceryLists/edit/${id}/favorite|}" class="favoriteBtn" th:method="post">
-                <button  type="submit" >Favorite</button>
+                <button  type="submit" style="border-radius: 4px; background-color: #164A41; color: white;">Favorite</button>
             </form>
         </div>
 
         <div th:if="${isFavorited}" class="container">
             <form th:action="@{|/groceryLists/edit/${id}/unfavorite|}" class="unFavoriteBtn" th:method="post">
-                <button  type="submit" >Unfavorite</button>
+                <button  type="submit" style="border-radius: 4px; background-color: #164A41; color: white;">Unfavorite</button>
             </form>
         </div>
     </div>
@@ -42,13 +45,15 @@
 
 
     <form th:action="@{|/groceryLists/edit/${id}|}" th:method="post" th:object="${grocery_list}">
-            <div class="form-group">
+        <h1>Edit Items</h1>
+
+            <div class="form-group" style="display: flex; justify-content: center; margin-top: 8px; align-items: baseline">
                 <label>List Name: </label>
-                <input type="text" th:field="*{name}" th:placeholder="name">
+                <input type="text" th:field="*{name}" th:placeholder="name" style="margin-left: 1rem;">
                 <input type="hidden" th:field="*{shareURL}" th:placeholder="shareURL"> <!-- Hidden so users can't edit -->
             </div>
 
-        <h1>Edit Items</h1>
+
         <div class="list-container">
             <div class="row" id="editIngredients" style="align-items: center; display: flex; justify-content: space-evenly; flex-wrap: wrap">
                 <div style="display: flex; justify-content: center; margin-top: 12px; margin-bottom: 12px" th:each="ingredient:${groceryListIngredients}">
@@ -76,7 +81,7 @@
         <div style="display: flex; justify-content: space-between">
             <span style="width: 6rem; margin-left: 24px; font-size: 16px;" id="addItemButton" class="btn btn-sm btn-success btn_row_below_new">Add Item</span>
 
-            <button style="border-radius: 4px; width: 6rem;" type="submit">Save Edits</button>
+            <button style="border-radius: 4px; background-color: #164A41; color: white; width: 6rem" type="submit">Save Edits</button>
 
             <button   style="width: 6rem; margin-right: 24px; visibility: hidden" type="button" class="btn btn-danger" data-toggle="modal" data-target="#clearListBackdrop">
                 Clear List
