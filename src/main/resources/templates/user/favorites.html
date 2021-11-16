@@ -14,10 +14,39 @@
 <div sec:authorize="isAuthenticated()">
 <h1 class="favorites">My Favorites</h1>
 
-<div class="container" th:each="groceryList:${favorites}">
-    <h2 th:text="${groceryList.groceryList.name}"></h2>
-    <a th:href="@{/groceryLists/{shareURL}(shareURL=${groceryList.groceryList.shareURL})}">View List</a>
+<!--<div class="container" th:each="groceryList:${favorites}">-->
+<!--    <h2 th:text="${groceryList.groceryList.name}"></h2>-->
+<!--    <a th:href="@{/groceryLists/{shareURL}(shareURL=${groceryList.groceryList.shareURL})}">View List</a>-->
+<!--</div>-->
+
+    <div class="list-container">
+        <div class="row" style="background-color: #9DC88D">
+            <div class="col-sm-4"  th:each="groceryList:${favorites}">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body" style="background-color: #f1b24a">
+                        <h5 class="card-title text-light font-weight-bold"
+                            style="flex-direction: row; border: #164A41; text-align: center"
+                            th:text="${groceryList.groceryList.name}"></h5>
+                        <img class="centerImg shadow bg-white rounded"
+                             src="/img/listStockPhoto.jpg" alt="..."
+                             style="display: flex; flex-direction: row; width: 8rem; length: 8rem; border: #164A41 2px solid">
+                        <!-- ${data.recipes[i].image} -->
+                        <br>
+
+                        <form th:action="@{/groceryLists/{shareURL}(shareURL=${groceryList.groceryList.shareURL})}" method="get"><a th:href="@{/groceryLists/{shareURL}(shareURL=${groceryList.groceryList.shareURL})}" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: white; background-color: #9DC88D">View List</a></form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
+
+
+
+
 
 </div>
 

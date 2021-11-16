@@ -10,10 +10,7 @@ import com.thyme.mythyme.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,30 +27,45 @@ public class ProfileController {
     }
 
 
-   @GetMapping("/profile/edit")
-    public String editProfile(Model model) {
-      User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-      User user = userDao.getById(loggedInUser.getId());
+   @GetMapping("/profile/edit/{id}")
+    public String editProfile(@PathVariable Long id, Model model) {
+      User loggedInUser = userDao.getById(id);
 
-       model.addAttribute("user",user);
+       model.addAttribute("loggedInUser",loggedInUser);
+       model.addAttribute("firstName",loggedInUser.getFirstName());
+       model.addAttribute("lastName",loggedInUser.getLastName());
+       model.addAttribute("username",loggedInUser.getUsername());
+       model.addAttribute("email",loggedInUser.getEmail());
+       model.addAttribute("bio",loggedInUser.getBio());
+
 
        return "user/edit";
    }
 
-    @PostMapping("/profile/edit")
-    public String editedProfile(@ModelAttribute User user){
+    @PostMapping("/profile/edit/{id}")
+    public String editedProfile(@PathVariable Long id,
+                                Model model,
+                                @RequestParam(name = "firstName") String firstName,
+                                @RequestParam(name = "lastName") String lastName,
+                                @RequestParam(name = "username") String username,
+                                @RequestParam(name = "email") String email,
+                                @RequestParam(name = "bio") String bio){
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userToDisplay = userDao.getById(currentUser.getId());
+        User userToUpdate = userDao.getById(id);
 
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        user  = userDao.findByUsername(loggedInUser.getUsername());
+        userToUpdate.setId(userToUpdate.getId());
+        userToUpdate.setFirstName(firstName);
+        userToUpdate.setLastName(lastName);
+        userToUpdate.setUsername(username);
+        userToUpdate.setEmail(email);
+        userToUpdate.setBio(bio);
+        userDao.save(userToUpdate);
 
-        user.setId(loggedInUser.getId());
-        user.setAdmin(loggedInUser.isAdmin());
-        user.setPassword(loggedInUser.getPassword());
-
-
-        userDao.save(user);
+        model.addAttribute("user", userToDisplay);
         return "redirect:/profile";
     }
+
 
 
 }

@@ -9,24 +9,37 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <h1>Create an account</h1>
-<form th:action="@{/sign-up}" method="POST" th:object="${user}">
+<form th:action="@{/sign-up}" method="POST" th:object="${user}" style="display: flex; flex-direction: column; align-items: center">
 
+    <div style="margin: 8px;">
     <label for="firstName">First Name</label>
     <input id="firstName" th:field="*{firstName}" />
 
     <label for="lastName">Last Name</label>
     <input id="lastName" th:field="*{lastName}" />
+    </div>
 
+    <div style="margin: 8px;">
     <label for="username">Username</label>
-    <input id="username" th:field="*{username}" />
+    <input id="username" th:field="*{username}" style="margin-right: 30px"/>
 
     <label for="email">Email</label>
-    <input id="email" th:field="*{email}" />
+    <input id="email" th:field="*{email}" style="margin-left: 8px"/>
+    </div>
 
+    <div style="margin: 8px;">
     <label for="password">Password</label>
-    <input id="password" type="password" th:field="*{password}" />
+    <input id="password" type="password" th:field="*{password}" style="margin-right: 3rem"/>
+    </div>
 
-    <input value="Sign me up!" type="submit" />
+    <div style="margin: 8px;">
+    <label for="bio">Bio</label>
+    <input id="bio" th:field="*{bio}">
+    </div>
+
+    <div style="margin: 8px;">
+    <input style="border-radius: 4px; background-color: #164A41; color: white;" value="Sign me up!" type="submit" />
+    </div>
 </form>
 
 <div th:replace="partials/footer::footer"></div>

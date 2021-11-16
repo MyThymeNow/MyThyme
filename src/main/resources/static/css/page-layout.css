@@ -66,6 +66,30 @@ form{
     background: #9DC88D;
 }
 
+/*scroll*/
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #164A41;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #9DC88D;
+}
+
 .newListButton{
     background-color: #164A41;
     display: flex;
@@ -79,3 +103,17 @@ form{
     justify-items: center;
 }
 
+
+
+.message-received{
+    margin: 0;
+}
+
+.mb-4-sent{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.toast-body{
+    padding: 0;
+}

@@ -11,24 +11,25 @@
 <h1>Edit Your Profile Information Here</h1>
 
 <div class="justify-content-center">
-    <form th:action="@{/profile/edit}" th:method="post" th:object="${user}">
-        First Name:
-        <label>
-            <input th:field="*{firstName}"/>
-        </label>
-        Last Name:
-        <label>
-            <input th:field="*{lastName}"/>
-        </label>
-        Email:
-        <label>
-            <input th:field="*{email}"/>
-        </label>
-        Username:
-        <label>
-            <input th:field="*{username}"/>
-        </label>
-        <input onclick=""  type="submit">
+    <form th:action="@{|/profile/edit/${id}|}" th:method="post" th:object="${loggedInUser}">
+
+        <label for="firstName">First Name:</label>
+            <input name="firstName" id="firstName" th:value="*{firstName}"/>
+        <br>
+        <label for="lastName">Last Name: </label>
+            <input name="lastName" id="lastName" th:value="*{lastName}"/>
+        <br>
+        <label for="email">Email: </label>
+            <input name="email" id="email" th:value="*{email}"/>
+        <br>
+        <label for="username">Username: </label>
+            <input name="username" id="username" th:value="*{username}"/>
+        <br>
+
+        <label for="bio">Bio: </label>
+            <input name="bio" id="bio" th:value="*{bio}"/>
+        <br>
+        <button type="submit" style="background-color: #164A41; color: #ffffff">Save Changes</button>
     </form>
 
 </div>
