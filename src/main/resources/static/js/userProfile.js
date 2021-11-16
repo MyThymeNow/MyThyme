@@ -8,39 +8,44 @@ $.ajax({
 }).done(function(data) {
     console.log(data);
 
-    let html = `            <div class="col">
-                <div id="myThymeCarouselIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#myThymeCarouselIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#myThymeCarouselIndicators" data-slide-to="1"></li>
-                        <li data-target="#myThymeCarouselIndicators" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">`;
+    // let html = `            <div class="col">
+    //             <div id="myThymeCarouselIndicators" class="carousel slide" data-ride="carousel">
+    //                 <ol class="carousel-indicators">
+    //                     <li data-target="#myThymeCarouselIndicators" data-slide-to="0" class="active"></li>
+    //                     <li data-target="#myThymeCarouselIndicators" data-slide-to="1"></li>
+    //                     <li data-target="#myThymeCarouselIndicators" data-slide-to="2"></li>
+    //                 </ol>
+    //                 <div class="carousel-inner">`;
 
-    let xyz = ``;
+    // let mid = "";
     for (let i = 0; i < 3; i++) {
-
-        xyz += `
-                        <div class="carousel-item active">
-                            <img src="${data.recipes[i].image}" class="d-block w-100" alt="recipe image">
-                        </div>`;
-
+        let mid = "";
+        if (i == 0){
+            mid+=`<div class="carousel-item active">`;
+        } else {
+                mid+=`<div class="carousel-item">`;
+            }
+        mid +=
+            `
+                <a href="${data.recipes[i].sourceUrl}"><img
+                    src="${data.recipes[i].image}"
+                    class="d-block w-80" alt="..."></a>
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 style="color: #ffffff; align-self: center"><strong>Try Something New</strong></h2>
+<!--                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
+                </div>
+            `;
+        $("#profile-col").append(mid).css('border','3px solid #' );
     }
-    xyz += `
-</div>
-<a class="carousel-control-prev" href="#myThymeCarouselIndicators" role="button" data-slide="prev">
-<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-<span class="sr-only">Previous</span>
-</a>
-<a class="carousel-control-next" href="#myThymeCarouselIndicators" role="button" data-slide="next">
-<span class="carousel-control-next-icon" aria-hidden="true"></span>
-<span class="sr-only">Next</span>
-</a>
-</div>
-</div>
-`
- $("#profile-col").html(html);
-    // $("#profile-col").append(html)
+
+    // $("#profile-col").html(mid);
+
+    // $("#profile-col").html(html).append(xyz);
     // $("#profile-col").append(html)
     // $(html).append("#profile-col").append(xhtml)
+    // $("#profile-col").before(html) + $("profile-col").append(mid) + $("profile-col").after(end);
+    // $("#profile-col").html(html).append(mid,end);
+    // $('*').css('border', '1px solid #F00'); TODO EXAMPLE TO STYLE
+    // $(".carousel").html(html).append(mid).after(end);
+    // $(".carousel").append(html,mid,end);
 });

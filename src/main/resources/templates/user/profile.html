@@ -46,7 +46,50 @@
                 </div>
             </div>
         </div>
-        <!--Carousel Practice Section-->
+
+    <!--    Carousel API Testing-->
+    <div class="col-6">
+<!--        <div class="card-group">-->
+            <div id="myThymeCarousel" class="carousel slide col" data-ride="carousel" style="width: fit-content">
+                <ol class="carousel-indicators">
+                    <li data-target="#myThymeCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myThymeCarousel" data-slide-to="1"></li>
+                    <li data-target="#myThymeCarousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner" id="profile-col">
+                    <!--    Carousel API JS Enters here-->
+                </div>
+                <a class="carousel-control-prev" href="#myThymeCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#myThymeCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+<!--        </div>-->
+
+    </div>
+
+    </div>
+
+
+
+
+
+
+<div th:replace="partials/footer::footer"></div>
+<!-- Scripts -->
+<script src="/js/jquery.js"></script>
+<script src="/keys.js"></script>
+<script src="/js/userProfile.js"></script>
+
+</body>
+</html>
+
+
+<!--Carousel Practice Section-->
 <!--        <div id="myThymeCarousel" class="carousel slide col" data-ride="carousel">-->
 <!--            <ol class="carousel-indicators">-->
 <!--                <li data-target="#myThymeCarousel" data-slide-to="0" class="active"></li>-->
@@ -86,23 +129,3 @@
 <!--                <span class="sr-only">Next</span>-->
 <!--            </a>-->
 <!--        </div>-->
-
-    </div>
-
-<!--    Carousel API Testing-->
-    <div class="col">
-        <div class="card-group" id="profile-col">
-        </div>
-    </div>
-
-</div>
-
-
-<div th:replace="partials/footer::footer"></div>
-<!-- Scripts -->
-<script src="/js/jquery.js"></script>
-<script src="/keys.js"></script>
-<script src="/js/userProfile.js"></script>
-
-</body>
-</html>
