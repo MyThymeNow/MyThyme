@@ -4,7 +4,7 @@ import lombok.*;
 
 import java.util.List;
 
-@ToString
+//@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class SpoonacularRequest {

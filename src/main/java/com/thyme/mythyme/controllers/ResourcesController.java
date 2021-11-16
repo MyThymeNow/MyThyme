@@ -15,7 +15,6 @@ public class ResourcesController {
     private String cocktailDBKey;
 
     @Value("${SPOONACULARAPIKEY}")
-
     private String spoonacularKey;
 
     @GetMapping(path = "/keys.js", produces = "application/javascript")
