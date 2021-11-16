@@ -28,7 +28,7 @@ $.ajax({
                       <img class="centerImg shadow bg-white rounded" src="${data.recipes[i].image}" style="display: flex; flex-direction: row; width: 8rem; length: 8rem; border: #164A41 2px solid">
                       <br>
                       <p class="card-text scroll shadow p-3 mb-5 rounded" style="display: flex; flex-direction: row; background-color: #f1b24a; flex-wrap: wrap; color: #000">${data.recipes[i].summary}</p>
-                      <a href="#" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: white; background-color: #164A41">View recipe</a>
+                      <a href="${data.recipes[i].sourceUrl}" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: white; background-color: #164A41">View recipe</a>
 
                     </div>
                   </div>`;

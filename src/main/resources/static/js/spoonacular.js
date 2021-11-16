@@ -38,9 +38,9 @@ $(document).ready(function () {
                       <img src="${data.results[i].image}">
                       <p class="card-text">${data.results[i].summary}</p>
                       <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
-                          <div sec:authorize="isAuthenticated()">
+                         
                           <a href="#" id="listButton" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
-                         </div>
+                         
 
                     </div>
                   </div>`;
