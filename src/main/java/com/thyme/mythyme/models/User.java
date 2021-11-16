@@ -68,10 +68,19 @@ public class User {
         email = copy.email;
         username = copy.username;
         password = copy.password;
+        firstName = copy.firstName;
+        lastName = copy.lastName;
+        bio = copy.bio;
     }
+
+
 
     // RELATIONSHIPS
 
+    @OneToOne
+    @Getter
+    @Setter
+    private Location location;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sender")
     @Getter
@@ -94,10 +103,7 @@ public class User {
     @Setter
     private List<UserGroceryList> userGroceryLists;
 
-    @OneToOne
-    @Getter
-    @Setter
-    private Location location;
+
 
 
     //   @JoinColumn(name = "location_id")

@@ -14,7 +14,7 @@
 <h1> View Your Profile Information Here</h1><br>
 
 <div class="justify-content-center row" style="padding-top: 5px" sec:authorize="isAuthenticated()">
-    <div class="user col" th:each="user : ${user}">
+    <div class="user col" th:each="user:${currentUser}">
         <!--2nd user card-->
         <div class="card mb-3 shadow p-3 mb-5 rounded" style="max-width: 20em; background-color: #f1b24a; justify-content: center">
             <img src="https://image.shutterstock.com/image-vector/viking-characters-god-loki-warriors-600w-2016325223.jpg" style="height: 200px; width: 200px; border: black 2px solid" class="card-img-top" alt="...">
@@ -25,7 +25,7 @@
                     <ul class="list-group list-group-flush">
                         <li style="background-color: #f1b24a; text-align: center; border-bottom: white" class="list-group-item shadow p-3 mb-5 rounded">
                             <p><strong>Username: </strong>
-                            <div th:text="${user.getUsername()}"></div></p>
+                            <div th:text="${currentUser.username}"></div></p>
                         </li>
                         <!--                <li style="background-color: #f1b24a; text-align: center" class="list-group-item shadow p-3 mb-5 rounded">-->
                         <!--                    <p><strong>First Name: </strong>-->
@@ -42,13 +42,13 @@
                 <div class="card-body" >
                     <h5 class="card-title">My Bio</h5>
                     <p class="scroll card-text shadow p-3 mb-5 rounded">
-                        <div th:text="${user.getBio()}"></div>
+                        <div th:text="${currentUser.bio}"></div>
                     </p>
                 </div>
                 <!--card button-->
                 <div class="card-body">
                     <a th:href="@{/messages}" style="background-color: #164A41; color: #ffffff" class="btn">Messages</a>
-                    <a th:href="@{/profile/edit}" style="background-color: #164A41; color: #ffffff" class="btn">Edit Profile</a>
+                    <a th:href="@{/profile/edit/{id}(id = ${currentUser.id})}" style="background-color: #164A41; color: #ffffff" class="btn">Edit Profile</a>
                 </div>
             </div>
         </div>
