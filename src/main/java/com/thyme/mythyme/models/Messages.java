@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter;
 @Entity
 @Table(name = "messages")
 
-public class Messages implements  Comparable <Messages>{
+public class Messages {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
@@ -50,9 +50,9 @@ public class Messages implements  Comparable <Messages>{
     public User receiver;
 
 
-    public int compareTo(Messages o){
-        return this.timestamp.compareTo(o.getTimestamp());
-    }
+//    public int compareTo(Messages o){
+//        return this.timestamp.compareTo(o.getTimestamp());
+//    }
 
     public String getReadableDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
