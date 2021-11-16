@@ -133,3 +133,9 @@ form{
     border-style: ridge;
     border-width: medium;
 }
+
+#rowLayout{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
