@@ -31,7 +31,7 @@ public class PostController {
 
 //        GroceryList groceryList = groceryDao.getById(recipeId);
 //        groceryDao.save(groceryList);
-        return "redirect:/profile";
+        return "/saveIngredients";
     }
 
 }

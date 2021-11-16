@@ -115,16 +115,13 @@ $(document).ready(function () {
                 const recipe = recipeDetails.results.find(result => result.id == recipeId)
                 console.log(recipe)
 
+
                 const recipeData = {
-                    name: "bob",
-                    ingredients: [
-                        {
-                            name: "potato",
-                            quantity: 3,
-                            notes: "resstle Potatos, ripe"
-                        }
-                    ]
+                    name: recipe.title,
+                    ingredients: recipe.extendedIngredients.map(ingredient => ({name: ingredient.name, quantity: ingredient.amount, notes: ingredient.originalString}))
                 }
+
+
 
                 // TODO
                 // immediately after getting recipe, use fetch to get id from api and send
@@ -137,7 +134,7 @@ $(document).ready(function () {
                     let token = $("meta[name='_csrf']").attr("content");
                     let header = $("meta[name='_csrf_header']").attr("content");
 
-                    console.log($("meta[name='_csrf']").attr("content"),token)
+                    console.log($("meta[name='_csrf']").attr("content"), token)
 
                     $(document).ajaxSend(function (e, xhr, options) {
                         xhr.setRequestHeader(header, token);
@@ -157,13 +154,15 @@ $(document).ready(function () {
                     })
                     // Make call to api using the recipe ID
                 }
+
                 saveRecipe(recipeData);
-
-            })
             })
 
-}
+            })
+
+        }
     mainCourse();
+
 
 
 
