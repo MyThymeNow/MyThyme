@@ -12,26 +12,23 @@
 
 <div class="justify-content-center">
     <form th:action="@{|/profile/edit/${id}|}" th:method="post" th:object="${loggedInUser}">
-        First Name:
-        <label for="firstname">
-            <input name="firstname" id="firstname" th:field="*{firstName}"/>
-        </label><br>
-        Last Name:
-        <label for="lastName">
-            <input name="lastName" id="lastName" th:field="*{lastName}"/>
-        </label><br>
-        Email:
-        <label for="email">
-            <input name="email" id="email" th:field="*{email}"/>
-        </label><br>
-        Username:
-        <label for="username">
-            <input name="username" id="username" th:field="*{username}"/>
-        </label><br>
-        Bio:
-        <label for="bio">
-            <input name="bio" id="bio" th:text="*{bio}"/>
-        </label><br>
+
+        <label for="firstName">First Name:</label>
+            <input name="firstName" id="firstName" th:value="*{firstName}"/>
+        <br>
+        <label for="lastName">Last Name: </label>
+            <input name="lastName" id="lastName" th:value="*{lastName}"/>
+        <br>
+        <label for="email">Email: </label>
+            <input name="email" id="email" th:value="*{email}"/>
+        <br>
+        <label for="username">Username: </label>
+            <input name="username" id="username" th:value="*{username}"/>
+        <br>
+
+        <label for="bio">Bio: </label>
+            <input name="bio" id="bio" th:value="*{bio}"/>
+        <br>
         <button type="submit" style="background-color: #164A41; color: #ffffff">Save Changes</button>
     </form>
 

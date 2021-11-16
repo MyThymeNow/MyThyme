@@ -19,31 +19,25 @@
         <div class="card mb-3 shadow p-3 mb-5 rounded" style="max-width: 20em; background-color: #f1b24a; justify-content: center">
             <img src="https://image.shutterstock.com/image-vector/viking-characters-god-loki-warriors-600w-2016325223.jpg" style="height: 200px; width: 200px; border: black 2px solid;" class="card-img-top justify-content-center" alt="...">
             <div class="card-body">
-<!--                <h5 class="card-title">Card title</h5>-->
                 <!-- user info section -->
 <!--                <div class="card-body">-->
                     <ul class="list-group list-group-flush">
                         <li style="background-color: #f1b24a; text-align: center; border-bottom: white" class="list-group-item shadow p-3 mb-5 rounded">
                             <p><strong>Username: </strong>
-                            <div th:text="${currentUser.username}"></div></p>
-                        </li>
-                        <!--                <li style="background-color: #f1b24a; text-align: center" class="list-group-item shadow p-3 mb-5 rounded">-->
-                        <!--                    <p><strong>First Name: </strong>-->
-                        <!--                    <div th:text="${user.getFirstName()}"></div></p>-->
-                        <!--                </li>-->
-                        <!--                <li style="background-color: #f1b24a; text-align: center" class="list-group-item shadow p-3 mb-5 rounded">-->
-                        <!--                    <p><strong>Last Name: </strong>-->
-                        <!--                    <div th:text="${user.getLastName()}"></div></p>-->
-                        <!--                </li>-->
+                            <div th:text="${currentUser.username}"></div>
+                            <!--                    <p><strong>First Name: </strong>-->
+                            <!--                    <div th:text="${user.getFirstName()}"></div></p>-->
 
+                            <!--                    <p><strong>Last Name: </strong>-->
+                            <!--                    <div th:text="${user.getLastName()}"></div></p>-->
+                            </p>
+                        </li>
                     </ul>
                 </div>
                 <!--Bio-->
                 <div class="card-body" >
                     <h5 class="card-title">My Bio</h5>
-                    <p class="scroll card-text shadow p-3 mb-5 rounded" th:text="${currentUser.bio}">
-<!--                        <div th:text="${currentUser.bio}"></div>-->
-                    </p>
+                    <p class="scroll card-text shadow p-3 mb-5 rounded" th:text="${currentUser.bio}"></p>
                 </div>
                 <!--card button-->
                 <div class="card-body">
