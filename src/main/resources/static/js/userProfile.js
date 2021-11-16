@@ -1,59 +1,51 @@
-// "use strict"
-// let requestString = "https://api.spoonacular.com/recipes/random?apiKey=" + spoonacularKey + "&number=3";
-// // // // let requestCategories = "https://api.spoonacular.com/food/ingredients/9266/information?apiKey=" + spoonacularKey + "&amount=1";
-// //
-// //
-// $.ajax({
-//     url: requestString,
-//     type: "GET"
-// }).done(function(data) {
-//     console.log(data);
+"use strict"
+let requestString = "https://api.spoonacular.com/recipes/random?apiKey=" + spoonacularKey + "&number=3";
+// // // let requestCategories = "https://api.spoonacular.com/food/ingredients/9266/information?apiKey=" + spoonacularKey + "&amount=1";
 //
-//     let html = `
-//             <div class="col">
-//         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-//             <ol class="carousel-indicators">
-//                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-//                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-//                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-//             </ol>
-//             <div class="carousel-inner">
-//                 <div class="carousel-item active">
-//                     <img src="${data.recipes[i].image}" class="d-block w-100" alt="recipe image">
-//                 </div>
-//                 <div class="carousel-item">
-//                     <img src="${data.recipes[i].image}" class="d-block w-100" alt="recipe image">
-//                 </div>
-//                 <div class="carousel-item">
-//                     <img src="${data.recipes[i].image}" class="d-block w-100" alt="recipe image">
-//                 </div>
-//             </div>
-//             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-//                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-//                 <span class="sr-only">Previous</span>
-//             </a>
-//             <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-//                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-//                 <span class="sr-only">Next</span>
-//             </a>
-//         </div>
-//     </div>`;
-//
-//     // for (let i = 0; i < 3; i++) {
-//     //
-//     //     html += `
-//     //               <div class="card ml-3" style="width: 18rem"><!-- class="bg-transparent" -->
-//     //               <div class="card ml-4" style="width: 18rem"><!-- class="bg-transparent" -->
-//     //                 <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a"><!--9DC88D light green-->
-//     //                   <h5 class="card-title text-light font-weight-bold" style="display: flex; flex-direction: row; border: #164A41; text-align: center">${data.recipes[i].title}</h5>
-//     //                   <img class="centerImg shadow bg-white rounded" src="${data.recipes[i].image}" style="display: flex; flex-direction: row; width: 8rem; length: 8rem; border: #164A41 2px solid">
-//     //                   <br>
-//     //                   <p class="card-text scroll shadow p-3 mb-5 rounded" style="display: flex; flex-direction: row; background-color: #ffffff; color: #000">${data.recipes[i].summary}</p>
-//     //                   <a href="#" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: white; background-color: #164A41">View recipe</a>
-//     //
-//     //                 </div>
-//     //               </div>`;
-//     //
-//     // }
-//     $("#profile-col").html(html);
-// });
+$.ajax({
+    url: requestString,
+    type: "GET"
+}).done(function(data) {
+    console.log(data);
+
+    // let html = `            <div class="col">
+    //             <div id="myThymeCarouselIndicators" class="carousel slide" data-ride="carousel">
+    //                 <ol class="carousel-indicators">
+    //                     <li data-target="#myThymeCarouselIndicators" data-slide-to="0" class="active"></li>
+    //                     <li data-target="#myThymeCarouselIndicators" data-slide-to="1"></li>
+    //                     <li data-target="#myThymeCarouselIndicators" data-slide-to="2"></li>
+    //                 </ol>
+    //                 <div class="carousel-inner">`;
+
+    // let mid = "";
+    for (let i = 0; i < 3; i++) {
+        let mid = "";
+        if (i == 0){
+            mid+=`<div class="carousel-item active">`;
+        } else {
+                mid+=`<div class="carousel-item">`;
+            }
+        mid +=
+            `
+                <a href="${data.recipes[i].sourceUrl}"><img
+                    src="${data.recipes[i].image}"
+                    class="d-block w-80" alt="..."></a>
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 style="color: #ffffff; align-self: center"><strong>Try Something New</strong></h2>
+<!--                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
+                </div>
+            `;
+        $("#profile-col").append(mid).css('border','3px solid #' );
+    }
+
+    // $("#profile-col").html(mid);
+
+    // $("#profile-col").html(html).append(xyz);
+    // $("#profile-col").append(html)
+    // $(html).append("#profile-col").append(xhtml)
+    // $("#profile-col").before(html) + $("profile-col").append(mid) + $("profile-col").after(end);
+    // $("#profile-col").html(html).append(mid,end);
+    // $('*').css('border', '1px solid #F00'); TODO EXAMPLE TO STYLE
+    // $(".carousel").html(html).append(mid).after(end);
+    // $(".carousel").append(html,mid,end);
+});

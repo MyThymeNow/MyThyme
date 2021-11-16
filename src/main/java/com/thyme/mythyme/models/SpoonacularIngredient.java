@@ -2,7 +2,7 @@ package com.thyme.mythyme.models;
 
 import lombok.*;
 
-@ToString
+//@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class SpoonacularIngredient {
