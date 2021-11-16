@@ -21,13 +21,13 @@ $.ajax({
     for (let i = 0; i < 3; i++) {
 
         html += `
-                  <div class="card ml-3" style="width: 18rem"><!-- class="bg-transparent" -->
+<!--                  <div class="card ml-3" style="width: 18rem">&lt;!&ndash; class="bg-transparent" &ndash;&gt;-->
                   <div class="card ml-4" style="width: 18rem"><!-- class="bg-transparent" -->
                     <div class="card-body" style="display: flex; flex-direction: column; background-color: #f1b24a"><!--9DC88D light green-->
                       <h5 class="card-title text-light font-weight-bold" style="display: flex; flex-direction: row; border: #164A41; text-align: center">${data.recipes[i].title}</h5>
                       <img class="centerImg shadow bg-white rounded" src="${data.recipes[i].image}" style="display: flex; flex-direction: row; width: 8rem; length: 8rem; border: #164A41 2px solid">
                       <br>
-                      <p class="card-text scroll shadow p-3 mb-5 rounded" style="display: flex; flex-direction: row; background-color: #ffffff; color: #000">${data.recipes[i].summary}</p>
+                      <p class="card-text scroll shadow p-3 mb-5 rounded" style="display: flex; flex-direction: row; background-color: #f1b24a; flex-wrap: wrap; color: #000">${data.recipes[i].summary}</p>
                       <a href="#" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: white; background-color: #164A41">View recipe</a>
 
                     </div>
