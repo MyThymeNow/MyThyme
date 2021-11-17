@@ -12,25 +12,30 @@
 
 <section th:fragment="content">
 
-<div class="container">
 <script src="$('.toast').toast('show')"></script>
 <!--    <button value="Craft New Message" th:href="@{}"></button>-->
 
-    <table class="table table-light">
-
-        <th>Users</th>
-        <div th:each="user : ${users}">
-
-            <tr>
-                <td><a th:href="@{/messages/{otherUserId}(otherUserId=${user.getId()})}" th:text="${user.username}"></a> </td>
-            </tr>
-
+    <div class="list-container" >
+        <h3 style="display: flex; justify-content: center; font-family: 'Lobster', cursive; margin: 0px; padding: 8px;">Message Threads</h3>
+        <div class="row" style="background-color: #9DC88D; justify-content: space-evenly">
+            <div class="col-sm-4"  style="display: flex; justify-content: center; margin-top: 24px;" th:each="user:${users}">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body" style="background-color: #f1b24a">
+                        <h5 class="card-title text-light font-weight-bold"
+                            style="flex-direction: row; border: #164A41; text-align: center"
+                            th:text="${user.username}"></h5>
+                        <img class="centerImg shadow bg-white rounded"
+                             src="/img/chat.jpg" alt="..."
+                             style="display: flex; flex-direction: row; width: 8rem; length: 8rem; border: #164A41 2px solid">
+                        <br>
+                        <!-- Owns List -->
+                        <form><a th:href="@{/messages/{otherUserId}(otherUserId=${user.getId()})}" class="btn centerImg shadow p-3 mb-2 mbr-2 rounded" style="width: 80%; color: white; background-color: #164A41">Start Message</a></form>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-    </table>
-
-
-</div>
 
 </section>
 

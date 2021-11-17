@@ -40,8 +40,8 @@
         <form th:action="@{/create}" th:method="post" th:object="${grocery_list}">
 
             <!--ENTER NAME OF LIST-->
-            <div class="form-group">
-                <label for="title">List Name: </label>
+            <div class="form-group" style="display: flex; justify-content: center; margin-top: 8px;flex-direction: row;">
+                <label for="title" style="margin-bottom: 0px; margin-top: 2px; margin-right: 8px;">List Name: </label>
                 <input id="title" th:field="*{name}"/>
             </div>
             <h1> Add Items</h1>
