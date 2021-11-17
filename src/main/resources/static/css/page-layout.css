@@ -134,7 +134,7 @@ form{
     border-width: medium;
 }
 
-#rowLayout{
+.row-layout{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
