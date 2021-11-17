@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:include="partials/header :: head">
     <meta charset="UTF-8">
-    <title>Admin Page</title>
+    <title>Admin Dashboard</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="/css/page-layout.css">
@@ -10,9 +10,9 @@
 
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<h2>Admin Dashboard</h2>
+<h2 style="font-family: 'Lobster', cursive">Admin Dashboard</h2>
 <div sec:authorize="isAuthenticated()">
-<h3>Welcome, <span th:text="${#authentication.principal.username}"/>!</h3>
+<h3 style="font-family: 'Lobster', cursive">Welcome, <span th:text="${#authentication.principal.username}"/>!</h3>
 
 <table class="table">
     <thead>
@@ -36,7 +36,7 @@
 <!--                <label class="form-check-label" for="lockedCheckbox">-->
 <!--                    Unlock-->
 <!--                </label>-->
-                <input type="submit" value="Unlock">
+                <input type="submit" value="Unlock" class="btn" style="border-radius: 4px; background-color: #164A41; color: white">
             </form></td>
         <td th:if="${!user.isLocked}">Enabled</td>
 
