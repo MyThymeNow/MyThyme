@@ -34,7 +34,7 @@
                             <div class="toast-body">
                                 <div class="message-sent">
                                     <p style="text-align:left" th:text="${text.getContent()}"></p>
-                                    <small>Sent by you on <span th:text="${text.getReadableDate()}"></span>
+                                    <small>Sent by you on <span th:text="${text.getTimestamp()}"></span>
                                     </small></p>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                         <div class="message-received">
                             <p style="text-align:left" th:text="${text.getContent()}"></p>
                             <small><br>Sent by <span th:text="${otheruser.getUsername()}"></span> on
-                                <span th:text="${text.getReadableDate()}"></span> </small></p>
+                                <span th:text="${text.getTimestamp()}"></span> </small></p>
                         </div>
                     </div>
                 </div>
