@@ -11,7 +11,7 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<h1> View Your Profile Information Here</h1><br>
+<h1 style="padding-top: 12px;"> View Your Profile Information Here</h1><br>
 
 <div class="row" style="padding-top: 5px" sec:authorize="isAuthenticated()">
     <div class="user col-4" th:each="user:${currentUser}">

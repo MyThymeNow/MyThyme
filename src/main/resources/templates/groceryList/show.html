@@ -33,7 +33,19 @@
     </div>
 
 
-    <div style="display: flex; justify-content: center; margin: 12px; "><button type="submit" id="copyURL" onclick="copyUrl()" style="border-radius: 4px; background-color: #164A41; color: white; width: 6rem">Copy URL</button></div>
+    <div style="display: flex; flex-direction: column; align-items: center; margin: 12px; ">
+        <button type="submit" id="copyURL" onclick="copyUrl()" style="border-radius: 4px; background-color: #164A41; color: white; width: 6.5rem; margin-bottom: 8px;">Copy URL</button>
+
+        <!--Favorite Button-->
+            <form th:if="${!isFavorited}" th:action="@{|/groceryLists/${shareURL}/favorite|}" class="favoriteBtn" th:method="post">
+                <button  type="submit" style="border-radius: 4px; background-color: #164A41; color: white; width: 6.5rem; margin-top: 8px;">Favorite</button>
+            </form>
+        <!--Un-Favorite Button-->
+            <form th:if="${isFavorited}" th:action="@{|/groceryLists/${shareURL}/unfavorite|}" class="unFavoriteBtn" th:method="post">
+                <button  type="submit" style="border-radius: 4px; background-color: #164A41; color: white; width: 6.5rem; margin-top: 8px;">Un-Favorite</button>
+            </form>
+
+    </div>
 
     <div style="display: flex; justify-content: center">Created By: <a th:href="@{|/profile/${groceryList.getOwner().getId()}|}" th:text="${groceryList.owner.username}"></a></div>
 

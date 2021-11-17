@@ -38,9 +38,9 @@ $(document).ready(function () {
                       <img src="${data.results[i].image}">
                       <p class="card-text">${data.results[i].summary}</p>
                       <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
-                         
+
                           <a href="#" id="listButton" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
-                         
+
 
                     </div>
                   </div>`;
@@ -153,8 +153,10 @@ $(document).ready(function () {
                       <h5 class="card-title">${data.results[i].title}</h5>
                       <img src="${data.results[i].image}">
                       <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
+
                       <a href="#" class="btn addBtn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
       
+
                     </div>
                   </div>`;
             }

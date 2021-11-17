@@ -1,9 +1,9 @@
 
-.profile{
-    background-image: linear-gradient(to bottom right, #9DC88D,#f1b24a);
-    justify-content: center;
-    ;
-}
+/*.profile{*/
+/*    background-image: linear-gradient(to bottom right, #9DC88D,#f1b24a);*/
+/*    justify-content: center;*/
+/*    ;*/
+/*}*/
 
 body {
     background-color: #9DC88D;
@@ -132,4 +132,10 @@ form{
 .message-received{
     border-style: ridge;
     border-width: medium;
+}
+
+.row-layout{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
