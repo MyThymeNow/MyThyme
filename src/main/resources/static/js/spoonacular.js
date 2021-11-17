@@ -154,14 +154,15 @@ $(document).ready(function () {
                       <img src="${data.results[i].image}">
                       <a href="${data.results[i].sourceUrl}" class="btn" style="border-radius: 4px; background-color: #164A41; color: white;">View Recipe</a>
 
-                      <a href="#" class="btn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
+                      <a href="#" class="btn addBtn" data-id="${data.results[i].id}" style="border-radius: 4px; background-color: #164A41; color: white;">Add to List</a>
+      
 
                     </div>
                   </div>`;
             }
             $("#maincourse_results").html(html);
 
-            $(".btn").click(function (e) {
+            $(".addBtn").click(function (e) {
                 e.preventDefault();
                 const recipeId = $(this).attr("data-id")
                 console.log(recipeId);
